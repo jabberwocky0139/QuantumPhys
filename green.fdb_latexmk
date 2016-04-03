@@ -1,0 +1,15 @@
+# Fdb version 3
+["dvipdf"] 0 "green.dvi" "green.pdf" "green" 0
+  "green.dvi" 0 -1 0 "latex"
+  (generated)
+  "green.pdf"
+["latex"] 1454850959 "green.tex" "green.dvi" "green" 1454850959
+  "/etc/texmf/web2c/texmf.cnf" 1448125232 1101 af7716885e081ab43982cab7b4672c1a ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1435377840 31349 7675f8adfbe12aae865d340d35423a49 ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1435377840 31349 7675f8adfbe12aae865d340d35423a49 ""
+  "/var/lib/texmf/web2c/eptex/platex.fmt" 1448125377 4002077 eec9ae467625068dd3f6b351fe937979 ""
+  "green.aux" 1454850933 8 a94a2480d3289e625eea47cd1b285758 ""
+  "green.tex" 1454850959 0 d41d8cd98f00b204e9800998ecf8427e ""
+  (generated)
+  "green.log"
+  "green.dvi"
