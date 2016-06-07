@@ -1,6 +1,5 @@
 %\documentclass[11pt,a4paper]{jsarticle}
 \documentclass[10.5pt,a4paper]{jreport}
-
 \usepackage{amsmath,amssymb}
 \usepackage{comment}
 \usepackage{bm}
@@ -35,6 +34,10 @@
 \newcommand{\calP}{{\cal P}}
 \newcommand{\calG}{{\cal G}}
 \newcommand{\calS}{{\cal S}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\by}{\bm{y}}
+\newcommand{\bk}{\bm{k}}
+\newcommand{\hpsi}{\hat{\psi}}
 %\newcommand{\Tr}{{\rm Tr}}
 
 %-------------------式番号にSectionを付加------------------------------
@@ -55,6 +58,8 @@
 %\setcounter{page}{0}
 \thispagestyle{empty}
 \tableofcontents
+\section{はじめに}
+鳥居のお勉強メモなので, ミス・誤植・間違った記述が存在します. 批判的に読んでください. また, 内容はまとまっているようでまとまっていません. 情報がかなり乱雑に散りばめられているので, 目次を索引だと思ってください. 
 \chapter{量子力学・統計力学の基礎知識}
 \section{演算子とGenerator}
 運動量演算子 : 並進変換のGenerator
@@ -842,7 +847,7 @@ $\Delta V$は全ポテンシャルから孤立原始中で電子が感じるポ�
 というようにカウンター項$\varsigma$でくりこみが可能である. よってループのない経路のみを考えれば良い. また, コネクティビティが最近接サイト数$z$を用いて$z-2 < K \leq z - 1$と書けること, $P$ステップ後のコネクティビティが$K^P$で概算できることを用いて(\ref{anderson2})を摂動的に処理し, $a_i(\infty)$がゼロになるところと有限の値を取るところを解析したのがAndersonの1958年の論文である.
 
 しかしこの取り扱いはなかなか難しい. これの見通しを良くするのがスケーリング理論である.
-\section{E.Abrahams et al. Phys. Rev. Lett. 42, 673(1979)}
+\section{E.Abrahams et al. Phys. Rev. Lett. $\bm{42}$, 673(1979)}
 \newpage
 \chapter{熱・統計・量子統計力学}
 \section{熱力学}
@@ -2066,7 +2071,7 @@ $L\rightarrow\infty$, つまり$k$の連続極限を取ることを考える. Fo
 \end{eqnarray}
 であり, デルタ関数のFourier変換表示
 \begin{eqnarray}
-  \delta(x) = \frac{1}{(2\pi)^3}\int dk e^{ikx}\hspace{0.5cm}\Longrightarrow \hspace{0.5cm}\delta(0) = \frac{1}{(2\pi)^3}\int dx = \frac{V}{(2\pi)^3}
+  \delta(x) = \frac{1}{(2\pi)^3}\int dk e^{ikx}\hspace{0.5cm}\Longrightarrow \hspace{0.5cm}\delta(0) = \frac{1}{(2\pi)^3}\int dx = \frac{V}{(2\pi)^3}\label{delta-volume}
 \end{eqnarray}
 \subsection{ハミルトニアンの対角化とBogoliubov-de Gennes方程式}
 \subsubsection{対角化とは}
@@ -2993,8 +2998,264 @@ i = 2について:
 $R_i$はシンプソン積分でいける.
 \newpage
 \chapter{Fetter-Walecka : Quantum Theory of Many-Particle Systems}
-\section{Green Function}
+\section{Second Quantization}
+だいたい知っていると思うので, Fetterの流儀を知るために簡単におさらいするに留める.
+\subsection{Fields}
+生成消滅演算子の線型結合について:
+\begin{eqnarray}
+  \hat{\psi}(\bm{x}) &\equiv& \sum_k\psi_k(\bm{x})c_k\label{2nd-quantum1}\\
+  \hat{\psi}^\dagger(\bm{x}) &\equiv& \sum_k\psi_k^\dagger(\bm{x})c^\dagger_k\label{2nd-quantum2}
+\end{eqnarray}
+展開係数は一粒子波動関数で完全系による展開だと思えば良い\footnote{原書は ``complete set of single-particle quantum numbers'' とある. $\psi$がハミルトニアンの固有関数ならエネルギー固有関数による完全系であるし, 運動量演算子の固有関数なら運動量固有関数の完全系で展開ということになる. `` quantum numbers'' はここで言えばエネルギーか運動量か, みたいな話. }. ここで$\psi$はスピンについてのdoubletであり, $k$はなんかしらのquantum number\footnote{繰り返しになるが, 例えば主量子数・方位量子数・磁気量子数で$\bm{k} = (n, l, m)$みたいなのはよくあるよね. }:
+\begin{eqnarray}
+  \psi_k(\bm{x}) =
+  \begin{pmatrix}
+    \psi_{k1}(\bm{x})\\
+    \psi_{k2}(\bm{x})
+  \end{pmatrix}
+  \equiv \psi_{k\alpha}(\bm{x}) & (\alpha = 1, 2)
+\end{eqnarray}
+$\alpha$はスピンのインデックス. $\hat{\psi}, \hat{\psi}^\dagger$は場の演算子と呼ばれる. 場の演算子は生成消滅演算子を含んでいるのでFock空間の演算子である. 場の演算子は正準交換関係を満たす:
+\begin{eqnarray}
+  \qty[\hat{\psi}_\alpha(\bm{x}), \hat{\psi}_\beta^\dagger(\bm{x}')]_{\mp} &=& \delta_{\alpha\beta}\delta(\bm{x} - \bm{x}')\\
+  \qty[\hat{\psi}_\alpha(\bm{x}), \hat{\psi}_\beta(\bm{x}')]_{\mp} &=&\qty[\hat{\psi}^\dagger_\alpha(\bm{x}), \hat{\psi}^\dagger_\beta(\bm{x}')]_{\mp} = 0
+\end{eqnarray}
+$-$がボソン, $+$がフェルミオンである. 上の式はこれは生成消滅演算子の正準交換関係から得られ, 下の式は波動関数の完全性から得られる.
 
+ハミルトニアンは場の演算子を用いて以下のように書き直せる:
+\begin{eqnarray}
+  \hat{H} = \int d\bm{x} \hat{\psi}^\dagger(\bm{x})T(\bm{x})\hat{\psi}(\bm{x}) + \frac{1}{2}\int\int d\bm{x}d\bm{x}' \hat{\psi}^\dagger(\bm{x})\hat{\psi}^\dagger(\bm{x}')V(\bm{x}, \bm{x}')\hat{\psi}(\bm{x}')\hat{\psi}(\bm{x})
+\end{eqnarray}
+$T(\bm(x))$はkinetic energy term. これがなぜハミルトニアンと呼んでよいかは山中先生の資料を参照のこと\footnote{(\ref{2nd-quantum1})(\ref{2nd-quantum2})をハミルトニアンの定義に代入すると多体量子力学のハミルトニアンが再現できる. }.
 
+ここで一般的な一体演算子\footnote{Green関数・相関関数のような2体関数でないという意味}を考える:
+\begin{eqnarray}
+  J = \sum_{i = 0}^NJ(\bm{x_i})
+\end{eqnarray}
+なんかしらの演算子$J(\bm{x_i})$の線型結合として定義された第一量子化\footnote{第二量子化ではないというニュアンス. 第一量子化という言葉が的確かどうかは知らない. }された演算子. これを第二量子化の表示に移すと以下のようになる\footnote{(\ref{2nd-quantum3})は少々雑な議論っぽい. 運動量演算子を第二量子化したときのアナロジーが根拠か？ いずれにしろ, 変換のgeneratorとして定義するほうが筋が通っているように思える. 第二量子化は場の理論よりも不完全である. }:
+\begin{eqnarray}
+  \hat{J} &=& \sum_{rs}\bra{r}J\ket{s}c_r^\dagger c_s\label{2nd-quantum3}\\
+  &=& \int d\bm{x}\sum_{rs}\hat{\psi}^\dagger_r(\bm{x})J(\bm{x})\hat{\psi}_s(\bm{x})c_r^\dagger c_s\\
+  &=& \int d\bm{x}\hat{\psi}^\dagger(\bm{x})J(\bm{x})\hat{\psi}(\bm{x})
+\end{eqnarray}
+以降Fetterの本では第二量子化の際はこの(\ref{2nd-quantum3})を使う. その是非はともかくとして. 
+
+\section{Green's Functions}
+このセクションではGreen関数\footnote{propagatorとかも呼ばれる}のコンセプトについて紹介する. Green関数は多体問題の取り扱いの上で重要な働きをする. 以下描像を明確にするために原書にはない添字$S, H$をつける. 
+\subsection{Definition}
+Green関数の定義は以下の通り:
+\begin{eqnarray}
+  iG_{\alpha\beta}(\bm{x}, t;\bm{x}', t') = \frac{\!_H\bra{\Psi_0}T\qty[\hat{\psi}_{H\alpha}(\bm{x}t)\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')]\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H}\label{definition-green}
+\end{eqnarray}
+$\ket{\Psi_0}_H$は相互作用系のHeisenberg Full Hamiltonianの基底固有状態:
+\begin{eqnarray}
+  H_H\ket{\Psi_0}_H = E\ket{\Psi_0}_H 
+\end{eqnarray}
+$\hat{\psi}_{H\alpha}(\bm{x}t)$はHeisenberg描像の時間依存演算子:
+\begin{eqnarray}
+  \hat{\psi}_{H\alpha}(\bm{x}t) = e^{i\hat{H_H}t/\hbar}\hat{\psi}_{S\alpha}(\bm{x})e^{-i\hat{H_H}t/\hbar}
+\end{eqnarray}
+$\alpha\beta$は場の演算子の内部自由度であり, 今回はスピン1/2のフェルミオンを考える. T積の部分を書き下すと
+\begin{eqnarray}
+  T\qty[\hat{\psi}_{H\alpha}(\bm{x}t)\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')] =
+  \begin{cases}
+    \hat{\psi}_{H\alpha}(\bm{x}t)\hat{\psi}_{H\beta}^\dagger(\bm{x}'t') & (t > t')\\
+    \pm\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')\hat{\psi}_{H\alpha}(\bm{x}t) & (t < t')
+  \end{cases}
+\end{eqnarray}
+ここで符号が$+$ならボソン, $-$ならフェルミオン. つまるところ, T積は時間順序通りに演算子を並べ替えて, 演算子を入れ替えた回数を$P$とするとき, 先頭に$(-1)^P$を付ければ良い\footnote{もちろんフェルミオンの場合. ボソンの場合は$(-1)^P$因子はいらない}. というわけで, (\ref{definition-green})をexplicitに書き直すと
+\begin{eqnarray}
+  iG_{\alpha\beta}(\bm{x}, t;\bm{x}', t') =
+  \begin{cases}
+    \cfrac{\!_H\bra{\Psi_0}\hat{\psi}_{H\alpha}(\bm{x}t)\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} & (t > t')\\
+    \pm\cfrac{\!_H\bra{\Psi_0}\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')\hat{\psi}_{H\alpha}(\bm{x}t)\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} & (t < t')
+  \end{cases}
+    \label{definition-green2}
+\end{eqnarray}
+Green関数というのは$(\bm{x}, t), (\bm{x}', t)$にある場の演算子の期待値である\footnote{だから2点関数とか2点相関関数とかも呼ばれる}. $\ket{\Psi_0}_H$がHeisenberg Full Hamiltonianであることから演算子をSchr\"odinger描像に書き換えると
+\begin{eqnarray}
+  iG_{\alpha\beta}(\bm{x}, t;\bm{x}', t') =
+  \begin{cases}
+    e^{iE(t-t')/\hbar}\cfrac{\!_H\bra{\Psi_0}\hat{\psi}_{S\alpha}(\bm{x})e^{-i\hat{H}_H(t-t')}\hat{\psi}_{S\beta}^\dagger(\bm{x}')\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} & (t > t')\\
+    \pm e^{-iE(t-t')/\hbar}\cfrac{\!_H\bra{\Psi_0}\hat{\psi}_{S\beta}^\dagger(\bm{x}')e^{i\hat{H}_H(t-t')}\hat{\psi}_{S\alpha}(\bm{x})\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} & (t < t')
+  \end{cases}
+    \label{definition-green3}
+\end{eqnarray}
+\subsection{Relation to Observables}
+Green関数を勉強する理由はいくらかあって, そのひとつはFeynman diagramである. Feynman ruleで摂動計算をするときに場の演算子の積よりもGreen関数で表現するほうがシンプルになる. また, (\ref{definition-green})は基底固有関数で期待値を取っているため基底状態の情報がいくらか失われているのだが, 依然として興味深いオブザーバブルの特徴を保有している:
+\begin{itemize}
+\item 基底状態における様々な一粒子演算子の期待値
+\item 基底エネルギー
+\item スペクトラム
+\end{itemize}
+3つ目はLehmann表示で扱う\footnote{山中先生によれば, もともとは梅沢・亀淵・Lehmann表示と呼ばれていたらしい. 最近は普通にスペクトラム表示とか言う. }. 以下では上2つについて説明する.
+
+まず一粒子演算子を考える:
+\begin{eqnarray}
+  \hat{J}_S &=& \int d\bm{x} {\cal \hat{J}}_S(\bm{x})\\
+  \hat{{\cal J}}_S(\bm{x}) &=& \sum_{\alpha\beta}\hat{\psi}_{\beta S}^\dagger(\bm{x})J_{\beta\alpha}(\bm{x})\hat{\psi}_{\alpha S}(\bm{x})
+\end{eqnarray}
+$\hat{J}$は第二量子化された演算子. $J_{\beta\alpha}$は密度に関する第一量子化演算子であり$\hat{{\cal J}}$はそれを第二量子化したもの. $\ev{\hat{\cal{J}}(\bm{x})}$について:
+\begin{eqnarray}
+  \ev{\hat{\cal J}(\bm{x})} &=& \frac{\!_H\bra{\Psi_0}\hat{\cal J}(\bm{x})\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} \\
+  &=& \lim_{\bm{x}'\rightarrow\bm{x}}\sum_{\alpha\beta}J_{\beta\alpha}\frac{\!_H\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(\bm{x}')\hat{\psi}_{\alpha S}(\bm{x})\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} \\
+  &=& \lim_{t'\rightarrow t^+}\lim_{\bm{x}'\rightarrow\bm{x}}\sum_{\alpha\beta}J_{\beta\alpha}\frac{\!_H\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(\bm{x}')e^{-i\hat{H}_H(t-t')/\hbar}\hat{\psi}_{\alpha S}(\bm{x})\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} \\
+  &=& \pm i\lim_{t'\rightarrow t^+}\lim_{\bm{x}'\rightarrow\bm{x}}\sum_{\alpha\beta}J_{\beta\alpha}G_{\alpha\beta}(\bm{x}, t; \bm{x}', t')\label{before-trace}\\
+  &=& \pm i\lim_{t'\rightarrow t^+}\lim_{\bm{x}'\rightarrow\bm{x}}\Tr\qty[J(\bm{x})G(\bm{x}, t; \bm{x}', t')]
+\end{eqnarray}
+2行目で$\bm{x}'$を登場させたり, 3行目に$\hat{1} = \lim_{t'\rightarrow t^+}e^{-iH_H(t - t')/\hbar}$を持ってきたりしたのは全てGreen関数に帰着させるためのテクニック. $G, J$は
+\begin{eqnarray}
+    G(\bm{x}) =
+  \begin{pmatrix}
+    G_{\uparrow\uparrow} & G_{\uparrow\downarrow}\\
+    G_{\downarrow\uparrow} & G_{\downarrow\downarrow}
+  \end{pmatrix} &  J(\bm{x}) =
+  \begin{pmatrix}
+    J_{\uparrow\uparrow} & J_{\uparrow\downarrow}\\
+    J_{\downarrow\uparrow} & J_{\downarrow\downarrow}
+  \end{pmatrix}
+\end{eqnarray}
+みたいな二階テンソル. これの積のトレースを取ると(\ref{before-trace})みたいになる. これが$J_{\alpha\beta}$ではなく$J_{\beta\alpha}$という表式にした理由.
+
+例えば運動エネルギーの第一量子化は
+\begin{eqnarray}
+  P = -\frac{\hbar^2}{2m}\nabla^2
+\end{eqnarray}
+であり, これを第二量子化する:
+\begin{eqnarray}
+  \hat{P} &=& \int d\bm{x} \hat{{\cal P}}(\bm{x})\\
+  \hat{{\cal P}}(\bm{x}) &=& \sum_{\alpha\beta}\hat{\psi}^\dagger_\beta(\bm{x})P_{\beta\alpha}\hat{\psi}_\alpha(\bm{x})\\
+  \ev{P} &=& \pm i\int d\bm{x}'\lim_{\bm{x}' \rightarrow \bm{x}}\qty[-\frac{\hbar^2\nabla^2}{2m}\Tr G(\bm{x}t, \bm{x}'t^+)]
+\end{eqnarray}
+...工事中...
+\subsection{Example : Free Fermion}
+\subsection{Lehmann Representation}
+この章ではフェルミオンについてのみ議論する. 状態が規格化されているものとするとGreen関数の定義は
+\begin{eqnarray}
+  iG_{\alpha\beta}(\bx t;\bx' t') = \!_H\bra{\Psi_0}T\qty[\psi_{H\alpha}(\bx t)\psi_{H\beta}^\dagger(\bx't)]\ket{\Psi_0}_H
+\end{eqnarray}
+Heisenberg描像の演算子と状態はかなり複雑だが, 面白くかつ一般的な結果を導くことができる. まず$\qty{\ket{\Psi}}$完全系を挿入:
+\begin{eqnarray}
+\nonumber  iG_{\alpha\beta}(\bx t;\bx' t') = \sum_n\Big\{\theta(t-t')\bra{\Psi_0}\hat{\psi}_{\alpha H}(\bx t)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta H}(\bx't')\ket{\Psi_0}\\
+    -\theta(t'-t)\bra{\Psi_0}\hat{\psi}^\dagger_{\beta H}(\bx' t')\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha H}(\bx t)\ket{\Psi_0}\Big\}
+\end{eqnarray}
+さらにSchr\"odinger描像とHeisenberg描像の変換
+\begin{eqnarray}
+  \hat{O}_H(t) = e^{iH_Ht/\hbar}\hat{O}_Se^{-iH_Ht/\hbar}
+\end{eqnarray}
+を用いて場の演算子を変換するとエネルギー固有値がくくり出せる:
+\begin{eqnarray}
+\nonumber    iG_{\alpha\beta}(\bx t;\bx' t') = \sum_n\Big\{\theta(t-t')e^{-i(E_n-E)(t-t')/\hbar}\bra{\Psi_0}\hat{\psi}_{\alpha S}(\bx)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(\bx')\ket{\Psi_0}\\
+    -\theta(t'-t)e^{i(E_n-E)(t-t')/\hbar}\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(\bx')\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha S}(\bx)\ket{\Psi_0}\Big\}
+\end{eqnarray}
+ここで, $\bra{\Psi_n}\hpsi\ket{\Psi_0}$について少し考えてみる. もし$\ket{\Psi_0}$が$N$個の粒子を含んでいる状態ならば, $\hpsi\ket{\Psi_0}$は$N-1$個の粒子を含む状態になるので, $\bra{\Psi_n}\hpsi\ket{\Psi_0}$が値を持つためには$\bra{\Psi_n}$が$N-1$個の粒子を含む状態でなければならない. 同様の議論から$\bra{\Psi_n}\hpsi^\dagger\ket{\Psi_0}$が値を持つためには$\ket{\Psi_n}$は$N+1$個の粒子を含む状態でなければならない. よって, $\ket{\Psi_n}$は$N\pm1$個の粒子を持つ状態である\footnote{この議論だと, 第一励起状態$\ket{\Psi_1}$, 第二励起状態$\ket{\Psi_2}$, 第三励起状態$\ket{\Psi_3}$...は全て$N\pm1$個の粒子を持つことになる. 基底だけ$N$個で残りの励起状態は全て$N\pm1$というのは少し不自然に感じる. いくらか理由を考える余地はあるが, まだ納得できる答えを持っていません. 少なくともそういう状況でなければGreen関数は値を持つことができない. }. さらに言うと, これは$\ket{\Psi_n}$が粒子数固有状態でなければならないので, BEC系のような粒子数が揺らぐ系では議論が破綻することに注意. これが, 今回Fermion系のみを考える理由である. 
+
+ここまでの話は$\hat{H}_H$が時間非依存であるということ(と$\ket{\Psi}$が粒子数固有状態であること)を除けば一般的な議論である. このまま議論をすすめることもできるが, ここでは簡単のため運動量演算子が$\hat{H}_H$と交換する場合を考える\footnote{運動量演算子$\hat{P}$がHeisenberg Full Hamiltonian$\hat{H}_H$と交換するとき, $\hat{H}_H$の固有状態$\ket{\Psi_n}$は$\hat{P}$と同時固有状態を取るということである.}. まずは運動量演算子を並進変換のgeneratorとして導入する:
+\begin{eqnarray}
+  &&\hpsi_\alpha(\bx) \equiv e^{-i\hat{\bm{P}}x}\hpsi_\alpha(0)e^{i\hat{\bm{P}}x}\label{generator}\\
+  \Longrightarrow&& -i\hbar\nabla\hpsi_\alpha(\bx) = \qty[\hpsi_\alpha(\bx), \hat{\bm{P}}]\\
+  \Longrightarrow&& \hat{\bm{P}} = \sum_\alpha\int d\bx \hpsi^\dagger_\alpha(\bx)(-i\hbar\nabla)\hpsi_\alpha(\bx) = \sum_{\bm{k}\lambda}\hbar\bm{k}c^\dagger_{\bm{k}\lambda}c_{\bm{k}\lambda}
+\end{eqnarray}
+1行目を微分すると2行目になり, 2行目を満たすような$\hat{\bm{P}}$を探すと3行目になる. 3行目の2つ目のイコールは一粒子波動関数を
+\begin{eqnarray}
+  &&\psi_{\bm{k}\lambda}(\bx) = \frac{e^{i\bm{k}\bx}}{\sqrt{V}}\eta_{\lambda}\label{1st-plane}\\
+  &&\eta_\uparrow =
+  \begin{pmatrix}
+    1\\
+    0
+  \end{pmatrix} \ \ \eta_\downarrow =
+  \begin{pmatrix}
+    0\\
+    1
+  \end{pmatrix}
+\end{eqnarray}
+のように平面波展開\footnote{Fourier変換のこと. 一様系だと並進対称性があり, 運動量が保存されるはず. だからハミルトニアンと運動量演算子は交換した. 先の通りハミルトニアンの固有状態は運動量固有状態にもなるので, Fourier変換してあげると運動量(c-数)が出てくる. 平面波展開はいつでもできるが, 状態がいつも運動量固有状態になっている訳はないことに注意. }して, これを式(\ref{2nd-quantum1})とかで第二量子化すれば得られる. $V$は体積. さて, この(\ref{generator})を先ほどのGreen関数の式に代入する:
+\begin{eqnarray}
+  \nonumber    iG_{\alpha\beta}(\bx t;\bx' t') = \sum_n\Big\{\theta(t-t')e^{-i(E_n-E)(t-t')/\hbar}e^{i\bm{P}_n\cdot(\bx - \bx')/\hbar}\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}\\
+    -\theta(t'-t)e^{i(E_n-E)(t-t')/\hbar}e^{-i\bm{P}_n\cdot(\bx - \bx')/\hbar}\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}\Big\}
+\end{eqnarray}
+ここで基底状態では$\hat{\bm{P}}\ket{\Psi_0} = 0$となっていることを用いている. ここで, $G$は$\bx-\bx'$や$t-t'$にしか依存していないので$\bx-\bx' = \by$, $t-t' = s$としてFourier変換する:
+\begin{eqnarray}
+  G_{\alpha\beta}(\bk, \omega) &=& \int d\by\int ds\ e^{-i\bk\cdot\by}e^{i\omega s}G_{\alpha\beta}(\bx t; \bx't' )\\
+\nonumber  &=& -i\int d\by ds e^{-i\bm{k}\cdot\by}e^{i\omega s}\\
+\nonumber  &\times&\sum_n\Big[\ul{\theta(s)e^{-i(E_n- E)s/\hbar}e^{i\bm{P}_n\by/\hbar}\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}_{1}\\
+    &&\ - \ul{\theta(-s)e^{i(E_n- E)s/\hbar}e^{-i\bm{P}_n\by/\hbar}\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}_2\Big]
+\end{eqnarray}
+ここで下線部1の項について計算する. $\theta$関数の積分表示
+\begin{eqnarray}
+  \theta(s) = -\int \frac{d\omega'}{2\pi i}\frac{e^{-i\omega' s}}{\omega' + i\eta}
+\end{eqnarray}
+を用いて変形していく:
+\begin{eqnarray}
+  \ul{　}1 &=& \frac{1}{2\pi}\sum_n\int d\by ds d\omega' e^{i(\bm{P}_n\hbar^{-1} - \bm{k})\cdot\by}e^{i(\omega - \qty(E_n - E)\hbar^{-1} -\omega')s}\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega' + i\eta}\\
+  &=& \sum_n(2\pi)^3\delta(\bm{P}_n\hbar^{-1} - \bm{k})\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega - \qty(E_n - E)\hbar^{-1} + i\eta}\\
+  &=& V\sum_n\delta_{\bm{P}_n\hbar^{-1},\bm{k}}\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega - \qty(E_n - E)\hbar^{-1} + i\eta}
+\end{eqnarray}
+最後の行でデルタ関数と体積の関係(\ref{delta-volume})を用いた. 同様の計算をすると, グリーン関数は
+\begin{eqnarray}
+  G_{\alpha\beta}(\bk, \omega) &=& V\sum_n\delta_{\bm{P}_n\hbar^{-1},\bm{k}}\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega - \qty(E_n - E)\hbar^{-1} + i\eta}\\ &+& V\sum_n\delta_{\bm{P}_n\hbar^{-1},-\bm{k}}\frac{\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}{\omega + \qty(E_n - E)\hbar^{-1} - i\eta}
+\end{eqnarray}
+となることがわかる. クロネッカーデルタが効いてくるのは$\ket{\Psi_n}$に対してなので
+\begin{eqnarray}
+  G_{\alpha\beta}(\bk, \omega) = V\sum_n\Big[\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{n\bk}\bra{n\bk}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega - \qty(E_n - E)\hbar^{-1} + i\eta}+ \frac{\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{n, -\bk}\bra{n, -\bk}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}{\omega + \qty(E_n - E)\hbar^{-1} - i\eta}\Big]
+\end{eqnarray}
+と書くことにする\footnote{ある$\bm{P}_n$に対応する$\bk$はひとつで, クロネッカーデルタなんか和を取って消えてしまうのでは？と思うかもしれない. しかし$\bk$はいくつもの準粒子のエネルギーの総和なので, $\bk$の選び方に対して同じエネルギーを持つものはいくつか存在する(縮退している？). 対して$\bm{P}_n$は$\hat{H}_H$の固有状態なので, $\ket{\Psi_n}$の縮退がなければ$\hat{P}_n$の縮退もない. そういうことで$\ket{\Psi_n}$を$n$と$\bk$でパラメトライズしている. なんか納得できるようなできないような...というわけで保留. }. というわけで, これでGreen関数の周波数($\omega$)依存性を示すことができた. この分母についてもうちょっと詳細に見てみよう. 上式の第一項の分母は以下のように変形できる:
+\begin{eqnarray}
+  \omega - \hbar^{-1}\qty[E_n(N+1) - E(N)] = \omega - \hbar^{-1}\qty[E_n(N+1) - E(N+1)] -\hbar^{-1}\qty[E(N+1) - E(N)]
+\end{eqnarray}
+ここで$E(N+1) - E(N)$は基底状態に粒子が1つ追加された時のエネルギー差である. 粒子数変化に伴うエネルギー変化率をケミカルポテンシャルと呼ぶ. $E_n(N+1) - E(N+1)$は$N+1$粒子系の励起エネルギーである. そんなわけで, 書き直す:
+\begin{eqnarray}
+  G_{\alpha\beta}(\bk, \omega) = \hbar V\sum_n\Big[\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{n\bk}\bra{n\bk}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\hbar\omega -\mu - \epsilon_{n\bk}\qty(N+1) + i\eta}+ \frac{\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{n, -\bk}\bra{n, -\bk}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}{\hbar\omega -\mu + \epsilon_{n,-\bk}\qty(N-1) - i\eta}\Big]\label{green-rehmann}
+\end{eqnarray}
+$\eta$ に$\hbar^{-1}$がついていないが, $\eta$の定義の中に押し込めている. $\mu$も$N$依存性を持っているが
+\begin{eqnarray}
+  \mu(N+1) = \mu\qty(N\qty(1+\frac{1}{N})) = \mu(N) + O(N^{-1})
+\end{eqnarray}
+になるので, $N$が十分大きいものとして無視することにする.
+
+これでスピン$\frac{1}{2}$の場合の$G$の行列構造についてシンプルにまとめることができた. このGreen関数は$2\times2$行列なので単位行列とPauli行列で構成される完全系で展開することができる\footnote{単に, 単位行列とパウリ行列の線型結合で書けるということ.}. 今回の問題は一様系なので指向性は無いため, $G$は空間回転に対してスカラー\footnote{ここでいうスカラーは"スカラー演算子"の意味. $\nabla = \qty(\partial_x, \partial_y, \partial_z)$はベクトル演算子, $\nabla\cdot\bk$はスカラー演算子. Pauli行列完全系も$\bm{\sigma} = \qty(\hat{\sigma}_x, \hat{\sigma}_y, \hat{\sigma}_z)$みたいなベクトル演算子だと考えれば$\bm{\sigma}\cdot\bk$もスカラー演算子である. }でなければならない. $G$には$\bm{\sigma}$と$\bk$が含まれるはずであり, $\bk$は$\bm{\sigma}$とペアになっていなければならないので
+\begin{eqnarray}
+  G(\bk, \omega) = a\bm{I} + b\bm{\sigma}\cdot\bk
+\end{eqnarray}
+という形になる. ここでハミルトニアンは空間鏡映対称性を持っており, この性質はGreen関数にも引き継がれているが, $\bm{\sigma}\cdot\bk$は擬スカラーなので鏡映対称性を持っていない. よって$b$の項は消えなければならない. これでGreen関数がとてもシンプルに書けることがわかる. (\ref{2nd-quantum1})(\ref{1st-plane})から場の演算子を平面波展開した表式
+\begin{eqnarray}
+  \hpsi(0) = \sum_k\frac{1}{\sqrt{V}}c_k
+\end{eqnarray}
+や
+\begin{eqnarray}
+  \epsilon_{\bk}(N+1) &=& \epsilon_{\bk}^0 - \epsilon_F^0 = \frac{\hbar^2(k^2 - k_F^2)}{2m}\\
+  \mu &=& \epsilon_F^0
+\end{eqnarray}
+を用いるとFree FermionのGreen関数を再現できる:
+\begin{eqnarray}
+  G(\bk, \omega) = \delta_{\alpha\beta}\qty[\frac{\theta(k-k_F)}{\omega - \omega_k + i\eta} + \frac{\theta(k_F-k)}{\omega - \omega_k - i\eta}]
+\end{eqnarray}
+さて, ここで(\ref{green-rehmann})は$\hbar\omega$についての極を持つ関数である. $\epsilon_{n\bk}$が正定値なので$\Re\hbar\omega < \mu$ならば(\ref{green-rehmann})の第一項は極を持たない. 一方で$\Re\hbar\omega > \mu$ならば(\ref{green-rehmann})の第二項は極を持たない. これは原書のFig.7.1\footnote{$\hbar\omega$が複素数であることに注意. つまり, 縦軸が$\hbar\omega$の虚部, 横軸が実部.}のとおり. バッテンがGreen関数が極を持つ点を表している. 実軸よりちょっと上にあるか下にあるかは$i\eta$の符号が決めている. さて, Fig7.1を見てわかる通り, $\hbar\omega$の複素空間上では上部も下部も正則ではない. しかし, 今後の計算の上ではどちらか一方は正則であってほしい. ということで, 遅延Green関数・先進Green関数を定義する:
+\begin{eqnarray}
+  iG^R_{\alpha\beta}(\bx t;\bx't') &=& \bra{\Psi_0}\qty{\hpsi^\dagger_{H\alpha}(\bx t), \hpsi_{H\beta}(\bx't')}\ket{\Psi_0}\theta(t-t')\\
+  iG^A_{\alpha\beta}(\bx t;\bx't') &=& \bra{\Psi_0}\qty{\hpsi_{H\beta}(\bx't'), \hpsi^\dagger_{H\alpha}(\bx t)}\ket{\Psi_0}\theta(t'-t)
+\end{eqnarray}
+これらは今までのGreen関数\footnote{因果Green関数という.}と同じように解析を進めることができ, 一様系でRehmann表示をしてみると
+\begin{eqnarray}
+  G_{\alpha\beta}^{R, A}(\bk, \omega) = \hbar V\sum_n\Big[\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{n\bk}\bra{n\bk}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\hbar\omega -\mu - \epsilon_{n\bk}\qty(N+1) \pm i\eta}+ \frac{\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{n, -\bk}\bra{n, -\bk}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}{\hbar\omega -\mu + \epsilon_{n,-\bk}\qty(N-1) \pm i\eta}\Big]\label{green-rehmann2}
+\end{eqnarray}
+となっている. 遅延Green関数の極は下部にまとまり, $\Im \omega > 0$の領域では解析的である. 先進はその逆. もし$\omega$が実なら
+\begin{eqnarray}
+  \qty[G_{\alpha\beta}^{R}(\bk, \omega)]^* = G_{\alpha\beta}^{A}(\bk, \omega)
+\end{eqnarray}
+の関係にある. 遅延と先進の違いは収束因子$i\eta$の符号のみである. もし$\omega$が実で$\hbar^{-1}\mu$より大きければ, 無限小の$i\eta$は何の役割も成さなくなる. 以上より
+\begin{eqnarray}
+  G_{\alpha\beta}^R(\bk, \omega) = G_{\alpha\beta}(\bk, \omega) & \Re\hbar\omega > \mu\\
+  G_{\alpha\beta}^A(\bk, \omega) = G_{\alpha\beta}(\bk, \omega) & \Re\hbar\omega < \mu
+\end{eqnarray}
+...工事中...
+\subsection{Physical Interpretation of the Green's Function}
+一粒子Green関数の物理的な解釈を理解するために相互作用描像の状態$\ket{\Psi_I(t')}$と, $(\bx't')$に粒子を加える操作$\hpsi_{i\beta}(\bx't')\ket{\Psi_I(t')}$について考える. $\ket{\Psi_I(t')}$はハミルトニアンの固有状態ではないが, 時間発展演算子$\hat{U}(t, t')$は有効である. さて, $t>t'$において$\hat{U}(t, t')\hpsi_{I\beta}^\dagger(\bx't')\ket{\Psi_I(t')}$と$\hpsi^\dagger_{\bx t}\ket{\Psi_I(t)}$のoverlapについて考えてみる\footnote{$(\bx t)$に粒子を追加した状態と$(\bx't')$に粒子を追加して時間を$t$に合わせてあげた状態のoverlapを見ている？}:
+\begin{eqnarray}
+  \bra{\Psi_I(t)}\hpsi_{I\alpha}(\bx t)\hat{U}(t, t')\hpsi^\dagger_{I\beta}(\bx't')\ket{\Psi_I(t')} = \bra{\Psi_0}\hpsi_{H\alpha}(\bx t)\hpsi^\dagger_{H\beta}(\bx't')\ket{\Psi_0}
+\end{eqnarray}
+この計算過程でGell-Mann-Lowの定理を用いた. $\ket{\Psi_0}$はFull Hamiltonianの固有状態. これはまさに$t>t'$におけるGreen関数の定義になっており, 粒子の追加を含む状態の伝搬を特徴づけている.
+
+この時間に関する伝搬が$G(\bk, \omega)$とどのように関係しているかを考える. 
 \end{document}
 
