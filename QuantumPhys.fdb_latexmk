@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1465911751 "QuantumPhys.dvi" "QuantumPhys.pdf" "QuantumPhys" 1465911752
-  "QuantumPhys.dvi" 1465911751 602260 57310a76d7812b17c58e40e0bc97c870 "latex"
+["dvipdf"] 1466517204 "QuantumPhys.dvi" "QuantumPhys.pdf" "QuantumPhys" 1466517205
+  "QuantumPhys.dvi" 1466517204 671944 371a8e290f2ad1f410d1137bfd27fef2 "latex"
   (generated)
   "QuantumPhys.pdf"
-["latex"] 1465911750 "QuantumPhys.tex" "QuantumPhys.dvi" "QuantumPhys" 1465911752
+["latex"] 1466517203 "QuantumPhys.tex" "QuantumPhys.dvi" "QuantumPhys" 1466517205
   "/etc/texmf/web2c/texmf.cnf" 1464345020 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/ptex/ascgrp/ascgrp.tfm" 1274206740 448 9a1f3a95c3a7e2681aa6eefcf410b7ac ""
@@ -57,6 +57,8 @@
   "/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty" 1303254447 7140 ece2cc23d9f20e1f53975ac167f42d3e ""
   "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty" 1335995445 6797 68c89f65e01894df882dd523d3fc0a8f ""
+  "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty" 1335995445 8253 3bdedc8409aa5d290a2339be6f09af03 ""
+  "/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty" 1335995445 18425 775b341047ce304520cc7c11ca41392e ""
   "/usr/share/texlive/texmf-dist/tex/generic/unicode-data/CaseFolding.txt" 1449876215 74499 11c335947e5ffa8ac69a3e530b8d2b40 ""
   "/usr/share/texlive/texmf-dist/tex/generic/unicode-data/SpecialCasing.txt" 1449876215 16740 4c17368651bc455636f58c3366bdbbeb ""
   "/usr/share/texlive/texmf-dist/tex/generic/unicode-data/UnicodeData.txt" 1449876215 1621978 3a83069e69e2a9101dc4749593cd3268 ""
@@ -74,6 +76,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/braket/braket.sty" 1266794558 3601 193635d942bc4777a5acaaeeffdce692 ""
   "/usr/share/texlive/texmf-dist/tex/latex/cite/cite.sty" 1425427964 26218 19edeff8cdc2bcb704e8051dc55eb5a7 ""
   "/usr/share/texlive/texmf-dist/tex/latex/comment/comment.sty" 1390604416 9666 b0ada4704d4b3d0048a56c49bc982988 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/dvipdfmx-def/dvipdfmx.def" 1446939857 12016 60c0fac7007d90f4f22da29a23a0217c ""
   "/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty" 1284422013 40502 e003406220954b0716679d7928aedd8a ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty" 1454284088 6829 2b7f546d7727252fdb2d538f7dee5a59 ""
   "/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def" 1454284088 5120 9a2d94aeb748ba1f86d99139598ad990 ""
@@ -101,9 +104,9 @@
   "Dai.eps" 1462117465 50391 8d852b01ad5573660f8c1669443cd19b ""
   "P2.eps" 1455135859 29373 898ef5e3f3ddb0861d87fc6d663fe366 ""
   "Q2.eps" 1455135855 29194 56d05653bab51017538846bcbb297cbb ""
-  "QuantumPhys.aux" 1465911751 23966 a63bc6075e81fd419ef6405986c812fc ""
-  "QuantumPhys.tex" 1465911749 273176 982699bea04dd540b29274f99dbad0c9 ""
-  "QuantumPhys.toc" 1465911751 15375 98e068c0dd8644ceb9cc44260d255f18 ""
+  "QuantumPhys.aux" 1466517204 27765 09e352d8e39e9e57136a6ab9d261e848 ""
+  "QuantumPhys.tex" 1466517202 306738 8ab1abc5df3898cc58a246fb5f4f9ab1 ""
+  "QuantumPhys.toc" 1466517204 17900 1f7bff5de2f0d11b403d978481f146c5 ""
   "fig1.eps" 1451819355 16256 d0381ad086ece8466a9c564cdb7e08cb ""
   "fig2.eps" 1451819541 14301 121720a85cf736e919b4da7bbfbfc5ee ""
   "figure1new.eps" 1453699540 91429 7f3018b2574579cc869396d30ac6bf9a ""
@@ -112,12 +115,13 @@
   "magnetization.eps" 1462080630 13574 81adffb126d16414a90058313391ef4b ""
   "newdiagram1.eps" 1454483135 88200 64438bb40003b24495551d7d470c0edb ""
   "newdiagram2.eps" 1454483161 88364 289198cdadccaa9dc9ed6ac5aab9eea0 ""
+  "self-consistent.eps" 1466515302 103291 d3ca2f041bac5854a52aa9c24938b37a ""
   "specificheat.eps" 1462081191 18774 011b2edbfc7bd29408e144b5407e06b4 ""
   "spin.eps" 1462085212 45801 b91a42bc0470c2a999e15fcb46b74c34 ""
   "wave_packet.eps" 1461723993 14502 84848364c8c5c4da544cf4e5dc643c02 ""
   "wigner_function.eps" 1461730783 19088 62e3ec54fefda2df1550d4e4465a6d82 ""
   (generated)
   "QuantumPhys.toc"
+  "QuantumPhys.log"
   "QuantumPhys.aux"
   "QuantumPhys.dvi"
-  "QuantumPhys.log"

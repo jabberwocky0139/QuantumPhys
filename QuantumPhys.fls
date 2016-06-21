@@ -38,8 +38,12 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
-INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
-INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/dvipdfmx-def/dvipdfmx.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/dvipdfmx-def/dvipdfmx.def
+INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+INPUT /usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 INPUT /usr/share/texlive/texmf-dist/tex/platex/base/ascmac.sty
 INPUT /usr/share/texlive/texmf-dist/tex/platex/base/ascmac.sty
 INPUT /usr/share/texlive/texmf-dist/tex/platex/base/tascmac.sty
@@ -50,6 +54,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/braket/braket.sty
@@ -135,6 +141,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
 OUTPUT QuantumPhys.toc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex/standard/tgoth10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex/standard/tmin8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex/standard/min8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
@@ -159,7 +166,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex/standard/goth8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex/standard/goth6.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex/standard/tmin6.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
@@ -201,4 +207,6 @@ INPUT ./Q2.eps
 INPUT ./Q2.eps
 INPUT ./P2.eps
 INPUT ./P2.eps
+INPUT self-consistent.eps
+INPUT self-consistent.eps
 INPUT QuantumPhys.aux
