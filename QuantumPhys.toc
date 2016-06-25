@@ -1,4 +1,4 @@
-\contentsline {section}{\numberline {0.1}はじめに}{5}
+\contentsline {section}{\numberline {0.1}はじめに}{6}
 \contentsline {chapter}{\numberline {第1章}量子力学・統計力学の基礎知識}{7}
 \contentsline {section}{\numberline {1.1}演算子・状態・Hamiltonianに関するTips}{7}
 \contentsline {subsection}{\numberline {1.1.1}演算子とGenerator}{7}
@@ -29,217 +29,229 @@
 \contentsline {subsection}{\numberline {1.3.2}スピン演算子}{14}
 \contentsline {subsection}{\numberline {1.3.3}スピン$\frac {1}{2}$とは？}{14}
 \contentsline {subsection}{\numberline {1.3.4}Singlet or Triplet}{15}
-\contentsline {chapter}{\numberline {第2章}Green関数}{16}
-\contentsline {section}{\numberline {2.1}Green関数の一般形}{16}
-\contentsline {subsection}{\numberline {2.1.1}数学寄りの定義}{16}
-\contentsline {subsection}{\numberline {2.1.2}物理寄りの定義}{16}
-\contentsline {subsection}{\numberline {2.1.3}Green演算子のスペクトル表示}{17}
-\contentsline {section}{\numberline {2.2}量子力学とGreen関数}{17}
-\contentsline {subsection}{\numberline {2.2.1}摂動展開とGreen関数}{17}
-\contentsline {subsection}{\numberline {2.2.2}散乱問題におけるGreen関数}{18}
-\contentsline {section}{\numberline {2.3}場の理論におけるGreen関数}{21}
-\contentsline {subsection}{\numberline {2.3.1}時間依存自由粒子Green関数}{21}
-\contentsline {subsection}{\numberline {2.3.2}相関関数と温度Green関数}{22}
-\contentsline {chapter}{\numberline {第3章}超伝導}{23}
-\contentsline {section}{\numberline {3.1}超電導の基礎}{23}
-\contentsline {subsection}{\numberline {3.1.1}超電導体の性質}{23}
-\contentsline {subsection}{\numberline {3.1.2}磁束の量子化}{23}
-\contentsline {section}{\numberline {3.2}超伝導の現象論 : Ginzburg-Landau理論}{23}
-\contentsline {subsection}{\numberline {3.2.1}相転移とOder parameter}{24}
-\contentsline {subsection}{\numberline {3.2.2}Ginzburg-Landau方程式}{24}
-\contentsline {subsection}{\numberline {3.2.3}ゲージ変換の復習}{25}
-\contentsline {subsubsection}{Maxwell方程式}{25}
-\contentsline {subsubsection}{ローレンツゲージ}{25}
-\contentsline {subsubsection}{クーロンゲージ}{26}
-\contentsline {subsection}{\numberline {3.2.4}GLコヒーレンス長と侵入長}{27}
-\contentsline {subsection}{\numberline {3.2.5}ソリトンの特徴}{27}
-\contentsline {section}{\numberline {3.3}超伝導の微視的理論 : Bardeen-Cooper-Schrieffer理論}{28}
-\contentsline {subsection}{\numberline {3.3.1}金属の基本性質}{28}
-\contentsline {subsection}{\numberline {3.3.2}電子-格子間相互作用}{28}
-\contentsline {subsection}{\numberline {3.3.3}Cooper問題}{29}
-\contentsline {chapter}{\numberline {第4章}Anderson局在とその周辺}{30}
-\contentsline {section}{\numberline {4.1}Anderson局在とは}{30}
-\contentsline {section}{\numberline {4.2}P.W.Anderson. Phys. Rev. $\bm {109}$, 1492(1958)}{30}
-\contentsline {subsection}{\numberline {4.2.1}Tight-Binding近似}{30}
-\contentsline {subsection}{\numberline {4.2.2}Andersonの理論}{31}
-\contentsline {section}{\numberline {4.3}E.Abrahams et al. Phys. Rev. Lett. $\bm {42}$, 673(1979)}{31}
-\contentsline {chapter}{\numberline {第5章}熱・統計・量子統計力学}{32}
-\contentsline {section}{\numberline {5.1}熱力学}{32}
-\contentsline {subsection}{\numberline {5.1.1}状態量}{32}
-\contentsline {subsection}{\numberline {5.1.2}完全な熱力学関数}{32}
-\contentsline {subsection}{\numberline {5.1.3}自由エネルギー}{32}
-\contentsline {subsubsection}{ヘルムホルツ自由エネルギー}{32}
-\contentsline {subsubsection}{ギブズ自由エネルギー}{33}
-\contentsline {section}{\numberline {5.2}統計力学}{33}
-\contentsline {subsection}{\numberline {5.2.1}目的}{33}
-\contentsline {subsection}{\numberline {5.2.2}ミクロカノニカルアンサンブル}{33}
-\contentsline {subsection}{\numberline {5.2.3}Langevin方程式}{33}
-\contentsline {section}{\numberline {5.3}Born-Markov型量子マスター方程式}{35}
-\contentsline {subsection}{\numberline {5.3.1}問題設定}{36}
-\contentsline {subsection}{\numberline {5.3.2}熱平衡(問題1)}{36}
-\contentsline {subsection}{\numberline {5.3.3}調和振動子のエネルギー(問題2)}{37}
-\contentsline {subsection}{\numberline {5.3.4}位置・運動量平均の時間発展(問題3)}{38}
-\contentsline {subsection}{\numberline {5.3.5}数値計算}{39}
-\contentsline {section}{\numberline {5.4}線形応答理論}{40}
-\contentsline {subsection}{\numberline {5.4.1}概要}{40}
-\contentsline {subsection}{\numberline {5.4.2}線形応答理論の基本概念}{40}
-\contentsline {subsection}{\numberline {5.4.3}有限温度系へ}{41}
-\contentsline {subsection}{\numberline {5.4.4}簡単な例}{41}
-\contentsline {chapter}{\numberline {第6章}Wigner関数}{43}
-\contentsline {section}{\numberline {6.1}Winger表示}{43}
-\contentsline {subsection}{\numberline {6.1.1}定義}{43}
-\contentsline {subsection}{\numberline {6.1.2}任意の演算子に対するWigner表示}{43}
-\contentsline {section}{\numberline {6.2}Wigner分布関数の時間発展}{43}
-\contentsline {subsection}{\numberline {6.2.1}$(\mathaccentV {hat}05E{A}\mathaccentV {hat}05E{B})_W$の計算}{43}
-\contentsline {subsection}{\numberline {6.2.2}$f_W(q, p, t)$の時間発展}{44}
-\contentsline {section}{\numberline {6.3}具体的な問題}{45}
-\contentsline {subsection}{\numberline {6.3.1}調和振動子系のWigner-Moyal方程式}{45}
-\contentsline {subsection}{\numberline {6.3.2}数値計算}{45}
-\contentsline {subsubsection}{差分化}{45}
-\contentsline {subsubsection}{問題点}{46}
-\contentsline {subsubsection}{初期条件}{46}
-\contentsline {chapter}{\numberline {第7章}経路積分}{47}
-\contentsline {section}{\numberline {7.1}量子力学の復習}{47}
-\contentsline {subsection}{\numberline {7.1.1}自由粒子}{47}
-\contentsline {subsection}{\numberline {7.1.2}Green関数}{48}
-\contentsline {section}{\numberline {7.2}経路積分の基礎}{48}
-\contentsline {subsection}{\numberline {7.2.1}経路積分の導出}{48}
-\contentsline {subsection}{\numberline {7.2.2}自由粒子 : 経路積分を使わない方法}{49}
-\contentsline {subsection}{\numberline {7.2.3}自由粒子 : 経路積分の方法}{50}
-\contentsline {section}{\numberline {7.3}数値計算の準備及び経路積分のイメージ}{51}
-\contentsline {subsection}{\numberline {7.3.1}基底波動関数と伝搬関数}{51}
-\contentsline {subsection}{\numberline {7.3.2}作用とラグランジアン}{51}
-\contentsline {subsection}{\numberline {7.3.3}作用積分の簡略化}{51}
-\contentsline {subsection}{\numberline {7.3.4}経路とは}{52}
-\contentsline {subsection}{\numberline {7.3.5}経路の取り方}{52}
-\contentsline {subsection}{\numberline {7.3.6}処方箋}{52}
-\contentsline {chapter}{\numberline {第8章}Ising模型}{53}
-\contentsline {section}{\numberline {8.1}Ising模型と熱統計力学の基礎}{53}
-\contentsline {subsection}{\numberline {8.1.1}ハミルトニアン}{53}
-\contentsline {subsection}{\numberline {8.1.2}平衡状態}{53}
-\contentsline {subsection}{\numberline {8.1.3}相転移}{53}
-\contentsline {section}{\numberline {8.2}Ising模型の厳密解}{54}
-\contentsline {subsection}{\numberline {8.2.1}1次元Ising模型 : 平均場近似}{54}
-\contentsline {subsection}{\numberline {8.2.2}1次元Ising模型 : 厳密解}{54}
-\contentsline {subsection}{\numberline {8.2.3}2次元Ising模型}{55}
-\contentsline {section}{\numberline {8.3}数値計算}{55}
-\contentsline {subsection}{\numberline {8.3.1}Monte Carlo法}{55}
-\contentsline {subsection}{\numberline {8.3.2}Metropolis法}{55}
-\contentsline {subsection}{\numberline {8.3.3}2次元Ising模型}{56}
-\contentsline {subsection}{\numberline {8.3.4}数値計算上の注意}{57}
-\contentsline {subsubsection}{乱数}{57}
-\contentsline {subsubsection}{ローカルな極小点}{57}
-\contentsline {chapter}{\numberline {第9章}場の量子論}{58}
-\contentsline {section}{\numberline {9.1}Wickの定理}{58}
-\contentsline {subsection}{\numberline {9.1.1}概要}{58}
-\contentsline {subsection}{\numberline {9.1.2}具体例}{58}
-\contentsline {subsubsection}{n=2の場合}{58}
-\contentsline {subsubsection}{n=3の場合}{58}
-\contentsline {subsection}{\numberline {9.1.3}証明}{58}
-\contentsline {section}{\numberline {9.2}TFD形式による期待値計算}{59}
-\contentsline {subsection}{\numberline {9.2.1}TFDのド基礎}{59}
-\contentsline {subsection}{\numberline {9.2.2}具体計算}{59}
-\contentsline {subsection}{\numberline {9.2.3}Block-de Dominicsの定理}{60}
-\contentsline {section}{\numberline {9.3}Gell-Mann-Lowの定理}{60}
-\contentsline {subsection}{\numberline {9.3.1}断熱因子}{60}
-\contentsline {subsection}{\numberline {9.3.2}概要}{61}
-\contentsline {subsection}{\numberline {9.3.3}証明}{61}
-\contentsline {section}{\numberline {9.4}Tips}{61}
-\contentsline {subsection}{\numberline {9.4.1}Heisenberg描像}{61}
-\contentsline {subsection}{\numberline {9.4.2}相互作用描像}{62}
-\contentsline {subsection}{\numberline {9.4.3}各描像のハミルトニアン同士の関係}{62}
-\contentsline {subsubsection}{Full Hamiltonian}{62}
-\contentsline {subsubsection}{Unperturbed Hamiltonian}{62}
-\contentsline {subsection}{\numberline {9.4.4}デルタ関数のFourier変換表示}{63}
-\contentsline {subsection}{\numberline {9.4.5}$\bm {k}$が離散・連続の場合の$\expval {a_{\bm {k}}^\dagger a_{\bm {k}'}}$}{63}
-\contentsline {subsubsection}{有限体積の場合}{63}
-\contentsline {subsubsection}{熱力学極限}{64}
-\contentsline {subsection}{\numberline {9.4.6}デルタ関数が体積になること}{64}
-\contentsline {subsection}{\numberline {9.4.7}ハミルトニアンの対角化とBogoliubov-de Gennes方程式}{65}
-\contentsline {subsubsection}{対角化とは}{65}
-\contentsline {subsubsection}{Bogoliubov-de Gennes方程式}{66}
-\contentsline {subsection}{\numberline {9.4.8}一様系のBogoliubov-de Gennes方程式}{66}
-\contentsline {subsection}{\numberline {9.4.9}相互作用描像における時間発展演算子とT積}{66}
-\contentsline {chapter}{\numberline {第10章}研究 : 3次元一様有限温度系のゼロモード}{69}
-\contentsline {section}{\numberline {10.1}問題設定}{69}
-\contentsline {subsection}{\numberline {10.1.1}冷却原子気体系のハミルトニアン}{69}
-\contentsline {subsection}{\numberline {10.1.2}相互作用描像}{70}
-\contentsline {subsection}{\numberline {10.1.3}量子補正}{71}
-\contentsline {section}{\numberline {10.2}自己無撞着ループ}{72}
-\contentsline {subsection}{\numberline {10.2.1}GP方程式}{73}
-\contentsline {subsection}{\numberline {10.2.2}共役モード方程式}{73}
-\contentsline {subsection}{\numberline {10.2.3}BdG方程式}{74}
-\contentsline {subsection}{\numberline {10.2.4}ゼロモード方程式}{74}
-\contentsline {subsection}{\numberline {10.2.5}$\ev {Q^2},\ev {P^2}$の計算}{75}
-\contentsline {subsection}{\numberline {10.2.6}熱平均$V_t$・異常平均$V_a$}{76}
-\contentsline {subsubsection}{積分範囲の設定}{77}
-\contentsline {subsection}{\numberline {10.2.7}比熱・圧力}{77}
-\contentsline {section}{\numberline {10.3}変分法による見積もり}{77}
-\contentsline {subsection}{\numberline {10.3.1}ゼロモードハミルトニアン}{78}
-\contentsline {subsection}{\numberline {10.3.2}変分関数}{78}
-\contentsline {subsection}{\numberline {10.3.3}ゼロ温度期待値・エネルギー固有値の計算}{78}
-\contentsline {subsection}{\numberline {10.3.4}各パラメータの計算}{79}
-\contentsline {subsection}{\numberline {10.3.5}有限温度期待値}{79}
-\contentsline {section}{\numberline {10.4}数値計算結果}{80}
-\contentsline {chapter}{\numberline {第11章}研究 : ゼロモードの緩和}{81}
-\contentsline {section}{\numberline {11.1}公式}{81}
-\contentsline {section}{\numberline {11.2}具体計算 : time-convolutionless型}{81}
-\contentsline {section}{\numberline {11.3}具体計算 : 摂動項${\cal K}(t)$}{84}
-\contentsline {section}{\numberline {11.4}数値計算へ向けて}{86}
-\contentsline {subsection}{\numberline {11.4.1}$E_\mu \cdot E_\nu $}{86}
-\contentsline {subsection}{\numberline {11.4.2}$A_i^{nm}$}{87}
-\contentsline {subsection}{\numberline {11.4.3}$N_{nm}\cdot N_{nm}'$}{87}
-\contentsline {subsection}{\numberline {11.4.4}$R_i$}{87}
-\contentsline {section}{\numberline {11.5}$L^{nm,n'm'}$の整理}{88}
-\contentsline {chapter}{\numberline {第12章}研究 : BdG間及びZeromode-BdG間の相互作用を取り入れた有限温度系の計算}{90}
-\contentsline {section}{\numberline {12.1}やりたいこと}{90}
-\contentsline {section}{\numberline {12.2}量子統計力学と摂動計算}{90}
-\contentsline {subsection}{\numberline {12.2.1}熱力学ポテンシャル}{90}
-\contentsline {subsection}{\numberline {12.2.2}方法論の外観}{91}
-\contentsline {subsection}{\numberline {12.2.3}相互作用描像とS行列}{91}
-\contentsline {subsection}{\numberline {12.2.4}熱力学ポテンシャルの摂動展開}{92}
-\contentsline {subsection}{\numberline {12.2.5}描像について}{92}
-\contentsline {subsection}{\numberline {12.2.6}系とハミルトニアンの設定}{92}
-\contentsline {subsection}{\numberline {12.2.7}熱力学ポテンシャルの具体形}{93}
-\contentsline {subsection}{\numberline {12.2.8}疑問点}{94}
-\contentsline {subsubsection}{Zeromode-BdG coupling}{94}
-\contentsline {subsubsection}{Self-consistent loop}{95}
-\contentsline {subsection}{\numberline {12.2.9}$a(s)$の時間依存性}{95}
-\contentsline {subsection}{\numberline {12.2.10}$Q(s), P(s)$の時間依存性}{95}
-\contentsline {chapter}{\numberline {第13章}Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}{96}
-\contentsline {section}{\numberline {13.1}Second Quantization}{96}
-\contentsline {subsection}{\numberline {13.1.1}Fields}{96}
-\contentsline {section}{\numberline {13.2}Green's Functions}{97}
-\contentsline {subsection}{\numberline {13.2.1}Definition}{97}
-\contentsline {subsection}{\numberline {13.2.2}Relation to Observables}{98}
-\contentsline {subsection}{\numberline {13.2.3}Example : Free Fermion}{99}
-\contentsline {subsection}{\numberline {13.2.4}Lehmann Representation}{99}
-\contentsline {subsection}{\numberline {13.2.5}Physical Interpretation of the Green's Function}{102}
-\contentsline {section}{\numberline {13.3}Wick's Theorem}{102}
-\contentsline {subsection}{\numberline {13.3.1}概略}{102}
-\contentsline {subsubsection}{1. T積}{104}
-\contentsline {subsubsection}{2. N積}{104}
-\contentsline {subsubsection}{3. 縮約}{104}
-\contentsline {subsubsection}{4. 規約}{104}
-\contentsline {subsubsection}{5. Wickの定理}{104}
-\contentsline {subsubsection}{6. 補題}{105}
-\contentsline {subsubsection}{Wickの証明}{105}
-\contentsline {subsection}{\numberline {13.3.2}(13.64\relax )}{105}
-\contentsline {subsection}{\numberline {13.3.3}(13.64\relax )}{105}
-\contentsline {subsection}{\numberline {13.3.4}(13.71\relax )の縮約ゼロについて}{105}
-\contentsline {subsection}{\numberline {13.3.5}(13.72\relax )}{105}
-\contentsline {subsection}{\numberline {13.3.6}縮約とは？}{106}
-\contentsline {subsection}{\numberline {13.3.7}補題の(b)}{106}
-\contentsline {subsection}{\numberline {13.3.8}補題の(c)}{106}
-\contentsline {subsection}{\numberline {13.3.9}演算子が2つのときの補題}{106}
-\contentsline {subsection}{\numberline {13.3.10}帰納法で補題を証明}{107}
-\contentsline {subsection}{\numberline {13.3.11}補題の補題}{107}
-\contentsline {subsection}{\numberline {13.3.12}補題の一般化}{107}
-\contentsline {subsection}{\numberline {13.3.13}2つの演算子のWick}{108}
-\contentsline {subsection}{\numberline {13.3.14}帰納法でWickを証明}{108}
-\contentsline {section}{\numberline {13.4}Diagrammatic Analysis of Perturbation Theory}{108}
-\contentsline {subsection}{\numberline {13.4.1}Feynman Diagrams in Coordinate Space}{108}
-\contentsline {subsection}{\numberline {13.4.2}Feynman Diagrams in Momentum Space}{110}
-\contentsline {subsection}{\numberline {13.4.3}Dyson's Equation}{111}
-\contentsline {subsubsection}{0. General derivation of Dyson's Equation}{111}
-\contentsline {subsubsection}{1. Self-energy insertion}{112}
+\contentsline {section}{\numberline {1.4}Baker-Campbell-Hausdorff公式}{15}
+\contentsline {subsection}{\numberline {1.4.1}Campbell-Hausdorffの公式}{15}
+\contentsline {subsubsection}{証明}{15}
+\contentsline {subsection}{\numberline {1.4.2}Baker-Hausdorffの補助定理}{16}
+\contentsline {subsubsection}{証明}{16}
+\contentsline {subsubsection}{かわいい形式}{16}
+\contentsline {chapter}{\numberline {第2章}Green関数}{17}
+\contentsline {section}{\numberline {2.1}Green関数の一般形}{17}
+\contentsline {subsection}{\numberline {2.1.1}数学寄りの定義}{17}
+\contentsline {subsection}{\numberline {2.1.2}物理寄りの定義}{17}
+\contentsline {subsection}{\numberline {2.1.3}Green演算子のスペクトル表示}{18}
+\contentsline {section}{\numberline {2.2}量子力学とGreen関数}{18}
+\contentsline {subsection}{\numberline {2.2.1}摂動展開とGreen関数}{18}
+\contentsline {subsection}{\numberline {2.2.2}散乱問題におけるGreen関数}{19}
+\contentsline {section}{\numberline {2.3}場の理論におけるGreen関数}{22}
+\contentsline {subsection}{\numberline {2.3.1}時間依存自由粒子Green関数}{22}
+\contentsline {subsection}{\numberline {2.3.2}相関関数と温度Green関数}{23}
+\contentsline {chapter}{\numberline {第3章}超伝導}{24}
+\contentsline {section}{\numberline {3.1}超電導の基礎}{24}
+\contentsline {subsection}{\numberline {3.1.1}超電導体の性質}{24}
+\contentsline {subsection}{\numberline {3.1.2}磁束の量子化}{24}
+\contentsline {section}{\numberline {3.2}超伝導の現象論 : Ginzburg-Landau理論}{24}
+\contentsline {subsection}{\numberline {3.2.1}相転移とOder parameter}{25}
+\contentsline {subsection}{\numberline {3.2.2}Ginzburg-Landau方程式}{25}
+\contentsline {subsection}{\numberline {3.2.3}ゲージ変換の復習}{26}
+\contentsline {subsubsection}{Maxwell方程式}{26}
+\contentsline {subsubsection}{ローレンツゲージ}{26}
+\contentsline {subsubsection}{クーロンゲージ}{27}
+\contentsline {subsection}{\numberline {3.2.4}GLコヒーレンス長と侵入長}{28}
+\contentsline {subsection}{\numberline {3.2.5}ソリトンの特徴}{28}
+\contentsline {section}{\numberline {3.3}超伝導の微視的理論 : Bardeen-Cooper-Schrieffer理論}{29}
+\contentsline {subsection}{\numberline {3.3.1}金属の基本性質}{29}
+\contentsline {subsection}{\numberline {3.3.2}電子-格子間相互作用}{29}
+\contentsline {subsection}{\numberline {3.3.3}Cooper問題}{30}
+\contentsline {chapter}{\numberline {第4章}Anderson局在とその周辺}{31}
+\contentsline {section}{\numberline {4.1}Anderson局在とは}{31}
+\contentsline {section}{\numberline {4.2}P.W.Anderson. Phys. Rev. $\bm {109}$, 1492(1958)}{31}
+\contentsline {subsection}{\numberline {4.2.1}Tight-Binding近似}{31}
+\contentsline {subsection}{\numberline {4.2.2}Andersonの理論}{32}
+\contentsline {section}{\numberline {4.3}E.Abrahams et al. Phys. Rev. Lett. $\bm {42}$, 673(1979)}{32}
+\contentsline {chapter}{\numberline {第5章}熱・統計・量子統計力学}{33}
+\contentsline {section}{\numberline {5.1}熱力学}{33}
+\contentsline {subsection}{\numberline {5.1.1}状態量}{33}
+\contentsline {subsection}{\numberline {5.1.2}完全な熱力学関数}{33}
+\contentsline {subsection}{\numberline {5.1.3}自由エネルギー}{33}
+\contentsline {subsubsection}{ヘルムホルツ自由エネルギー}{33}
+\contentsline {subsubsection}{ギブズ自由エネルギー}{34}
+\contentsline {section}{\numberline {5.2}統計力学}{34}
+\contentsline {subsection}{\numberline {5.2.1}目的}{34}
+\contentsline {subsection}{\numberline {5.2.2}ミクロカノニカルアンサンブル}{34}
+\contentsline {subsection}{\numberline {5.2.3}Langevin方程式}{34}
+\contentsline {section}{\numberline {5.3}Born-Markov型量子マスター方程式}{36}
+\contentsline {subsection}{\numberline {5.3.1}問題設定}{37}
+\contentsline {subsection}{\numberline {5.3.2}熱平衡(問題1)}{37}
+\contentsline {subsection}{\numberline {5.3.3}調和振動子のエネルギー(問題2)}{38}
+\contentsline {subsection}{\numberline {5.3.4}位置・運動量平均の時間発展(問題3)}{39}
+\contentsline {subsection}{\numberline {5.3.5}数値計算}{40}
+\contentsline {section}{\numberline {5.4}線形応答理論}{41}
+\contentsline {subsection}{\numberline {5.4.1}概要}{41}
+\contentsline {subsection}{\numberline {5.4.2}線形応答理論の基本概念}{41}
+\contentsline {subsection}{\numberline {5.4.3}有限温度系へ}{42}
+\contentsline {subsection}{\numberline {5.4.4}簡単な例}{42}
+\contentsline {chapter}{\numberline {第6章}Wigner関数}{44}
+\contentsline {section}{\numberline {6.1}Winger表示}{44}
+\contentsline {subsection}{\numberline {6.1.1}定義}{44}
+\contentsline {subsection}{\numberline {6.1.2}任意の演算子に対するWigner表示}{44}
+\contentsline {section}{\numberline {6.2}Wigner分布関数の時間発展}{44}
+\contentsline {subsection}{\numberline {6.2.1}$(\mathaccentV {hat}05E{A}\mathaccentV {hat}05E{B})_W$の計算}{44}
+\contentsline {subsection}{\numberline {6.2.2}$f_W(q, p, t)$の時間発展}{45}
+\contentsline {section}{\numberline {6.3}具体的な問題}{46}
+\contentsline {subsection}{\numberline {6.3.1}調和振動子系のWigner-Moyal方程式}{46}
+\contentsline {subsection}{\numberline {6.3.2}数値計算}{46}
+\contentsline {subsubsection}{差分化}{46}
+\contentsline {subsubsection}{問題点}{47}
+\contentsline {subsubsection}{初期条件}{47}
+\contentsline {chapter}{\numberline {第7章}経路積分}{48}
+\contentsline {section}{\numberline {7.1}量子力学の復習}{48}
+\contentsline {subsection}{\numberline {7.1.1}自由粒子}{48}
+\contentsline {subsection}{\numberline {7.1.2}Green関数}{49}
+\contentsline {section}{\numberline {7.2}経路積分の基礎}{49}
+\contentsline {subsection}{\numberline {7.2.1}経路積分の導出}{49}
+\contentsline {subsection}{\numberline {7.2.2}自由粒子 : 経路積分を使わない方法}{50}
+\contentsline {subsection}{\numberline {7.2.3}自由粒子 : 経路積分の方法}{51}
+\contentsline {section}{\numberline {7.3}数値計算の準備及び経路積分のイメージ}{52}
+\contentsline {subsection}{\numberline {7.3.1}基底波動関数と伝搬関数}{52}
+\contentsline {subsection}{\numberline {7.3.2}作用とラグランジアン}{52}
+\contentsline {subsection}{\numberline {7.3.3}作用積分の簡略化}{52}
+\contentsline {subsection}{\numberline {7.3.4}経路とは}{53}
+\contentsline {subsection}{\numberline {7.3.5}経路の取り方}{53}
+\contentsline {subsection}{\numberline {7.3.6}処方箋}{53}
+\contentsline {chapter}{\numberline {第8章}Ising模型}{54}
+\contentsline {section}{\numberline {8.1}Ising模型と熱統計力学の基礎}{54}
+\contentsline {subsection}{\numberline {8.1.1}ハミルトニアン}{54}
+\contentsline {subsection}{\numberline {8.1.2}平衡状態}{54}
+\contentsline {subsection}{\numberline {8.1.3}相転移}{54}
+\contentsline {section}{\numberline {8.2}Ising模型の厳密解}{55}
+\contentsline {subsection}{\numberline {8.2.1}1次元Ising模型 : 平均場近似}{55}
+\contentsline {subsection}{\numberline {8.2.2}1次元Ising模型 : 厳密解}{55}
+\contentsline {subsection}{\numberline {8.2.3}2次元Ising模型}{56}
+\contentsline {section}{\numberline {8.3}数値計算}{56}
+\contentsline {subsection}{\numberline {8.3.1}Monte Carlo法}{56}
+\contentsline {subsection}{\numberline {8.3.2}Metropolis法}{56}
+\contentsline {subsection}{\numberline {8.3.3}2次元Ising模型}{57}
+\contentsline {subsection}{\numberline {8.3.4}数値計算上の注意}{58}
+\contentsline {subsubsection}{乱数}{58}
+\contentsline {subsubsection}{ローカルな極小点}{58}
+\contentsline {chapter}{\numberline {第9章}場の量子論}{59}
+\contentsline {section}{\numberline {9.1}Wickの定理}{59}
+\contentsline {subsection}{\numberline {9.1.1}概要}{59}
+\contentsline {subsection}{\numberline {9.1.2}具体例}{59}
+\contentsline {subsubsection}{n=2の場合}{59}
+\contentsline {subsubsection}{n=3の場合}{59}
+\contentsline {subsection}{\numberline {9.1.3}証明}{59}
+\contentsline {section}{\numberline {9.2}TFD形式による期待値計算}{60}
+\contentsline {subsection}{\numberline {9.2.1}TFDのド基礎}{60}
+\contentsline {subsection}{\numberline {9.2.2}具体計算}{60}
+\contentsline {subsection}{\numberline {9.2.3}Block-de Dominicsの定理}{61}
+\contentsline {section}{\numberline {9.3}Gell-Mann-Lowの定理}{61}
+\contentsline {subsection}{\numberline {9.3.1}断熱因子}{61}
+\contentsline {subsection}{\numberline {9.3.2}概要}{62}
+\contentsline {subsection}{\numberline {9.3.3}証明}{62}
+\contentsline {section}{\numberline {9.4}Tips}{62}
+\contentsline {subsection}{\numberline {9.4.1}Heisenberg描像}{62}
+\contentsline {subsection}{\numberline {9.4.2}相互作用描像}{63}
+\contentsline {subsection}{\numberline {9.4.3}各描像のハミルトニアン同士の関係}{63}
+\contentsline {subsubsection}{Full Hamiltonian}{63}
+\contentsline {subsubsection}{Unperturbed Hamiltonian}{63}
+\contentsline {subsection}{\numberline {9.4.4}デルタ関数のFourier変換表示}{64}
+\contentsline {subsection}{\numberline {9.4.5}$\bm {k}$が離散・連続の場合の$\expval {a_{\bm {k}}^\dagger a_{\bm {k}'}}$}{64}
+\contentsline {subsubsection}{有限体積の場合}{64}
+\contentsline {subsubsection}{熱力学極限}{65}
+\contentsline {subsection}{\numberline {9.4.6}デルタ関数が体積になること}{65}
+\contentsline {subsection}{\numberline {9.4.7}ハミルトニアンの対角化とBogoliubov-de Gennes方程式}{66}
+\contentsline {subsubsection}{対角化とは}{66}
+\contentsline {subsubsection}{Bogoliubov-de Gennes方程式}{67}
+\contentsline {subsection}{\numberline {9.4.8}一様系のBogoliubov-de Gennes方程式}{67}
+\contentsline {subsection}{\numberline {9.4.9}相互作用描像における時間発展演算子とT積}{67}
+\contentsline {chapter}{\numberline {第10章}研究 : 3次元一様有限温度系のゼロモード}{70}
+\contentsline {section}{\numberline {10.1}問題設定}{70}
+\contentsline {subsection}{\numberline {10.1.1}冷却原子気体系のハミルトニアン}{70}
+\contentsline {subsection}{\numberline {10.1.2}相互作用描像}{71}
+\contentsline {subsection}{\numberline {10.1.3}量子補正}{72}
+\contentsline {section}{\numberline {10.2}自己無撞着ループ}{73}
+\contentsline {subsection}{\numberline {10.2.1}GP方程式}{74}
+\contentsline {subsection}{\numberline {10.2.2}共役モード方程式}{74}
+\contentsline {subsection}{\numberline {10.2.3}BdG方程式}{75}
+\contentsline {subsection}{\numberline {10.2.4}ゼロモード方程式}{75}
+\contentsline {subsection}{\numberline {10.2.5}$\ev {Q^2},\ev {P^2}$の計算}{76}
+\contentsline {subsection}{\numberline {10.2.6}熱平均$V_t$・異常平均$V_a$}{77}
+\contentsline {subsubsection}{積分範囲の設定}{78}
+\contentsline {subsection}{\numberline {10.2.7}比熱・圧力}{78}
+\contentsline {section}{\numberline {10.3}変分法による見積もり}{78}
+\contentsline {subsection}{\numberline {10.3.1}ゼロモードハミルトニアン}{79}
+\contentsline {subsection}{\numberline {10.3.2}変分関数}{79}
+\contentsline {subsection}{\numberline {10.3.3}ゼロ温度期待値・エネルギー固有値の計算}{79}
+\contentsline {subsection}{\numberline {10.3.4}各パラメータの計算}{80}
+\contentsline {subsection}{\numberline {10.3.5}有限温度期待値}{80}
+\contentsline {section}{\numberline {10.4}数値計算結果}{81}
+\contentsline {chapter}{\numberline {第11章}研究 : ゼロモードの緩和}{82}
+\contentsline {section}{\numberline {11.1}公式}{82}
+\contentsline {section}{\numberline {11.2}具体計算 : time-convolutionless型}{82}
+\contentsline {section}{\numberline {11.3}具体計算 : 摂動項${\cal K}(t)$}{85}
+\contentsline {section}{\numberline {11.4}数値計算へ向けて}{87}
+\contentsline {subsection}{\numberline {11.4.1}$E_\mu \cdot E_\nu $}{87}
+\contentsline {subsection}{\numberline {11.4.2}$A_i^{nm}$}{88}
+\contentsline {subsection}{\numberline {11.4.3}$N_{nm}\cdot N_{nm}'$}{88}
+\contentsline {subsection}{\numberline {11.4.4}$R_i$}{88}
+\contentsline {section}{\numberline {11.5}$L^{nm,n'm'}$の整理}{89}
+\contentsline {chapter}{\numberline {第12章}研究 : BdG間及びZeromode-BdG間の相互作用を取り入れた有限温度系の計算}{91}
+\contentsline {section}{\numberline {12.1}やりたいこと}{91}
+\contentsline {section}{\numberline {12.2}量子統計力学と摂動計算}{91}
+\contentsline {subsection}{\numberline {12.2.1}熱力学ポテンシャル}{91}
+\contentsline {subsection}{\numberline {12.2.2}方法論の外観}{92}
+\contentsline {subsection}{\numberline {12.2.3}相互作用描像とS行列}{92}
+\contentsline {subsection}{\numberline {12.2.4}熱力学ポテンシャルの摂動展開}{93}
+\contentsline {subsection}{\numberline {12.2.5}描像について}{93}
+\contentsline {section}{\numberline {12.3}3次元有限温度IZMF系への応用}{93}
+\contentsline {subsection}{\numberline {12.3.1}ハミルトニアン}{93}
+\contentsline {subsection}{\numberline {12.3.2}熱力学ポテンシャルの具体形}{94}
+\contentsline {subsection}{\numberline {12.3.3}疑問点}{95}
+\contentsline {subsubsection}{Zeromode-BdG coupling}{95}
+\contentsline {subsubsection}{Self-consistent loop}{96}
+\contentsline {subsection}{\numberline {12.3.4}$a(s)$の時間依存性}{96}
+\contentsline {subsection}{\numberline {12.3.5}$Q(s), P(s)$の時間依存性}{96}
+\contentsline {chapter}{\numberline {第13章}Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}{97}
+\contentsline {section}{\numberline {13.1}Second Quantization}{97}
+\contentsline {subsection}{\numberline {13.1.1}Fields}{97}
+\contentsline {section}{\numberline {13.2}Green's Functions}{98}
+\contentsline {subsection}{\numberline {13.2.1}Definition}{98}
+\contentsline {subsection}{\numberline {13.2.2}Relation to Observables}{99}
+\contentsline {subsection}{\numberline {13.2.3}Example : Free Fermion}{100}
+\contentsline {subsection}{\numberline {13.2.4}Lehmann Representation}{100}
+\contentsline {subsection}{\numberline {13.2.5}Physical Interpretation of the Green's Function}{103}
+\contentsline {section}{\numberline {13.3}Wick's Theorem}{103}
+\contentsline {subsection}{\numberline {13.3.1}概略}{103}
+\contentsline {subsubsection}{1. T積}{105}
+\contentsline {subsubsection}{2. N積}{105}
+\contentsline {subsubsection}{3. 縮約}{105}
+\contentsline {subsubsection}{4. 規約}{105}
+\contentsline {subsubsection}{5. Wickの定理}{105}
+\contentsline {subsubsection}{6. 補題}{106}
+\contentsline {subsubsection}{Wickの証明}{106}
+\contentsline {subsection}{\numberline {13.3.2}(13.64\relax )}{106}
+\contentsline {subsection}{\numberline {13.3.3}(13.64\relax )}{106}
+\contentsline {subsection}{\numberline {13.3.4}(13.71\relax )の縮約ゼロについて}{106}
+\contentsline {subsection}{\numberline {13.3.5}(13.72\relax )}{106}
+\contentsline {subsection}{\numberline {13.3.6}縮約とは？}{107}
+\contentsline {subsection}{\numberline {13.3.7}補題の(b)}{107}
+\contentsline {subsection}{\numberline {13.3.8}補題の(c)}{107}
+\contentsline {subsection}{\numberline {13.3.9}演算子が2つのときの補題}{107}
+\contentsline {subsection}{\numberline {13.3.10}帰納法で補題を証明}{108}
+\contentsline {subsection}{\numberline {13.3.11}補題の補題}{108}
+\contentsline {subsection}{\numberline {13.3.12}補題の一般化}{108}
+\contentsline {subsection}{\numberline {13.3.13}2つの演算子のWick}{109}
+\contentsline {subsection}{\numberline {13.3.14}帰納法でWickを証明}{109}
+\contentsline {section}{\numberline {13.4}Diagrammatic Analysis of Perturbation Theory}{109}
+\contentsline {subsection}{\numberline {13.4.1}Feynman Diagrams in Coordinate Space}{109}
+\contentsline {subsection}{\numberline {13.4.2}Feynman Diagrams in Momentum Space}{111}
+\contentsline {subsection}{\numberline {13.4.3}Dyson's Equation}{112}
+\contentsline {subsubsection}{0. General derivation of Dyson's Equation}{112}
+\contentsline {subsubsection}{1. Self-energy insertion}{113}
+\contentsline {chapter}{\numberline {第14章}数値計算手法}{114}
+\contentsline {section}{\numberline {14.1}Symplectic数値解法}{114}
+\contentsline {subsection}{\numberline {14.1.1}ハミルトニアンの分解}{114}
+\contentsline {subsection}{\numberline {14.1.2}エネルギーの保存}{114}
+\contentsline {subsection}{\numberline {14.1.3}Formulate for Schr\"odinger equation}{115}
