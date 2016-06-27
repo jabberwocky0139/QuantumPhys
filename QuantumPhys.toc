@@ -213,45 +213,46 @@
 \contentsline {subsubsection}{Self-consistent loop}{96}
 \contentsline {subsection}{\numberline {12.3.4}$a(s)$の時間依存性}{96}
 \contentsline {subsection}{\numberline {12.3.5}$Q(s), P(s)$の時間依存性}{96}
-\contentsline {chapter}{\numberline {第13章}Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}{97}
-\contentsline {section}{\numberline {13.1}Second Quantization}{97}
-\contentsline {subsection}{\numberline {13.1.1}Fields}{97}
-\contentsline {section}{\numberline {13.2}Green's Functions}{98}
-\contentsline {subsection}{\numberline {13.2.1}Definition}{98}
-\contentsline {subsection}{\numberline {13.2.2}Relation to Observables}{99}
-\contentsline {subsection}{\numberline {13.2.3}Example : Free Fermion}{100}
-\contentsline {subsection}{\numberline {13.2.4}Lehmann Representation}{100}
-\contentsline {subsection}{\numberline {13.2.5}Physical Interpretation of the Green's Function}{103}
-\contentsline {section}{\numberline {13.3}Wick's Theorem}{103}
-\contentsline {subsection}{\numberline {13.3.1}概略}{103}
-\contentsline {subsubsection}{1. T積}{105}
-\contentsline {subsubsection}{2. N積}{105}
-\contentsline {subsubsection}{3. 縮約}{105}
-\contentsline {subsubsection}{4. 規約}{105}
-\contentsline {subsubsection}{5. Wickの定理}{105}
-\contentsline {subsubsection}{6. 補題}{106}
-\contentsline {subsubsection}{Wickの証明}{106}
-\contentsline {subsection}{\numberline {13.3.2}(13.64\relax )}{106}
-\contentsline {subsection}{\numberline {13.3.3}(13.64\relax )}{106}
-\contentsline {subsection}{\numberline {13.3.4}(13.71\relax )の縮約ゼロについて}{106}
-\contentsline {subsection}{\numberline {13.3.5}(13.72\relax )}{106}
-\contentsline {subsection}{\numberline {13.3.6}縮約とは？}{107}
-\contentsline {subsection}{\numberline {13.3.7}補題の(b)}{107}
-\contentsline {subsection}{\numberline {13.3.8}補題の(c)}{107}
-\contentsline {subsection}{\numberline {13.3.9}演算子が2つのときの補題}{107}
-\contentsline {subsection}{\numberline {13.3.10}帰納法で補題を証明}{108}
-\contentsline {subsection}{\numberline {13.3.11}補題の補題}{108}
-\contentsline {subsection}{\numberline {13.3.12}補題の一般化}{108}
-\contentsline {subsection}{\numberline {13.3.13}2つの演算子のWick}{109}
-\contentsline {subsection}{\numberline {13.3.14}帰納法でWickを証明}{109}
-\contentsline {section}{\numberline {13.4}Diagrammatic Analysis of Perturbation Theory}{109}
-\contentsline {subsection}{\numberline {13.4.1}Feynman Diagrams in Coordinate Space}{109}
-\contentsline {subsection}{\numberline {13.4.2}Feynman Diagrams in Momentum Space}{111}
-\contentsline {subsection}{\numberline {13.4.3}Dyson's Equation}{112}
-\contentsline {subsubsection}{0. General derivation of Dyson's Equation}{112}
-\contentsline {subsubsection}{1. Self-energy insertion}{113}
-\contentsline {chapter}{\numberline {第14章}数値計算手法}{114}
-\contentsline {section}{\numberline {14.1}Symplectic数値解法}{114}
-\contentsline {subsection}{\numberline {14.1.1}ハミルトニアンの分解}{114}
-\contentsline {subsection}{\numberline {14.1.2}エネルギーの保存}{114}
-\contentsline {subsection}{\numberline {14.1.3}Formulate for Schr\"odinger equation}{115}
+\contentsline {subsection}{\numberline {12.3.6}(12.45\relax )のさらなる具体形}{97}
+\contentsline {chapter}{\numberline {第13章}Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}{98}
+\contentsline {section}{\numberline {13.1}Second Quantization}{98}
+\contentsline {subsection}{\numberline {13.1.1}Fields}{98}
+\contentsline {section}{\numberline {13.2}Green's Functions}{99}
+\contentsline {subsection}{\numberline {13.2.1}Definition}{99}
+\contentsline {subsection}{\numberline {13.2.2}Relation to Observables}{100}
+\contentsline {subsection}{\numberline {13.2.3}Example : Free Fermion}{101}
+\contentsline {subsection}{\numberline {13.2.4}Lehmann Representation}{101}
+\contentsline {subsection}{\numberline {13.2.5}Physical Interpretation of the Green's Function}{104}
+\contentsline {section}{\numberline {13.3}Wick's Theorem}{104}
+\contentsline {subsection}{\numberline {13.3.1}概略}{104}
+\contentsline {subsubsection}{1. T積}{106}
+\contentsline {subsubsection}{2. N積}{106}
+\contentsline {subsubsection}{3. 縮約}{106}
+\contentsline {subsubsection}{4. 規約}{106}
+\contentsline {subsubsection}{5. Wickの定理}{106}
+\contentsline {subsubsection}{6. 補題}{107}
+\contentsline {subsubsection}{Wickの証明}{107}
+\contentsline {subsection}{\numberline {13.3.2}(13.64\relax )}{107}
+\contentsline {subsection}{\numberline {13.3.3}(13.64\relax )}{107}
+\contentsline {subsection}{\numberline {13.3.4}(13.71\relax )の縮約ゼロについて}{107}
+\contentsline {subsection}{\numberline {13.3.5}(13.72\relax )}{107}
+\contentsline {subsection}{\numberline {13.3.6}縮約とは？}{108}
+\contentsline {subsection}{\numberline {13.3.7}補題の(b)}{108}
+\contentsline {subsection}{\numberline {13.3.8}補題の(c)}{108}
+\contentsline {subsection}{\numberline {13.3.9}演算子が2つのときの補題}{108}
+\contentsline {subsection}{\numberline {13.3.10}帰納法で補題を証明}{109}
+\contentsline {subsection}{\numberline {13.3.11}補題の補題}{109}
+\contentsline {subsection}{\numberline {13.3.12}補題の一般化}{109}
+\contentsline {subsection}{\numberline {13.3.13}2つの演算子のWick}{110}
+\contentsline {subsection}{\numberline {13.3.14}帰納法でWickを証明}{110}
+\contentsline {section}{\numberline {13.4}Diagrammatic Analysis of Perturbation Theory}{110}
+\contentsline {subsection}{\numberline {13.4.1}Feynman Diagrams in Coordinate Space}{110}
+\contentsline {subsection}{\numberline {13.4.2}Feynman Diagrams in Momentum Space}{112}
+\contentsline {subsection}{\numberline {13.4.3}Dyson's Equation}{113}
+\contentsline {subsubsection}{0. General derivation of Dyson's Equation}{113}
+\contentsline {subsubsection}{1. Self-energy insertion}{114}
+\contentsline {chapter}{\numberline {第14章}数値計算手法}{115}
+\contentsline {section}{\numberline {14.1}Symplectic数値解法}{115}
+\contentsline {subsection}{\numberline {14.1.1}ハミルトニアンの分解}{115}
+\contentsline {subsection}{\numberline {14.1.2}エネルギーの保存}{115}
+\contentsline {subsection}{\numberline {14.1.3}Formulate for Schr\"odinger equation}{116}

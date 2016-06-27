@@ -3379,7 +3379,7 @@ $\varphi_{ex}$と$H_{u, ex}$は$H_{u, z}$と交換し, 同様に$\varphi_{z}$と
 となる. (\ref{picture2})は正しそう. 故にHeisenberg描像と相互作用描像を結ぶユニタリー変換$U(t)$やS行列$S(t, t')$, それら時間発展は修正を受けない.
 \section{3次元有限温度IZMF系への応用}
 \subsection{ハミルトニアン}
-まずは簡単のため, 3次元一様系で考える. それができたらトラップ系にも拡張したい. 秩序変数$\xi$と共役モード$\eta$が実であるような流れのない凝縮体を仮定する. 以下, 各記号は元論文の表式に従う. 
+まずは簡単のため, 3次元一様系で考える. それができたらトラップ系にも拡張したい. 秩序変数$\xi$と共役モード$\eta$が実であるような流れのない凝縮体を仮定する. また$\xi, \eta$が時間依存しないことを要請する. 以下, 各記号は元論文の表式に従う. 
 
 相互作用描像におけるハミルトニアンを
 \begin{eqnarray}
@@ -3404,7 +3404,7 @@ $\varphi_{ex}$と$H_{u, ex}$は$H_{u, z}$と交換し, 同様に$\varphi_{z}$と
 としている．場の演算子を$\varphi = \varphi_{z} + \varphi_{ex}$のように分割. それぞれ以下のようになる：
 \begin{eqnarray}
   \varphi_{z} &=& -i\xi Q + \eta P\label{Zeromode-expansion}\\
-  \varphi_{ex} &=& \int d\bm{k} \left[ u_ka_{\bm{k}} + v_k^*a^\dagger_{-\bm{k}} \right]e^{i\bm{k}\bm{x}}\label{plane}
+  \varphi_{ex} &=& \frac{1}{\sqrt{(2\pi)^3}}\int d\bm{k} \left[ u_ka_{\bm{k}} + v_k^*a^\dagger_{-\bm{k}} \right]e^{i\bm{k}\bm{x}}\label{plane}
 \end{eqnarray}
 
 非摂動ハミルトニアンのゼロモード部・励起部は
@@ -3426,30 +3426,36 @@ $\varphi_{ex}$と$H_{u, ex}$は$H_{u, z}$と交換し, 同様に$\varphi_{z}$と
 (\ref{Perturbed-thermo2})の1次について具体形を書き下す. 
 \begin{eqnarray}
 \nonumber  T\exp[-\int_0^\beta ds H_{z, ex}(s)] &=& I -\int_0^{\beta}ds H_{z, ex}(s) + \frac{1}{2!}\int_0^\beta ds\int_0^\beta ds' T\qty[H_{z, ex}(s)H_{z, ex}(s')] + \cdots\\
-\nonumber  \therefore \ev{T\exp[-\int_0^\beta ds H_{z, ex}(s)]}_0 &\simeq& \ev{I -\int_0^{\beta}ds H_{z, ex}(s)}_0 = 1 - e^{\beta\Omega_0}\sum_{mn}\int_0^\infty ds\bra{\Psi_m}\bra{n}e^{-\beta H_u}H_{z, ex}(s)\ket{n}\ket{\Psi_m}\label{Perturbed-thermo3}\\
+\nonumber  \therefore \ev{T\exp[-\int_0^\beta ds H_{z, ex}(s)]}_0 &\simeq& \ev{I -\int_0^{\beta}ds H_{z, ex}(s)}_0 =  1 - \int_0^\beta ds\ev{H_{z, ex}(s)}_0\label{Perturbed-thermo3}\\
+&=& 1 - e^{\beta\Omega_0}\sum_{mn}\int_0^\beta ds\bra{\Psi_m}\bra{n}e^{-\beta H_u}H_{z, ex}(s)\ket{n}\ket{\Psi_m}
 \end{eqnarray}
 ここで(\ref{Perturbed-thermo3})の積分内の期待値はゼロモード項と励起項に分離でき, 期待値が残るのは$\varphi_z, \varphi_{ex}$の2次及び$\varphi_{ex}$の4次のみである. 書き下すと
+\begin{eqnarray}
+  \nonumber  \ev{H_{z, ex}}_0 &=& \ev{\varphi_z^\dagger(s)\varphi_z^\dagger(s)}_z\ev{\varphi_{ex}(s)\varphi_{ex}(s)}_{ex} + 4\ev{\varphi_z^\dagger(s)\varphi_z(s)}_z\ev{\varphi_{ex}^\dagger(s)\varphi_{ex}(s)}_{ex}\\
+  &+& \ev{\varphi_z(s)\varphi_z(s)}_z\ev{\varphi_{ex}^\dagger(s)\varphi_{ex}^\dagger(s)}_{ex} + \ev{\varphi_{ex}^\dagger(s)\varphi_{ex}^\dagger(s)\varphi_{ex}(s)\varphi_{ex}(s)}_{ex}\label{Hamiltonian-Exp}
+\end{eqnarray}
+% ---------- Comment out -------------
+\begin{comment}
 \begin{eqnarray}
   \nonumber  &&\bra{\Psi_m}\bra{n}e^{-\beta H_u}H_{z, ex}(s)\ket{n}\ket{\Psi_m}\\
 \nonumber  &=& e^{-\beta(E_m + \omega_n)}\Bigl[\ev{\varphi^\dagger_z(s)\varphi^\dagger_z(s)}{\Psi_m}\ev{\varphi_{ex}(s)\varphi_{ex}(s)}{n} + 4\ev{\varphi^\dagger_z(s)\varphi_z(s)}{\Psi_m}\ev{\varphi^\dagger_{ex}(s)\varphi_{ex}(s)}{n}\\
 \nonumber  &&\hspace{2cm} + \ev{\varphi_z(s)\varphi_z(s)}{\Psi_m}\ev{\varphi^\dagger_{ex}(s)\varphi^\dagger_{ex}(s)}{n}\Bigr] + e^{-\beta\omega_n}\ev{\varphi^\dagger_{ex}(s)\varphi^\dagger_{ex}(s)\varphi_{ex}(s)\varphi_{ex}(s)}{n}\\
 \end{eqnarray}
+\end{comment}
+% ---------- Comment out -------------
 (\ref{Zeromode-expansion})(\ref{plane})の展開を用いると, 効いてくるのは
 \begin{eqnarray}
-  &&\ev{Q^2(s)}{\Psi_m}\\
-  &&\ev{P^2(s)}{\Psi_m}\\
-  &&\ev{a_{\bk}^\dagger(s) a_{\bk'}(s)}{n}\label{BdG-ev1}\\
-  &&\ev{a_{\bk_1}^\dagger(s)a_{\bk_2}^\dagger(s) a_{\bk_3}(s)a_{\bk_4}(s)}{n}\label{BdG-ev2}
+  &&\ev{Q^2(s)}_z\hspace{0.7cm}\ev{P^2(s)}_z\hspace{0.7cm}\ev{a_{\bk}^\dagger(s) a_{\bk'}(s)}_{ex}\hspace{0.7cm}\ev{a_{\bk_1}^\dagger(s)a_{\bk_2}^\dagger(s) a_{\bk_3}(s)a_{\bk_4}(s)}_{ex}
 \end{eqnarray}
 のような項たち. 具体形は
 \begin{eqnarray}
-  \ev{Q^2(s)}{\Psi_m} &=& q^2\Psi_m(q)\\
-  \ev{P^2(s)}{\Psi_m} &=& -\frac{d^2}{dq^2}\Psi_m(q)\\
-  \ev{a_{\bk}^\dagger(s) a_{\bk'}(s)}{n} &=& \frac{1}{1-e^{-\beta\omega_n}}\delta(\bk-\bk') \equiv n_{\bk}\delta(\bk - \bk')\\
-\nonumber  \ev{a_{\bk_1}^\dagger(s)a_{\bk_2}^\dagger(s) a_{\bk_3}(s)a_{\bk_4}(s)}{n} &=& \qty(\wick{12}{<1a^\dagger_{k1}<2a^\dagger_{k2}>1a_{k3}>2a_{k4}} + \wick{12}{<1a^\dagger_{k1}<2a^\dagger_{k2}>2a_{k3}>1a_{k4}})\\
+  \ev{Q^2(s)}_z &=& \frac{\sum_mq^2\Psi_m(q)e^{-\beta E_m}}{\sum_me^{-\beta E_m}}\\
+  \ev{P^2(s)}_z &=& \frac{-\sum_m\frac{d^2}{dq^2}\Psi_m(q)e^{-\beta E_m}}{\sum_me^{-\beta E_m}}\\
+  \ev{a_{\bk}^\dagger(s) a_{\bk'}(s)}_{ex} &=& \frac{1}{e^{\beta\omega_{\bk}}-1}\delta(\bk-\bk') \equiv n_{\bk}\delta(\bk - \bk')\\
+\nonumber  \ev{a_{\bk_1}^\dagger(s)a_{\bk_2}^\dagger(s) a_{\bk_3}(s)a_{\bk_4}(s)}_{ex} &=& \qty(\wick{12}{<1a^\dagger_{k1}<2a^\dagger_{k2}>1a_{k3}>2a_{k4}} + \wick{12}{<1a^\dagger_{k1}<2a^\dagger_{k2}>2a_{k3}>1a_{k4}})\\
   &=& n_{\bk_1}n_{\bk_2}\qty{\delta(\bk_1 - \bk_3)\delta(\bk_2 - \bk_4) + \delta(\bk_1 - \bk_4)\delta(\bk_2 - \bk_3)}
 \end{eqnarray}
-である. $\Psi_m$は非摂動ゼロモードハミルトニアン$H_{u, z}$の固有状態.
+である. ゼロモード期待値は$q$-表示を採用している\footnote{$q$表示というのは実空間の$q$ではなく, いわゆるゼロモード空間の$q$表示. もちろん空間のサイズは実空間に依存せず, 数値計算の際には適切なサイズを用意しなければならない. }. $\Psi_m$は非摂動ゼロモードハミルトニアン$H_{u, z}$の固有状態.
 \subsection{疑問点}
 \subsubsection{Zeromode-BdG coupling}
 Zeromode-BdGカップリングの寄与を取り入れるのが現状の目的. しかし, Hartree-Fock-Bogoliubov approximationによるGP方程式
@@ -3484,6 +3490,52 @@ Zeromode-BdGカップリングの寄与を取り入れるのが現状の目的. 
 \end{eqnarray}
 のようにくくり出せる. よって, $a^\dagger(t) a(t), a^\dagger(t) a^\dagger(t) a(t)a(t)$の時間依存性は消える. 
 \subsection{$Q(s), P(s)$の時間依存性}
+計算しなければならないのは$Q^2(s), P^2(s)$. Heisenberg方程式は
+\begin{eqnarray}
+\nonumber  i\partial_t Q^2(t) &=& i(I-4D)(QP+PQ) + 2iCQ(QP+PQ)Q + 2iE\qty[P^2(QP+PQ) + (QP+PQ)P^2]\\
+  i\partial_t P^2(t) &=& -iA(Q^2(QP+PQ) + (QP+PQ)Q^2) + 4iB(QP+PQ)-2iC(QP^3 + P^3Q)\label{Zeromode-Heisenberg}
+\end{eqnarray}
+となる. ハミルトニアンの形からHeisenberg方程式まで$a$-演算子とは全く異なる構造をしているので先程と同様の議論は成り立たない.  しかし, 今回$\xi$が実であることを仮定しているので, $Q$を奇数個含む期待値はゼロになる\footnote{例えば$\ev{Q^3}{\Psi} = \ev{QP+PQ}{\Psi} = 0$など. }. (\ref{Zeromode-Heisenberg})に現れる項は全て奇数個の$Q$を含んでいるので
+\begin{eqnarray}
+  i\partial_t \ev{Q^2(t)}{\Psi} &=&i\partial_t \ev{P^2(t)}{\Psi} = 0
+\end{eqnarray}
+である. つまり$a$-演算子同様, 時間依存性を気にする必要がない. もちろん, $\xi$が時間発展するような定式化の場合はこの限りではない.
+
+\ul{ここの議論は少し不安でもあります. $\xi$が時間発展する場合としない場合の差がまだきちんと理解できていない}\\\ul{気がします. $\ket{\Psi_0}$が時間発展しないのはいいとしても, その励起である$\ket{\Psi_\nu}$は時間発展しないのか?など. 勉強し}\\\ul{ておきます. }
+\subsection{(\ref{Hamiltonian-Exp})のさらなる具体形}
+時間依存性を考慮しなくて良いことがわかったのでさらに議論をすすめて数値計算が可能な形まで落としこむことにする. まず, (\ref{Hamiltonian-Exp})のゼロモード部について. 先ほど同様, $Q$の奇数次項を落とすと
+\begin{eqnarray}
+  \ev{\varphi^\dagger_z\varphi^\dagger_z}_z &=& \ev{(-i\xi Q + \eta P)^\dagger(-i\xi Q + \eta P)^\dagger}_z = -\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\\
+\ev{\varphi_z^\dagger\varphi_z}_z &=& \xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\\
+\ev{\varphi_z\varphi_z}_z &=& -\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z
+\end{eqnarray}
+一方で励起部は
+\begin{eqnarray}
+  \ev{\varphi_{ex}\varphi_{ex}}_{ex} &=& \frac{1}{(2\pi)^3}\int d\bk_1\int d\bk_2 \ev{(u_{\bk_1}a_{\bk_1} + v_{\bk_1}^* a^\dagger_{-\bk_1})(u_{\bk_2}a_{\bk_2} + v_{\bk_2}^* a^\dagger_{-\bk_2})}_{ex}e^{i(\bk_1+\bk_2)\cdot \bx}\\
+  &=& \frac{1}{(2\pi)^3}\int d\bk_1\int d\bk_2 \ev{(u_{\bk_1}a_{\bk_1} + v_{\bk_1}^* a^\dagger_{-\bk_1})(u_{\bk_2}a_{\bk_2} + v_{\bk_2}^* a^\dagger_{-\bk_2})}_{ex}e^{i(\bk_1+\bk_2)\cdot \bx}\\
+  \nonumber &=& \frac{1}{(2\pi)^3}\int d\bk_1\int d\bk_2 \qty(u_{\bk_1}v_{\bk_2}^*\ev{a_{\bk_1} a^\dagger_{-\bk_2}}_{ex}\delta(\bk_1 + \bk_2) + v_{\bk_1}^* u_{\bk_2} \ev{a^\dagger_{-\bk_1}a_{\bk_2}}_{ex}\delta(\bk_1 + \bk_2))e^{i(\bk_1+\bk_2)\cdot \bx}\\
+  \\
+  &=& \frac{1}{(2\pi)^3}\int d\bk_1\int d\bk_2 \qty(u_{\bk_1}v_{-\bk_1}^*\ev{a_{\bk_1} a^\dagger_{\bk_1}}_{ex}\delta(\bk_1 + \bk_2) + v_{\bk_1}^* u_{-\bk_1} \ev{a^\dagger_{-\bk_1}a_{-\bk_1}}_{ex})\\
+  &=& \frac{1}{(2\pi)^3}\int d\bk_1 \qty(u_{\bk_1}v_{-\bk_1}^*\ev{a_{\bk_1} a^\dagger_{\bk_1}}_{ex} + v_{\bk_1}^* u_{-\bk_1} \ev{a^\dagger_{-\bk_1}a_{-\bk_1}}_{ex})\\
+  &=& \frac{1}{(2\pi)^3}\int d\bk_1 \qty(1+2n_{\bk})u_{\bk_1}v_{\bk_1} = \frac{1}{(2\pi)^3}\int_0^\infty dk\int_0^\pi d\theta\int_0^{2\pi} d\phi \qty(1+2n_k)u_kv_k\\
+  &=& -\frac{1}{(2\pi)^2}\int_0^\infty dk\frac{k^2\calM}{\omega_k}\qty(2n_k + 1)
+\end{eqnarray}
+となる. この計算では
+\begin{itemize}
+\item[1. ]$v_{\bk} = v_k, n_{\bk} = n_k$であること
+\item[2. ]$\xi, \eta$が実であることで$v_k^* = v_k, u_k^* = u_k$
+\item[3. ]$\ev{a_{\bk}a_{\bk}^\dagger}_{ex} = \ev{a_{\bk}^\dagger a_{\bk} + [a_{\bk}, a_{\bk}^\dagger]}_{ex} = 1 + n_k$であること
+\item[4. ]$\int_{-\infty}^{\infty} d\bk\ev{a^\dagger_{-\bk}a_{-\bk}}_{ex} = \int_{-\infty}^{\infty} d\bk\ev{a^\dagger_{\bk}a_{\bk}}_{ex} = n_k$であること
+\end{itemize}
+などを用いている. $u_k, v_k, n_k, \calL_k...$などは2015夏の学校の資料を参照のこと. 同様にして
+\begin{eqnarray}
+  \ev{\varphi_{ex}^\dagger\varphi_{ex}}_{ex} &=& \frac{1}{(2\pi)^2}\int_0^\infty dk\frac{k^2}{\omega_k}\qty((2n_k + 1)\calL_k - \omega_k)\\
+  \ev{\varphi_{ex}^\dagger\varphi^\dagger_{ex}}_{ex} &=& -\frac{1}{(2\pi)^2}\int_0^\infty dk\frac{k^2\calM}{\omega_k}\qty(2n_k + 1)
+\end{eqnarray}
+相互作用項は
+\begin{eqnarray}
+  \ev{\varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_{ex}\varphi_{ex}}_{ex} = 
+\end{eqnarray}
 \newpage
 \chapter{Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}
 ちゃんと式まで書いて説明しているところもあれば, 原文の式番号だけ書いて済ませているところもあります. 原文の補助に過ぎないものだと思ってください. 

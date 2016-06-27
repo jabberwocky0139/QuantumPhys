@@ -12,7 +12,7 @@ from inspect import getsource
 # --*-- Set functions --*--
 
 # Set potential
-# Note1 : Active line must be attached colon(;) at the end of line
+# Note1 : Active line must be attached semicolon(;) at the end of line
 # Note2 : Use the math function which work on gnuplot as well without any change
 def Potential(x):
     return 0.01*(x**2 - 8*abs(x) + 16);
@@ -24,8 +24,7 @@ def V(x):
 # Initial function
 def Psi_0(x):
     y = lambda z: np.exp(-2*(z-7)**2)
-    C, err = quad(y, -np.inf, np.inf)
-    return y(x)/C/2
+    return y(x)/quad(y, -np.inf, np.inf)[0]/2
 
 # file writer
 def file_writer(filename, arr_func):
@@ -82,7 +81,6 @@ for i in range(times):
 # Get potential function as string
 pattern = re.compile("(return.+;)")
 m = pattern.search(getsource(Potential))
-print(dir(m))
 str_potential = str(m.group(0))[7:-1]
 
 # System call for gnuplot

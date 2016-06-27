@@ -1,10 +1,10 @@
 # Fdb version 3
-["dvipdf"] 1466844721 "QuantumPhys.dvi" "QuantumPhys.pdf" "QuantumPhys" 1466844722
-  "QuantumPhys.dvi" 1466844721 691400 3503f1ff015ab9534b3e5edea0380a39 "latex"
+["dvipdf"] 1466946761 "QuantumPhys.dvi" "QuantumPhys.pdf" "QuantumPhys" 1466946762
+  "QuantumPhys.dvi" 1466946761 702280 ef6f2174039ab151fae6689fd370f0e1 "latex"
   (generated)
   "QuantumPhys.pdf"
-["latex"] 1466844720 "QuantumPhys.tex" "QuantumPhys.dvi" "QuantumPhys" 1466844722
-  "/etc/texmf/web2c/texmf.cnf" 1465283242 1101 af7716885e081ab43982cab7b4672c1a ""
+["latex"] 1466946760 "QuantumPhys.tex" "QuantumPhys.dvi" "QuantumPhys" 1466946762
+  "/etc/texmf/web2c/texmf.cnf" 1464345020 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/ptex/ascgrp/ascgrp.tfm" 1274206740 448 9a1f3a95c3a7e2681aa6eefcf410b7ac ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/ptex/standard/goth10.tfm" 1452675315 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
@@ -96,14 +96,14 @@
   "/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty" 1434304428 77028 c3eb00afb55a32bc13ca8da7f5234377 ""
   "/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty" 1356048875 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty" 1454284088 11958 0518d2e29387a1db1c956ed4a04ebc08 ""
-  "/usr/share/texlive/texmf-dist/tex/latex/wick/wick.sty" 1466356009 10223 72298b72ab9b6c4eee49b89d03f9ea52 ""
   "/usr/share/texlive/texmf-dist/tex/platex/base/ascmac.sty" 1274206740 20 10f4cf8513664bb881c9d65607787817 ""
   "/usr/share/texlive/texmf-dist/tex/platex/base/jreport.cls" 1274206740 28097 a0e4794613fb6e51a0ee12e2e3f2b91a ""
   "/usr/share/texlive/texmf-dist/tex/platex/base/jsize10.clo" 1274206740 9588 b611516b14eca6f3c9322f65167c7c24 ""
   "/usr/share/texlive/texmf-dist/tex/platex/base/tascmac.sty" 1274206740 7559 d5501d5a4108bee88fae069c40104877 ""
+  "/usr/share/texlive/texmf-dist/tex/xetex/xetexko/wick.sty" 1464346601 10223 72298b72ab9b6c4eee49b89d03f9ea52 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1458942643 31351 b32c45dce4a01cb7b53ed90c546614ca ""
   "/usr/share/texmf/web2c/texmf.cnf" 1458942643 31351 b32c45dce4a01cb7b53ed90c546614ca ""
-  "/var/lib/texmf/web2c/eptex/platex.fmt" 1465283420 4010691 e0f3155f07ed96f001b40c4a6ef39055 ""
+  "/var/lib/texmf/web2c/eptex/platex.fmt" 1464345163 4008114 926029e1256fd66dceb5fe3c6097633a ""
   "EPS/Dai.eps" 1462117465 50391 8d852b01ad5573660f8c1669443cd19b ""
   "EPS/P2.eps" 1455135859 29373 898ef5e3f3ddb0861d87fc6d663fe366 ""
   "EPS/Q2.eps" 1455135855 29194 56d05653bab51017538846bcbb297cbb ""
@@ -120,11 +120,11 @@
   "EPS/spin.eps" 1462085212 45801 b91a42bc0470c2a999e15fcb46b74c34 ""
   "EPS/wave_packet.eps" 1461723993 14502 84848364c8c5c4da544cf4e5dc643c02 ""
   "EPS/wigner_function.eps" 1461730783 19088 62e3ec54fefda2df1550d4e4465a6d82 ""
-  "QuantumPhys.aux" 1466844721 28938 a8e0a98a705efd871b824300265fbea7 ""
-  "QuantumPhys.tex" 1466844717 314305 1ef38cd164032725b8e97034a3e915e2 ""
-  "QuantumPhys.toc" 1466844721 18742 837ed6112139031f3e461978848ef19b ""
+  "QuantumPhys.aux" 1466946761 29070 228955ae5581ed898e0ad058d6ba0bed ""
+  "QuantumPhys.tex" 1466946758 319857 1346f0da3cb8e191103b4153b76ae7c9 ""
+  "QuantumPhys.toc" 1466946761 18834 2b98fccaf8065fc4750217f41c71218c ""
   (generated)
-  "QuantumPhys.log"
-  "QuantumPhys.dvi"
   "QuantumPhys.aux"
   "QuantumPhys.toc"
+  "QuantumPhys.log"
+  "QuantumPhys.dvi"
