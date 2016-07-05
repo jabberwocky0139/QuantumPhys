@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1466946761 "QuantumPhys.dvi" "QuantumPhys.pdf" "QuantumPhys" 1466946762
-  "QuantumPhys.dvi" 1466946761 702280 ef6f2174039ab151fae6689fd370f0e1 "latex"
+["dvipdf"] 1467006231 "QuantumPhys.dvi" "QuantumPhys.pdf" "QuantumPhys" 1467006232
+  "QuantumPhys.dvi" 1467006231 702276 2c5a1263b04fbb2704a1c8be95b47ec4 "latex"
   (generated)
   "QuantumPhys.pdf"
-["latex"] 1466946760 "QuantumPhys.tex" "QuantumPhys.dvi" "QuantumPhys" 1466946762
+["latex"] 1467006230 "QuantumPhys.tex" "QuantumPhys.dvi" "QuantumPhys" 1467006232
   "/etc/texmf/web2c/texmf.cnf" 1464345020 1101 af7716885e081ab43982cab7b4672c1a ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/ptex/ascgrp/ascgrp.tfm" 1274206740 448 9a1f3a95c3a7e2681aa6eefcf410b7ac ""
@@ -120,11 +120,11 @@
   "EPS/spin.eps" 1462085212 45801 b91a42bc0470c2a999e15fcb46b74c34 ""
   "EPS/wave_packet.eps" 1461723993 14502 84848364c8c5c4da544cf4e5dc643c02 ""
   "EPS/wigner_function.eps" 1461730783 19088 62e3ec54fefda2df1550d4e4465a6d82 ""
-  "QuantumPhys.aux" 1466946761 29070 228955ae5581ed898e0ad058d6ba0bed ""
-  "QuantumPhys.tex" 1466946758 319857 1346f0da3cb8e191103b4153b76ae7c9 ""
-  "QuantumPhys.toc" 1466946761 18834 2b98fccaf8065fc4750217f41c71218c ""
+  "QuantumPhys.aux" 1467006231 29070 228955ae5581ed898e0ad058d6ba0bed ""
+  "QuantumPhys.tex" 1467006228 319854 ff1b0d5043136bdae44cbd493e652e9d ""
+  "QuantumPhys.toc" 1467006231 18834 2b98fccaf8065fc4750217f41c71218c ""
   (generated)
-  "QuantumPhys.aux"
-  "QuantumPhys.toc"
   "QuantumPhys.log"
+  "QuantumPhys.toc"
   "QuantumPhys.dvi"
+  "QuantumPhys.aux"
