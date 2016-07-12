@@ -1,61 +1,21 @@
-%\documentclass[11pt,a4paper]{jsarticle}
 \documentclass[10.5pt,a4paper]{jreport}
-\usepackage{amsmath,amssymb}
-\usepackage{comment}
-\usepackage{bm}
-%\usepackage[dvips]{graphicx}
-\usepackage[dvipdfmx]{graphicx}
-\usepackage{ascmac}
-\usepackage{color}
-\usepackage{braket}
-\usepackage{bigints}
-\usepackage{cite}
-\usepackage{physics}
-\usepackage{wick}
-\usepackage{geometry}
-\geometry{left=20mm,right=20mm,top=25mm,bottom=25mm}
-\usepackage{listings}
 
-\newcommand{\Lk}{{\cal L}_k}
-\newcommand{\La}{{\cal L}_a}
-\newcommand{\M}{{\cal M}}
-\newcommand{\dket}[1]{| #1 \rangle \! \rangle}
-\newcommand{\dbra}[1]{\langle \! \langle #1 |}
-\newcommand{\dbraket}[2]{\langle \! \langle #1 | #2 \rangle \! \rangle}
-\newcommand{\dpbra}[1]{( \! ( #1 |}
-\newcommand{\dpket}[1]{| #1 ) \! )}
-\newcommand{\pbra}[1]{( #1 |}
-\newcommand{\pket}[1]{| #1 )}
-\newcommand{\figcaption}[1]{\def\@captype{figure}\caption{#1}} % 表
-\newcommand{\ul}[1]{\underline{#1}}
-\newcommand{\calM}{{\cal M}}
-\newcommand{\calL}{{\cal L}}
-\newcommand{\calI}{{\cal I}}
-\newcommand{\calK}{{\cal K}}
-\newcommand{\calQ}{{\cal Q}}
-\newcommand{\calP}{{\cal P}}
-\newcommand{\calG}{{\cal G}}
-\newcommand{\calS}{{\cal S}}
-\newcommand{\bx}{\bm{x}}
-\newcommand{\by}{\bm{y}}
-\newcommand{\bk}{\bm{k}}
-\newcommand{\hpsi}{\hat{\psi}}
-%\newcommand{\Tr}{{\rm Tr}}
-
-%-------------------式番号にSectionを付加------------------------------
+\input{/home/jabberwocky/.macro}
+%-------------------式番号にSectionを付加-------------------------
 \def\theequation{\thechapter.\arabic{equation}}
 \makeatletter
 \@addtoreset{equation}{chapter}
 \makeatother
-%-----------------------------------------------------------------------
-
+%-----------------------------------------------------------------
 %----------------タイトル-----------------------------------------
 \西暦
 \title{
   \Huge Introduntion to Yamanaka Lab.\\
   \huge - 量子系の物理 -\\[1cm]
   \Large 鳥居 優作
-}
+} 
+%-----------------------------------------------------------------
+
 \begin{document}
 \maketitle
 %\setcounter{page}{0}
@@ -67,11 +27,11 @@
 \section{演算子・状態・Hamiltonianに関するTips}
 量子論界隈の細かいトピックについて
 \subsection{演算子とGenerator}
-運動量演算子 : 並進変換のGenerator
+運動量演算子 : 並進変換の生成子
 
-角運動量演算子 : 回転のGenerator
+角運動量演算子 : 回転の生成子
 
-ハミルトニアン : 時間並進のGenerato
+ハミルトニアン : 時間並進の生成子
 \subsection{ハミルトニアンとの交換関係}
 ある演算子$\hat{O}$がハミルトニアンが交換するとき, $\hat{O}$は時間発展せず, かつハミルトニアンと同時固有状態を取る状態を作ることができる. つまり, 仮に運動量演算子$\hat{p}$がハミルトニアンと交換すれば, 状態はハミルトニアンと運動量演算子の同時固有状態になっている.
 

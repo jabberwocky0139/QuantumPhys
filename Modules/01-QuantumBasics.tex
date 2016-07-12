@@ -1,0 +1,339 @@
+\documentclass[10.5pt,a4paper]{jreport}
+
+\input{/home/jabberwocky/.macro}
+
+%-------------------式番号にSectionを付加-------------------------
+\def\theequation{\thechapter.\arabic{equation}}
+\makeatletter
+\@addtoreset{equation}{chapter}
+\makeatother
+%-----------------------------------------------------------------
+
+\begin{document}
+\chapter{量子力学・統計力学の基礎知識}
+\section{演算子・状態・Hamiltonianに関するTips}
+量子論界隈の細かいトピックについて
+\subsection{演算子とGenerator}
+運動量演算子 : 並進変換の生成子
+
+角運動量演算子 : 回転の生成子
+
+ハミルトニアン : 時間並進の生成子
+\subsection{ハミルトニアンとの交換関係}
+ある演算子$\hat{O}$がハミルトニアンが交換するとき, $\hat{O}$は時間発展せず, かつハミルトニアンと同時固有状態を取る状態を作ることができる. つまり, 仮に運動量演算子$\hat{p}$がハミルトニアンと交換すれば, 状態はハミルトニアンと運動量演算子の同時固有状態になっている.
+
+ちなみに, ハミルトニアンと運動量演算子が交換するのは一様系のとき. 並進対称性が破れているときである. 
+\subsection{演算子の対角化}
+``演算子を対角化できている''の直感的理解について. エルミート演算子の固有値問題
+\begin{eqnarray}
+  \hat{H}\ket{u_i} = E_i\ket{u_i}
+\end{eqnarray}
+が解けるとき演算子は対角化できていると表現する. 左から$\bra{u_j}$を作用させる:
+\begin{eqnarray}
+  \bra{u_j}\hat{H}\ket{u_i} = E_i\bra{u_j}\ket{u_i} = E_i\delta_{ij}
+\end{eqnarray}
+$\ket{u}$はエルミート演算子の固有関数なので直交完全系を張っている. これを行列表示すると
+\begin{eqnarray}
+  \begin{pmatrix}
+    \bra{u_0}\hat{H}\ket{u_0}&\bra{u_0}\hat{H}\ket{u_1}&\bra{u_0}\hat{H}\ket{u_2}&\cdots\\
+    \bra{u_1}\hat{H}\ket{u_0}&\bra{u_1}\hat{H}\ket{u_1}&&\\
+    \bra{u_2}\hat{H}\ket{u_0}&&\bra{u_2}\hat{H}\ket{u_2}&\\
+    \vdots&&&\ddots
+  \end{pmatrix}
+  =
+    \begin{pmatrix}
+    E_0&0&0&\cdots\\
+    0&E_1&&\\
+    0&&E_2&\\
+    \vdots&&&\ddots
+  \end{pmatrix}
+\end{eqnarray}
+ハミルトニアンは対角成分のみ値を持つ.
+\subsection{ユニタリー非同値}
+ある直交完全系$\{\ket{\psi'_n}\}$があったとき別の正規直交系$\{\ket{\psi_n}\}$は
+\begin{eqnarray}
+  1 &=& \sum_j\ket{\psi'_j}\bra{\psi'_j}\ \Longrightarrow\ \ket{\psi_i} = \sum_j \bra{\psi'_j}\ket{\psi_i}\ket{\psi'_j}
+\end{eqnarray}
+というような線型結合で表現できるはずである. そして, $\bra{\psi'_j}\ket{\psi_i}$はユニタリー行列の成分である.　つまり$\qty{\psi_n}$と$\qty{\psi'_n}$はユニタリー変換で結ばれているということ. これをユニタリー同値と呼ぶ. またこれは正準変数を正準変換して新たに得られた演算子で直交完全系を張ったとも解釈できる. 正準変換もユニタリー変換である. 量子力学は有限自由度系なので, すべての正準変換はユニタリー同値であることが約束されている(von Neumannの一意性定理).
+
+ユニタリー同値な基底同士は基本的に直交せず, 量子力学はその枠組みの上で議論される. しかしながら, 無限自由度の場の量子論においてはその限りではなく, ユニタリー非同値な(あるFock空間の基底の重ね合せで表現できない)真空が存在する場合がある. この非同値真空同士は直交し, これが自発的対称性の破れを説明する. Gell-Mann-Lowの定理も, Free Hamiltonian $H_0$(固有関数$\ket{\Phi_0}$)とFull Hamiltonian $H$(固有関数$\ket{\Psi_0}$)がユニタリー同値であることを仮定しなければならない. 詳しくは奥村さん・高橋さんのD論参照. 
+\subsection{混合状態と密度行列}
+熱が存在する場合, 一般に系は混合状態である.混合状態をやさしく説明すると...
+\begin{screen}
+  気体分子が100個と, その粒子の速度を測定する観測器がある系を考える. 仮に速度が$v_1$の分子が20個, $v_2$の分子が80個あったとする. その気体分子の速度の平均は, 速度$v_1$付近の粒子の状態を$\ket{\psi_1}$, $v_2$付近の粒子の状態を$\ket{\psi_2}$とすると,
+  \begin{eqnarray*}
+    \expval{\hat{v}} = \frac{1}{5}\bra{\psi_1}\hat{v}\ket{\psi_1} + \frac{4}{5}\bra{\psi_2}\hat{v}\ket{\psi_2}
+  \end{eqnarray*}
+  で与えられる.こういう形で期待値が与えられる場合, 系は混合状態であるという.ここで1/5と4/5は{\bf 統計由来の確率}であり, {\bf 量子力学的な確率}とは別物であることに注意. 前者が与えるのは粒子分布である. 古典粒子であればMaxwell-Boltzmann分布, 同種粒子であればFermi-Dirac分布とかBose-Einstein分布.その一方で, 後者が与えるのは量子論的な揺らぎである.揺らぎは$\Delta v_1$,$\Delta v_2$. $\bra{\psi}\hat{v}\ket{\psi}$は$v$の平均(期待値).
+\end{screen}
+
+つまり熱がある場合, 測定器で速度$v_1$の粒子が検出されるする確率は分布関数で与えられる. その粒子の速度を測定するとき, 期待される$v_1$という値からは少しずれて$v_1 + \Delta v_1$という値を取る. これが「値が確定しない」ということ.$\Delta v_1$の値は量子力学的な確率で与えられる.
+
+期待値を得るもっと便利な表式を用意したい. ここで
+\begin{eqnarray}
+  \rho = \sum_np_n\ket{\psi_n}\bra{\psi_n}
+\end{eqnarray}
+を用意する. 上の例で言えば$p_11 = 1/5, p_2 = 4/5$である. これを密度行列と呼ぶ. 密度行列に求めたい物理量(今回は$\hat{v}$)を掛けてトレースを取る:
+\begin{eqnarray}
+  \nonumber    {\rm Tr}\rho\hat{v} &=& \sum_n\sum_m\bra{\Psi_m}p_n\ket{\psi_n}\bra{\psi_n}\hat{v}\ket{\Psi_m} = \sum_np_n\bra{\psi_n}\hat{v}\sum_m(\ket{\Psi_m}\bra{\Psi_m})\ket{\psi_n}\\
+  &=&\sum_np_n\bra{\psi_n}\hat{v}\ket{\psi_n} = \expval{\hat{v}}
+\end{eqnarray}
+これは混合状態期待値である.ここで, c-数は交換可能, 完全系の性質$\sum_m\ket{\Psi_m}\bra{\Psi_m} = 1$である性質を用いている.またトレースの巡回対称性\footnote{証明してみよう!}(${\rm Tr}ABC = {\rm Tr}CAB = {\rm Tr}BCA$)より, $\hat{v}$を掛けるのは前からでも後ろからでもよい.
+
+これで混合状態期待値を記述する統一的な表式が得られた. 密度行列に物理量を掛けてトレースを取ることで期待値が得られるということは, {\bf 密度行列は系の情報を全て持っている}ということになる. 系の情報を保持しているのはハミルトニアンであり, つまるところ密度行列を確定させるためにはハミルトニアンが必要である. 現に, 平衡状態における密度行列は$\rho = e^{-\beta H}$で与えられる\footnote{なぜこういう形で与えられるか考えてみよう!例えば$\expval{n} = {\rm Tr}a^\dagger a\rho$がBose-Einstein分布になることを確認すればいい}.
+
+${\rm Tr}A\rho$は, 密度行列に含まれる情報のうち$A$以外の情報を切り捨てることを意味する. これをトレースアウトという.マスター方程式で密度演算子の時間発展を追えるが, Fullの密度演算子を計算するのは自由度が大きすぎて大変なので, 求めたい物理量以外をトレースアウトした形を用いるのが普通\footnote{山中研究室における普通です. 量子開放系の理論は完成していないので, 系統的にマスター方程式を作り, 解く方法はまだまとまっていない. 他の研究室では他の流儀があるかもしれない}.
+\subsection{固有状態と不確定性}
+状態が$\hat{v}$の固有状態なら, 何度測定しても観測値は$v$になり量子的な揺らぎ$\Delta v$はなくなる. しかしながら不確定性原理は守られなければならないので, 運動量が確定する代わりに位置の不確定性が発散する. これは現実との対応を考えるとあまりにピーキーな設定である. 固有状態というのは量子力学の本質である揺らぎが存在しないとっても特別な状態です. 量子力学の固有状態でよく見かけるのは「エネルギー固有状態」ですが, これもエネルギーが確定する代わりにエネルギーと共役な物理量である時間の不確定性が発散します. ここでいう時間の不確定性とは「波動関数の時間的広がり」を表しています. エネルギー固有状態においては波動関数$\psi(x) e^{-iEt/\hbar}$の確率密度は変化しないので, 確率振幅の半値幅は無限大になります. これが$\Delta t = \infty$の意味です.
+\subsection{ヒルベルト空間と平面波}
+運動量の固有状態がマズいのは設定が現実的ではないということだけでなく, 量子力学の数学的構造にも反していることにあります. 量子力学における状態というものはヒルベルト空間($L^2$)で定義されるべきだが, 運動量の固有状態である平面波$e^{ipx}$は$L^2$をはみ出しており, 自乗可積分ではない\footnote{自乗可積分でないものを量子力学の枠組みに取り込むとBornの確率解釈が死にます}. つまり, 運動量の固有状態は量子力学では一般的に取り扱えないものなのである. しかし, 平面波というものは量子力学のいたるところで現れる. 例えば自由粒子の波動関数は平面波で記述されるし, 「平面波展開」というテクニックは様々なところで用いられる.
+
+重要なのは境界条件である. 自由粒子は境界条件をなにも課していない\footnote{自由なのだから当然といえば当然}.Dirichlet境界条件を課すと状態は平面波ではなくなる. 一方で, 周期的境界条件が許される固体結晶では状態をBloch波で記述できる. 平面波で固体中の電子状態が記述できるということは, 固体中の電子は自由粒子とほぼ同等の状況下にあり, これが金属の電子伝導性を如実に説明している\footnote{古典的なDrudeモデルなどでは金属結晶の電子伝導性を説明しきれなかったようです}. また, $L^2$ではない平面波も, 適切な重み付けをして和, ないしは積分を取ると$L^2$になる場合がある.これがフーリエ級数展開とかフーリエ変換とか呼ばれているもの.
+
+\subsection{第二量子化とFock空間}
+第二量子化した量子力学は場の量子論とは異なる理論です\footnote{一般的に混同されがちですが, 山中研究室ではこれを断固として主張しています.}.なので, 第二量子化は場の理論ではなく多体量子力学の一形式と捉えられるべきです\footnote{もっとも異なることは, 「量子力学における状態はSchr\"odinger方程式で決定されるが, 場の理論における状態は理論を閉じるように選択されるもの」であること.粒子の生成・消滅で状態を記述する点は第二量子化された量子力学でも場の理論でも変わらない. ならば量子力学における真空(基底状態)は「粒子がひとつも存在しない状態」である. しかし, そのように真空を定義すると量子相転移を記述できなくなる. 例えば, Bose-Einstein凝縮(BEC)はひとつの相であり, 多数のBose粒子がエネルギー最低状態に落ち込み「真空」を形成しているものである. この「真空」には粒子が存在しているので量子力学では記述できない. 場の量子論ではBECが存在する状態を真空として定義することができる.}. 第二量子化された量子力学における最も気をつけなければいけない点は, 「生成消滅演算子で記述されるモードは原子の生成・消滅を記述しているわけではない」ということ. 生成消滅演算子は場の各点における励起を与えておりそれを素励起と呼ぶ. 素励起は波であり, 素励起の集まりが原子を記述している\footnote{原子にももちろん波動性がある}と考えてもいいかもしれない. 素励起のモードの固有状態(調和振動子における粒子数状態)のテンソル積で定義されるのがFock空間である. Fock空間はHilbert空間を無限自由度に拡張したものだと捉えて問題ない. つまり, 第二量子化では場の各点に調和振動子を設置し, それを無限個連結させたものであり, そのモードは素励起を表現するわけである.
+
+今回の課題で与えられた生成消滅演算子がどのような粒子の生成消滅を記述しているのかはわからないが, 仮に第二量子化されたものを仮定するならば, そのモードは単純な粒子の追加とは違った意味合いを持つことは理解するべきでしょう\footnote{何言ってるかわからないかもしれません. 場の理論界隈の誤解されやすいかなり難しい話です.}.
+
+\subsection{時間発展とユニタリー性}
+量子マスター方程式による時間発展とHeisenberg方程式(Schr\"odinger方程式)による時間発展は何が違うのかというと, 緩和が記述できるかどうか. 量子力学におけるユニタリーな時間発展では系のノルムが保存しなければならないので,物理量の時間発展は振動し, 緩和することはない. Schr\"odinger方程式で物理量が減衰するようなグラフが得られたとしても, 時間領域を広げれば再び値が立ち上がる(revival)はずである. 仮にrevivalしないとしたら, それは時間発展のユニタリー性が壊れていることになる\footnote{一般解の一部を捨てることにより, 意図的にユニタリー性を壊すこともできる.}. 時間発展のユニタリー性を壊すのは番先生の本でもやってます\footnote{量子と非平衡系の物理―量子力学の基礎と量子情報・量子確率過程(2009)}. 一方, 開放系の統計力学では系・熱浴のハミルトニアンを分けて熱浴をトレースアウトするテクニックを用いてユニタリーな時間発展で緩和が記述できる.
+
+\section{パリティ選択則}
+\subsection{あらまし}
+$n=2$水素原子は2s-軌道($l=0$)とp-軌道($l=1$)についての3重縮退($m=-1,0,1$)によって4重に縮退している. これに一様な電場をかけると縮退していた準位が一部Splitする現象が見られる. これをStark効果と呼ぶ. $n=3$以上の励起状態についても同様の議論が可能.
+
+一様な電場のもとにある電子のエネルギーを求めようとすると, 縮退のある摂動論に頼ることになる. が, その計算はなかなかに面倒. 具体的には水素原子の波動関数を
+\begin{eqnarray}
+  \braket{r, \theta, \phi|\psi_{nlm}} = \psi_{nlm}(r, \theta, \phi) = R_{nl}(r)Y_{lm}(\theta, \phi)
+\end{eqnarray}
+と記述するとき, 永年方程式
+\begin{eqnarray}
+  \left|
+\nonumber    \begin{array}{cccc}
+      \bra{\psi_{200}}\hat{z}\ket{\psi_{200}}-E^{(1)}_2 & \bra{\psi_{200}}\hat{z}\ket{\psi_{210}} & \bra{\psi_{200}}\hat{z}\ket{\psi_{211}}& \bra{\psi_{200}}\hat{z}\ket{\psi_{21-1}} \\
+      \bra{\psi_{210}}\hat{z}\ket{\psi_{200}} & \bra{\psi_{210}}\hat{z}\ket{\psi_{210}}-E^{(1)}_2 & \bra{\psi_{210}}\hat{z}\ket{\psi_{211}} & \bra{\psi_{210}}\hat{z}\ket{\psi_{21-1}}\\
+      \bra{\psi_{211}}\hat{z}\ket{\psi_{200}} & \bra{\psi_{211}}\hat{z}\ket{\psi_{210}} & \bra{\psi_{211}}\hat{z}\ket{\psi_{211}}-E^{(1)}_2 &\bra{\psi_{211}}\hat{z}\ket{\psi_{21-1}}\\
+      \bra{\psi_{21-1}}\hat{z}\ket{\psi_{200}} &\bra{\psi_{21-1}}\hat{z}\ket{\psi_{210}} & \bra{\psi_{21-1}}\hat{z}\ket{\psi_{211}} &\bra{\psi_{21-1}}\hat{z}\ket{\psi_{21-1}}-E^{(1)}_2
+    \end{array}
+  \right|=0\\
+\end{eqnarray}
+を計算することになる. $E_2^{(1)}$は$n=2$における1次摂動エネルギー. $E_2^{(1)}$の4次方程式になって各軌道のエネルギーが求まる...というシナリオだが, 真面目にやると計算がめんどくさい:
+\begin{eqnarray}
+  \bra{\psi_{200}}\hat{z}\ket{\psi_{210}} \sim \int_0^\infty dr r^2\int_0^\pi d\theta \sin{\theta}\int_0^{2\pi} d\phi(2-r)re^{-r}r\cos{\theta}
+\end{eqnarray}
+みたいなのを10個くらい計算しなければいけない. とはいえ$z$方向に一様な電場を掛けるだけなら結構な数の項が消えそう. 対称性を使って計算を簡略化したい.
+\subsection{奇関数・偶関数}
+ブラケット表記の期待値を波動関数に置き換える:
+\begin{eqnarray}
+  \bra{\psi_\alpha}X\ket{\psi_\beta} = \int_{-\infty}^\infty dx\ \psi^*_\alpha(x) X(x)\psi_\beta(x)
+\end{eqnarray}
+積分区間から, 被積分関数が奇関数ならゼロになる.奇関数, つまり空間反転\footnote{ここでいう「空間」とは, 測度空間のこと. 今回のお話で言えば$r, \theta, \phi$. パリティ変換を${\cal P}$とすると, ${\cal P}:(x, y, z)\mapsto (-x, -y, -z)$, もしくは${\cal P}:(r, \theta, \phi)\mapsto (r, \pi-\theta, \phi + \pi)$である. これは三次元の図を書いてみればわかるでしょう.}に対して符号が反転するものを「パリティが$-$」偶関数を「パリティが+」と呼ぶことにする.
+
+つまるところ永年方程式の各成分は積分なので, その関数($\psi$)やら演算子($\hat{z}$)やらのパリティを調べてあげれば消える項を見つけることができる. この性質を水素原子に限定せずに体系的に語るのがパリティ選択律である.
+\subsection{パリティ}
+永年方程式に含まれる要素に対するパリティを調べる.以下適当に無次元化してます.
+\subsubsection{動径波動関数$R_{nl}(r)$}
+動径$r = \sqrt{x^2 + y^2 + z^2}$のパリティ変換に関与しそうなのが動径波動関数$R_{nl}(r)$. 動径波動関数のざっくりとした具体形は
+\begin{eqnarray}
+  R_{nl}(r) \sim r^le^{-r}L_{n+l}^{2l+1}(r)
+\end{eqnarray}
+$L_\alpha^\beta$はLaguerre陪多項式. とはいえこの形に特に重要ではない. 空間反転は${\cal P}:(x, y, z)\mapsto (-x, -y, -z)$のように作用するので, そもそもパリティ変換によって$r$の符号は変化しない. 動径$r$がマイナスになることは物理的にあり得ない.\\
+\subsubsection{球面調和関数$Y_{lm}$}
+角度成分$\theta, \phi$のパリティは球面調和関数$Y_{lm}$で決定される. ざっくりとした具体形:
+\begin{eqnarray}
+  Y_{lm} \sim (-1)^{(m+|m|)/2}P_l^{|m|}(\cos{\theta})e^{im\phi}
+\end{eqnarray}
+$P_\alpha^\beta$はLegendre陪関数. $\theta$のパリティは$(-1)^m(-1)^l$, $\phi$は$(-1)^m$なので, 磁気量子数のパリティ依存性は消える.
+\subsubsection{電場$\hat{z}$}
+パリティ変換${\cal P}:(x, y, z)\mapsto(-x, -y, -z)$より明らか.
+\subsubsection{ヤコビアン$J$}
+3次元球座標系のヤコビアン
+\begin{eqnarray}
+  J = r^2\sin{\theta}
+\end{eqnarray}
+について. $r$はパリティ変換に関与せず, ${\cal P}:\sin{\theta} \mapsto \sin{(\pi - \theta)} = \sin{\theta}$より$\theta$についてもパリティは+.
+\subsubsection{パリティまとめ}
+以上の各要素についてのパリティをまとめる:
+\begin{itemize}
+  \item \textbf{動径波動関数のパリティは+}
+  
+  \item \textbf{球面調和関数のパリティは$(-1)^l$}
+  
+  \item \textbf{電場のパリティは$-$}
+  
+  \item \textbf{ヤコビアンのパリティは+}
+\end{itemize}
+\subsection{パリティによる選択律構築の限界}
+まとめると, 期待値のパリティは$(-1)^{l+l'+1}$である. 今回の$n=2$の水素原子であれば, $l, l' = 0\ {\rm or}\ 1$なので,期待値$\bra{\psi_{n'l'm'}}\hat{z}\ket{\psi_{nlm}}$は方位量子数については$(l, l')= (1, 0), (0, 1)$しか生き残らない.
+
+\textbf{今回対称性で語れるのはこの程度である}\footnote{もちろん, もっと複雑な系を考えるとパリティのみでもっと踏み込んで語ることはできる. 例えばLS結合を考えた系とか.}. 他にも消せる項はあるが, これ以上は対称性だけではなく具体的に被積分関数を見ていく必要がある. 積分のおおまかな具体系は以下の通り:
+\begin{eqnarray}
+  \nonumber  \bra{\psi_{n'l'm'}}\hat{z}\ket{\psi_{nlm}} \sim \int dr r^3R_{n'l'}(r)R_{nl}(r)\int d\theta P_{l'}^{m'}(\cos{\theta})\cos{\theta}P_l^m(\cos{\theta})\sin{\theta}\int d\phi e^{i(m'-m)\phi}\\
+  \label{integration}
+\end{eqnarray}
+ここで$z = r\cos{\theta}$としている.
+\subsubsection{Legendre陪関数}
+パリティのみを考慮すると, $\Delta l = l - l' = {\rm odd}$である全ての遷移\footnote{$\bra{f}X\ket{i}$の意味するところは, 「$\ket{i}$に演算子$X$が作用した結果を$\ket{i'}$とすると, $\ket{i'}$は$\bra{f}$とどの程度重なるか」ということである. これ($\braket{f|i'}$)を遷移確率と呼ぶ. つまりStark効果の計算は物理的に「一様な電場がかかることによって状態は各量子数に対してどのような遷移が許されるか」という話に還元される.}が許されることになるが, 実験的には$\Delta l = \pm 1$のみが許される. これはパリティからは導かれないが数学的に導出は可能\footnote{量子力学の枠組みで数学的に導けないが実験的に現れるような現象があった場合はそういう「要請」を課すことになる. 例えば, 波動関数の境界条件(ディリクレ境界条件)は確率解釈の要請であるし, 波動関数の時間発展がSchr\"odinger方程式で記述されるのもまた量子力学の要請である. また, 粒子と呼ばれるものはすべてBosonとFermionに分類できる, ということも要請のひとつ.}. Legendre陪関数は以下の漸化式を満たす:
+\begin{eqnarray}
+zP_l^m(z) = \frac{l-m+1}{2l+1}P_{l+1}^m(z) + \frac{l-m}{2l+1}P_{l-1}^{m}(z)
+\end{eqnarray}
+式(\ref{integration})に代入すると, Legendre陪関数の直交性
+\begin{eqnarray}
+  \int dzP_{l'}^{m'}P_l^m \sim \delta_{ll'}
+\end{eqnarray}
+より, $\Delta l = \pm 1$のみが許されることがわかる.
+\subsection{$\phi$の積分}
+式(\ref{integration})を見てわかる通り, $m = m'$以外では積分がゼロになる.
+\subsection{選択律まとめ}
+$n = 2$励起状態にある水素原子のStark効果の一次摂動における選択律は
+\begin{itemize}
+\item $\Delta l = \pm 1$
+\item $m = m'$
+\end{itemize}
+であることがわかった. つまり残るのは$\bra{\psi_{200}}\hat{z}\ket{\psi_{210}}$とその複素共役のみである. この結果は系の空間反転対称性の考察のみから得られたわけではないので「パリティ選択律」と呼ぶべきではないと思う. 「$n=2$水素のStark効果における選択律」と呼ぶべき.
+
+その他の励起の選択律はまた少し違う形になる可能性はある. また, 2次摂動まで考慮した場合にどうなるかも考えていない\footnote{暇があったら考えてみてください. そんなに難しくないはず}.
+\subsection{物理的解釈}
+一様電場には電子の回転運動\footnote{もちろん電子が原子の周りを回転しているというのは古典的解釈であることに注意.}の向きを変えることはできないことから, 磁気量子数$m$が変化するような遷移が禁制であることは直感と一致している. 一方で回転の向きを変えることができる可能性があるのは電場ではなく磁場である. 磁場がかかった系で縮退していた準位がSplitする現象のことをZeeman効果という. こちらでは$\Delta m = 0, \pm 1$の遷移が許されている\footnote{しかしながら, この古典的な描像とのアナロジーをもってして現象を正当化するのは\textbf{とてもよくない}.なぜなら, 量子と古典との対応関係は(当然ながら)何も保証されていないから. 全ての量子系の現象が古典とのアナロジーで説明できたら, もはや量子論は必要なくなる.}.
+\section{Fermion界隈Tips}
+山中研が苦手とする角運動量量子化・Fermionの反対称性とSlater行列・スピン自由度などをまとめる.
+\subsection{角運動量演算子}
+3次元球座標Schr\"odinger方程式:
+\begin{eqnarray}
+  \qty[\ul{-\frac{\hbar^2}{2\mu}\qty(\frac{1}{r^2}\frac{\partial}{\partial r}\qty(r^2\frac{r^2}{\partial r}) + \frac{1}{r^2\sin{\theta}}\frac{\partial}{\partial \theta}\qty(\sin{\theta}\frac{\partial}{\partial \theta}) + \frac{1}{r^2\sin^2{\theta}}\frac{\partial^2}{\partial \phi^2})} + V(r)]\psi = E\psi
+\end{eqnarray}
+下線部が運動エネルギー項となっている. 古典論ではこの運動エネルギー項をさらに動径方向$r$と角度方向$\theta\phi$に分解できた. 角度方向の運動エネルギーは角運動量ベクトル
+\begin{eqnarray}
+  \bm{L} = \bm{r}\times\bm{p}
+\end{eqnarray}
+を用いて表現できる\footnote{前野昌弘 : よくわかる量子力学(東京図書, 2011) pp. 260-261}:
+\begin{eqnarray}
+  |\bm{p}|^2 = \qty(\frac{1}{r}\bm{r}\cdot\bm{p})^2 + \qty(\frac{1}{r}|\bm{L}|)^2
+\end{eqnarray}
+この推論から言えば, Schr\"odinger方程式は
+\begin{eqnarray}
+  \qty[-\frac{\hbar^2}{2\mu}\frac{1}{r^2}\frac{\partial}{\partial r}\qty(r^2\frac{r^2}{\partial r}) + \frac{1}{2\mu r^2}|\bm{L}|^2  + V(r)]\psi = E\psi
+\end{eqnarray}
+となると考えられる. これを満たすような$\bm{L}$を探したい. もちろん, $\bm{L}$の定義に含まれる$\bx, \bm{p}$が演算子なので本来は$\hat{\bm{L}}$書くべき角運動量を量子化した演算子になっている.
+
+具体系を書き下す:
+\begin{eqnarray}
+  \bm{L} =\hat{\bm{x}}\times\hat{\bm{p}} = -i\hbar\bx\times\nabla =
+  \begin{pmatrix}
+    L_x\\
+    L_y\\
+    L_z
+  \end{pmatrix}
+  = -i\hbar
+  \begin{pmatrix}
+    y\cfrac{\partial}{\partial z} - z\cfrac{\partial}{\partial y}\\
+    z\cfrac{\partial}{\partial x} - x\cfrac{\partial}{\partial z}\\
+    x\cfrac{\partial}{\partial y} - y\cfrac{\partial}{\partial x}
+  \end{pmatrix}
+\end{eqnarray}
+これは極座標に書き直すと
+\begin{eqnarray}
+  \bm{L} = -i\hbar\qty(\bm{e}_\phi\frac{\partial}{\partial \theta} - \bm{e}_\theta\frac{1}{\sin{\theta}}\frac{\partial}{\partial\phi})
+\end{eqnarray}
+となるので, これの$x, y, z$成分を抜き出すと
+\begin{eqnarray}
+  L_x &=& \bm{e}_x\cdot\bm{L} = -i\hbar\qty(\frac{\cos{\theta}}{\sin{\theta}}\cos{\phi}\frac{\partial}{\partial\phi} - \sin{\phi}\frac{\partial}{\partial\theta})\\
+  L_y &=& \bm{e}_y\cdot\bm{L} = -i\hbar\qty(\frac{\cos{\theta}}{\sin{\theta}}\sin{\phi}\frac{\partial}{\partial\phi} + \cos{\phi}\frac{\partial}{\partial\theta})\\
+  L_z &=& \bm{e}_z\cdot\bm{L} = -i\hbar\frac{\partial}{\partial\phi}
+\end{eqnarray}
+であることがわかる. こいつを使って$|\bm{L}|^2 = L_x^2 + L_y^2 + L_z^2$を計算する:
+\begin{eqnarray}
+  |\bm{L}|^2 = -\hbar^2\qty[\frac{\partial^2}{\partial\theta^2} + \frac{\cos{\theta}}{\sin{\theta}}\frac{\partial}{\partial\theta} + \frac{1}{\sin^2{\theta}}\frac{\partial^2}{\partial\phi^2}]
+\end{eqnarray}
+この項はちゃんとSchr\"odinger方程式の角度方向に対応している. つまり, ハミルトニアンを動径方向と角度方向に分割することができたことになる. これによって, 波動関数が$R(r)Y(\theta, \phi)$のように分割でき, $R$と$Y$は別々に解くことができる.
+
+さて, 以下ではハミルトニアンと角運動量の同時固有状態を求めていくことにする. $\bm{L}^2$が方位量子数$l$, $L_z$が磁気量子数$m$を司る演算子になり\footnote{別に$L_x$でも$L_y$でも構わないが, $L_z$が一番簡単な形をしているのでこれを選んだ. }, $H, \bm{L}^2, L_z$の同時固有状態が$Y(\theta, \phi) = \bra{\theta, \phi}\ket{l, m}$である. $\ket{l, m}$はFock空間を張るので生成消滅演算子$L_{\pm}$で$m$を上げたり下げたりすることができる. これで角度方向の固有状態が求まる.
+\subsection{スピン演算子}
+スピンは量子状態に固有の内部自由度であり, $Y(\theta, \phi)$の$\theta, \phi$のような古典力学に対応する外部変数を持たないことが特徴. スピン演算子$\hat{s}$は軌道角運動量演算子と同じような交換関係を持つ:
+\begin{eqnarray}
+  [s_x, s_y] = i\hbar s_z\hspace{1.0cm}[s_y, s_z] = i\hbar s_x\hspace{1.0cm}[s_z, s_x] = i\hbar s_y
+\end{eqnarray}
+このスピン演算子の線型結合で新しい演算子を導入する:
+\begin{eqnarray}
+  s_\pm = s_x \pm is_y\hspace{1cm}s^\dagger_\pm = s_\mp
+\end{eqnarray}
+軌道角運動量と同様に$s^2, s_z$は同時固有状態$\ket{s, m}$を持ち, $s_\pm$で$m$を弄ることができる.
+\subsection{スピン$\frac{1}{2}$とは？}
+電子のスピンは$\frac{1}{2}$だが, これ如何に？
+
+Stern-Gerlachの実験により銀電子のビームが2つにスプリットする現象が見られた. 磁場に引き寄せられるものと反発するものの2つである. 磁場に関与しているのだから磁気モーメントによる効果であると考えると以下のような論法になる.\\
+
+方位量子数が$l$であれば磁気量子数$m$が取れる値は$2l + 1$個あるので$l = \frac{1}{2}$にすれば取りうる$m$は$2$個になるだろう. また$m$は$[-l, l]$の範囲で$1$ずつ増減したものが存在できるので$m = \pm\frac{1}{2}$となるだろう.
+
+しかしながら$m$が整数でないことはde Broglie条件を破ってしまうのでマズい. なのでこれは$m$とは関係しているものの, 別に議論されるべき自由度だろう.
+
+というわけで, 方位量子数$l$とは別のスピン量子数$s$とスピン磁気量子数$m$を持った状態$\ket{s, m}$を考えようということ. スピン磁気量子数$m$は非整数でも構わないものとする. ここで
+\begin{eqnarray}
+  \ket{s = \frac{1}{2}, m = \frac{1}{2}} &=& \ket{\uparrow}\\
+  \ket{s = \frac{1}{2}, m = -\frac{1}{2}} &=& \ket{\downarrow}
+\end{eqnarray}
+のように書いてあげることでアップスピン・ダウンスピンを定義する.これが状態に直積として掛かることになるので, 電子(スピン$1/2$のフェルミオン)の状態は$\ket{r}\otimes\ket{l, m}\otimes\ket{s, m}$である.
+
+スピン量子数が$s = 1$のときは, スピン磁気量子数は$m = 0, \pm 1$という3つの値を取ることができる.
+\subsection{Singlet or Triplet}
+スピン1重項・3重項とはなんぞや？
+
+Pauliの排他律(というかFermionの反対称性の要請)により, 同じエネルギー準位を2つ以上の粒子が占有することが許されていない. スピンが反平行であれば同じエネルギー準位に収まることができるものの, クーロン斥力が大きくなる. スピンが平衡な電子が1つ励起した場合, 最低エネルギー状態にはフェルミホールができるのでクーロン反発力が小さい分エネルギー的に得をすることになる. どっちが真の基底状態かはよくわからない. 反平行なものをSinglet, 平行なものをTripletと呼ぶ.
+
+Fermionのスピン量指数をそれぞれ$s_1, s_2$とすると, 全スピン量子数は$S = s_1 + s_2 = 0, 1$のみが許され, $S = 0$のときは$m$は1つ(Singlet) $S = 1$のときに$m$は3つ(Triplet)の値を取ることができる. これが名前の由来. これ以上は角運動量の合成を勉強しましょう.
+\section{Baker-Campbell-Hausdorff公式}
+Schr\"odinger方程式の形式解とかで演算子が指数関数の肩に乗っかることはよくある. これの処理を具体化する. まず, 演算子の指数関数が
+\begin{eqnarray}
+  e^A = I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3 + \cdots = \sum_n\frac{A^n}{n!}
+\end{eqnarray}
+というお決まりのTaylor展開で定義されていることから始まる. 
+\subsection{Campbell-Hausdorffの公式}
+\begin{screen}
+  \begin{eqnarray}
+    e^{A+B} = e^{A}e^{B}e^{-\frac{1}{2}[A, B]}\hspace{1cm}where\ [A, [A, B]] = [B, [A, B]]
+  \end{eqnarray}
+\end{screen}
+\subsubsection{証明}
+\begin{eqnarray}
+  [A^n, B] &=& n[A, B]A^{n-1}\\
+\nonumber  e^{At}B &=& Be^{At} + [e^{At}, B] = Be^{At} + \sum_n\frac{t^n}{n!}\qty[A^n, B]\\
+  &=& Be^{At} + t\qty[A, B]\sum_n\frac{(tA)^{n-1}}{(n-1)!} = Be^{At} + t\qty[A, B]e^{At}
+\end{eqnarray}
+の２つを用いると
+\begin{eqnarray}
+  \partial_t\qty(e^{At}e^{Bt}) &=& e^{At}Ae^{Bt} + e^{At}Be^{Bt} = e^{At}(A+B)e^{Bt} = (A+B+t[A, B])e^{At}e^{Bt}\\
+  \Longrightarrow \frac{\partial_t\qty(e^{At}e^{Bt})}{e^{At}e^{Bt}} &=& \partial_t\ln(e^{At}e^{Bt}) 1= (A+B+t[A, B])\\
+  \Longrightarrow  \ln(e^{At}e^{Bt}) &=& (A+B)t + \frac{t^2}{2}[A, B] + C\\
+  \therefore e^{At}e^{Bt} &=& Ce^{(A+B)t + \frac{t^2}{2}[A, B]}
+\end{eqnarray}
+ここで
+\begin{eqnarray}
+  C &=& 1\hspace{2.75cm} where\ \ t = 0\\
+  e^Ae^B &=& e^{A+B+\frac{1}{2}[A, B]}\hspace{1cm} where\ \ t = 1\\
+ \nonumber \Longrightarrow e^Ae^Be^{-\frac{1}{2}[A, B]} &=& e^{A+B+\frac{1}{2}[A, B]}e^{-\frac{1}{2}[A, B]}\\
+\nonumber  &=& e^{A+B+\frac{1}{2}[A, B]-\frac{1}{2}[A, B] + \frac{1}{2}[A+B+\frac{1}{2}[A, B], -\frac{1}{2}[A, B]]}\\
+  &=&e^{A+B}
+\end{eqnarray}
+$[A, [A, B]] = [B, [A, B]] = 0$のときに成立しているように見える...計算ミス？
+\subsection{Baker-Hausdorffの補助定理}
+\begin{screen}
+  \begin{eqnarray}
+    e^ABe^A = B + [B, A] + \frac{1}{2!}[[B, A], A] + \cdots
+  \end{eqnarray}
+\end{screen}
+\subsubsection{証明}
+$e^{-\theta A}Be^{\theta A}$について
+\begin{eqnarray}
+  \partial_\theta e^{-\theta A}Be^{\theta A} &=& e^{-\theta A}[B, A]e^{\theta A}\\
+  \partial_\theta^2 e^{-\theta A}Be^{\theta A} &=& e^{-\theta A}[[B, A], A]e^{\theta A}\\
+  \nonumber&\vdots&
+\end{eqnarray}
+$e^{-\theta A}Be^{\theta A}$をTaylor展開:
+\begin{eqnarray}
+  e^{-\theta A}Be^{\theta A} &=& f(0) + \partial_\theta f(0)\theta + \frac{1}{2!}\partial^2_\theta f(0)\theta^2 + \cdots\\
+  &=& B + [B, A]\theta + \frac{1}{2!}[[B, A], A]\theta^2 + \cdots\label{Baker-Hausdorff}
+\end{eqnarray}
+$\theta = 1$を代入すれば証明完了.
+\subsubsection{かわいい形式}
+$A\times B\equiv [A, B]$とすると(\ref{Baker-Hausdorff})は$e^{A\times}B$とかける. 
+\end{document}
