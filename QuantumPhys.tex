@@ -3191,7 +3191,7 @@ $R_i$はシンプソン積分でいける.
 \chapter{研究 : BdG間及びZeromode-BdG間の相互作用を取り入れた有限温度系の計算}
 自分でもよくわかっていないところは\ul{アンダーライン}を引いています. 間違っているところ, 勘違いしているところ等々コメントを頂けるとありがたいです. 熱力学ポテンシャルの摂動論については「高田康民 : 多体問題(朝倉書店, 1999)」を参考にしています.
 
-考えながら書いているのでテンポが悪いです. あまり意味のない記述もあります. スルーしてください.
+計算ノートのつもりで考えながら書いているのでテンポが悪いです. あまり意味のない記述もあります. スルーしてください.
 \section{やりたいこと}
 Y.Nakamura, T.Kawaguchi, Y.Torii, and Y.Yamanaka, arXiv:1604.05900v1(2016)の4章「Thermodynamical quantity and Partition Function」の式(43)では分配関数を
 \begin{eqnarray}
@@ -3206,11 +3206,24 @@ Y.Nakamura, T.Kawaguchi, Y.Torii, and Y.Yamanaka, arXiv:1604.05900v1(2016)の4�
   \Omega_0 = -\frac{1}{\beta}\ln Z_{\rm u, z}Z_{\rm u,ex}
 \end{eqnarray}
 として$Z_{\rm z, ex}$の効果を摂動的に取り入れたい.
+\subsection{Zeromode-BdG coupling}
+Hartree-Fock-Bogoliubov approximationによるGP方程式
+\begin{eqnarray}
+  [h_0 -\mu + g(\xi^2 + 2\ev{\varphi^\dagger\varphi} + \ev{\varphi\varphi})]\xi = 0
+\end{eqnarray}
+における量子補正$\ev{\varphi^\dagger\varphi}, \ev{\varphi\varphi}$によって既にZeromode-BdGカップリングは導入されているのではないか？:
+\begin{eqnarray}
+\nonumber  \ev{\varphi^\dagger\varphi} = \ev{(\varphi_z + \varphi_{ex})^\dagger(\varphi_z + \varphi_{ex})} &=& \ev{(\varphi^\dagger_z\varphi_z + \varphi^\dagger_{ex}\varphi_z  + \varphi^\dagger_z\varphi_{ex} + \varphi^\dagger_{ex}\varphi_{ex})}\\
+  &=& \ev{\varphi^\dagger_z\varphi_z} + \ev{\varphi^\dagger_{ex}\varphi_{ex}}
+\end{eqnarray}
+カップリング項は$\varphi$の一次なので消えてしまい, Zeromode-BdGカップリングは導入できていない.
+
 \begin{comment}
 \ul{$Z_{\rm z, ex}$を摂動的に取り込んだ結果, その効果がGP方程式やその他の方程式群にどのよう(何を通して)に取り込}\\
 \ul{まれるのか. 量子効果を取り込んだ従来のFormulationだとZeromode-BdG間の相互作用は取り入れることがで}\\
 \ul{きていなかったのか？} 
 \end{comment}
+
 \section{量子統計力学と摂動計算}
 熱力学ポテンシャルを用いた摂動計算のための勉強.
 \subsection{熱力学ポテンシャル}
@@ -3369,7 +3382,7 @@ $\varphi_{ex}$と$H_{u, ex}$は$H_{u, z}$と交換し, 同様に$\varphi_{z}$と
 
 非摂動ハミルトニアンのゼロモード部・励起部は
 \begin{eqnarray}
-  H_{u, z} &=& \frac{I - 4D}{2}P^2 + \frac{1}{2}AQ^4 - 2BQ^2 + CQP^2Q + EP^4\\
+  H_{u, z} &=& \frac{I - 4D}{2}P^2 + \frac{1}{2}AQ^4 - 2BQ^2 + CQP^2Q + \frac{1}{2}EP^4\\
   H_{u, ex} &=& \int d\bm{x} \qty[\varphi^\dagger_{ex}{\cal L}\varphi_{ex} + \frac{1}{2}\varphi_{ex}{\cal M}^*\varphi_{ex} + \frac{1}{2}\varphi^\dagger_{ex}{\cal M}\varphi^\dagger_{ex}]
 \end{eqnarray}
 とする. ゼロモードハミルトニアンは元論文のものからゼロモードの3次の項を除去したものを採用しています. 平衡系を考えるなら奇数次はあまり効いてこないのでは？と考えています. 奇数次を抜かした場合, 場の分割条件が自明に満たされるため, カウンター項を考える必要がなくなって面倒な自己無撞着計算が不要になります. もちろん本来はちゃんと奇数次も入れたほうがいいので, 議論がまとまったら後から考えます.
@@ -3386,13 +3399,13 @@ $\varphi_{ex}$と$H_{u, ex}$は$H_{u, z}$と交換し, 同様に$\varphi_{z}$と
 (\ref{Perturbed-thermo2})の1次について具体形を書き下す. 
 \begin{eqnarray}
 \nonumber  T\exp[-\int_0^\beta ds H_{z, ex}(s)] &=& I -\int_0^{\beta}ds H_{z, ex}(s) + \frac{1}{2!}\int_0^\beta ds\int_0^\beta ds' T\qty[H_{z, ex}(s)H_{z, ex}(s')] + \cdots\\
-\nonumber  \therefore \ev{T\exp[-\int_0^\beta ds H_{z, ex}(s)]}_0 &\simeq& \ev{I -\int_0^{\beta}ds H_{z, ex}(s)}_0 =  1 - \int_0^\beta ds\ev{H_{z, ex}(s)}_0\label{Perturbed-thermo3}\\
-&=& 1 - e^{\beta\Omega_0}\sum_{mn}\int_0^\beta ds\bra{\Psi_m}\bra{n}e^{-\beta H_u}H_{z, ex}(s)\ket{n}\ket{\Psi_m}
+ \therefore \ev{T\exp[-\int_0^\beta ds H_{z, ex}(s)]}_0 &\simeq& \ev{I -\int_0^{\beta}ds H_{z, ex}(s)}_0 =  1 - \int_0^\beta ds\ev{H_{z, ex}(s)}_0\label{Perturbed-thermo3}
+%&=& 1 - e^{\beta\Omega_0}\sum_{mn}\int_0^\beta ds\bra{\Psi_m}\bra{n}e^{-\beta H_u}H_{z, ex}(s)\ket{n}\ket{\Psi_m}
 \end{eqnarray}
 ここで(\ref{Perturbed-thermo3})の積分内の期待値はゼロモード項と励起項に分離でき, 期待値が残るのは$\varphi_z, \varphi_{ex}$の2次及び$\varphi_{ex}$の4次のみである. 書き下すと
 \begin{eqnarray}
-  \nonumber  \ev{H_{z, ex}}_0 &=& \ev{\varphi_z^\dagger(s)\varphi_z^\dagger(s)}_z\ev{\varphi_{ex}(s)\varphi_{ex}(s)}_{ex} + 4\ev{\varphi_z^\dagger(s)\varphi_z(s)}_z\ev{\varphi_{ex}^\dagger(s)\varphi_{ex}(s)}_{ex}\\
-  &+& \ev{\varphi_z(s)\varphi_z(s)}_z\ev{\varphi_{ex}^\dagger(s)\varphi_{ex}^\dagger(s)}_{ex} + \ev{\varphi_{ex}^\dagger(s)\varphi_{ex}^\dagger(s)\varphi_{ex}(s)\varphi_{ex}(s)}_{ex}\label{Hamiltonian-Exp}
+  \nonumber  \ev{H_{z, ex}}_0 &=& \int d\bx\Bigl[\ev{\varphi_z^\dagger(s)\varphi_z^\dagger(s)}_z\ev{\varphi_{ex}(s)\varphi_{ex}(s)}_{ex} + 4\ev{\varphi_z^\dagger(s)\varphi_z(s)}_z\ev{\varphi_{ex}^\dagger(s)\varphi_{ex}(s)}_{ex}\\
+  &+& \ev{\varphi_z(s)\varphi_z(s)}_z\ev{\varphi_{ex}^\dagger(s)\varphi_{ex}^\dagger(s)}_{ex} + \ev{\varphi_{ex}^\dagger(s)\varphi_{ex}^\dagger(s)\varphi_{ex}(s)\varphi_{ex}(s)}_{ex}\Bigr]\label{Hamiltonian-Exp}
 \end{eqnarray}
 % ---------- Comment out -------------
 \begin{comment}
@@ -3416,27 +3429,6 @@ $\varphi_{ex}$と$H_{u, ex}$は$H_{u, z}$と交換し, 同様に$\varphi_{z}$と
   &=& n_{\bk_1}n_{\bk_2}\qty{\delta(\bk_1 - \bk_3)\delta(\bk_2 - \bk_4) + \delta(\bk_1 - \bk_4)\delta(\bk_2 - \bk_3)}
 \end{eqnarray}
 である. ゼロモード期待値は$q$-表示を採用している\footnote{$q$表示というのは実空間の$q$ではなく, いわゆるゼロモード空間の$q$表示. もちろん空間のサイズは実空間に依存せず, 数値計算の際には適切なサイズを用意しなければならない. }. $\Psi_m$は非摂動ゼロモードハミルトニアン$H_{u, z}$の固有状態.
-\subsection{疑問点}
-\subsubsection{Zeromode-BdG coupling}
-Zeromode-BdGカップリングの寄与を取り入れるのが現状の目的. しかし, Hartree-Fock-Bogoliubov approximationによるGP方程式
-\begin{eqnarray}
-  [h_0 -\mu + g(\xi^2 + 2\ev{\varphi^\dagger\varphi} + \ev{\varphi\varphi})]\xi = 0
-\end{eqnarray}
-における量子補正$\ev{\varphi^\dagger\varphi}, \ev{\varphi\varphi}$によって既にZeromode-BdGカップリングは導入されているのではないか？:
-\begin{eqnarray}
-\nonumber  \ev{\varphi^\dagger\varphi} = \ev{(\varphi_z + \varphi_{ex})^\dagger(\varphi_z + \varphi_{ex})} &=& \ev{(\varphi^\dagger_z\varphi_z + \varphi^\dagger_{ex}\varphi_z  + \varphi^\dagger_z\varphi_{ex} + \varphi^\dagger_{ex}\varphi_{ex})}\\
-  &=& \ev{\varphi^\dagger_z\varphi_z} + \ev{\varphi^\dagger_{ex}\varphi_{ex}}
-\end{eqnarray}
-カップリング項は消えてしまうので, Zeromode-BdGカップリングは導入できていない. 解決！
-\newpage
-\subsubsection{Self-consistent loop}
-\begin{figure}[htbp]
-\begin{center}
-  \includegraphics[width = 10cm]{./EPS/self-consistent.eps}
-\end{center}
-\label{self-consistent}
-\end{figure}
-上の自己無撞着方程式が収束すると$\xi, \eta, \ket{\Psi}$が決まり, それによって分配関数$Z$や, 熱力学ポテンシャル$\Omega$を(摂動的に)求めることが可能になる. $\Omega$の摂動展開によって得られた熱力学関数は$\Omega_0$によって得られるものとは当然異なり, Zeromode-BdG間の相互作用を一部取り入れたものになっている. \ul{これを取り入れることによって上}\\\ul{の自己無撞着ループは修正を受けるのだろうか？}もし修正を受けるのであればこの自己無撞着ループに$\Omega$も加わることになり, $\Omega$が収束するまでループを回す必要がある. \ul{この場合どうやってZeromode-BdGカップリングの寄}\\\ul{与を取り入れればよいのか？}
 
 \subsection{$a(s)$の時間依存性}
 相互作用描像なので演算子の時間依存性についての議論が必要. 非摂動ハミルトニアンが
@@ -3461,13 +3453,27 @@ Zeromode-BdGカップリングの寄与を取り入れるのが現状の目的. 
 \end{eqnarray}
 である. つまり$a$-演算子同様, 時間依存性を気にする必要がない. もちろん, $\xi$が時間発展するような定式化の場合はこの限りではない.
 
-\ul{ここの議論は少し不安でもあります. $\xi$が時間発展する場合としない場合の差がまだきちんと理解できていない}\\\ul{気がします. $\ket{\Psi_0}$が時間発展しないのはいいとしても, その励起である$\ket{\Psi_\nu}$は時間発展しないのか?など. 勉強し}\\\ul{ておきます. }
+\ul{ここの議論は少し不安でもあります. $\xi$が時間発展する場合としない場合の差がまだきちんと理解できていない}\\\ul{気がします. $\ket{\Psi_0}$が時間発展しないのはいいとしても, その励起である$\ket{\Psi_\nu}$は時間発展しないのか?など.}
+\subsection{$Q, P$を奇数個含むエルミートな期待値がゼロになること}
+$\xi, \eta$が実の場合で, かつ今回選んだゼロモードハミルトニアンは$Q$の奇数次が存在しないので, $p$表示したゼロモードハミルトニアンは実対称行列になっている. よって, $p$表示のゼロモード方程式
+\begin{eqnarray}
+  H_{u, z}(p)\ket{\Psi} = \bra{p}\ket{\Psi}
+\end{eqnarray}
+において, $\bra{p}\ket{\Psi}$を実の固有ベクトルとして選ぶことができる. $\bra{p}\ket{\Psi}$が実であるならば
+\begin{eqnarray}
+\nonumber  \bra{\Psi}Q^3\ket{\Psi} &=& \int dp \bra{\Psi}Q^3\ket{p}\bra{p}\ket{\Psi} = \int dp \Psi(p)\qty(i\frac{d}{dp})^3\Psi(p)= -\int dp \qty(i\frac{d}{dp})^3\Psi(p)\Psi(p)\\
+\therefore &&\int dp \Psi(p)\qty(i\frac{d}{dp})^3\Psi(p) + \int dp \qty(i\frac{d}{dp})^3\Psi(p)\Psi(p) = 2\bra{\Psi}Q^3\ket{\Psi} = 0
+\end{eqnarray}
+のように, $Q$の奇数次の期待値はゼロになる. 一行目では部分積分を用いている. 同様に, $QP + PQ$などの$Q$の奇数次を含むエルミートな期待値もゼロになるが, $QP$はエルミートでないのでその限りではない. 
+
+Full Hamiltonianに含まれる全てのゼロモード演算子を取り入れたようなゼロモードハミルトニアンには$Q$の奇数次は存在しないが, $P$の奇数次は存在する. しかしながら, 今回選んだ$H_{u, z}$には$P$の奇数次も存在しない\footnote{物理量に対するゼロモードの奇数次の寄与が小さいだろうという仮定のもと.\ul{これが今回適当かどうかはよくわかりません.} }ので, 同様の議論から$P$の奇数次及び, $P$の奇数次を含むエルミートな期待値もゼロになることがわかる.
+
 \subsection{(\ref{Hamiltonian-Exp})のさらなる具体形}
 時間依存性を考慮しなくて良いことがわかったのでさらに議論をすすめて数値計算が可能な形まで落としこむことにする. まず, (\ref{Hamiltonian-Exp})のゼロモード部について. 先ほど同様, $Q$の奇数次項を落とすと
 \begin{eqnarray}
-  \ev{\varphi^\dagger_z\varphi^\dagger_z}_z &=& \ev{(-i\xi Q + \eta P)^\dagger(-i\xi Q + \eta P)^\dagger}_z = -\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\\
-\ev{\varphi_z^\dagger\varphi_z}_z &=& \xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\\
-\ev{\varphi_z\varphi_z}_z &=& -\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z
+\nonumber  \ev{\varphi^\dagger_z\varphi^\dagger_z}_z &=& \ev{(-i\xi Q + \eta P)^\dagger(-i\xi Q + \eta P)^\dagger}_z = -\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\\
+\nonumber \ev{\varphi_z^\dagger\varphi_z}_z &=& \xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\\
+\ev{\varphi_z\varphi_z}_z &=& -\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\label{Zeromode-Exp}
 \end{eqnarray}
 一方で励起部は
 \begin{eqnarray}
@@ -3477,25 +3483,126 @@ Zeromode-BdGカップリングの寄与を取り入れるのが現状の目的. 
   \\
   &=& \frac{1}{(2\pi)^3}\int d\bk_1\int d\bk_2 \qty(u_{\bk_1}v_{-\bk_1}^*\ev{a_{\bk_1} a^\dagger_{\bk_1}}_{ex}\delta(\bk_1 + \bk_2) + v_{\bk_1}^* u_{-\bk_1} \ev{a^\dagger_{-\bk_1}a_{-\bk_1}}_{ex})\\
   &=& \frac{1}{(2\pi)^3}\int d\bk_1 \qty(u_{\bk_1}v_{-\bk_1}^*\ev{a_{\bk_1} a^\dagger_{\bk_1}}_{ex} + v_{\bk_1}^* u_{-\bk_1} \ev{a^\dagger_{-\bk_1}a_{-\bk_1}}_{ex})\\
-  &=& \frac{1}{(2\pi)^3}\int d\bk_1 \qty(1+2n_{\bk})u_{\bk_1}v_{\bk_1} = \frac{1}{(2\pi)^3}\int_0^\infty dk\int_0^\pi d\theta\int_0^{2\pi} d\phi \qty(1+2n_k)u_kv_k\\
-  &=& -\frac{1}{(2\pi)^2}\int_0^\infty dk\frac{k^2\calM}{\omega_k}\qty(2n_k + 1)
+  &=& \frac{1}{(2\pi)^3}\int d\bk_1 \qty(1+2n_{\bk})u_{\bk_1}v_{\bk_1} = \frac{1}{(2\pi)^3}\int_{+0}^\infty dk\ k^2\int_0^\pi d\theta\ \sin{\theta}\int_0^{2\pi} d\phi \qty(1+2n_k)u_kv_k\\
+  &=& -\frac{1}{(2\pi)^2}\int_{+0}^\infty dk\frac{k^2\calM}{\omega_k}\qty(2n_k + 1)\label{BdG-Exp}
 \end{eqnarray}
-となる. この計算では
+となる. $\bk$積分について$\bk = 0$は含まれていないことに注意. この計算では
 \begin{itemize}
-\item[1. ]$v_{\bk} = v_k, n_{\bk} = n_k$であること
+\item[1. ]$u_{\pm\bk} = u_k, v_{\pm\bk} = v_k, n_{\pm\bk} = n_k$であること
 \item[2. ]$\xi, \eta$が実であることで$v_k^* = v_k, u_k^* = u_k$
 \item[3. ]$\ev{a_{\bk}a_{\bk}^\dagger}_{ex} = \ev{a_{\bk}^\dagger a_{\bk} + [a_{\bk}, a_{\bk}^\dagger]}_{ex} = 1 + n_k$であること
-\item[4. ]$\int_{-\infty}^{\infty} d\bk\ev{a^\dagger_{-\bk}a_{-\bk}}_{ex} = \int_{-\infty}^{\infty} d\bk\ev{a^\dagger_{\bk}a_{\bk}}_{ex} = n_k$であること
+\item[4. ]$\int_{-\infty}^{\infty} d\bk\ev{a^\dagger_{-\bk}a_{-\bk}}_{ex} = \int_{-\infty}^{\infty} d\bk\ev{a^\dagger_{\bk}a_{\bk}}_{ex} = \int_{-\infty}^{\infty} d\bk n_k$であること
 \end{itemize}
-などを用いている. $u_k, v_k, n_k, \calL_k...$などは2015夏の学校の資料を参照のこと. 同様にして
+などを用いている. 各パラメータは以下の通り:
+%$u_k, v_k, n_k, \calL_k...$などは2015夏の学校の資料を参照のこと. 同様にして
 \begin{eqnarray}
-  \ev{\varphi_{ex}^\dagger\varphi_{ex}}_{ex} &=& \frac{1}{(2\pi)^2}\int_0^\infty dk\frac{k^2}{\omega_k}\qty((2n_k + 1)\calL_k - \omega_k)\\
+  \begin{pmatrix}
+      u_k\\
+      v_k
+    \end{pmatrix}
+  &=& \frac{1}{\sqrt{2\omega_k}}
+  \begin{pmatrix}
+    \sqrt{{\cal L}_k + \omega_k}\\
+    -\sqrt{{\cal L}_k - \omega_k}
+  \end{pmatrix}\\
+    {\cal M} = g(\xi^2 - V_a)\hspace{1cm}{\cal L}_k &=& \frac{\hbar^2}{2m}k^2 + {\cal M}\hspace{1cm}\omega_k = \sqrt{\varepsilon_k(\varepsilon_k + 2gn_0)}= \sqrt{{\cal L}^2_k - {\cal M}^2}
+\end{eqnarray}
+同様にして, 
+\begin{eqnarray}
+  \ev{\varphi_{ex}^\dagger\varphi_{ex}}_{ex} &=& \frac{1}{(2\pi)^2}\int_0^\infty dk\frac{k^2}{\omega_k}\qty[(2n_k + 1)\calL_k - \omega_k]\\
   \ev{\varphi_{ex}^\dagger\varphi^\dagger_{ex}}_{ex} &=& -\frac{1}{(2\pi)^2}\int_0^\infty dk\frac{k^2\calM}{\omega_k}\qty(2n_k + 1)
 \end{eqnarray}
 相互作用項は
 \begin{eqnarray}
-  \ev{\varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_{ex}\varphi_{ex}}_{ex} = 
+\nonumber  \ev{\varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_{ex}\varphi_{ex}}_{ex} &=& \frac{1}{(2\pi)^6}\int d\bk_1\int d\bk_2\int d\bk_3\int d\bk_4\\
+\nonumber  &\times& \ev{(u_{\bk_1} a_{\bk_1}^\dagger + v_{\bk_1}a_{-\bk_1})(u_{\bk_2} a_{\bk_2}^\dagger + v_{\bk_2}a_{-\bk_2})(u_{\bk_3} a_{\bk_3} + v_{\bk_3}a_{-\bk_3}^\dagger)(u_{\bk_4} a_{\bk_4} + v_{\bk_4}a_{-\bk_4}^\dagger)}_{ex}\\
 \end{eqnarray}
+である. 生成演算子と消滅演算子が対になっていない期待値は消えてしまうので, 残るものだけを書き下す:
+\begin{eqnarray}
+  \nonumber  \ev{\varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_{ex}\varphi_{ex}}_{ex} &=& \frac{1}{(2\pi)^6}\int d\bk_1\int d\bk_2\int d\bk_3\int d\bk_4 e^{i(\bk_1+\bk_2+\bk_3+\bk_4)\cdot \bx}\\
+  \nonumber  &\times& \Bigl[u_{\bk_1}u_{\bk_2}u_{\bk_3}u_{\bk_4}\ev{a^\dagger_{\bk_1}a^\dagger_{\bk_2}a_{\bk_3}a_{\bk_4}}_{ex} + u_{\bk_1}v_{\bk_2}u_{\bk_3}v_{\bk_4}\ev{a^\dagger_{\bk_1}a_{-\bk_2}a_{\bk_3}a^\dagger_{-\bk_4}}_{ex}\\
+    \nonumber    &&+ u_{\bk_1}v_{\bk_2}v_{\bk_3}u_{\bk_4}\ev{a^\dagger_{\bk_1}a_{-\bk_2}a^\dagger_{-\bk_3}a_{\bk_4}}_{ex} + v_{\bk_1}u_{\bk_2}u_{\bk_3}v_{\bk_4}\ev{a_{-\bk_1}a^\dagger_{\bk_2}a_{\bk_3}a^\dagger_{-\bk_4}}_{ex}\\
+\nonumber    &&+ v_{\bk_1}u_{\bk_2}v_{\bk_3}u_{\bk_4}\ev{a_{-\bk_1}a^\dagger_{\bk_2}a^\dagger_{-\bk_3}a_{\bk_4}}_{ex} + v_{\bk_1}v_{\bk_2}v_{\bk_3}v_{\bk_4}\ev{a_{-\bk_1}a_{-\bk_2}a^\dagger_{-\bk_3}a^\dagger_{-\bk_4}}_{ex}\Bigr]\\\label{interaction-expectation}
+\end{eqnarray}
+Wickの定理で展開:
+\begin{eqnarray}
+\nonumber  \ev{a^\dagger_{\bk_1}a^\dagger_{\bk_2}a_{\bk_3}a_{\bk_4}}_{ex} &=& \qty(\wick{12}{<1a^\dagger_{k1}<2a^\dagger_{k2}>1a_{k3}>2a_{k4}} + \wick{21}{<1a^\dagger_{k1}<2a^\dagger_{k2}>2a_{k3}>1a_{k4}})\\
+&=& n_{\bk_1}n_{\bk_2}\qty{\delta(\bk_1 - \bk_3)\delta(\bk_2 - \bk_4) + \delta(\bk_1 - \bk_4)\delta(\bk_2 - \bk_3)}\\
+\nonumber  \ev{a^\dagger_{\bk_1}a_{-\bk_2}a_{\bk_3}a^\dagger_{-\bk_4}}_{ex} &=& \qty(\wick{12}{<1a^\dagger_{k1}>1a_{-k2}<2a_{k3}>2a^\dagger_{-k4}} + \wick{12}{<1a^\dagger_{k1}<2a_{-k2}>1a_{k3}>2a^\dagger_{-k4}})\\
+\nonumber&=& n_{\bk_1}(1 + n_{\bk_3})\delta(\bk_1 + \bk_2)\delta(\bk_3 + \bk_4) + n_{\bk_1}(1 + n_{\bk_2})\delta(\bk_1 - \bk_3)\delta(\bk_2 - \bk_4)\\
+\\
+\nonumber  \ev{a^\dagger_{\bk_1}a_{-\bk_2}a^\dagger_{-\bk_3}a_{\bk_4}}_{ex} &=& \qty(\wick{12}{ <1a^\dagger_{k_1}>1a_{-k_2}<2a^\dagger_{-k_3}>2a_{k_4}} + \wick{21}{<1a^\dagger_{k_1}<2a_{-k_2}>2a^\dagger_{-k_3}>1a_{k_4}})\\
+&=& n_{\bk_1}n_{\bk_3}\delta(\bk_1 + \bk_2)\delta(\bk_3 + \bk_4) + n_{\bk_1}(1 + n_{\bk_2})\delta(\bk_1 - \bk_4)\delta(\bk_2 - \bk_3)\\
+\nonumber  \ev{a_{-\bk_1}a^\dagger_{\bk_2}a_{\bk_3}a^\dagger_{-\bk_4}}_{ex} &=& \qty(\wick{12}{<1a_{-k_1}>1a^\dagger_{k_2}<2a_{k_3}>2a^\dagger_{-k_4}} + \wick{21}{<1a_{-k_1}<2a^\dagger_{k_2}>2a_{k_3}>1a^\dagger_{-k_4}})\\
+\nonumber&=& (1+n_{\bk_1})(1+n_{\bk_3})\delta(\bk_1 + \bk_2)\delta(\bk_3 + \bk_4) + (1+n_{\bk_1})n_{\bk_2}\delta(\bk_1 - \bk_4)\delta(\bk_2 - \bk_3)\\
+\\
+\nonumber  \ev{a_{-\bk_1}a^\dagger_{\bk_2}a^\dagger_{-\bk_3}a_{\bk_4}}_{ex} &=& \qty(\wick{12}{<1a_{-k_1}>1a^\dagger_{k_2}<2a^\dagger_{-k_3}>2a_{k_4}} + \wick{12}{<1a_{-k_1}<2a^\dagger_{k_2}>1a^\dagger_{-k_3}>2a_{k_4}})\\
+&=& (1 + n_{\bk_1})n_{\bk_3}\delta(\bk_1 + \bk_2)\delta(\bk_3 + \bk_4) + (1 + n_{\bk_1})n_{\bk_2}\delta(\bk_1 - \bk_3)\delta(\bk_2 - \bk_4)\\
+\nonumber  \ev{a_{-\bk_1}a_{-\bk_2}a^\dagger_{-\bk_3}a^\dagger_{-\bk_4}}_{ex} &=& \qty(\wick{12}{<1a_{-k_1}<2a_{-k_2}>1a^\dagger_{-k_3}>2a^\dagger_{-k_4}} + \wick{21}{<1a_{-k_1}<2a_{-k_2}>2a^\dagger_{-k_3}>1a^\dagger_{-k_4}})\\
+&=& (1 + n_{\bk_1})(1 + n_{\bk_2})\qty{\delta(\bk_1 - \bk_3)\delta(\bk_2 - \bk_4) + \delta(\bk_1 - \bk_4)\delta(\bk_2 - \bk_3)}
+\end{eqnarray}
+これらを(\ref{interaction-expectation})に代入すると
+\begin{eqnarray}
+  \ev{\varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_{ex}\varphi_{ex}}_{ex} &=& \frac{1}{(2\pi)^6}\qty[2\qty(I_u'^{, 2} + I_v'^{+, 2} +  I_u'I_v'^{+} + I_{uv}I_{uv}^+) + I_{uv}^2 + I_u'I_v'^+ + I_{uv}^{+, 2} + I_u'^{+}I_v']\\
+  &=& \frac{1}{(2\pi)^6}\qty[2\qty(I_u'^{, 2} + I_v'^{+, 2} +  I_u'I_v'^{+}) + \qty(I_{uv} + I_{uv}^{+})^2+ I_u'I_v'^+  + I_u'^{+}I_v']\\
+  &=& \frac{1}{(2\pi)^6}\qty[2\qty(I_u'^{, 2} + I_v'^{+, 2}) + \qty(I_{uv} + I_{uv}^{+})^2+ 4I_u'I_v'^+]\label{Interaction-Exp}
+\end{eqnarray}
+となる. ただし
+\begin{eqnarray}
+\nonumber I_u' &=& \int d\bk n_{\bk} u_{\bk}^2 e^{2i\bk\cdot\bx}\hspace{1cm}I_v' = \int d\bk n_{\bk} v_{\bk}^2 e^{2i\bk\cdot\bx}\hspace{1cm} I_{uv} = \int d\bk n_{\bk} u_{\bk}v_{\bk}\\
+\nonumber I_{uv}^+ &=& \int d\bk (1 + n_{\bk}) u_{\bk}v_{\bk} \hspace{1cm}I_v'^+ = \int d\bk (1 + n_{\bk}) v_{\bk}^2 e^{2i\bk\cdot\bx}\hspace{1cm}I_u'^+ = \int d\bk (1 + n_{\bk}) u_{\bk}^2 e^{2i\bk\cdot\bx}\\
+\end{eqnarray}
+であり, かつ$I_u'I_v'^+ = I_u'^+I_v'$であることを用いている.
+
+以上で具体的にゼロモード・励起モードの期待値が計算できたので, (\ref{Hamiltonian-Exp})に(\ref{Zeromode-Exp}), (\ref{BdG-Exp}), (\ref{Interaction-Exp})を代入する. (\ref{Zeromode-Exp}), (\ref{BdG-Exp})については, $\bx$依存性を持たないので空間積分は系の体積$V$が出てくるだけだが, (\ref{Interaction-Exp})は$I'$系の項が$e^{2i\bk\cdot\bx}$を持っているのでその限りではない. $I'$を含む項の空間積分を実行する:
+\begin{eqnarray}
+  \int d\bx I_n'^2 &=& \int d\bk_1d\bk_2 n_{\bk_1}n_{\bk_2}u^2_{\bk_1}u^2_{\bk_2}\delta(\bk_1 + \bk_2)\\
+  &=& \int d\bk_1 n_{\bk_1}n_{-\bk_1}u^2_{\bk_1}u^2_{-\bk_1}\\
+  &=& 4\pi\int_{+0}^\infty dk\ k^2 n_{k}^2u^4_{k}
+\end{eqnarray}
+同様にして
+\begin{eqnarray}
+  \int d\bx I_v'^{+, 2} &=& 4\pi\int_{+0}^\infty dk\ k^2(1+n_k)^2v_k^4\\ \int d\bx I_u'I_v'^{+} &=& 4\pi\int_{+0}^\infty dk\ k^2 n_k(1+n_k)u_k^2v_k^2\hspace{1cm}\\
+  %\int d\bx I_{uv}I_{uv}^+ &=& (4\pi)^2V\int_{+0}^\infty dk_1\int_{+0}^\infty dk_2 k_1^2 k_2^2n_{k_1}(1+n_{k_2})u_{k_1}v_{k_1}u_{k_2}v_{k_2}\\
+  %&=& (4\pi)^2V\qty[\qty(\int_{+0}^\infty dk n_ku_kv_k)^2 + \qty(\int_{+0}^\infty dk_1 n_ku_{k_1}v_{k_1}\int_{+0}^\infty dk_2 u_{k_2}v_{k_2})]\\
+  %\int d\bx I_{uv}^2     &=& V\qty(4\pi \int_{+0}^\infty dk\ k^2 n_ku_kv_k)^2\\
+  %\int d\bx I_{uv}^{+, 2}&=& V\qty(4\pi \int_{+0}^\infty dk\ k^2 (1 + n_k)u_kv_k)^2
+  \int d\bx (I_{uv} +  I_{uv}^+)^2     &=& V\qty(4\pi \int_{+0}^\infty dk\ k^2 (1 + 2n_k)u_kv_k)^2
+\end{eqnarray}
+
+まとめると, (\ref{Hamiltonian-Exp})は
+\begin{eqnarray}
+  \nonumber  \ev{H_{z, ex}}_0 =&& \int d\bx\Bigl[-\frac{2}{(2\pi)^2}\qty(-\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z)\int_{+0}^\infty dk\frac{k^2\calM}{\omega_k}\qty(2n_k + 1)\\
+    &+& \frac{4}{(2\pi)^2}\qty(\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z)\int_0^\infty dk\frac{k^2}{\omega_k}\qty{(2n_k + 1)\calL_k - \omega_k}\\
+    &+& \frac{1}{(2\pi)^6}\qty{2\qty(I_u'^{, 2} + I_v'^{+, 2}) + \qty(I_{uv} + I_{uv}^{+})^2+ 4I_u'I_v'^+}\Bigr]
+\end{eqnarray}
+前述の通り, $I'$系以外の空間積分は系の体積$V$が出てくるだけ.
+\subsection{ふたたび熱力学ポテンシャルの具体形}
+期待値が$s$時間依存しないことを用いるとZeromode-BdGカップリングの摂動一次まで取り入れた熱力学ポテンシャルは以下の通り:
+\begin{eqnarray}
+  \Omega &=& \Omega_0 -\frac{1}{\beta}\ln\ev{T\exp[-\int_0^\beta ds H_{z, ex}(s)]}_0\\
+  &\simeq& \Omega_0 - \frac{1}{\beta}\ln(1 - \int_0^\beta ds\ev{H_{z, ex}(s)}_0)\\
+  &=& \Omega_0  + \ev{H_{z, ex}}_0
+\end{eqnarray}
+これで計算の準備が整った.
+\newpage
+\section{数値計算}
+\subsection{疑問点}
+\begin{figure}[htbp]
+\begin{center}
+  \includegraphics[width = 14cm]{./EPS/self-consistent_new2.eps}
+\end{center}
+\label{self-consistent}
+\end{figure}
+
+左の自己無撞着方程式が収束すると$\xi, \eta, \ket{\Psi}$が決まり, それによって分配関数$Z$や, 熱力学ポテンシャル$\Omega$を(摂動的に)求めることが可能になる. $\Omega$の摂動展開によって得られた熱力学関数はZeromode-BdG間の相互作用を一部取り入れたものになっている.
+
+\ul{$\Omega$の摂動一次の寄与を再び左側のループに反映させる必要があるのか, またそれがどのように取り入れればよい}\\\ul{のかがよくわかっていません.}
+\begin{comment}
+  \ul{これを取り入れることによって上}\\\ul{の自己無撞着ループは修正を受けるのだろうか？}もし修正を受けるのであればこの自己無撞着ループに$\Omega$も加わることになり, $\Omega$が収束するまでループを回す必要がある. \ul{この場合どうやってZeromode-BdGカップリングの寄}\\\ul{与を取り入れればよいのか？}
+  
+  ここで熱力学ポテンシャル$\Omega$はZeromode-BdGカップリングの一次まで取り入れて計算する. \ul{繰り返しになり}\\\ul{ますが, $\Omega$の摂動一次の寄与を再び左側のループに反映させる必要があるのか, またそれがどのように取り込まれ}\\\ul{るのかがよくわかっていません.}
+\end{comment}
 \newpage
 \chapter{Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}
 ちゃんと式まで書いて説明しているところもあれば, 原文の式番号だけ書いて済ませているところもあります. 原文の補助に過ぎないものだと思ってください. 
