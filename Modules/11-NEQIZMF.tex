@@ -1,0 +1,270 @@
+
+\chapter{研究 : ゼロモードの緩和}
+凝縮相と非凝縮相のcoupleを考え, 非平衡的な取り扱いを実現したい. 核生成のお話と関係がある. 位相の緩和とか見れるんじゃないかと期待. 
+\section{公式}
+QuantumMaster e.q.
+\begin{eqnarray}
+  i\dv{t}\rho_a^{nm}(t) = \sum_{n'm'}\bqty{\sum_{\mu\nu}\pqty{E_\mu - E_\nu}\Psi_{n}^{*, \mu}\Psi_{m}^{*, \nu}\Psi_{n'}^{\mu}\Psi_{m'}^{\nu}\rho_a^{n'm'}(t) + i\dpbra{nm}\hat{\calK}(t)\dpket{n'm'}\rho_a^{n'm'}(t)}
+\end{eqnarray}
+$A$をゼロモード演算子を含む項とする:
+\begin{eqnarray}
+  \dpbra{nm}A\dpket{n'm'} &=& A^{nn'}\delta_{mm'}\\
+  \dpbra{nm}A^\dagger\dpket{n'm'} &=& A^{*, n'n}\delta_{mm'}\\
+  \dpbra{nm}\tilde{A}\dpket{n'm'} &=& A^{*, mm'}\delta_{nn'}\\
+  \dpbra{nm}\tilde{A^\dagger}\dpket{n'm'} &=& A^{m'm}\delta_{nn'}\\
+\end{eqnarray}
+プライム(')がつく位置に注意. これより
+\begin{eqnarray}
+  \dpbra{nm}\hat{A}\dpket{n'm'} &=& A^{nn'}\delta_{mm'} - A^{m'm}\delta_{nn'}\\
+  \dpbra{nm}\hat{A^\dagger}\dpket{n'm'} &=& A^{*, n'n}\delta_{mm'} - A^{*, mm'}\delta_{nn'}
+\end{eqnarray}
+\section{具体計算 : time-convolutionless型}
+もともと$\hat{\calK}(t, s),\ \dket{\rho_a(t)}$は相互作用描像のもとで定義されていたのをSchr\"odinger描像に移して計算. $s$の時間成分がexponentialの形で残ることになる.
+\begin{eqnarray}
+ \nonumber &&\dpbra{nm}\hat{A}_ie^{-i\hat{H}_a(t-s)}A_j^\dagger e^{i\hat{H}_a(t-s)}\dpket{n'm'}\\
+  &=& \sum_{\mu\nu}\sum_{\mu'\nu'}\dpbra{nm}\hat{A}_i\dket{\mu\nu}e^{-i(E_\mu - E_\nu)(t-s)}\dbra{\mu\nu}A_j^\dagger \dket{\mu'\nu'}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\dbra{\mu'\nu'}\dpket{nm}\\
+  \nonumber &=& \sum_{n''m''}\sum_{\mu\nu}\sum_{\mu'\nu'}\bqty{A_i^{nn''}\delta_{mm''} - A_i^{m''m}\delta_{nn''}}A_j^{*, \mu'\mu}\delta_{\nu\nu'}\Psi_{n''}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu'}e^{-i(E_\mu - E_\nu)(t-s)}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\\
+  \nonumber &=&\sum_{n''m''}\sum_{\mu\nu}\sum_{\mu'\nu'}A_i^{nn''}\delta_{mm''}A_j^{*, \mu'\mu}\delta_{\nu\nu'}\Psi_{n''}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu'}e^{-i(E_\mu - E_\nu)(t-s)}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\\
+  &&- \sum_{n''m''}\sum_{\mu\nu}\sum_{\mu'\nu'}A_i^{m''m}\delta_{nn''}A_j^{*, \mu'\mu}\delta_{\nu\nu'}\Psi_{n''}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu'}e^{-i(E_\mu - E_\nu)(t-s)}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\\
+  \nonumber &=&\sum_{n''}\sum_{\mu\nu}\sum_{\mu'}A_i^{nn''}A_j^{*, \mu'\mu}\Psi_{n''}^{\mu}\Psi_{m}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu}e^{-i(E_\mu - E_{\mu'})(t-s)}\\
+  &&- \sum_{m''}\sum_{\mu\nu}\sum_{\mu'}A_i^{m''m}A_j^{*, \mu'\mu}\Psi_{n}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu}e^{-i(E_\mu - E_{\mu'})(t-s)}\label{mid}
+\end{eqnarray}
+ここで$A_j^{*,\mu'\mu} = \sum_{nm}A^{*, mn}_n\Psi_n^{*, \mu}\Psi_m^{\mu'},\ \ \sum_\alpha \Psi_\beta^{*, \alpha}\Psi_{\beta'}^\alpha = \delta_{\beta\beta'}$であることを用いる:
+\begin{eqnarray}
+  \nonumber(\ref{mid}) &=&\sum_{n''}\sum_{\mu}\sum_{\mu'}A_i^{nn''}A_j^{*, \mu'\mu}\Psi_{n''}^{\mu}\Psi_{n'}^{*, \mu'}\delta_{mm'}e^{-i(E_\mu - E_{\mu'})(t-s)}\\
+  &&- \sum_{m''}\sum_{\mu}\sum_{\mu'}A_i^{m''m}A_j^{*, \mu'\mu}\Psi_{n}^{\mu}\Psi_{n'}^{*, \mu'}\delta_{m'm''}e^{-i(E_\mu - E_{\mu'})(t-s)}\\
+  \nonumber &=&\sum_{n''}\sum_{\mu}\sum_{\mu'}A_i^{nn''}A_j^{*, \mu'\mu}\Psi_{n''}^{\mu}\Psi_{n'}^{*, \mu'}\delta_{mm'}e^{-i(E_\mu - E_{\mu'})(t-s)}\\
+  &&- \sum_{\mu}\sum_{\mu'}A_i^{m'm}A_j^{*, \mu'\mu}\Psi_{n}^{\mu}\Psi_{n'}^{*, \mu'}e^{-i(E_\mu - E_{\mu'})(t-s)}\\
+  \nonumber &=&\sum_{n'''m'''}\sum_{n''}\sum_{\mu}\sum_{\mu'}A_i^{nn''}A_j^{*, m'''n'''}\Psi_{n'''}^{*, \mu}\Psi_{m'''}^{\mu'}\Psi_{n''}^{\mu}\Psi_{n'}^{*, \mu'}\delta_{mm'}e^{-i(E_\mu - E_{\mu'})(t-s)}\\
+  &&- \sum_{n'''m'''}\sum_{\mu}\sum_{\mu'}A_i^{m'm}A_j^{*, m'''n'''}\Psi_{n'''}^{*, \mu}\Psi_{m'''}^{\mu'}\Psi_{n}^{\mu}\Psi_{n'}^{*, \mu'}e^{-i(E_\mu - E_{\mu'})(t-s)}\\
+  \nonumber &=&\sum_{n'''m'''}\sum_{\mu}\sum_{\mu'}\bqty{\sum_{n''}A_i^{nn''}A_j^{*, m'''n'''}\Psi_{n''}^{\mu}\delta_{mm'}- A_i^{m'm}A_j^{*, m'''n'''}\Psi_{n}^{\mu}}\Psi_{n'''}^{*, \mu}\Psi_{m'''}^{\mu'}\Psi_{n'}^{*, \mu'}e^{-i(E_\mu - E_{\mu'})(t-s)}\label{end1}\\
+\end{eqnarray}
+同様に$\hat{\calK}$に必要な項を計算していく.
+\begin{comment}
+  以下では(\ref{end1})と添字が異なる部分に下線を引いている.
+\end{comment}
+\begin{eqnarray}
+ \nonumber &&\dpbra{nm}\hat{A^\dagger}_ie^{-i\hat{H}_a(t-s)}\tilde{A}_j^\dagger e^{i\hat{H}_a(t-s)}\dpket{n'm'}\\
+  %&=& \sum_{\mu\nu}\sum_{\mu'\nu'}\dpbra{nm}\hat{A^\dagger}_i\dket{\mu\nu}e^{-i(E_\mu - E_\nu)(t-s)}\dbra{\mu\nu}\tilde{A}_j^\dagger \dket{\mu'\nu'}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\dbra{\mu'\nu'}\dpket{nm}\\
+  \nonumber &=& \sum_{n''m''}\sum_{\mu\nu}\sum_{\mu'\nu'}\bqty{A_i^{*,  {n''n}}\delta_{mm''} - A_i^{*,  {mm''}}\delta_{nn''}}A_j^{ {\nu'\nu}}\delta_{ {\mu\mu'}}\Psi_{n''}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu'}e^{-i(E_\mu - E_\nu)(t-s)}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\\
+  \nonumber &=&\sum_{n''m''}\sum_{\mu\nu}\sum_{\mu'\nu'}A_i^{*,  {n''n}}\delta_{mm''}A_j^{ {\nu'\nu}}\delta_{ {\mu\mu'}}\Psi_{n''}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu'}e^{-i(E_\mu - E_\nu)(t-s)}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\\
+  &&- \sum_{n''m''}\sum_{\mu\nu}\sum_{\mu'\nu'}A_i^{*,  {mm''}}\delta_{nn''}A_j^{ {\nu'\nu}}\delta_{ {\mu\mu'}}\Psi_{n''}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu'}e^{-i(E_\mu - E_\nu)(t-s)}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\\
+  \nonumber &=&\sum_{n''}\sum_{\mu\nu}\sum_{ {\nu'}}A_i^{*,  {n''n}}A_j^{ {\nu'\nu}}\Psi_{n''}^{\mu}\Psi_{m}^{\nu}\Psi_{n'}^{*, \mu}\Psi_{m'}^{*, \nu'}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  &&- \sum_{m''}\sum_{\mu\nu}\sum_{ {\nu'}}A_i^{*,  {mm''}}A_j^{ {\nu'\nu}}\Psi_{n}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu}\Psi_{m'}^{*, \nu'}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  %\nonumber &=&\sum_{n''}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{*,  {n''n}}A_j^{ {\nu'\nu}}\Psi_{m}^{\nu}\Psi_{m'}^{*, \nu'}\delta_{ {n'n''}}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  %&&- \sum_{m''}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{*,  {mm''}}A_j^{ {\nu'\nu}}\Psi_{m''}^{\nu}\Psi_{m'}^{*, \nu'}\delta_{ {nn'}}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  \nonumber &=&\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{*,  {n'n}}A_j^{ {\nu'\nu}}\Psi_{m}^{\nu}\Psi_{m'}^{*, \nu'}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  &&- \sum_{ {m''}}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{*,  {mm''}}A_j^{ {\nu'\nu}}\Psi_{m''}^{\nu}\Psi_{m'}^{*, \nu'}\delta_{ {nn'}}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  \nonumber &=&\sum_{n'''m'''}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{*, {n'n}}A_j^{{n'''m'''}}\Psi_{n'''}^{ {*, \nu'}}\Psi_{m'''}^{ {\nu}}\Psi_{m}^{ {\nu}}\Psi_{m'}^{*, \nu'}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  &&- \sum_{n'''m'''}\sum_{ {m''}}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{*,  {mm''}}A_j^{ {n'''m'''}}\Psi_{n'''}^{ {*, \nu'}}\Psi_{m'''}^{ {\nu}}\Psi_{m''}^{\nu}\Psi_{m'}^{*, \nu'}\delta_{ {nn'}}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  \nonumber &=&\sum_{n'''m'''}\sum_{\nu}\sum_{\nu'}\bqty{A_i^{*, n'n}A_j^{n'''m'''}\Psi_{m}^{\nu} - \sum_{m''}A_i^{*, mm''}A_j^{n'''m'''}\Psi_{m''}^{\nu}\delta_{nn'}}\Psi_{n'''}^{*, \nu'}\Psi_{m'''}^{\nu}\Psi_{m'}^{*, \nu'}e^{i(E_\nu- E_{\nu'})(t-s)}\\
+\end{eqnarray}
+
+\begin{eqnarray}
+\nonumber  &&\dpbra{nm}\hat{A}_ie^{-i\hat{H}_a(t-s)}\tilde{A}_j e^{i\hat{H}_a(t-s)}\dpket{n'm'}\\
+  \nonumber &=& \sum_{n''m''}\sum_{\mu\nu}\sum_{\mu'\nu'}\bqty{A_i^{ {nn''}}\delta_{mm''} - A_i^{ {m''m}}\delta_{nn''}}A_j^{ {*, \nu'\nu}}\delta_{ {\mu\mu'}}\Psi_{n''}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu'}e^{-i(E_\mu - E_\nu)(t-s)}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\\
+  \nonumber &=&\sum_{n''}\sum_{\mu\nu}\sum_{ {\nu'}}A_i^{nn''}A_j^{*, \nu'\nu}\Psi_{n''}^{\mu}\Psi_{m}^{\nu}\Psi_{n'}^{*, \mu}\Psi_{m'}^{*, \nu'}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  &&- \sum_{m''}\sum_{\mu\nu}\sum_{ {\nu'}}A_i^{m''m}A_j^{ {*, \nu'\nu}}\Psi_{n}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu}\Psi_{m'}^{*, \nu'}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  \nonumber &=&\sum_{n''}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{ {nn''}}A_j^{*, \nu'\nu}\Psi_{m}^{\nu}\Psi_{m'}^{*, \nu'}\delta_{ {n'n''}}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  &&- \sum_{m''}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{m''m}A_j^{*, \nu'\nu}\Psi_{m''}^{\nu}\Psi_{m'}^{*, \nu'}\delta_{ {nn'}}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+%  \nonumber &=&\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{nn'}A_j^{*, \nu'\nu}\Psi_{m}^{\nu}\Psi_{m'}^{*, \nu'}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+ % &&- \sum_{ {m''}}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{m''m}A_j^{*, \nu'\nu}\Psi_{m''}^{\nu}\Psi_{m'}^{*, \nu'}\delta_{ {nn'}}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  \nonumber &=&\sum_{n'''m'''}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{nn'}A_j^{*, m'''n'''}\Psi_{n'''}^{ {*, \nu'}}\Psi_{m'''}^{ {\nu}}\Psi_{m}^{ {\nu}}\Psi_{m'}^{*, \nu'}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  &&- \sum_{n'''m'''}\sum_{ {m''}}\sum_{ {\nu}}\sum_{ {\nu'}}A_i^{m''m}A_j^{*, m'''n'''}\Psi_{n'''}^{ {*, \nu'}}\Psi_{m'''}^{ {\nu}}\Psi_{m''}^{\nu}\Psi_{m'}^{*, \nu'}\delta_{ {nn'}}e^{ {i(E_\nu- E_{\nu'})(t-s)}}\\
+  \nonumber &=&\sum_{n'''m'''}\sum_{\nu}\sum_{\nu'}\bqty{A_i^{nn'}A_j^{*, m'''n'''}\Psi_{m}^{\nu}- \sum_{m''}A_i^{m''m}A_j^{*, m'''n'''}\Psi_{m''}^{\nu}\delta_{nn'} }\Psi_{n'''}^{*, \nu'}\Psi_{m'''}^{\nu}\Psi_{m'}^{*, \nu'}e^{i(E_\nu- E_{\nu'})(t-s)}\\
+\end{eqnarray}
+\begin{eqnarray}
+\nonumber  &&\dpbra{nm}\hat{A^\dagger}_ie^{-i\hat{H}_a(t-s)}A_j e^{i\hat{H}_a(t-s)}\dpket{n'm'}\\
+  \nonumber &=& \sum_{n''m''}\sum_{\mu\nu}\sum_{\mu'\nu'}\bqty{A_i^{*, n''n}\delta_{mm''} - A_i^{*, mm''}\delta_{nn''}}A_j^{ {\mu\mu'}}\delta_{ {\nu\nu'}}\Psi_{n''}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu'}e^{-i(E_\mu - E_\nu)(t-s)}e^{i(E_{\mu'} - E_{\nu'})(t-s)}\\
+  \nonumber &=&\sum_{n''}\sum_{\mu\nu}\sum_{ {\mu'}}A_i^{*, n''n}A_j^{\mu\mu'}\Psi_{n''}^{\mu}\Psi_{m}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu}e^{ {-i(E_\mu- E_{\mu'})(t-s)}}\\
+  &&- \sum_{m''}\sum_{\mu\nu}\sum_{ {\mu'}}A_i^{*, mm''}A_j^{\mu\mu'}\Psi_{n}^{\mu}\Psi_{m''}^{\nu}\Psi_{n'}^{*, \mu'}\Psi_{m'}^{*, \nu}e^{ {-i(E_\mu- E_{\mu'})(t-s)}}\\
+  \nonumber &=&\sum_{n''}\sum_{ {\mu}}\sum_{ {\mu'}}A_i^{ {*, n''n}}A_j^{\mu\mu'}\Psi_{n''}^{\mu}\Psi_{n'}^{*, \mu'}\delta_{mm'}e^{ {-i(E_\mu- E_{\mu'})(t-s)}}\\
+  &&- \sum_{m''}\sum_{ {\mu}}\sum_{ {\mu'}}A_i^{*, mm''}A_j^{\mu\mu'}\Psi_{n}^{\mu}\Psi_{n'}^{*, \mu'}\delta_{m'm''}e^{ {-i(E_\mu- E_{\mu'})(t-s)}}\\
+  \nonumber &=&\sum_{n'''m'''}\sum_{n''}\sum_{ {\mu}}\sum_{ {\mu'}}A_i^{ {*, n''n}}A_j^{n'''m'''}\Psi_{n'''}^{*, \mu}\Psi_{m'''}^{\mu'}\Psi_{n''}^{\mu}\Psi_{n'}^{*, \mu'}\delta_{mm'}e^{ {-i(E_\mu- E_{\mu'})(t-s)}}\\
+  &&- \sum_{n'''m'''}\sum_{ {\mu}}\sum_{ {\mu'}}A_i^{*, mm'}A_j^{n'''m'''}\Psi_{n'''}^{*, \mu}\Psi_{m'''}^{\mu'}\Psi_{n}^{\mu}\Psi_{n'}^{*, \mu'}e^{ {-i(E_\mu- E_{\mu'})(t-s)}}\\
+    \nonumber &=&\sum_{n'''m'''}\sum_{ {\mu}}\sum_{ {\mu'}}\bqty{\sum_{n''}A_i^{ {*, n''n}}A_j^{n'''m'''}\Psi_{n''}^{\mu}\delta_{mm'} - A_i^{*, mm'}A_j^{n'''m'''}\Psi_{n}^{\mu}}\Psi_{n'''}^{*, \mu}\Psi_{m'''}^{\mu'}\Psi_{n'}^{*, \mu'}e^{ {-i(E_\mu- E_{\mu'})(t-s)}}\\
+\end{eqnarray}
+まとめると,
+\begin{screen}
+  \begin{eqnarray}
+\nonumber    &&\dpbra{nm}\hat{A}_ie^{-i\hat{H}_a(t-s)}A_j^\dagger e^{i\hat{H}_a(t-s)}\dpket{n'm'}\\
+\nonumber    &=&\sum_{n'''m'''}\sum_{\mu}\sum_{\mu'}\bqty{\sum_{n''}A_i^{nn''}A_j^{*, m'''n'''}\Psi_{n''}^{\mu}\delta_{mm'}- A_i^{m'm}A_j^{*, m'''n'''}\Psi_{n}^{\mu}}\Psi_{n'''}^{*, \mu}\Psi_{m'''}^{\mu'}\Psi_{n'}^{*, \mu'}e^{-i(E_\mu - E_{\mu'})(t-s)}\\\\
+    \nonumber &&\dpbra{nm}\hat{A^\dagger}_ie^{-i\hat{H}_a(t-s)}\tilde{A}_j^\dagger e^{i\hat{H}_a(t-s)}\dpket{n'm'}\\
+\nonumber    &=&\sum_{n'''m'''}\sum_{\nu}\sum_{\nu'}\bqty{A_i^{*, n'n}A_j^{n'''m'''}\Psi_{m}^{\nu}- \sum_{m''}A_i^{*, mm''}A_j^{n'''m'''}\Psi_{m''}^{\nu}\delta_{nn'}}\Psi_{n'''}^{*, \nu'}\Psi_{m'''}^{\nu}\Psi_{m'}^{*, \nu'}e^{i(E_\nu- E_{\nu'})(t-s)}\\\\
+    \nonumber&&\dpbra{nm}\hat{A}_ie^{-i\hat{H}_a(t-s)}\tilde{A}_j e^{i\hat{H}_a(t-s)}\dpket{n'm'}\\
+\nonumber    &=&\sum_{n'''m'''}\sum_{\nu}\sum_{\nu'}\bqty{A_i^{nn'}A_j^{*, m'''n'''}\Psi_{m}^{\nu}- \sum_{m''}A_i^{m''m}A_j^{*, m'''n'''}\Psi_{m''}^{\nu}\delta_{nn'} }\Psi_{n'''}^{*, \nu'}\Psi_{m'''}^{\nu}\Psi_{m'}^{*, \nu'}e^{i(E_\nu- E_{\nu'})(t-s)}\\\\
+\nonumber    &&\dpbra{nm}\hat{A^\dagger}_ie^{-i\hat{H}_a(t-s)}A_j e^{i\hat{H}_a(t-s)}\dpket{n'm'}\\
+    \nonumber &=&\sum_{n'''m'''}\sum_{ {\mu}}\sum_{ {\mu'}}\bqty{\sum_{n''}A_i^{ {*, n''n}}A_j^{n'''m'''}\Psi_{n''}^{\mu}\delta_{mm'} - A_i^{*, mm'}A_j^{n'''m'''}\Psi_{n}^{\mu}}\Psi_{n'''}^{*, \mu}\Psi_{m'''}^{\mu'}\Psi_{n'}^{*, \mu'}e^{ {-i(E_\mu- E_{\mu'})(t-s)}}\\
+  \end{eqnarray}
+\end{screen}
+\textbf{添字が合ってるかとっても心配.}
+
+\section{具体計算 : 摂動項$\calK(t)$}
+我々が計算したいのは
+\begin{eqnarray}
+  \calK(t) &=& \calK_1(t) + \calK_2(t)\\
+\nonumber  \calK_1(t)&=& -\frac{2Vg^2}{(2\pi)^6}\int_{t_0}^tds\int d\bm{k}_1d\bm{k}_2d\bm{k}_3\delta(\bm{k}_1+\bm{k}_2-\bm{k}_3)\\
+  \nonumber  &&\times\Bigl[n_{k_1}n_{k_2}(1+n_{k_3})\Bqty{ e^{i(\omega_{k_1}+\omega_{k_2}  - \omega_{k_3})(t-s)}\hat{A}_1(t)A_1^\dagger(s) - e^{-i(\omega_{k_1}+\omega_{k_2}  - \omega_{k_3})(t-s)}\hat{A}^\dagger_1(t)\tilde{A}_1^\dagger(s) }\\
+    \nonumber  &&-(1+n_{k_1})(1+n_{k_2})n_{k_3}\Bqty{e^{i(\omega_{k_1}+\omega_{k_2}  - \omega_{k_3})(t-s)}\hat{A}_1(t)\tilde{A}_1(s) - e^{-i(\omega_{k_1}+\omega_{k_2}  - \omega_{k_3})(t-s)}\hat{A}^\dagger_1(t)A_1(s) }\Bigr]\\
+  \\
+  \nonumber  \calK_2(t) &=& -\frac{Vg^2}{2(2\pi)^6}\int_{t_0}^tds\int d\bm{k}\Bigl[ n_k^2\Bqty{e^{2i\omega_{k}(t-s)}\hat{A}_2(t)A_2^\dagger(s) - e^{-2i\omega_{k}(t-s)}\hat{A}^\dagger_2(t)\tilde{A}_2^\dagger(s)}\\
+    &&-(1+n_{k})^2\Bqty{e^{2i\omega_{k}(t-s)}\hat{A}_2(t)\tilde{A}_2(s) - e^{-2i\omega_{k}(t-s)}\hat{A}^\dagger_2(t)A_2(s)}\Bigr]
+\end{eqnarray}
+だが, 演算子は全て相互作用描像である. これをSchr\"odinger描像に移して計算するので, $A(s)\rightarrow e^{-i\hat{H}_a(t-s)}Ae^{i\hat{H}_a(t-s)}$として期待値を取る. Schr\"odinger描像に移した期待値の公式は既に上で導出した.
+
+さらにQuantum Master e.q.をマルコフ近似すると$\dket{\rho_a(s)}\rightarrow\dket{\rho_a(t)}$かつ$t_0\rightarrow -\infty$とすればよい. $s$積分は
+\begin{eqnarray}
+  \int_{-\infty}^t ds e^{iW(t-s)} \simeq \pi\delta(W)
+\end{eqnarray}
+\underline{のように計算できる(主値を捨てている)}ことから, $\dpbra{nm}\calK_2(t)\dpket{n'm'}$は
+\begin{eqnarray}
+  &&\dpbra{nm}\calK_2(t)\dpket{n'm'} = -\frac{Vg^2}{2(2\pi)^6}\int d\bm{k}\\
+  \nonumber  &&\times\sum_{n'''m'''}\Bigl[ n_k^2\Bqty{\sum_{n''}A_2^{nn''}A_2^{*, m'''n'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_2^{m'm}A_2^{*, m'''n'''}M_{n'''n}M_{n'm'''}'}\delta(2\omega_k - E_\mu + E_{\mu'})\\
+    \nonumber &&\ \ + n_k^2\Bqty{A_2^{*, n'n}A_2^{n'''m'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_2^{*, mm''}A_2^{n'''m'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}\delta(-2\omega_k + E_\nu - E_{\nu'})\\
+    \nonumber &&- (1 + n_k)^2\Bqty{A_2^{nn'}A_2^{*, m'''n'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_2^{m''m}A_2^{*, m'''n'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}\delta(2\omega_k + E_\nu - E_{\nu'})\\
+   \nonumber&&-(1+n_k)^2\Bqty{\sum_{n''}A_2^{*, n''n}A_2^{n'''m'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_2^{*, mm'}A_2^{n'''m'''}M_{n'''n}M_{n'm'''}'}\delta(-2\omega_k - E_\mu + E_{\mu'})\Bigr]\\
+\end{eqnarray}
+ここで
+\begin{eqnarray}
+  M_{\alpha\beta} &\equiv& \sum_\mu \Psi_\alpha^{*, \mu}\Psi_\beta^{\mu}\hspace{0.5cm}M_{\alpha\beta}' \equiv \sum_{\mu'} \Psi_\alpha^{*, \mu'}\Psi_\beta^{\mu'}\\
+    N_{\alpha\beta} &\equiv& \sum_\nu \Psi_\alpha^{\nu}\Psi_\beta^{\nu}\hspace{0.5cm}N_{\alpha\beta}' \equiv \sum_{\nu'} \Psi_\alpha^{*, \nu'}\Psi_\beta^{*, \nu'}
+\end{eqnarray}
+としている. さらに$\bm{k}$積分を実行する. ここで
+\begin{eqnarray}
+  \int d\bm{k} n_k^2\delta(2\omega_k - E) &=& \int_0^\infty dk\int_0^\pi d\theta \int_0^{2\pi}d\phi k\sin{\theta}n_k^2\delta(k^2 - E) \\
+  &=& \int_0^\pi d\theta \int_0^{2\pi}d\phi \sqrt{E}\theta(E)\sin{\theta}n_k^2\\
+  &=& 4\pi\sqrt{E}\theta(E)n_E^2
+\end{eqnarray}
+であることから
+\begin{eqnarray}
+  R_2(E) \equiv \frac{Vg^2}{8\pi}\theta(E)n_E^2\sqrt{E}\hspace{0.5cm}R_2'(E) \equiv \frac{Vg^2}{8\pi}\theta(E)(1 + n_E)^2\sqrt{E}
+\end{eqnarray}
+とする. スターの位置に注意. ここで$\theta(E)$は階段関数. これを用いると
+\begin{eqnarray}
+  \nonumber &&\dpbra{nm}\calK_2(t)\dpket{n'm'} =\\
+  \nonumber &&\sum_{n'''m'''}\Bigl[-\Bqty{\sum_{n''}A_2^{nn''}A_2^{*, m'''n'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_2^{m'm}A_2^{*, m'''n'''}M_{n'''n}M_{n'm'''}'}R_2(E_\mu - E_{\mu'})\\
+    \nonumber &&- \Bqty{A_2^{*, n'n}A_2^{n'''m'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_2^{*, mm''}A_2^{n'''m'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_2(E_\nu - E_{\nu'})\\
+    \nonumber &&+ \Bqty{A_2^{nn'}A_2^{*, m'''n'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_2^{m''m}A_2^{*, m'''n'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_2'(-E_\nu + E_{\nu'})\\
+   \nonumber&&+\Bqty{\sum_{n''}A_2^{*, n''n}A_2^{n'''m'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_2^{*, mm'}A_2^{n'''m'''}M_{n'''n}M_{n'm'''}'}R_2'(- E_\mu + E_{\mu'})\Bigr]\\\label{K1}
+\end{eqnarray}
+\textbf{符号が合ってるかどうかとても心配.}
+
+さらに$\dpbra{nm}\calK_1(t)\dpket{n'm'}$を計算する前に\underline{積分公式を導出しておく}:
+\begin{eqnarray}
+  I(E) &=& \int d\bm{k}_1d\bm{k}_2d\bm{k}_3\delta(\bm{k}_1+\bm{k}_2-\bm{k}_3)\delta(\omega_{k_1} + \omega_{k_2} - \omega_{k_3} + E)a(\omega_{k_1})b(\omega_{k_2})c(\omega_{k_3})\\
+  &=& 8\pi^2\int_0^\infty d\omega_1\int_{\frac{E_2}{4\omega_1}}^\infty d\omega_2 a(\omega_1)b(\omega_2)c(\omega_1 + \omega_2 + E)
+\end{eqnarray}
+となる. これ以上は$a, b, c$の具体形が必要. これを用いると(\ref{K1})の添字を$2\rightarrow1$にしたものと同様. ただし:
+\begin{eqnarray}
+  R_1(E) &=& \frac{Vg^2}{4\pi^3}\int_0^\infty d\omega_1\int_{\frac{E^2}{4\omega_1}}^\infty d\omega_2 n_{\omega_1}n_{\omega_2}(1 + n_{\omega_1 + \omega_2 + E})\\
+  R_1'(E) &=& \frac{Vg^2}{4\pi^3}\int_0^\infty d\omega_1\int_{\frac{E^2}{4\omega_1}}^\infty d\omega_2 (1 + n_{\omega_1})(1 + n_{\omega_2})n_{\omega_1 + \omega_2 + E}
+\end{eqnarray}
+とする. つまり解くべき方程式は
+\begin{eqnarray}
+  i\dv{t}\rho_a^{nm}(t) &=& \sum_{n'm'}\bqty{\sum_{\mu\nu}\pqty{E_\mu - E_\nu}\Psi_{n}^{*, \mu}\Psi_{m}^{*, \nu}\Psi_{n'}^{\mu}\Psi_{m'}^{\nu} + i\dpbra{nm}\hat{\calK}(t)\dpket{n'm'}}\rho_a^{n'm'}(t)\\
+  &\equiv& \sum_{n'm'} L^{nm, n'm'}\rho_a^{n'm'}(t)\label{Master2}
+\end{eqnarray}
+である. ただし
+\begin{eqnarray}
+  &&L^{nm, n'm'} = \sum_{\mu\nu}\pqty{E_\mu - E_\nu}\Psi_{n}^{*, \mu}\Psi_{m}^{*, \nu}\Psi_{n'}^{\mu}\Psi_{m'}^{\nu} \\
+  &&+\sum_{i = 1, 2}\sum_{n'''m'''}\Bigl[\nonumber -\Bqty{\sum_{n''}A_i^{nn''}A_i^{*, m'''n'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_i^{m'm}A_i^{*, m'''n'''}M_{n'''n}M_{n'm'''}'}R_i(E_\mu - E_{\mu'})\\
+    \nonumber &&- \Bqty{A_i^{*, n'n}A_i^{n'''m'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_i^{*, mm''}A_i^{n'''m'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_i(E_\nu - E_{\nu'})\\
+    \nonumber &&+ \Bqty{A_i^{nn'}A_i^{*, m'''n'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_i^{m''m}A_i^{*, m'''n'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_i'(-E_\nu + E_{\nu'})\\
+   \nonumber&&+\Bqty{\sum_{n''}A_i^{*, n''n}A_i^{n'''m'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_i^{*, mm'}A_i^{n'''m'''}M_{n'''n}M_{n'm'''}'}R_i'(- E_\mu + E_{\mu'})\Bigr]\\\label{L}
+\end{eqnarray}
+\section{数値計算へ向けて}
+期待値の計算のためにQuantum Master e.q.(\ref{Master2})を解いて密度行列$\rho_a$を得るのがひとまずの目的. これが得られればいろんな物理量の計算ができる. (\ref{Master2})のエッセンスは$L^{nm, n'm'}$にある. $L^{nm, n'm'}$を数値計算においてどのように表現するかをまとめる.
+\subsection{$E_\mu\cdot E_\nu$}
+$\ket{\mu},\ \ket{\nu}$は$H_a$のエネルギー固有状態として定義されている:
+\begin{eqnarray}
+  H_a\ket{\mu} = E_\mu\ket{\mu},\hspace{0.5cm}\tilde{H}_a\ket{\nu} = E_\nu\ket{\nu}
+\end{eqnarray}
+$\ket{\nu}$はチルダハミルトニアンの固有状態というだけで, 実質ノンチルダとモノに変わりはない. ということで, これを$\varphi_{\rm ex},\ \varphi_{\rm ex}^\dagger$の粒子数状態で行列表示する:
+\begin{eqnarray}
+  \sum_m\pbra{n}H_a\pket{m}(m\ket{\mu} &=& E_\mu(n\ket{\mu}\\
+\Longleftrightarrow  \sum_m\pbra{n}H_a\pket{m}\Psi_m^\mu &=& E_\mu\Psi_n^\mu
+\end{eqnarray}
+これをLapackで解けば$\Psi, E$のセットが得られる.
+\subsection{$A_i^{nm}$}
+$i = 1, 2$のみなので具体的に計算してみる:
+\begin{eqnarray}
+  A_1^{nm} &=& \pbra{n}A_1\pket{m} = \pbra{n}\varphi_0\pket{m} = \sqrt{m}(n|m-1) = \sqrt{m}\delta_{n, m-1}\\
+  A_2^{nm} &=& \pbra{n}A_2\pket{m} = \pbra{n}\varphi_0^2\pket{m} = \sqrt{m(m-1)}(n|m-2) = \sqrt{m(m-1)}\delta_{n, m-2}\\
+  A_2^{*, nm} &=& \pqty{A_2^{nm}}^* = A_2^{nm}
+\end{eqnarray}
+とても簡単になる.
+\subsection{$N_{nm}\cdot N_{nm}'$}
+\begin{eqnarray}
+  N_{nm} = \sum_\nu\Psi_n^\nu\Psi_m^\nu
+\end{eqnarray}
+なので$\Psi$のセットがあれば自明.
+\subsection{$R_i$}
+$R_1, R_2$共に$n_k$が必要. $n_k$の定義は
+\begin{eqnarray}
+  n_k\delta(\bm{k} - \bm{k}') = \ev{b_{\bm{k}}b_{\bm{k}}^\dagger}
+\end{eqnarray}
+であり, $H_R$は$\varphi_{\rm ex}$の2次なので対角化可能. 系の時間発展に対して変化が少ない過程をしているので熱平衡状態にあると考えて良い:
+\begin{eqnarray}
+  n_k = \frac{1}{e^{\beta\omega_k'}-1}\delta(\bm{k} - \bm{k}')
+\end{eqnarray}
+一様系では
+\begin{eqnarray}
+  \omega_k' = \sqrt{\frac{\hbar^2k^2}{2m}\pqty{\frac{\hbar^2k^2}{2m} + 2gn_0}}
+\end{eqnarray}
+であることを利用して
+\begin{eqnarray}
+ && n_E = \frac{1}{e^{\beta\omega_E'}-1}\hspace{0.5cm}\omega_E' = \sqrt{\frac{\hbar^2E}{2m}\pqty{\frac{\hbar^2E}{2m} + 2gn_0}}\\
+  &&n_{\omega_1 + \omega_2 + E} = \frac{1}{e^{\beta\omega'}-1}\hspace{0.5cm}\omega' = \sqrt{\frac{\hbar^2(\frac{\omega_1 + \omega_2}{2}+E)}{2m}\pqty{\frac{\hbar^2(\frac{\omega_1 + \omega_2}{2}+E)}{2m} + 2gn_0}}
+\end{eqnarray}
+とすることができる. また$\xi^2 = n_0$より$n_0$はTDGP方程式により決定される. つまり, $\xi$の時間発展は密度行列の時間発展とは別の枠組みで与えられていることになる. TDGPに量子補正を加えるべきかどうかはわからない. 量子補正を入れると自己無撞着の計算がとてもめんどくさくなる. 今のところ, ゼロモードはDepletionに影響を与えない(比熱は影響を受ける)という結論なので, 補正無しのTDGPでもよい気がする.
+
+ちなみに今回は$\xi$は時間発展しないものとしているのであしからず. 
+\section{$L^{nm,n'm'}$の整理}
+以上の結論から$L^{nm,n'm'}$を整理する. (\ref{L})の第二項の和を$i = 1, 2$それぞれついて計算する.
+
+i = 1について:
+\begin{eqnarray}
+  &&\sum_{n'''m'''}\Bigl[\nonumber -\Bqty{\sum_{n''}A_1^{nn''}A_1^{*, m'''n'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_1^{m'm}A_1^{*, m'''n'''}M_{n'''n}M_{n'm'''}'}R_1(E_\mu - E_{\mu'})\\
+    \nonumber &&- \Bqty{A_1^{*, n'n}A_1^{n'''m'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_1^{*, mm''}A_1^{n'''m'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_1(E_\nu - E_{\nu'})\\
+    \nonumber &&+ \Bqty{A_1^{nn'}A_1^{*, m'''n'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_1^{m''m}A_1^{*, m'''n'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_1'(-E_\nu + E_{\nu'})\\
+    \nonumber&&+\Bqty{\sum_{n''}A_1^{*, n''n}A_1^{n'''m'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_1^{*, mm'}A_1^{n'''m'''}M_{n'''n}M_{n'm'''}'}R_1'(- E_\mu + E_{\mu'})\Bigr]\\
+  \\
+  &=&\sum_{n'''m'''}\Bigl[\nonumber -\Bqty{\sum_{n''}\sqrt{n''}\delta_{n, n''-1}\sqrt{n'''}\delta_{m''', n'''-1}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - \sqrt{m}\delta_{m', m-1}\sqrt{n'''}\delta_{m''', n'''-1}M_{n'''n}M_{n'm'''}'}\\
+    \nonumber&&\hspace{14cm}\times R_1(E_\mu - E_{\mu'})\\
+    \nonumber &&- \Bqty{\sqrt{n}\delta_{n', n-1}\sqrt{m'''}\delta_{n''', m'''-1}N_{mm'''}N_{n'''m'}' - \sum_{m''}\sqrt{m''}\delta_{m, m''-1}\sqrt{m'''}\delta_{n''', m'''-1}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}\\
+    \nonumber&&\hspace{14cm}\times R_1(E_\nu - E_{\nu'})\\
+    \nonumber &&+ \Bqty{\sqrt{n'}\delta_{n, n'-1}\sqrt{n'''}\delta_{m''', n'''-1}N_{mm'''}N_{n'''m'}' - \sum_{m''}\sqrt{m}\delta_{m'', m-1}\sqrt{n'''}\delta_{m''', n'''-1}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}\\
+    \nonumber&&\hspace{14cm}\times R_1'(-E_\nu + E_{\nu'})\\
+    \nonumber&&+\Bqty{\sum_{n''}\sqrt{n}\delta_{n'', n-1}\sqrt{m'''}\delta_{n''', m'''-1}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - \sqrt{m'}\delta_{m, m'-1}\sqrt{m'''}\delta_{n''', m'''-1}M_{n'''n}M_{n'm'''}'}\\
+    \nonumber&&\hspace{14cm}\times R_1'(- E_\mu + E_{\mu'})\Bigr]\\
+  \\
+  &=&\sum_{\ell }\Bigl[\nonumber -\sum_{\mu\mu'}\Bqty{ \sqrt{n+1}\sqrt{\ell }\delta_{mm'}M_{\ell , n+1}M_{n', \ell -1}' -  \sqrt{m}\delta_{m', m-1}\sqrt{\ell }M_{\ell n}M_{n', \ell -1}'}R_1(E_\mu - E_{\mu'})\\
+    \nonumber &&- \sum_{\nu\nu'}\Bqty{ \sqrt{n}\delta_{n', n-1}\sqrt{\ell +1}N_{m, \ell +1}N_{\ell m'}' -  \sqrt{m+1}\sqrt{\ell +1}\delta_{nn'}N_{m+1, \ell +1}N_{\ell m'}'}R_1(E_\nu - E_{\nu'})\\
+    \nonumber &&+ \sum_{\nu\nu'}\Bqty{ \sqrt{n'}\delta_{n, n'-1}\sqrt{\ell }N_{m, \ell -1}N_{\ell m'}' -  \sqrt{m}\sqrt{\ell }\delta_{nn'}N_{m-1, \ell -1}N_{\ell m'}'}R_1'(-E_\nu + E_{\nu'})\\
+    \nonumber&&+\sum_{\mu\mu'}\Bqty{ \sqrt{n}\sqrt{\ell +1}\delta_{mm'}M_{\ell , n-1}M_{n', \ell +1}' -  \sqrt{m'}\delta_{m, m'-1}\sqrt{\ell +1}M_{\ell n}M_{n'\ell +1}'}R_1'(- E_\mu + E_{\mu'})\Bigr]\\
+\end{eqnarray}
+$L^{nm, n'm'}$内の$n''m'', n'''m'''$和は$\ell$のみにまとまった. またここでは$MN, M'N'$に含まれていた$\mu\nu, \mu'\nu'$の和を露わに書き直した.
+
+i = 2について:
+\begin{eqnarray}
+  &&\sum_{n'''m'''}\Bigl[\nonumber -\Bqty{\sum_{n''}A_2^{nn''}A_2^{*, m'''n'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_2^{m'm}A_2^{*, m'''n'''}M_{n'''n}M_{n'm'''}'}R_2(E_\mu - E_{\mu'})\\
+    \nonumber &&- \Bqty{A_2^{*, n'n}A_2^{n'''m'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_2^{*, mm''}A_2^{n'''m'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_2(E_\nu - E_{\nu'})\\
+    \nonumber &&+ \Bqty{A_2^{nn'}A_2^{*, m'''n'''}N_{mm'''}N_{n'''m'}' - \sum_{m''}A_2^{m''m}A_2^{*, m'''n'''}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_2'(-E_\nu + E_{\nu'})\\
+    \nonumber&&+\Bqty{\sum_{n''}A_2^{*, n''n}A_2^{n'''m'''}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - A_2^{*, mm'}A_2^{n'''m'''}M_{n'''n}M_{n'm'''}'}R_2'(- E_\mu + E_{\mu'})\Bigr]\\
+  \\
+  %&&\sum_{n'''m'''}\Bigl[\nonumber -\Bqty{\sum_{n''}\sqrt{n''(n''-1)}\delta_{n, n''-2}\sqrt{n'''(n'''-1)}\delta_{m''', n'''-2}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - \sqrt{m(m-1)}\delta_{m', m-2}\sqrt{n'''(n'''-1)}\delta_{m''', n'''-2}M_{n'''n}M_{n'm'''}'}R_2(E_\mu - E_{\mu'})\\
+   % \nonumber &&- \Bqty{\sqrt{n(n-1)}\delta_{n', n-2}\sqrt{m'''(m'''-1)}\delta_{n''', m'''-2}N_{mm'''}N_{n'''m'}' - \sum_{m''}\sqrt{m''(m''-1)}\delta_{m, m''-2}\sqrt{m'''(m'''-1)}\delta_{n''', m'''-2}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_2(E_\nu - E_{\nu'})\\
+    %\nonumber &&+ \Bqty{\sqrt{n'(n'-1)}\delta_{n, n'-2}\sqrt{n'''(n'''-1)}\delta_{m''', n'''-2}N_{mm'''}N_{n'''m'}' - \sum_{m''}\sqrt{m(m-1)}\delta_{m'', m-2}\sqrt{n'''(n'''-1)}\delta_{m''', n'''-2}\delta_{nn'}N_{m''m'''}N_{n'''m'}'}R_2'(-E_\nu + E_{\nu'})\\
+    %\nonumber&&+\Bqty{\sum_{n''}\sqrt{n(n-1)}\delta_{n'', n-2}\sqrt{m'''(m'''-1)}\delta_{n''', m'''-2}\delta_{mm'}M_{n'''n''}M_{n'm'''}' - \sqrt{m'(m'-1)}\delta_{m, m'-2}\sqrt{m'''(m'''-1)}\delta_{n''', m'''-2}M_{n'''n}M_{n'm'''}'}R_2'(- E_\mu + E_{\mu'})\Bigr]\\
+%    \\
+  &&\sum_{\ell }\Bigl[\nonumber -\sum_{\mu\mu'}\Bqty{\sqrt{(n+2)(n+1)}\sqrt{\ell (\ell -1)}\delta_{mm'}M_{\ell, n+2}M_{n', \ell -2}' - \sqrt{m(m-1)}\delta_{m', m-2}\sqrt{\ell (\ell -1)}M_{\ell, n}M_{n', \ell -2}'}\\
+    \nonumber&&\hspace{14cm}\times R_2(E_\mu - E_{\mu'})\\
+    \nonumber &&- \sum_{\nu\nu'}\Bqty{\sqrt{n(n-1)}\delta_{n', n-2}\sqrt{(\ell +2)(\ell +1)}N_{m, \ell +2}N_{\ell m'}' - \sqrt{(m+2)(m+1)}\sqrt{m'''(m'''-1)}\delta_{nn'}N_{m+2, \ell +2}N_{\ell m'}'}\\
+    \nonumber&&\hspace{14cm}\times R_2(E_\nu - E_{\nu'})\\
+    \nonumber &&+ \sum_{\nu\nu'}\Bqty{\sqrt{n'(n'-1)}\delta_{n, n'-2}\sqrt{\ell (\ell -1)}N_{m, \ell -2}N_{\ell m'}' - \sqrt{m(m-1)}\sqrt{\ell (\ell -1)}\delta_{nn'}N_{m-2, \ell -2}N_{\ell m'}'}\\
+    \nonumber&&\hspace{14cm}\times R_2'(-E_\nu + E_{\nu'})\\
+    \nonumber&&+\sum_{\mu\mu'}\Bqty{\sqrt{n(n-1)}\sqrt{(\ell +2)(\ell +1)}\delta_{mm'}M_{\ell , n-2}M_{n', \ell +2}' - \sqrt{m'(m'-1)}\delta_{m, m'-2}\sqrt{(\ell +2)(\ell +1)}M_{\ell n}M_{n', \ell +2}'}\\
+    \nonumber&&\hspace{14cm}\times R_2'(- E_\mu + E_{\mu'})\Bigr]\\
+\end{eqnarray}
+$R_i$はシンプソン積分でいける.
+

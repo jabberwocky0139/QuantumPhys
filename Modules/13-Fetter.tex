@@ -1,0 +1,629 @@
+
+\chapter{Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}
+ちゃんと式まで書いて説明しているところもあれば, 原文の式番号だけ書いて済ませているところもあります. 原文の補助に過ぎないものだと思ってください. 
+\section{Second Quantization}
+だいたい知っていると思うので, Fetterの流儀を知るために簡単におさらいするに留める.
+\subsection{Fields}
+生成消滅演算子の線型結合について:
+\begin{eqnarray}
+  \hat{\psi}(\bm{x}) &\equiv& \sum_k\psi_k(\bm{x})c_k\label{2nd-quantum1}\\
+  \hat{\psi}^\dagger(\bm{x}) &\equiv& \sum_k\psi_k^\dagger(\bm{x})c^\dagger_k\label{2nd-quantum2}
+\end{eqnarray}
+展開係数は一粒子波動関数で完全系による展開だと思えば良い\footnote{原書は ``complete set of single-particle quantum numbers'' とある. $\psi$がハミルトニアンの固有関数ならエネルギー固有関数による完全系であるし, 運動量演算子の固有関数なら運動量固有関数の完全系で展開ということになる. `` quantum numbers'' はここで言えばエネルギーか運動量か, みたいな話. }. ここで$\psi$はスピンについてのdoubletであり, $k$はなんかしらのquantum number\footnote{繰り返しになるが, 例えば主量子数・方位量子数・磁気量子数で$\bm{k} = (n, l, m)$みたいなのはよくあるよね. }:
+\begin{eqnarray}
+  \psi_k(\bm{x}) =
+  \begin{pmatrix}
+    \psi_{k1}(\bm{x})\\
+    \psi_{k2}(\bm{x})
+  \end{pmatrix}
+  \equiv \psi_{k\alpha}(\bm{x}) & (\alpha = 1, 2)
+\end{eqnarray}
+$\alpha$はスピンのインデックス. $\hat{\psi}, \hat{\psi}^\dagger$は場の演算子と呼ばれる. 場の演算子は生成消滅演算子を含んでいるのでFock空間の演算子である. 場の演算子は正準交換関係を満たす:
+\begin{eqnarray}
+  \qty[\hat{\psi}_\alpha(\bm{x}), \hat{\psi}_\beta^\dagger(\bm{x}')]_{\mp} &=& \delta_{\alpha\beta}\delta(\bm{x} - \bm{x}')\\
+  \qty[\hat{\psi}_\alpha(\bm{x}), \hat{\psi}_\beta(\bm{x}')]_{\mp} &=&\qty[\hat{\psi}^\dagger_\alpha(\bm{x}), \hat{\psi}^\dagger_\beta(\bm{x}')]_{\mp} = 0
+\end{eqnarray}
+$-$がボソン, $+$がフェルミオンである. 上の式はこれは生成消滅演算子の正準交換関係から得られ, 下の式は波動関数の完全性から得られる.
+
+ハミルトニアンは場の演算子を用いて以下のように書き直せる:
+\begin{eqnarray}
+  \hat{H} = \int d\bm{x} \hat{\psi}^\dagger(\bm{x})T(\bm{x})\hat{\psi}(\bm{x}) + \frac{1}{2}\int\int d\bm{x}d\bm{x}' \hat{\psi}^\dagger(\bm{x})\hat{\psi}^\dagger(\bm{x}')V(\bm{x}, \bm{x}')\hat{\psi}(\bm{x}')\hat{\psi}(\bm{x})
+\end{eqnarray}
+$T(\bm(x))$はkinetic energy term. これがなぜハミルトニアンと呼んでよいかは山中先生の資料を参照のこと\footnote{(\ref{2nd-quantum1})(\ref{2nd-quantum2})をハミルトニアンの定義に代入すると多体量子力学のハミルトニアンが再現できる. }.
+
+ここで一般的な一体演算子\footnote{Green関数・相関関数のような2体関数でないという意味}を考える:
+\begin{eqnarray}
+  J = \sum_{i = 0}^NJ(\bm{x_i})
+\end{eqnarray}
+なんかしらの演算子$J(\bm{x_i})$の線型結合として定義された第一量子化\footnote{第二量子化ではないというニュアンス. 第一量子化という言葉が的確かどうかは知らない. }された演算子. これを第二量子化の表示に移すと以下のようになる\footnote{(\ref{2nd-quantum3})は少々雑な議論っぽい. 運動量演算子を第二量子化したときのアナロジーが根拠か？ いずれにしろ, 変換のgeneratorとして定義するほうが筋が通っているように思える. 第二量子化は場の理論よりも不完全である. }:
+\begin{eqnarray}
+  \hat{J} &=& \sum_{rs}\bra{r}J\ket{s}c_r^\dagger c_s\label{2nd-quantum3}\\
+  &=& \int d\bm{x}\sum_{rs}\hat{\psi}^\dagger_r(\bm{x})J(\bm{x})\hat{\psi}_s(\bm{x})c_r^\dagger c_s\\
+  &=& \int d\bm{x}\hat{\psi}^\dagger(\bm{x})J(\bm{x})\hat{\psi}(\bm{x})
+\end{eqnarray}
+以降Fetterの本では第二量子化の際はこの(\ref{2nd-quantum3})を使う. その是非はともかくとして. 
+
+\section{Green's Functions}
+このセクションではGreen関数\footnote{propagatorとかも呼ばれる}のコンセプトについて紹介する. Green関数は多体問題の取り扱いの上で重要な働きをする. 以下描像を明確にするために原書にはない添字$S, H$をつける. 
+\subsection{Definition}
+Green関数の定義は以下の通り:
+\begin{eqnarray}
+  iG_{\alpha\beta}(\bm{x}, t;\bm{x}', t') = \frac{\!_H\bra{\Psi_0}T\qty[\hat{\psi}_{H\alpha}(\bm{x}t)\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')]\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H}\label{definition-green}
+\end{eqnarray}
+$\ket{\Psi_0}_H$は相互作用系のHeisenberg Full Hamiltonianの基底固有状態:
+\begin{eqnarray}
+  H_H\ket{\Psi_0}_H = E\ket{\Psi_0}_H 
+\end{eqnarray}
+$\hat{\psi}_{H\alpha}(\bm{x}t)$はHeisenberg描像の時間依存演算子:
+\begin{eqnarray}
+  \hat{\psi}_{H\alpha}(\bm{x}t) = e^{i\hat{H_H}t/\hbar}\hat{\psi}_{S\alpha}(\bm{x})e^{-i\hat{H_H}t/\hbar}
+\end{eqnarray}
+$\alpha\beta$は場の演算子の内部自由度であり, 今回はスピン1/2のフェルミオンを考える. T積の部分を書き下すと
+\begin{eqnarray}
+  T\qty[\hat{\psi}_{H\alpha}(\bm{x}t)\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')] =
+  \begin{cases}
+    \hat{\psi}_{H\alpha}(\bm{x}t)\hat{\psi}_{H\beta}^\dagger(\bm{x}'t') & (t > t')\\
+    \pm\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')\hat{\psi}_{H\alpha}(\bm{x}t) & (t < t')
+  \end{cases}
+\end{eqnarray}
+ここで符号が$+$ならボソン, $-$ならフェルミオン. つまるところ, T積は時間順序通りに演算子を並べ替えて, 演算子を入れ替えた回数を$P$とするとき, 先頭に$(-1)^P$を付ければ良い\footnote{もちろんフェルミオンの場合. ボソンの場合は$(-1)^P$因子はいらない}. というわけで, (\ref{definition-green})をexplicitに書き直すと
+\begin{eqnarray}
+  iG_{\alpha\beta}(\bm{x}, t;\bm{x}', t') =
+  \begin{cases}
+    \cfrac{\!_H\bra{\Psi_0}\hat{\psi}_{H\alpha}(\bm{x}t)\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} & (t > t')\\
+    \pm\cfrac{\!_H\bra{\Psi_0}\hat{\psi}_{H\beta}^\dagger(\bm{x}'t')\hat{\psi}_{H\alpha}(\bm{x}t)\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} & (t < t')
+  \end{cases}
+    \label{definition-green2}
+\end{eqnarray}
+Green関数というのは$(\bm{x}, t), (\bm{x}', t)$にある場の演算子の期待値である\footnote{だから2点関数とか2点相関関数とかも呼ばれる}. $\ket{\Psi_0}_H$がHeisenberg Full Hamiltonianであることから演算子をSchr\"odinger描像に書き換えると
+\begin{eqnarray}
+  iG_{\alpha\beta}(\bm{x}, t;\bm{x}', t') =
+  \begin{cases}
+    e^{iE(t-t')/\hbar}\cfrac{\!_H\bra{\Psi_0}\hat{\psi}_{S\alpha}(\bm{x})e^{-i\hat{H}_H(t-t')}\hat{\psi}_{S\beta}^\dagger(\bm{x}')\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} & (t > t')\\
+    \pm e^{-iE(t-t')/\hbar}\cfrac{\!_H\bra{\Psi_0}\hat{\psi}_{S\beta}^\dagger(\bm{x}')e^{i\hat{H}_H(t-t')}\hat{\psi}_{S\alpha}(\bm{x})\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} & (t < t')
+  \end{cases}
+    \label{definition-green3}
+\end{eqnarray}
+\subsection{Relation to Observables}
+Green関数を勉強する理由はいくらかあって, そのひとつはFeynman diagramである. Feynman ruleで摂動計算をするときに場の演算子の積よりもGreen関数で表現するほうがシンプルになる. また, (\ref{definition-green})は基底固有関数で期待値を取っているため基底状態の情報がいくらか失われているのだが, 依然として興味深いオブザーバブルの特徴を保有している:
+\begin{itemize}
+\item 基底状態における様々な一粒子演算子の期待値
+\item 基底エネルギー
+\item スペクトラム
+\end{itemize}
+3つ目はLehmann表示で扱う\footnote{山中先生によれば, もともとは梅沢・亀淵・Lehmann表示と呼ばれていたらしい. 最近は普通にスペクトラム表示とか言う. }. 以下では上2つについて説明する.
+
+まず一粒子演算子を考える:
+\begin{eqnarray}
+  \hat{J}_S &=& \int d\bm{x} {\cal \hat{J}}_S(\bm{x})\\
+  \hat{{\cal J}}_S(\bm{x}) &=& \sum_{\alpha\beta}\hat{\psi}_{\beta S}^\dagger(\bm{x})J_{\beta\alpha}(\bm{x})\hat{\psi}_{\alpha S}(\bm{x})
+\end{eqnarray}
+$\hat{J}$は第二量子化された演算子. $J_{\beta\alpha}$は密度に関する第一量子化演算子であり$\hat{{\cal J}}$はそれを第二量子化したもの. $\ev{\hat{\cal{J}}(\bm{x})}$について:
+\begin{eqnarray}
+  \ev{\hat{\cal J}(\bm{x})} &=& \frac{\!_H\bra{\Psi_0}\hat{\cal J}(\bm{x})\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} \\
+  &=& \lim_{\bm{x}'\rightarrow\bm{x}}\sum_{\alpha\beta}J_{\beta\alpha}\frac{\!_H\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(\bm{x}')\hat{\psi}_{\alpha S}(\bm{x})\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} \\
+  &=& \lim_{t'\rightarrow t^+}\lim_{\bm{x}'\rightarrow\bm{x}}\sum_{\alpha\beta}J_{\beta\alpha}\frac{\!_H\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(\bm{x}')e^{-i\hat{H}_H(t-t')/\hbar}\hat{\psi}_{\alpha S}(\bm{x})\ket{\Psi_0}_H}{\!_H\bra{\Psi_0}\ket{\Psi_0}_H} \\
+  &=& \pm i\lim_{t'\rightarrow t^+}\lim_{\bm{x}'\rightarrow\bm{x}}\sum_{\alpha\beta}J_{\beta\alpha}G_{\alpha\beta}(\bm{x}, t; \bm{x}', t')\label{before-trace}\\
+  &=& \pm i\lim_{t'\rightarrow t^+}\lim_{\bm{x}'\rightarrow\bm{x}}\Tr\qty[J(\bm{x})G(\bm{x}, t; \bm{x}', t')]
+\end{eqnarray}
+2行目で$\bm{x}'$を登場させたり, 3行目に$\hat{1} = \lim_{t'\rightarrow t^+}e^{-iH_H(t - t')/\hbar}$を持ってきたりしたのは全てGreen関数に帰着させるためのテクニック. $G, J$は
+\begin{eqnarray}
+    G(\bm{x}) =
+  \begin{pmatrix}
+    G_{\uparrow\uparrow} & G_{\uparrow\downarrow}\\
+    G_{\downarrow\uparrow} & G_{\downarrow\downarrow}
+  \end{pmatrix} &  J(\bm{x}) =
+  \begin{pmatrix}
+    J_{\uparrow\uparrow} & J_{\uparrow\downarrow}\\
+    J_{\downarrow\uparrow} & J_{\downarrow\downarrow}
+  \end{pmatrix}
+\end{eqnarray}
+みたいな二階テンソル. これの積のトレースを取ると(\ref{before-trace})みたいになる. これが$J_{\alpha\beta}$ではなく$J_{\beta\alpha}$という表式にした理由.
+
+例えば運動エネルギーの第一量子化は
+\begin{eqnarray}
+  P = -\frac{\hbar^2}{2m}\nabla^2
+\end{eqnarray}
+であり, これを第二量子化する:
+\begin{eqnarray}
+  \hat{P} &=& \int d\bm{x} \hat{{\cal P}}(\bm{x})\\
+  \hat{{\cal P}}(\bm{x}) &=& \sum_{\alpha\beta}\hat{\psi}^\dagger_\beta(\bm{x})P_{\beta\alpha}\hat{\psi}_\alpha(\bm{x})\\
+  \ev{P} &=& \pm i\int d\bm{x}'\lim_{\bm{x}' \rightarrow \bm{x}}\qty[-\frac{\hbar^2\nabla^2}{2m}\Tr G(\bm{x}t, \bm{x}'t^+)]
+\end{eqnarray}
+...工事中...
+\subsection{Example : Free Fermion}
+\subsection{Lehmann Representation}
+この章ではフェルミオンについてのみ議論する. 状態が規格化されているものとするとGreen関数の定義は
+\begin{eqnarray}
+  iG_{\alpha\beta}(\bx t;\bx' t') = \!_H\bra{\Psi_0}T\qty[\psi_{H\alpha}(\bx t)\psi_{H\beta}^\dagger(\bx't)]\ket{\Psi_0}_H
+\end{eqnarray}
+Heisenberg描像の演算子と状態はかなり複雑だが, 面白くかつ一般的な結果を導くことができる. まず$\qty{\ket{\Psi}}$完全系を挿入:
+\begin{eqnarray}
+\nonumber  iG_{\alpha\beta}(\bx t;\bx' t') = \sum_n\Big\{\theta(t-t')\bra{\Psi_0}\hat{\psi}_{\alpha H}(\bx t)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta H}(\bx't')\ket{\Psi_0}\\
+    -\theta(t'-t)\bra{\Psi_0}\hat{\psi}^\dagger_{\beta H}(\bx' t')\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha H}(\bx t)\ket{\Psi_0}\Big\}
+\end{eqnarray}
+さらにSchr\"odinger描像とHeisenberg描像の変換
+\begin{eqnarray}
+  \hat{O}_H(t) = e^{iH_Ht/\hbar}\hat{O}_Se^{-iH_Ht/\hbar}
+\end{eqnarray}
+を用いて場の演算子を変換するとエネルギー固有値がくくり出せる:
+\begin{eqnarray}
+\nonumber    iG_{\alpha\beta}(\bx t;\bx' t') = \sum_n\Big\{\theta(t-t')e^{-i(E_n-E)(t-t')/\hbar}\bra{\Psi_0}\hat{\psi}_{\alpha S}(\bx)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(\bx')\ket{\Psi_0}\\
+    -\theta(t'-t)e^{i(E_n-E)(t-t')/\hbar}\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(\bx')\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha S}(\bx)\ket{\Psi_0}\Big\}
+\end{eqnarray}
+ここで, $\bra{\Psi_n}\hpsi\ket{\Psi_0}$について少し考えてみる. もし$\ket{\Psi_0}$が$N$個の粒子を含んでいる状態ならば, $\hpsi\ket{\Psi_0}$は$N-1$個の粒子を含む状態になるので, $\bra{\Psi_n}\hpsi\ket{\Psi_0}$が値を持つためには$\bra{\Psi_n}$が$N-1$個の粒子を含む状態でなければならない. 同様の議論から$\bra{\Psi_n}\hpsi^\dagger\ket{\Psi_0}$が値を持つためには$\ket{\Psi_n}$は$N+1$個の粒子を含む状態でなければならない. よって, $\ket{\Psi_n}$は$N\pm1$個の粒子を持つ状態である\footnote{この議論だと, 第一励起状態$\ket{\Psi_1}$, 第二励起状態$\ket{\Psi_2}$, 第三励起状態$\ket{\Psi_3}$...は全て$N\pm1$個の粒子を持つことになる. 基底だけ$N$個で残りの励起状態は全て$N\pm1$というのは少し不自然に感じる. いくらか理由を考える余地はあるが, まだ納得できる答えを持っていません. 少なくともそういう状況でなければGreen関数は値を持つことができない. }. さらに言うと, これは$\ket{\Psi_n}$が粒子数固有状態でなければならないので, BEC系のような粒子数が揺らぐ系では議論が破綻することに注意. これが, 今回Fermion系のみを考える理由である. 
+
+ここまでの話は$\hat{H}_H$が時間非依存であるということ(と$\ket{\Psi}$が粒子数固有状態であること)を除けば一般的な議論である. このまま議論をすすめることもできるが, ここでは簡単のため運動量演算子が$\hat{H}_H$と交換する場合を考える\footnote{運動量演算子$\hat{P}$がHeisenberg Full Hamiltonian$\hat{H}_H$と交換するとき, $\hat{H}_H$の固有状態$\ket{\Psi_n}$は$\hat{P}$と同時固有状態を取るということである.}. まずは運動量演算子を並進変換のgeneratorとして導入する:
+\begin{eqnarray}
+  &&\hpsi_\alpha(\bx) \equiv e^{-i\hat{\bm{P}}x}\hpsi_\alpha(0)e^{i\hat{\bm{P}}x}\label{generator}\\
+  \Longrightarrow&& -i\hbar\nabla\hpsi_\alpha(\bx) = \qty[\hpsi_\alpha(\bx), \hat{\bm{P}}]\\
+  \Longrightarrow&& \hat{\bm{P}} = \sum_\alpha\int d\bx \hpsi^\dagger_\alpha(\bx)(-i\hbar\nabla)\hpsi_\alpha(\bx) = \sum_{\bm{k}\lambda}\hbar\bm{k}c^\dagger_{\bm{k}\lambda}c_{\bm{k}\lambda}
+\end{eqnarray}
+1行目を微分すると2行目になり, 2行目を満たすような$\hat{\bm{P}}$を探すと3行目になる. 3行目の2つ目のイコールは一粒子波動関数を
+\begin{eqnarray}
+  &&\psi_{\bm{k}\lambda}(\bx) = \frac{e^{i\bm{k}\bx}}{\sqrt{V}}\eta_{\lambda}\label{1st-plane}\\
+  &&\eta_\uparrow =
+  \begin{pmatrix}
+    1\\
+    0
+  \end{pmatrix} \ \ \eta_\downarrow =
+  \begin{pmatrix}
+    0\\
+    1
+  \end{pmatrix}
+\end{eqnarray}
+のように平面波展開\footnote{Fourier変換のこと. 一様系だと並進対称性があり, 運動量が保存されるはず. だからハミルトニアンと運動量演算子は交換した. 先の通りハミルトニアンの固有状態は運動量固有状態にもなるので, Fourier変換してあげると運動量(c-数)が出てくる. 平面波展開はいつでもできるが, 状態がいつも運動量固有状態になっている訳はないことに注意. }して, これを式(\ref{2nd-quantum1})とかで第二量子化すれば得られる. $V$は体積. さて, この(\ref{generator})を先ほどのGreen関数の式に代入する:
+\begin{eqnarray}
+  \nonumber    iG_{\alpha\beta}(\bx t;\bx' t') = \sum_n\Big\{\theta(t-t')e^{-i(E_n-E)(t-t')/\hbar}e^{i\bm{P}_n\cdot(\bx - \bx')/\hbar}\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}\\
+    -\theta(t'-t)e^{i(E_n-E)(t-t')/\hbar}e^{-i\bm{P}_n\cdot(\bx - \bx')/\hbar}\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}\Big\}
+\end{eqnarray}
+ここで基底状態では$\hat{\bm{P}}\ket{\Psi_0} = 0$となっていることを用いている. ここで, $G$は$\bx-\bx'$や$t-t'$にしか依存していないので$\bx-\bx' = \by$, $t-t' = s$としてFourier変換する:
+\begin{eqnarray}
+  G_{\alpha\beta}(\bk, \omega) &=& \int d\by\int ds\ e^{-i\bk\cdot\by}e^{i\omega s}G_{\alpha\beta}(\bx t; \bx't' )\\
+\nonumber  &=& -i\int d\by ds e^{-i\bm{k}\cdot\by}e^{i\omega s}\\
+\nonumber  &\times&\sum_n\Big[\ul{\theta(s)e^{-i(E_n- E)s/\hbar}e^{i\bm{P}_n\by/\hbar}\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}_{1}\\
+    &&\ - \ul{\theta(-s)e^{i(E_n- E)s/\hbar}e^{-i\bm{P}_n\by/\hbar}\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}_2\Big]
+\end{eqnarray}
+ここで下線部1の項について計算する. $\theta$関数の積分表示
+\begin{eqnarray}
+  \theta(s) = -\int \frac{d\omega'}{2\pi i}\frac{e^{-i\omega' s}}{\omega' + i\eta}
+\end{eqnarray}
+を用いて変形していく:
+\begin{eqnarray}
+  \ul{　}1 &=& \frac{1}{2\pi}\sum_n\int d\by ds d\omega' e^{i(\bm{P}_n\hbar^{-1} - \bm{k})\cdot\by}e^{i(\omega - \qty(E_n - E)\hbar^{-1} -\omega')s}\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega' + i\eta}\\
+  &=& \sum_n(2\pi)^3\delta(\bm{P}_n\hbar^{-1} - \bm{k})\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega - \qty(E_n - E)\hbar^{-1} + i\eta}\\
+  &=& V\sum_n\delta_{\bm{P}_n\hbar^{-1},\bm{k}}\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega - \qty(E_n - E)\hbar^{-1} + i\eta}
+\end{eqnarray}
+最後の行でデルタ関数と体積の関係(\ref{delta-volume})を用いた. 同様の計算をすると, グリーン関数は
+\begin{eqnarray}
+  G_{\alpha\beta}(\bk, \omega) &=& V\sum_n\delta_{\bm{P}_n\hbar^{-1},\bm{k}}\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega - \qty(E_n - E)\hbar^{-1} + i\eta}\\ &+& V\sum_n\delta_{\bm{P}_n\hbar^{-1},-\bm{k}}\frac{\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_n}\bra{\Psi_n}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}{\omega + \qty(E_n - E)\hbar^{-1} - i\eta}
+\end{eqnarray}
+となることがわかる. クロネッカーデルタが効いてくるのは$\ket{\Psi_n}$に対してなので
+\begin{eqnarray}
+  G_{\alpha\beta}(\bk, \omega) = V\sum_n\Big[\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{n\bk}\bra{n\bk}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\omega - \qty(E_n - E)\hbar^{-1} + i\eta}+ \frac{\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{n, -\bk}\bra{n, -\bk}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}{\omega + \qty(E_n - E)\hbar^{-1} - i\eta}\Big]
+\end{eqnarray}
+と書くことにする\footnote{ある$\bm{P}_n$に対応する$\bk$はひとつで, クロネッカーデルタなんか和を取って消えてしまうのでは？と思うかもしれない. しかし$\bk$はいくつもの準粒子のエネルギーの総和なので, $\bk$の選び方に対して同じエネルギーを持つものはいくつか存在する(縮退している？). 対して$\bm{P}_n$は$\hat{H}_H$の固有状態なので, $\ket{\Psi_n}$の縮退がなければ$\hat{P}_n$の縮退もない. そういうことで$\ket{\Psi_n}$を$n$と$\bk$でパラメトライズしている. これは一様系であるために運動量が保存し, そのquantum numberであるkを明示したに過ぎないらしい. そもそも$n$は様々なquantum numberを持っているが, 今回は$k$が保存するのでそれを外に出して$n$の定義を変えた, ということらしい. }. というわけで, これでGreen関数の周波数($\omega$)依存性を示すことができた. この分母についてもうちょっと詳細に見てみよう. 上式の第一項の分母は以下のように変形できる:
+\begin{eqnarray}
+  \omega - \hbar^{-1}\qty[E_n(N+1) - E(N)] = \omega - \hbar^{-1}\qty[E_n(N+1) - E(N+1)] -\hbar^{-1}\qty[E(N+1) - E(N)]
+\end{eqnarray}
+ここで$E(N+1) - E(N)$は基底状態に粒子が1つ追加された時のエネルギー差である. 粒子数変化に伴うエネルギー変化率をケミカルポテンシャルと呼ぶ. $E_n(N+1) - E(N+1)$は$N+1$粒子系の励起エネルギーである. そんなわけで, 書き直す:
+\begin{eqnarray}
+  G_{\alpha\beta}(\bk, \omega) = \hbar V\sum_n\Big[\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{n\bk}\bra{n\bk}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\hbar\omega -\mu - \epsilon_{n\bk}\qty(N+1) + i\eta}+ \frac{\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{n, -\bk}\bra{n, -\bk}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}{\hbar\omega -\mu + \epsilon_{n,-\bk}\qty(N-1) - i\eta}\Big]\label{green-rehmann}
+\end{eqnarray}
+$\eta$ に$\hbar^{-1}$がついていないが, $\eta$の定義の中に押し込めている. $\mu$も$N$依存性を持っているが
+\begin{eqnarray}
+  \mu(N+1) = \mu\qty(N\qty(1+\frac{1}{N})) = \mu(N) + O(N^{-1})
+\end{eqnarray}
+になるので, $N$が十分大きいものとして無視することにする.
+
+これでスピン$\frac{1}{2}$の場合の$G$の行列構造についてシンプルにまとめることができた. このGreen関数は$2\times2$行列なので単位行列とPauli行列で構成される完全系で展開することができる\footnote{単に, 単位行列とパウリ行列の線型結合で書けるということ.}. 今回の問題は一様系なので指向性は無いため, $G$は空間回転に対してスカラー\footnote{ここでいうスカラーは"スカラー演算子"の意味. $\nabla = \qty(\partial_x, \partial_y, \partial_z)$はベクトル演算子, $\nabla\cdot\bk$はスカラー演算子. Pauli行列完全系も$\bm{\sigma} = \qty(\hat{\sigma}_x, \hat{\sigma}_y, \hat{\sigma}_z)$みたいなベクトル演算子だと考えれば$\bm{\sigma}\cdot\bk$もスカラー演算子である. }でなければならない. $G$には$\bm{\sigma}$と$\bk$が含まれるはずであり, $\bk$は$\bm{\sigma}$とペアになっていなければならないので
+\begin{eqnarray}
+  G(\bk, \omega) = a\bm{I} + b\bm{\sigma}\cdot\bk
+\end{eqnarray}
+という形になる. ここでハミルトニアンは空間鏡映対称性を持っており, この性質はGreen関数にも引き継がれているが, $\bm{\sigma}\cdot\bk$は擬スカラーなので鏡映対称性を持っていない. よって$b$の項は消えなければならない. これでGreen関数がとてもシンプルに書けることがわかる. (\ref{2nd-quantum1})(\ref{1st-plane})から場の演算子を平面波展開した表式
+\begin{eqnarray}
+  \hpsi(0) = \sum_k\frac{1}{\sqrt{V}}c_k
+\end{eqnarray}
+や
+\begin{eqnarray}
+  \epsilon_{\bk}(N+1) &=& \epsilon_{\bk}^0 - \epsilon_F^0 = \frac{\hbar^2(k^2 - k_F^2)}{2m}\\
+  \mu &=& \epsilon_F^0
+\end{eqnarray}
+を用いるとFree FermionのGreen関数を再現できる:
+\begin{eqnarray}
+  G(\bk, \omega) = \delta_{\alpha\beta}\qty[\frac{\theta(k-k_F)}{\omega - \omega_k + i\eta} + \frac{\theta(k_F-k)}{\omega - \omega_k - i\eta}]
+\end{eqnarray}
+さて, ここで(\ref{green-rehmann})は$\hbar\omega$についての極を持つ関数である. $\epsilon_{n\bk}$が正定値なので$\Re\hbar\omega < \mu$ならば(\ref{green-rehmann})の第一項は極を持たない. 一方で$\Re\hbar\omega > \mu$ならば(\ref{green-rehmann})の第二項は極を持たない. これは原書のFig.7.1\footnote{$\hbar\omega$が複素数であることに注意. つまり, 縦軸が$\hbar\omega$の虚部, 横軸が実部.}のとおり. バッテンがGreen関数が極を持つ点を表している. 実軸よりちょっと上にあるか下にあるかは$i\eta$の符号が決めている. さて, Fig7.1を見てわかる通り, $\hbar\omega$の複素空間上では上部も下部も正則ではない. しかし, 今後の計算の上ではどちらか一方は正則であってほしい. ということで, 遅延Green関数・先進Green関数を定義する:
+\begin{eqnarray}
+  iG^R_{\alpha\beta}(\bx t;\bx't') &=& \bra{\Psi_0}\qty{\hpsi^\dagger_{H\alpha}(\bx t), \hpsi_{H\beta}(\bx't')}\ket{\Psi_0}\theta(t-t')\\
+  iG^A_{\alpha\beta}(\bx t;\bx't') &=& \bra{\Psi_0}\qty{\hpsi_{H\beta}(\bx't'), \hpsi^\dagger_{H\alpha}(\bx t)}\ket{\Psi_0}\theta(t'-t)
+\end{eqnarray}
+これらは今までのGreen関数\footnote{因果Green関数という.}と同じように解析を進めることができ, 一様系でRehmann表示をしてみると
+\begin{eqnarray}
+  G_{\alpha\beta}^{R, A}(\bk, \omega) = \hbar V\sum_n\Big[\frac{\bra{\Psi_0}\hat{\psi}_{\alpha S}(0)\ket{n\bk}\bra{n\bk}\hat{\psi}^\dagger_{\beta S}(0)\ket{\Psi_0}}{\hbar\omega -\mu - \epsilon_{n\bk}\qty(N+1) \pm i\eta}+ \frac{\bra{\Psi_0}\hat{\psi}^\dagger_{\beta S}(0)\ket{n, -\bk}\bra{n, -\bk}\hat{\psi}_{\alpha S}(0)\ket{\Psi_0}}{\hbar\omega -\mu + \epsilon_{n,-\bk}\qty(N-1) \pm i\eta}\Big]\label{green-rehmann2}
+\end{eqnarray}
+となっている. 遅延Green関数の極は下部にまとまり, $\Im \omega > 0$の領域では解析的である. 先進はその逆. もし$\omega$が実なら
+\begin{eqnarray}
+  \qty[G_{\alpha\beta}^{R}(\bk, \omega)]^* = G_{\alpha\beta}^{A}(\bk, \omega)
+\end{eqnarray}
+の関係にある. 遅延と先進の違いは収束因子$i\eta$の符号のみである. もし$\omega$が実で$\hbar^{-1}\mu$より大きければ, 無限小の$i\eta$は何の役割も成さなくなる. 以上より
+\begin{eqnarray}
+  G_{\alpha\beta}^R(\bk, \omega) = G_{\alpha\beta}(\bk, \omega) & \Re\hbar\omega > \mu\\
+  G_{\alpha\beta}^A(\bk, \omega) = G_{\alpha\beta}(\bk, \omega) & \Re\hbar\omega < \mu
+\end{eqnarray}
+\subsection{Physical Interpretation of the Green's Function}
+一粒子Green関数の物理的な解釈を理解するために相互作用描像の状態$\ket{\Psi_I(t')}$と, $(\bx't')$に粒子を加える操作$\hpsi_{i\beta}(\bx't')\ket{\Psi_I(t')}$について考える. $\ket{\Psi_I(t')}$はハミルトニアンの固有状態ではないが, 時間発展演算子$\hat{U}(t, t')$は有効である. さて, $t>t'$において$\hat{U}(t, t')\hpsi_{I\beta}^\dagger(\bx't')\ket{\Psi_I(t')}$と$\hpsi^\dagger_{\bx t}\ket{\Psi_I(t)}$のoverlapについて考えてみる\footnote{$(\bx t)$に粒子を追加した状態と$(\bx't')$に粒子を追加して時間を$t$に合わせてあげた状態のoverlapを見ている？}:
+\begin{eqnarray}
+  \bra{\Psi_I(t)}\hpsi_{I\alpha}(\bx t)\hat{U}(t, t')\hpsi^\dagger_{I\beta}(\bx't')\ket{\Psi_I(t')} = \bra{\Psi_0}\hpsi_{H\alpha}(\bx t)\hpsi^\dagger_{H\beta}(\bx't')\ket{\Psi_0}
+\end{eqnarray}
+この計算過程でGell-Mann-Lowの定理を用いた. $\ket{\Psi_0}$はFull Hamiltonianの固有状態. これはまさに$t>t'$におけるGreen関数の定義になっており, 粒子の追加を含む状態の伝搬を特徴づけている.
+
+この時間に関する伝搬が$G(\bk, \omega)$とどのように関係しているかを考える.
+
+... 工事中 ...
+
+\section{Wick's Theorem}
+\subsection{概略}
+前章でGreen関数の定義と性質を見た. そういうわけで, 摂動論でGreen関数を評価せねばならない. なぜならそれが相互作用描像で最も簡単な方法だから. しかしながら, Green関数は相互作用描像の基底状態によるHeisenberg演算子の期待値で定義されている. これは摂動論では不便なので, Heisenberg演算子$\hat{O}_H(t)$とそれに対応する$\hat{O}_I(t)$の関係について以下では考えることにする. ここで証明したいのは
+\begin{itembox}[c]{Heisenberg演算子と相互作用演算子}
+  \begin{eqnarray}
+\nonumber    \frac{\ev{\hat{O}_H(t)}{\Psi_0}}{\bra{\Psi_0}\ket{\Psi_0}} &=& \frac{1}{\ev{\hat{S}}{\Phi_0}}\bra{\Phi_0}\sum_{\nu = 0}^\infty \qty(\frac{-i}{\hbar})^\nu \frac{1}{\nu !}\int_{-\infty}^\infty dt_1\cdots dt_\nu\\
+&&\times e^{-\epsilon(|t_1| + \cdots + |t_\nu|)} T\qty[\hat{H}_I(t_1)\cdots\hat{H}_I(t_\nu)\hat{O}_I(t)]\ket{\Phi_0}\\
+\nonumber where\hspace{0.7cm}  \hat{S} &=& U_\epsilon(\infty, -\infty)\label{wick1}
+  \end{eqnarray}
+\end{itembox}
+
+これの証明はGell-Mann Lowの定理を用いる. $\ket{\Phi_0}$はFree Hamiltonianの基底状態. 同様にして
+\begin{itembox}[c]{Heisenberg演算子の時間順序積と相互作用演算子}
+  \begin{eqnarray}
+\nonumber    \frac{\ev{T\qty[\hat{O}_H(t)\hat{O}_H(t')]}{\Psi_0}}{\bra{\Psi_0}\ket{\Psi_0}} &=& \frac{1}{\ev{\hat{S}}{\Phi_0}}\bra{\Phi_0}\sum_{\nu = 0}^\infty \qty(\frac{-i}{\hbar})^\nu \frac{1}{\nu !}\int_{-\infty}^\infty dt_1\cdots dt_\nu\\
+&&\times e^{-\epsilon(|t_1| + \cdots + |t_\nu|)} T\qty[\hat{H}_I(t_1)\cdots\hat{H}_I(t_\nu)\hat{O}_I(t)\hat{O}_I(t')]\ket{\Phi_0}\label{wick2}
+  \end{eqnarray}
+\end{itembox}
+
+を証明する. ここでは$\epsilon\rightarrow 0$の極限が許される\footnote{分母の$\hat{S}$行列の位相因子と分子の位相因子が$\epsilon\rightarrow 0$のもとでキャンセルする}. これにより, Green関数を
+\begin{eqnarray}
+  i\tilde{G}_{\alpha\beta}(x, y) = \sum_\nu^\infty \qty(\frac{-i}{\hbar})^\nu \frac{1}{\nu!}\int_{-\infty}^\infty dt_1\cdots dt_\nu\frac{\bra{\Phi_0}T\qty[\hat{H}_1(t_1)\cdots\hat{H}_1(t_\nu)\hpsi_\alpha(x)\hpsi_\beta(y)]\ket{\Phi_0}}{\bra{\Phi_0}S\ket{\Phi_0}}
+\end{eqnarray}
+と書くことができる. いつもの$x = (\bx, t_x)$という表記を採用. これ以降相互作用描像の添字$I$を省略する. ここで相互作用を
+\begin{eqnarray}
+  U(x_1, x_2) = V(\bx_1, \bx_2)\delta(t_1 - t_2)
+\end{eqnarray}
+とすると便利. $G_{\alpha\beta}(x, y)$の分子$\tilde{G}_{\alpha\beta}(x, y)$は
+\begin{eqnarray}
+\nonumber  i\tilde{G}_{\alpha\beta}(x, y) = iG^0_{\alpha\beta}(x, y) &+& \qty(\frac{-i}{\hbar})\sum_{\lambda\lambda'\mu\mu'}\frac{1}{2}\int d^4xd^4x U(x_1, x_1')\\
+  &&\times \ev{T[\hpsi_{\lambda}^\dagger(x_1)\hpsi^\dagger_{\mu}(x_1')\hpsi_{\mu'}(x_1')\hpsi_{\lambda'}(x_1)\hpsi_{\alpha}(x)\hpsi^\dagger_{\beta}(y)]}{\Phi_0} + \cdots
+\end{eqnarray}
+のように非相互作用部$G^0$と相互作用部の積分に分解できる. つまり, 相互作用を考えるためには積分項, 特に$\ev{T[\hpsi^\dagger\cdots\hpsi\hpsi_{\alpha}(x)\hpsi^\dagger_{\beta}(y)]}{\Phi_0}$みたいな項を評価しなければならない.
+
+明らかなのは生成演算子と消滅演算子はペアになっていなければならないこと. さもなくば期待値はゼロになる. しかしながら, 交換・反交換関係のみを用いてゼロにならない項を分類するのはとってもめんどくさい. その処方箋としてのWickの定理である. これは行列要素を評価する一般的な手続きらしい. 今後は第二量子化の際に導入したsingle mode$\qty{c_k}$ではなく, 場の演算子$\hpsi(x)$をまんま使ったほうが見通しがよい. まず, 一般に場の演算子が生成部と消滅部に分解できるとする:
+\begin{eqnarray}
+  \hpsi(x) = \hpsi^{(+)}(x) + \hpsi^{(-)}(x)
+\end{eqnarray}
+$(+)$が消滅部, $(-)$が生成部を担う.
+
+Wickの定理を証明するためにいくつかの新しい定義を導入する.
+
+\subsubsection{1. T積}
+場の演算子についてはすでに定義した. Fermionについては定義より
+\begin{eqnarray}
+  T(\hat{A}\hat{B}\hat{C}\hat{D}\cdots) = (-1)^PT(\hat{C}\hat{A}\hat{D}\hat{B}\cdots)
+\end{eqnarray}
+となる. $P$は演算子の入れ替えの回数. 
+
+\subsubsection{2. N積}
+生成演算子を左に, 消滅演算子を右に並べ替える積. これまた入れ替えの時にはT積と同様の因子がかかる:
+\begin{eqnarray}
+  N(\hat{A}\hat{B}\hat{C}\hat{D}\cdots) = (-1)^PN(\hat{C}\hat{A}\hat{D}\hat{B}\cdots)
+\end{eqnarray}
+消滅演算子が左にあるので, Free Hamiltonianの基底状態$\ket{\Phi_0}$によるN積の期待値はゼロになる. これ重要. また分配法則も成り立つ. 
+
+\subsubsection{3. 縮約}
+$\hat{U}$と$\hat{V}$の縮約を以下のように定義する:
+\begin{itembox}[c]{Contraction}
+  \begin{eqnarray}
+    \wick{1}{<1U >1V} = T(\hat{U}\hat{V}) - N(\hat{U}\hat{V})\label{wick3}
+  \end{eqnarray}
+\end{itembox}
+原文の例にあるとおり, 多くの縮約はT積とN積が同じ値を取ることによりゼロになる. じゃあゼロじゃない縮約はどんなのがあるかというと原文の(8.27)みたいなやつ. これは$\ket{\Phi_0}$によるN積の期待値がゼロになることから簡単に証明できる. つまり
+\begin{itembox}[c]{ContractionとGreen関数}
+  \begin{eqnarray}
+    \wick{1}{<1\psi >1\psi^\dagger} = iG^0_{\alpha\beta}(x, y)\label{wick4}
+\end{eqnarray}
+\end{itembox}
+
+\subsubsection{4. 規約}
+縮約された演算子の入れ替えは任意の演算子と同じ規則を持ち, かつ縮約はc-数なので縮約がまとまればN積の外に出すことができる:
+\begin{eqnarray}
+  N(\wick{1}{<1A B >1C D}) = \pm N(\wick{1}{<1A >1C B D}) = \pm \wick{1}{<1A >1C}N(BD)
+\end{eqnarray}
+また, 縮約の定義から$\wick{1}{<1U >1V} = \pm \wick{1}{<1V >1U}$であることもわかる. 
+
+\subsubsection{5. Wickの定理}
+原文の(8.32)のとおり. 演算子のT積はN積とあらゆる可能な縮約の和で表される.
+
+イメージとして, T積の中で生成演算子を左にどんどん持っていくときに, 演算子が交換しない時に余分な項を生み出し, これが縮約である. 原書の(8.27)のとおり, 生成演算子が消滅演算子の左側にあると縮約は消える(ほとんどの縮約はゼロだったよね).
+
+これを証明するために以下の補題を考える.
+
+\subsubsection{6. 補題}
+あるN積$N(UV\cdots XY)$とある演算子$\hat{Z}$の積について. $\hat{Z}$は$UV\cdots XY$よりも早い時間変数を持っている(つまり, T積では右に来る). このとき, 原書の(8.33)の式が成り立つ. 言い換えると, N積に早い時間の演算子$Z$を右から掛けたらもとからN積にあった演算子それぞれについて$Z$と縮約を取ったN積の和と, もとのN積に$Z$を加えたものの和になる. これを証明するにあたって以下の3点に注意する:\\
+
+(a) $Z$が消滅演算子なら, T積とN積がイコールになり縮約はゼロになる. よって, 補題の右辺は最後の項しか残らず, 補題は証明される. \\
+
+(b) N積内の$UV\cdots XY$は既に正規順序積になっていると考えて良い. つまり$UV\cdots XY = N(UV\cdots XY)$. もし正規順序積になっていなかったとしても余計に出てくる因子は左辺と右辺で打ち消し合うことになる. \\
+
+(c) $UV\cdots XY$はすべて消滅演算子だと考えて良い. 生成演算子を含む場合も, 左から生成演算子を掛けることで議論を一般化できる. \\
+
+この補題は演算子が2つの場合はすぐに証明ができる. ここから帰納法で補題を証明する. 補題も原書の(8.36)のような定理を用いることで証明できる.
+
+さらにこの補題は演算子の縮約$\wick{1}{<1R >1S}$を掛けることで一般化できる. 
+
+\subsubsection{Wickの証明}
+2つの演算子については自明. 補題と同様に帰納法で証明する. 
+
+
+\subsection{(\ref{wick1})}
+\subsection{(\ref{wick2})}
+\subsection{(\ref{wick3})の縮約ゼロについて}
+たとえば
+\begin{eqnarray}
+  T\qty[\hpsi^{(+)}(x)\hpsi^{(-)}(y)] = \begin{cases}
+    \hpsi^{(+)}(x)\hpsi^{(-)}(y) & t_x > t_y\\
+    \pm\hpsi^{(-)}(y)\hpsi^{(+)}(x) & t_x < t_y
+  \end{cases}
+\end{eqnarray}
+について. $\psi$は相互作用描像の演算子$c_ke^{-i\omega_k t}$の線型結合であり時間変数をくくり出せることからT積は意味を成さなくなる. よって$\psi$は(反)交換が可能であり
+\begin{eqnarray}
+  T\qty[\hpsi^{(+)}(x)\hpsi^{(-)}(y)] = \pm\hpsi^{(-)}(y)\hpsi^{(+)}(x) = N(\hpsi^{(+)}(x)\hpsi^{(-)}(y))
+\end{eqnarray}
+と一意に書くことができる. T積とN積の値が同じになるのでContractionはゼロになる.
+
+\ul{なぜHeisenberg描像では成り立たないのか？}
+\subsection{(\ref{wick4})}
+$\ket{\Phi_0}$によるT積の期待値を計算する. 縮約の定義から:
+\begin{eqnarray}
+  \ev{T(UV)}{\Phi_0} = \ev{\wick{1}{<1U >1V}}{\Phi_0} + \ev{N(UV)}{\Phi_0} = \wick{1}{<1U >1V}
+\end{eqnarray}
+縮約はc-数なので$\ket{\Phi_0}$の外に出すことができ, $\ket{\Phi_0}$によるN積の期待値はゼロになる. 
+\subsection{縮約とは？}
+いきなり縮約の定義が出てきたことを不思議に思うかもしれない. そもそもはT積からスタートし,
+\begin{eqnarray}
+  T\qty[\hpsi(x_1)\hpsi^\dagger(x_2)] &=& \theta\qty(t_1 - t_2)\hpsi(x_1)\hpsi^\dagger(x_2) \pm \theta\qty(t_2 - t_1)\hpsi^\dagger(x_2)\hpsi(x_1)\\
+  &=& \theta\qty(t_1 - t_2)\qty[\hpsi(x_1), \hpsi^\dagger(x_2)]_{\mp} \pm \hpsi^\dagger(x_2)\hpsi(x_1)\\
+  &=& \theta\qty(t_1 - t_2)\qty[\hpsi(x_1), \hpsi^\dagger(x_2)]_{\mp} + N\qty(\hpsi(x_1)\hpsi^\dagger(x_2))\\
+  \nonumber  where &&\theta\qty(t_2 - t_1) = 1 - \theta\qty(t_1 - t_2)
+\end{eqnarray}
+右辺第一項をContractionと呼ぶ. 交換関係からc-数であることは明らか. Wickの証明で「演算子が交換しない時に余分な項を生み出し」とあるが, 演算子が交換する場合右辺第一項は消えることからこれも明らか.
+
+\subsection{補題の(b)}
+例として$N(XUY)Z$を考える. $U$のみ生成演算子としてN積内を正規順序にすると
+\begin{eqnarray}
+  N(XUY)Z = (-1)N(UXY)Z
+\end{eqnarray}
+となる. これについて補題を適応すると
+\begin{eqnarray}
+  (-1)N(UXY)Z = (-1)\qty[N(\wick{1}{UX<1Y>1Z}) + N(\wick{1}{U<1XY>1Z})+ N(\wick{1}{<1UXY>1Z})+ N(UXYZ)]
+\end{eqnarray}
+となり$(-1)$の因子が打ち消されてN積内が正規順序である場合に帰着された. もっと一般的な場合も直感的に大丈夫そう. 
+\subsection{補題の(c)}
+Eを生成演算子として補題の左から掛ける. 生成演算子はN積の左に来る:
+\begin{eqnarray}
+  (左辺) = EN(UV\cdots XY)Z = N(EUV\cdots XY)Z
+\end{eqnarray}
+右辺についても最後の項も含めて同様に$E$を挿入することができる. つまり
+\begin{eqnarray}
+\nonumber  N(EUV\cdots XY)Z &=& N(EUV\cdots \wick{1}{X <1Y >1Z}) + N(EUV\cdots \wick{1}{<1X Y >1Z}) + \cdots \\
+  && N(\wick{1}{E<1UVX... Y >1Z}) + N(EUV\cdots XYZ)
+\end{eqnarray}
+となる. これでは$N(\wick{1}{<1EUVX... Y >1Z})$の項が足りないので補題の形を満足していないが, そもそも$\wick{1}{<1E>1Z}$は生成演算子同士の縮約であることからゼロになるので$N(\wick{1}{<1EUVX... Y >1Z})$を勝手に追加しても良い. これで生成演算子があった場合でも補題を満たすことが示された. 
+\subsection{演算子が2つのときの補題}
+\begin{eqnarray}
+  N(Y)Z = YZ = T(YZ) = \wick{1}{<1Y >1Z} + N(YZ)
+\end{eqnarray}
+より証明完了.
+
+\subsection{帰納法で補題を証明}
+ある消滅演算子$D$を補題の左から掛ける. $UV\cdots XY$は全て消滅演算子なので:
+\begin{eqnarray}
+  DN(UV\cdots XY)Z = N(DUV\cdots XY)Z
+\end{eqnarray}
+ここで補題を適応:
+\begin{eqnarray}
+\nonumber  N(DUV\cdots XY)Z &=& N(DUV\cdots \wick{1}{X <1Y >1Z}) + N(DUV\cdots \wick{1}{<1X Y >1Z}) + \cdots \\
+  && N(\wick{1}{D<1UVX... Y >1Z}) + DN(UV\cdots XYZ)
+\end{eqnarray}
+原文の補題(8.33)に左から消滅演算子$D$を掛けても, 最後の項以外は$D$をそのままN積の中に入れてしまうことができる. なぜなら唯一の生成演算子である$Z$が縮約を取ってc-数になっているからである. ゆえに, まだ縮約を取っていない最後の項の$D$をN積の先頭に追加することは許されない. その代わりもし
+\begin{eqnarray}
+  DN(UV\cdots XYZ) = N(\wick{1}{<1DUV... XY>1Z}) + N(DUV\cdots XYZ)\label{wick5}
+\end{eqnarray}
+が成立していれば, 補題は証明できそうである. 
+
+\subsection{補題の補題}
+(\ref{wick5})について. N積の定義より
+\begin{eqnarray}
+  DN(UV\cdots XYZ) = (-1)^PDZUV\cdots XY
+\end{eqnarray}
+$P$はZをDの前まで持ってくるのに要した交換回数. さらに$Z$は$D$より早い時間を持つのでT積を挿入できる:
+\begin{eqnarray}
+  (-1)^PDZUV\cdots XY = (-1)^PT(DZ)UV\cdots XY  
+\end{eqnarray}
+T積を縮約とN積に展開:
+\begin{eqnarray}
+  (-1)^PT(DZ)UV\cdots XY = (-1)^P\wick{1}{<1D >1Z}UV\cdots XY + (-1)^{P+Q}N(ZD)UV\cdots XY
+\end{eqnarray}
+$Q$は$D$と$Z$を入れ替えたときの因子. 右辺第一項の$\wick{1}{<1D >1Z}$は既にc-数なのでN積に書き換え, 再び$Z$を一番後ろに持っていく\footnote{これは「\textbf{4. 規約}」で説明済み}:
+\begin{eqnarray}
+  (-1)^P\wick{1}{<1D >1Z}UV\cdots XY = (-1)^PN(\wick{1}{<1D >1Z}UV\cdots XY) = (-1)^{2P}N(\wick{1}{<1D UV... XY >1Z}) = N(\wick{1}{<1D UV... XY >1Z})
+\end{eqnarray}
+右辺第二項の$Z$も同様に一番後ろに持って行く:
+\begin{eqnarray}
+  (-1)^{P+Q}N(ZD)UV\cdots XY = (-1)^{2(P+Q)}N(DUV\cdots XYZ)= N(DUV\cdots XYZ)
+\end{eqnarray}
+よって(\ref{wick5})が証明できた. 
+\subsection{補題の一般化}
+補題に$\wick{1}{<1R >1S}$を掛ける:
+\begin{eqnarray}
+  \nonumber   \wick{1}{<1R >1S}N(DUV\cdots XY)Z &=& \wick{1}{<1R >1S}N(DUV\cdots \wick{1}{X <1Y >1Z}) + \wick{1}{<1R >1S}N(DUV\cdots \wick{1}{<1X Y >1Z}) + \cdots \\
+  && \wick{1}{<1R >1S}N(\wick{1}{D<1UVX... Y >1Z}) + \wick{1}{<1R >1S}N(\wick{1}{<1DUV... XY>1Z}) + \wick{1}{<1R >1S}N(DUV\cdots XYZ)
+\end{eqnarray}
+この$\wick{1}{<1R >1S}$をN積の中に入れて正規順序になるような入れ替えを両辺で行うと, 結局両辺に同じ因子$(-1)^P$がかかることになり, $R$と$S$のラベルを$V$と$X$に入れ替えてあげれば原文の(8.38)が得られる. 
+\subsection{2つの演算子のWick}
+これは「演算子が2つのときの補題」と同じ. 
+\subsection{帰納法でWickを証明}
+補題と同じように他の任意の演算子より早い時間を持つ演算子$\Omega$を左から掛ける. ここで$\Omega$は生成・消滅を特定しない:
+\begin{eqnarray}
+  T(UVW\cdots XYZ)\Omega = T(UVW\cdots XYZ\Omega)
+\end{eqnarray}
+上式の右辺は帰納法の仮定を用いて
+\begin{eqnarray}
+  T(UVW\cdots XYZ)\Omega = N(UVW\cdots XYZ)\Omega + N(\wick{1}{<1U >1V}W\cdots XYZ)\Omega + N(\wick{1}{<1U V>1W}\cdots XYZ)\Omega + \cdots
+\end{eqnarray}
+ここで補題を使うと$\Omega$をN積の中に入れることができる. $\Omega$が一番早い時間を持ったものでなくても, それぞれの項で演算子を並べ直してあげれば大丈夫. これで, 演算子が生成部と消滅部に分けられるという仮定のもと, Wickの定理が証明できた. Wickの定理を使うのは$\bra{\Phi_0}\cdots\ket{\Phi_0}$に対してであって, 縮約していないN積を含む項は消え去る. 
+\section{Diagrammatic Analysis of Perturbation Theory}
+Wickの定理のおかげで
+\begin{eqnarray}
+  i\tilde{G}_{\alpha\beta}(x, y) = \sum_\nu^\infty \qty(\frac{-i}{\hbar})^\nu \frac{1}{\nu!}\int_{-\infty}^\infty dt_1\cdots dt_\nu\frac{\bra{\Phi_0}T\qty[\hat{H}_1(t_1)\cdots\hat{H}_1(t_\nu)\hpsi_\alpha(x)\hpsi_\beta(y)]\ket{\Phi_0}}{\bra{\Phi_0}S\ket{\Phi_0}}
+\end{eqnarray}
+みたいなやつが評価できるようになる. 縮約は単なるFree-field Green関数$G^0$であるので, Gは$U$と$G^0$を含む級数で表されることになる. この展開は座標空間や(一様系では)運動量空間で解析することができる. ボソンについては今回も扱いません.
+
+\subsection{Feynman Diagrams in Coordinate Space}
+Wickの定理の例として
+\begin{eqnarray}
+\nonumber  i\tilde{G}_{\alpha\beta}(x, y) = iG^0_{\alpha\beta}(x, y) &+& \qty(\frac{-i}{\hbar})\sum_{\lambda\lambda'\mu\mu'}\frac{1}{2}\int d^4xd^4x U(x_1, x_1')\\
+  &&\times \ev{T[\hpsi_{\lambda}^\dagger(x_1)\hpsi^\dagger_{\mu}(x_1')\hpsi_{\mu'}(x_1')\hpsi_{\lambda'}(x_1)\hpsi_{\alpha}(x)\hpsi^\dagger_{\beta}(y)]}{\Phi_0} + \cdots\label{first-order-green}
+\end{eqnarray}
+の一次の寄与について考えてみる. noninteracting ground state $\ket{\Phi_0}$での期待値を計算するときN積は消えて場の演算子の縮約\footnote{ここでは2点相関関数のことを縮約(contraction)と呼ぶ. }のみが残る. Wickの定理は取りうる全ての縮約の和が必要であり, その縮約は$\hpsi$とその共役である$\hpsi^\dagger$によって作られるものである. (\ref{first-order-green})の一次の項は
+\begin{eqnarray}
+  \wick{213}{<1\psi_{\lambda}^\dagger(x_1) <2\psi^\dagger_{\mu}(x_1') >2\psi_{\mu'}(x_1') >1\psi_{\lambda'}(x_1) <3\psi_{\alpha}(x) >3\psi^\dagger_{\beta}(y)} & \cdots(A)\\
+  \wick{213}{<1\psi_{\lambda}^\dagger(x_1) <2\psi^\dagger_{\mu}(x_1') >1\psi_{\mu'}(x_1') >2\psi_{\lambda'}(x_1) <3\psi_{\alpha}(x) >3\psi^\dagger_{\beta}(y)} & \cdots(B)\\
+  \wick{213}{<1\psi_{\lambda}^\dagger(x_1) <2\psi^\dagger_{\mu}(x_1') <3\psi_{\mu'}(x_1') >2\psi_{\lambda'}(x_1) >1\psi_{\alpha}(x) >3\psi^\dagger_{\beta}(y)} & \cdots(C)\\
+  \wick{213}{<1\psi_{\lambda}^\dagger(x_1) <2\psi^\dagger_{\mu}(x_1') >2\psi_{\mu'}(x_1') <3\psi_{\lambda'}(x_1) >1\psi_{\alpha}(x) >3\psi^\dagger_{\beta}(y)} & \cdots(D)\\
+  \wick{213}{<1\psi_{\lambda}^\dagger(x_1) <2\psi^\dagger_{\mu}(x_1') >1\psi_{\mu'}(x_1') <3\psi_{\lambda'}(x_1) >2\psi_{\alpha}(x) >3\psi^\dagger_{\beta}(y)} & \cdots(E)\\
+  \wick{213}{<1\psi_{\lambda}^\dagger(x_1) <2\psi^\dagger_{\mu}(x_1') <3\psi_{\mu'}(x_1') >1\psi_{\lambda'}(x_1) >2\psi_{\alpha}(x) >3\psi^\dagger_{\beta}(y)} & \cdots(F)
+\end{eqnarray}
+の6通り. 全ての可能な時間順序で消えない寄与を列挙することによって得られる\footnote{T積をN積とT積の真空期待値にマジ展開してN積が絡んだ項を消すということ. 山中先生の資料を参照. 確かに, めんどい. }が, この手続きは1次ですらかなり複雑. Wickはそれをかなり簡単にしてくれる. これをダイアグラムで表記するとそれぞれFig. 9.1みたいになる. 実線はcontraction $G^0$で, 波線が相互作用ポテンシャルを表している.
+
+原書の式(9.1)の式と対応するFig. 9.1はいくつか面白い特徴がある. \\
+
+1. $(A), (B), (D), (F)$は同時刻Green関数を持っており, ダイアグラムはそれ自体で閉じている. さて同時刻Green関数の解釈について考えてみる. 同時刻についてT積は定義されていないんだけど, そういう項が相互作用ハミルトニアン$H_1$の縮約で現れてしまう. こいつは$\hpsi^\dagger\hpsi$の形で現れる. 原書(0.2)における$n^0(\bx)$は非摂動基底状態での粒子密度であり, 相互作用系では$n(\bx)$と同じになる必要はない. $(D), (F)$は(9.2)のような項を持っており, 全粒子の最低次直接相互作用を表している. この全粒子は非相互作用基底状態を作る\footnote{フェルミの海のこと}. (C), (E)は交換相互作用を表している\footnote{Slater行列より}.\\
+
+2. (A), (B)はdisconnected diagramsであり, 他のダイアグラムのどの線にもつながってないサブユニットを含んでいる. サブユニットの中で相互作用の効果が閉じており, 結果的にサブユニットの効果を$\tilde{G}$から取り除くことができる.　これまで$\ev{\hat{S}}{\Phi_0}$は無視されてきたが, 今回はちゃんと考えてあげることにする. これは原文の(8.9)の項のうち, $\hpsi_\alpha(x)\hpsi_\beta^\dagger(y)$を除いたものにあたるので, Fig. 9.3 のような$\tilde{G}_{\alpha\beta}$の外線がないダイアグラムが出てくる. これが$\tilde{G}_{\alpha\beta}$のdisconnected diagram と約分されて消える\footnote{ちゃんと証明できてないような気がする...なんとなくわかるけど. }. これがdisconnected diagramの寄与が打ち消される理由.
+
+原文の(8.9)は(9.3)みたいにconnectedな部分とdisconnectedな部分に分けられる. $\nu$についてはクロネッカーデルタがあるので$\mu = n + m$となる. 後ろのdisconnectedな積分は$\ev{\hat{S}}{\Phi_0}$と約分されて消える. 結果, (9.5)みたいなすっきりとした形になる.
+
+さて, これからFeynman diagramと摂動級数の関係を導出する. しかし, Feynman ruleは相互作用ハミルトニアン$H_I$に依存することを強調しておかなければならない. 今回は2体ポテンシャルを通して相互作用する同種粒子系を考える. \\
+
+3. まず, ダイアグラムの形が同じであれば, 相互作用ハミルトニアンの添字のラベルが異なっていても$G$への寄与は同じ\footnote{dummy indexが違うだけだから. }. 加えてそいつらの符号も同じである. なぜなら$H_I$に含まれる演算子の数が偶数であり, $H_I$は自由に動かせるから\footnote{$(-1)^P$の因子が打ち消す}. 摂動$m$次ではラベルが違うだけで同じダイアグラムが$m!$個出てくるが, 原文(9.5)の$(m!)^{-1}$の因子で打ち消されることになるので, 結局同じ形のダイアグラムは1回数えればいい\footnote{この結果はconnected diagramについてのみ正しいらしい. }.
+
+..工事中..\\
+
+(a) $n$本の相互作用線と$2n + 1$本の方向を持つGreen関数$G^0$を用いて書けるダイアグラムを列挙する.\\
+
+4. 1次では$C$と$E$は同じで, $D$と$F$も同じ. 異なるのは$x$と$x'$のラベルだけ. この置換えはポテンシャルが対称な場合. ダイアグラムは1種類だけ数えればよく, 原文(9.1)の$1/2$の因子はオミットできる.
+ここで追加のルールを得る:\\
+
+(b) バーテックスを4次元空間$x_i$でラベリングする. 
+
+(c) $y\rightarrow x$の向きに進む実線は$G_{\alpha\beta}^0$を表す.
+
+(d) 波線は相互作用を表す.
+
+(e) 全ての空間と時間について積分する.\\
+
+5. Green関数とポテンシャルにある添字の和は, fermion lineに沿って走る行列積の式にある. このことより次のルールが生まれる:\\ 
+
+(f) fermion lineに沿ったスピン行列の積が存在し, 各バーテックスにポテンシャルを含んでいる\\
+
+6. ダイアグラムの符号は次のように決まる:\\
+
+それぞれの時刻でfermion lineが閉じていたら$-$の符号がつく. \\
+
+(g) 各項に$(-1)^F$をつける. Fは閉じたループの数. \\
+
+7. (9.5)式の$n$次には$(-i/\hbar)^n$がついており, $2n+1$組の縮約には$(i)^{2n+1}$がつくことから\\
+
+(h) $G$の$n$次を計算するときは, $(i/\hbar)^n$をつける. \\
+
+最後に(9.2)の議論から\\
+
+(i) 同時刻のGreen関数は$G_{\alpha\beta}(\bx, t; \bx', t^+)$としましょう.
+
+\subsection{Feynman Diagrams in Momentum Space}
+原理的に, 任意のオーダーで各ダイアグラムはGreen関数に書き換えることができる. しかし, non-interacting Green関数のそれぞれが, 2つの繋がっていないピース\footnote{$G(x, y)$の$x$と$y$はそれぞれ$\hpsi(x)$と$\hpsi^\dagger(y)$のようにバラバラなピースからできている. これをFourier変換すると$G(k)$のように1変数になり, 言わば対角的になる. }で出来ていることから, 実際の期待値は厄介な問題を抱えている. 原書(9.6)の一次の寄与でさえ, 時間変数の相対値によって多くのピースに分かれてしまう. 対照的に, 時間のFourier変換によって得られる$G^0(\bx, \by, \omega)$はシンプルな形をしており, 計算に用いるのに便利である. $G_{\alpha\beta}(\bx, \bx', \omega)$を考えることもできるが, 時間非依存のハミルトニアンを持つ非一様系に適応することになる. ということで, 今は一様系でかつ空間等方は系に議論を限定する. ここではGreen関数は$\delta_{\alpha\beta}G(x-y)$という形を取る. 一様系なのでFourier変換が許され,
+\begin{eqnarray}
+  G_{\alpha\beta}(x, y) &=& (2\pi)^{-4}\int d^4ke^{ik(x-y)}G_{\alpha\beta}(k)\\
+  G^0_{\alpha\beta}(x, y) &=& (2\pi)^{-4}\int d^4ke^{ik(x-y)}G^0_{\alpha\beta}(k)
+\end{eqnarray}
+熱力学極限$V\rightarrow\infty$は既に取っているものとする. ここでは4次元のnotationを採用している:
+\begin{eqnarray}
+  d^4k \equiv d^3kd\omega\hspace{1.0cm}k\cdot x \equiv \bk\cdot\bx - \omega t
+\end{eqnarray}
+さらに相互作用は座標にのみ依存するとする:
+\begin{eqnarray}
+  U(x, x') = V(\bx, \bx')\delta(t-t')
+\end{eqnarray}
+これも運動量表示で
+\begin{eqnarray}
+\nonumber  U(x, x')_{\alpha\alpha', \beta\beta'}(x, x') &=& (2\pi)^{-4}\int d^4ke^{ik(x-y)}U(k)_{\alpha\alpha', \beta\beta'}\\
+  &=& (2\pi)^{-3}\int d^3ke^{i\bk\cdot(\bx-\by)}U(\bk)_{\alpha\alpha', \beta\beta'}\delta(t-t')
+\end{eqnarray}
+また
+\begin{eqnarray}
+  U(k)_{\alpha\alpha', \beta\beta'} = V(\bk)_{\alpha\alpha', \beta\beta'} = \int d^3xe^{-i\bk\cdot\bx}V(\bx)_{\alpha\alpha', \beta\beta'}
+\end{eqnarray}
+原書Fig. 9.7bのGreen関数を運動量表示に書き換えると原書(9.12)みたいになる. Green関数が2点じゃなくて1点に書き換えられた. k-表示されたGreen関数でもx-表示の時と同じようにFeynmanルールが存在する.
+\subsection{Dyson's Equation}
+\subsubsection{0. General derivation of Dyson's Equation}
+まずは一般的なDyson方程式の導出について. ハミルトニアンが
+\begin{eqnarray}
+  H = \int dx\hpsi^\dagger(x) h(x)\hpsi(x) + \frac{1}{2}\int dxdx'\hpsi^\dagger(x)\hpsi^\dagger(x')U(x, x')\hpsi(x')\hpsi(x)
+\end{eqnarray}
+があるとする. また, スピンの添字$\alpha, \beta$は省略し, $x = (\bx, t), x' = (\bx', t)$としている. これのHeisenberg方程式は
+\begin{eqnarray}
+ && i\partial_t\hpsi(x) = \qty[\hpsi, H] = h(\bx)\hpsi(x) + \int dx'\hpsi^\dagger(x')U(x, x')\hpsi(x')\hpsi(x)\\
+ %&\therefore& \qty[i\hbar\partial_t - h(x) - \int dx'\hpsi^\dagger(x')U(x, x')\hpsi(x')]\hpsi(x) = 0
+\end{eqnarray}
+遅延Green関数を
+\begin{eqnarray}
+  iG^R(\bx, t; \bx', 0) = \ev{\qty{\hpsi(\bx, t), \hpsi^\dagger(\bx', 0)}}{\Psi_0}\theta(t)
+\end{eqnarray}
+とすると, これの時間発展は
+\begin{eqnarray}
+\nonumber  i\partial_tG^R(\bx, t; \bx', 0) &=& \ev{\qty{\partial_t\hpsi(\bx, t), \hpsi^\dagger(\bx', 0)}}{\Psi_0}\theta(t) + \ev{\qty{\hpsi(\bx, t), \hpsi^\dagger(\bx', 0)}}{\Psi_0}\partial_t\theta(t)\\
+\nonumber  &=& -i\ev{\qty{h(x)\hpsi(x) + \int dx''\hpsi^\dagger(x'')U(x, x'')\hpsi(x'')\hpsi(x), \hpsi^\dagger(\bx', 0)}}{\Psi_0}\theta(t)\\
+\nonumber&& + \ev{\qty{\hpsi(\bx, t), \hpsi^\dagger(\bx', 0)}}{\Psi_0}\delta(t)\\
+\nonumber  &=&h(\bx)G^R(\bx, t; \bx', 0) -i\theta(t)\int dx''U(x, x'')\ev{\qty{\hpsi^\dagger(x'')\hpsi(x'')\hpsi(x), \hpsi^\dagger(\bx', 0)}}{\Psi_0}\\
+\nonumber&& +\delta(\bx-\bx')\delta(t)\\
+\nonumber\qty[i\partial_t -h(\bx)]G^R(\bx, t; \bx', 0) &+&i\theta(t)\int dx''U(x, x'')\ev{\qty{\hpsi^\dagger(x'')\hpsi(x'')\hpsi(x), \hpsi^\dagger(\bx', 0)}}{\Psi_0}  = \delta(\bx-\bx')\delta(t)\\
+\end{eqnarray}
+左辺第二項目を
+\begin{eqnarray}
+\nonumber  i\theta(t)\int dx''U(x, x'')\ev{\qty{\hpsi^\dagger(\bx'', t)\hpsi(\bx'', t)\hpsi(\bx, t), \hpsi^\dagger(\bx', 0)}}{\Psi_0} = -\int dx''\int dt''\Sigma(\bx, \bx''; t - t'')G^R(\bx'', t''; \bx', 0)\\
+\end{eqnarray}
+という形で書くことでSelf-energy $\Sigma(\bx, \bx; t)$を定義する. 結局遅延Green関数の時間発展方程式は
+\begin{eqnarray}
+  \qty[i\partial_t -h(\bx)]G^R(\bx,\bx';t) -\int dx''\int dt''\Sigma(\bx, \bx''; t - t'')G^R(\bx'', t''; \bx', 0)= \delta(\bx-\bx')\delta(t)
+\end{eqnarray}
+さて, ここで前節でやったようにGreen関数, Self-energy, デルタ関数を
+\begin{eqnarray}
+  G^R(\bx, \bx';t) &=& (2\pi)^{-4}\int d\bk d\omega e^{i\bk\cdot(\bx-\bx')}e^{-i\omega t}G(\bk, \omega)\\
+  \Sigma(\bx, \bx';t) &=& (2\pi)^{-4}\int d\bk d\omega e^{i\bk\cdot(\bx-\bx')}e^{-i\omega t}\Sigma(\bk, \omega)\\
+  \delta(\bx - \bx')\delta(t) &=& (2\pi)^{-4}\int d\bk d\omega e^{i\bk\cdot(\bx - \bx')}e^{-i\omega t}
+\end{eqnarray}
+のようにFourier変換する. これで微分などが処理できる:
+\begin{eqnarray}
+\nonumber  &&\int d\bk d\omega \qty[\qty(\omega - k^2)e^{i\bk\cdot(\bx-\bx')}e^{-i\omega t}G(\bk, \omega) - \Sigma(\bk, \omega)e^{i\bk\cdot(\bx-\bx')}e^{-i\omega t}G(\bk, \omega)]= \int d\bk d\omega e^{i\bk\cdot(\bx - \bx')}e^{-i\omega t}\\
+   &\therefore& \qty(\omega - k^2)G(\bk, \omega) - \Sigma(\bk, \omega)G(\bk, \omega)= 1\label{dyson-k}
+\end{eqnarray}
+ここで無次元化のことを考えると$\omega\rightarrow\hbar\omega, k^2\rightarrow \frac{\hbar^2k^2}{2m}\equiv\epsilon_k$なので,
+\begin{eqnarray}
+  G(\bk, \omega) = \frac{1}{\hbar\omega - \epsilon_k - \Sigma(\bk, \omega)}
+\end{eqnarray}
+が求まる. (\ref{dyson-k})の右辺は1になったが, 本来はスピンの足があることを考えると$\delta_{\alpha\beta}$になるべき. それで原文の(9.33)みたいになる.
+
+\subsubsection{1. Self-energy insertion}
+Green関数$G$の構造は, 非摂動Green関数$G^0$と$G^0$がたくさんconnectした項の和になっている. Fig. 9.12 は例えばGreen関数の摂動1次のまでの展開を考えるとわかりやすい. 摂動2次以上を考えるともっといろんなダイアグラムが出てきそうだけど, 1次も含めたそれらの寄与をSelf-energyに押し付けることでFig. 9.12 のような表現になる. Fig. 9.12 に対応するGreen関数は原文(9.25).
+
+ここで「properなself-energyの挿入」という概念を導入する. properなself-energyの挿入とは, 1本の粒子線を切って2つのtermに分けられないようなself-energyの挿入をproperであるという. 原文のFig. 9.8 を例にすると, $(a), (b), (c), (d)$は$x, y$を除くvertexを切断することにより2つの部分に分けることができるが, それ以外はできない. 定義より, proper self-energyはproper self-energy insertionの全ての和になっている. proper self-energy $\Sigma(x, x')$のproper Self-energy insertion $\Sigma^\star(x, x')$による表現は原文(9.26)のとおり. (9.26)のダイアグラムがFig. 9.13. self-energyの展開(9.26)をGreen関数のself-energy表現(9.25)に代入すると(9.27)になる. これをDyson方程式と呼ぶ.
+

@@ -1,0 +1,242 @@
+\chapter{経路積分}
+\section{量子力学の復習}
+\subsection{自由粒子}
+自由粒子を記述するSchr\"odinger方程式は
+\begin{eqnarray}
+  i\partial_t\ket{\psi(t)} = \frac{\hat{p}^2}{2m}\ket{\psi(t)}
+\end{eqnarray}
+これを$p$-表示に移すと簡単に解ける:
+\begin{eqnarray}
+  i\partial_t\bra{p}\ket{\psi(t)} &=& \bra{p}\frac{\hat{p}^2}{2m}\ket{\psi(t)} = \frac{p^2}{2m}\bra{p}\ket{\psi(t)}\\
+  \therefore \bra{p}\ket{\psi(t)} &=& Ce^{-i\frac{\hat{p}^2}{2m}t}
+\end{eqnarray}
+これを運動量固有値$p$でパラメトライズされたケットで表現すると
+\begin{eqnarray}
+  \ket{p, t}_S = \ket{p}e^{-i\frac{\hat{p}^2}{2m}t}
+\end{eqnarray}
+ということ.もちろん$_S\bra{p', t}\ket{p, t}_S = \delta(p-p')$. 一般解はこの線型結合で書ける:
+\begin{eqnarray}
+  \ket{\Psi, t} = \int dp f(p)\ket{p}e^{-i\frac{\hat{p}^2}{2m}t}
+\end{eqnarray}
+これは規格化条件$\bra{\Psi, t}\ket{\Psi, t} = 1$を満たしているものとする. ここで, $t = 0$で$x = 0$に局在している波束を用意する:
+\begin{eqnarray}
+  \bra{x}\ket{\psi} = \frac{1}{(\pi\alpha)^{\frac{1}{4}}}e^{-\frac{1}{2\alpha}x^2}\label{FreeWavePacket}
+\end{eqnarray}
+これの$p$-表示は完全系を挿入することで求まる:
+\begin{eqnarray}
+  \bra{p}\ket{\psi} = \int dx\bra{p}\ket{x}\bra{x}\ket{\psi} = \qty(\frac{\alpha}{\pi})^{\frac{1}{4}}e^{-\frac{\alpha}{2}p^2}
+\end{eqnarray}
+\\
+
+\fbox{問1} $\bra{x}\ket{p} = \frac{1}{\sqrt{2\pi}}e^{ipx}$であることを示せ. また, この操作がFourier変換と等価であることを確認せよ.\\
+
+ここで$\Delta t$だけ時間発展させると
+\begin{eqnarray}
+  \bra{p}e^{-iH\Delta t}\ket{\psi} = \qty(\frac{\alpha}{\pi})^{\frac{1}{4}}e^{-\frac{\alpha}{2}p^2}e^{-i\frac{\hat{p}^2}{2m}\Delta t}
+\end{eqnarray}
+である. \\
+
+\fbox{問2} $i\partial_t\ket{\psi} = \hat{H}\ket{\psi}$の形式解が$e^{-i\hat{H}t}\ket{\psi}$であることを確かめよ.\\
+
+これを$x$-表示に移すと
+\begin{eqnarray}
+  \bra{x}\ket{\psi} = \qty(\frac{\alpha}{\pi})^{\frac{1}{4}}\sqrt{\frac{1}{\alpha + i\frac{\Delta t}{m}}}e^{-\frac{1}{\alpha + i\frac{\Delta t}{m}}x^2}\label{DevelopedFreeWavePacket}
+\end{eqnarray}
+となる. 自由粒子の波束の幅は時間発展と共に広がっていくことがわかる.
+\subsection{Green関数}
+以上のような「様々な初期波束を置いてみて, 時間発展に従って波動関数がどのように変化するのか」を考える問題ではGreen関数(伝搬関数, propagator)を計算しておくと便利.
+\begin{eqnarray}
+  \bra{x}\ket{\psi(t)} = \bra{x}e^{-iH(t-t_0)}\ket{\psi(t_0)} &=& \int dx'\bra{x}e^{-iH(t-t_0)}\ket{x'}\bra{x'}\ket{\psi(t_0)}\\
+  &=& \int dx' G(x, t;x', t_0)\bra{x'}\ket{\psi(t_0)}
+\end{eqnarray}
+Green関数$G(x, t;x', t_0)$は, 時刻 $t_0$ に場所 $x_0$ にいた粒子が時刻$t$ に場所 $x$ に移動している確率振幅密度のようなもの. このGreen関数が分かりさえすれば波束を掛けて積分することで時間発展を追うことができる. このGreen関数を計算する方法としてよく用いられるのが経路積分である.
+
+Green関数の数学的な定義などについては別途勉強しましょう.
+\section{経路積分の基礎}
+\subsection{経路積分の導出}
+伝搬関数は初期状態を$(q_i, t_i)$, 終状態を$(q_f, t_f)$とすると
+\begin{eqnarray}
+  K(q_f, t_f;q_i, t_i) \equiv \bra{q_f, t_f}e^{-i\hat{H}(t_f-t_i)}\ket{q_i, t_i}
+\end{eqnarray}
+と定義できる\footnote{以降伝搬関数は$K$と書く. これをFeynman核(Feynman kernel)と呼ぶ. $t>0$を約束すればGreen関数とFeynman核は同じもの. }. $\ket{q, t}$は時刻$t$で粒子が座標$q$に局在している$\hat{q}$の固有状態である. 自由粒子などの簡単なモデルであれば伝搬関数の計算もそんなに大変ではないが, もっと複雑なモデルではそう簡単に求まらない. これをうまく計算するために経路積分(Path Integral)を導出する.
+
+まず時間を微小区間$\delta t$に分割する:
+\begin{eqnarray}
+  e^{-i\hat{H}(t_f-t_i)} = \prod_{I=1}^Ne^{-i\hat{H}\delta t},\hspace{0.5cm} \delta t = \frac{t_f - t_i}{N}
+\end{eqnarray}
+時間を$N+1$分割したことになる. $\hat{q}$が$\hat{p}$より右側にあることを仮定し, 各分割点に位置演算子$\hat{q}(t_i + I\delta t)$の固有状態$\ket{q_I}$の完全系
+\begin{eqnarray}
+  \int dq_I \ket{q_I}\bra{q_I} = 1
+\end{eqnarray}
+を挟むと伝搬関数は以下のように書き直せる:
+\begin{eqnarray}
+\nonumber  K(q_f, t_f;q_i, t_i) =\int dq_{N-1}dq_{N-2}\cdots dq_{I}\cdots dq_2dq_1\bra{q_f}e^{-i\hat{H}\delta t}\ket{q_{N-1}}\bra{q_{N-1}}e^{-i\hat{H}\delta t}\ket{q_{N-2}}\bra{q_{N-2}}\cdots\\
+  \cdots\bra{q_{I+1}}e^{-i\hat{H}\delta t}\ket{q_{I}}\cdots\bra{q_2}e^{-i\hat{H}\delta t}\ket{q_1}\bra{q_1}e^{-i\hat{H}\delta t}\ket{q_i}
+\end{eqnarray}
+以下では$\bra{q_{I+1}}e^{-i\hat{H}\delta t}\ket{q_{I}}$を計算することを考える. これに運動量演算子$\hat{p}(t_i + I\delta t)$の固有状態$\ket{p_I}$の完全系
+\begin{eqnarray}
+  \int dp_I \ket{p_I}\bra{p_I} = 1
+\end{eqnarray}
+を挿入する:
+\begin{eqnarray}
+  \bra{q_{I+1}}e^{-i\hat{H}\delta t}\ket{q_{I}} &=& \int dp_I\bra{q_{I+1}}\ket{p_I}\bra{p_I}e^{-i\hat{H}\delta t}\ket{q_{I}}\\
+  &=&\int dp_I\bra{q_{I+1}}\ket{p_I}e^{-iH(q_I, p_I)\delta t}\bra{p_I}\ket{q_{I}}
+\end{eqnarray}\\
+
+\fbox{問3} $\hat{H}$に演算子$\hat{q}, \hat{p}$が含まれていることから, $\bra{p_I}e^{-i\hat{H}\delta t}\ket{q_{I}}$のハットハミルトニアンが$c$-数の$H(q_I, p_I)$に化けることを示せ.\\
+
+$\bra{q}\ket{p}$は平面波になることから
+\begin{eqnarray}
+  \bra{q_{I+1}}e^{-i\hat{H}\delta t}\ket{q_{I}} &=& \frac{1}{2\pi}\int dp_Ie^{i\qty(p_I\frac{q_{I+1}-q_I}{\delta t}-iH(q_I, p_I)){\delta t}}
+\end{eqnarray}
+$\delta t \rightarrow 0$の極限では$\cfrac{q_{I+1}-q_I}{\delta t}\rightarrow \cfrac{dq}{dt}$であることから
+\begin{eqnarray}
+  K(q_f, t_f;q_i, t_i) &=& \int {\cal D}p{\cal D}qe^{i\int_{t_i}^{t_f}dt\qty(p\frac{dq}{dt} - H)}\\
+  {\cal D}p{\cal D}q &=& \prod_{I=0}^{N}\frac{{\cal D}p{\cal D}q}{2\pi}
+\end{eqnarray}\\
+
+\fbox{問4} expの肩が(和ではなく)積分になることを確認せよ.\\
+
+$N$はいずれ$\infty$になるので, 無限回の積分を行わなくてはいけない。この積分は $q(t_i) = q_i, q(t_f) = q_f$ となるような境界条件をつけて行うとする.
+
+$H = \frac{p^2}{2m} + V(q)$の場合について考える:
+\begin{eqnarray}
+  K(q_f, t_f;q_i, t_i) &=& \int {\cal D}p{\cal D}qe^{i\int_{t_i}^{t_f}dt\qty(p\frac{dq}{dt} - \frac{p^2}{2m} - V(q))} = \int {\cal D}p{\cal D}qe^{i\int_{t_i}^{t_f}dt\qty(-\frac{(p-m\dot{q})^2}{2m} + \frac{\dot{q}^2}{2m} - V(q))}
+\end{eqnarray}
+これで$p$について積分が可能. $q$の積分は$V(q)$の具体系が与えられて初めて計算が可能になる. $p$の積分を実行し, その解が${\cal N}$だったとすると
+\begin{eqnarray}
+  K(q_f, t_f;q_i, t_i) = {\cal N}\int {\cal D}qe^{i\int_{t_i}^{t_f}dt\qty(\frac{\dot{q}^2}{2m} - V(q))}\label{FeynmanPropagator}
+\end{eqnarray}
+$\exp$の肩に作用(action)$S[q(t)] = \int_{t_i}^{t_f}dt\qty(\frac{\dot{q}^2}{2m} - V(q))$に虚数単位を掛けて積分すれば伝搬関数が求まることがわかる. これが経路積分である.
+
+作用が(プランク定数より)十分大きい場合$\exp(iS)$は極値の近傍を除いて激しく振動して積分に効いてこないことが期待される. この極値のみを取り出してきたものを「古典極限」と呼ぶ. 作用がプランク定数と同程度のオーダーを持つ場合, 極値近傍以外にも積分に効いてくる可能性があり, これが量子効果として取り入れられることになる.\\
+
+\fbox{問5} 無次元化をしない場合, 経路積分の被積分関数は$\exp\qty(iS/\hbar)$と書ける. $S$がプランク定数$\hbar$より十分大きい時, $S$の極値以外の積分が値に効いてこない理由を考えよ. 
+
+\subsection{自由粒子 : 経路積分を使わない方法}
+自由粒子($V(q) = 0$)の場合は経路積分を使わなくても伝搬関数がすぐに求まる. まず$p$-表示で確率振幅を書き下す:
+\begin{eqnarray}
+  \bra{p_f}e^{-i\frac{\hat{p}^2}{2m}(t_f - t_i)}\ket{p_i} = e^{-i\frac{p_f^2}{2m}(t_f - t_i)}\delta(p_f - p_i)
+\end{eqnarray}
+これを$x$-表示に移す:
+\begin{eqnarray}
+ K(x_f, t_f;x_i, t_i) = \bra{x_f}e^{-i\frac{\hat{p}^2}{2m}(t_f - t_i)}\ket{x_i} &=& \int dp\bra{x_f}\ket{p}\bra{p}e^{-i\frac{\hat{p}^2}{2m}(t_f - t_i)}\ket{x_i}\\
+  &=&\sqrt{\frac{m}{2\pi i(t_f-t_i)}}e^{-i\frac{m}{2(t_f - t_i)}(x_f - x_i)^2}\label{FreePropagator}
+\end{eqnarray}\\
+\fbox{問6} (\ref{FreePropagator})(\ref{DevelopedFreeWavePacket})を用いて(\ref{FreeWavePacket})を再現せよ.
+
+\subsection{自由粒子 : 経路積分の方法}
+まずは伝搬関数(の被積分関数)を時間について離散化する($\dot{x} = \cfrac{x_{j+1} - x_j}{\delta t}$):
+\begin{eqnarray}
+e^{-i\int dt\frac{m\dot(x)^2}{2}} \rightarrow \prod_{j=0}^Ne^{\frac{im}{2}\qty(\frac{x_{j+1} - x_j}{\delta t})\delta t}
+\end{eqnarray}
+ただし$x_0 = x_i, x_{N+1} = x_f$とする. これに$\int dx_1dx_2\cdots dx_N$をかけて積分すれば(\ref{FeynmanPropagator})が計算できたことになる. ここで公式
+\begin{eqnarray}
+  \int_{-\infty}^{\infty} dx e^{ia(x-x_1)^2 + ib(x-x_2)^2} = \sqrt{\frac{i\pi}{a+b}}e^{i\frac{ab}{a+b}(x_1-x_2)^2}\label{Gauss}
+\end{eqnarray}
+を用いる. \\
+
+\fbox{問7} (\ref{Gauss})を証明せよ.\\
+
+$x_1$に関する積分:
+\begin{eqnarray}
+  \int dx_1 e^{i\frac{m}{2\delta t}\qty((x_i - x_1)^2-(x_1 - x_2)^2)} = \sqrt{\frac{i\pi\delta t}{m}}e^{-i\frac{m}{4\delta t}(x_i - x_2)^2}
+\end{eqnarray}
+これより, $x_2$の積分は:
+\begin{eqnarray}
+  \int dx_2 e^{i\frac{m}{2\delta t}\qty(\frac{1}{2}(x_i - x_2)^2-(x_2 - x_3)^2)} = \sqrt{\frac{4i\pi\delta t}{3m}}e^{-i\frac{m}{6\delta t}(x_i - x_3)^2}
+\end{eqnarray}
+これを繰り返していくと$x_n$の積分因子として$\sqrt{\cfrac{i2n\pi\delta t}{(n+1)m}}$が現れることがわかる. 全積分が終わったとき
+\begin{eqnarray}
+  K(x_f, t_f;x_i, t_i) = \bra{x_f}e^{-i\frac{\hat{p}^2}{2m}(t_f - t_i)}\ket{x_i} = {\cal N}\qty(\sqrt{\frac{i2\pi\delta t}{m}})^N\sqrt{\frac{1}{N+1}}e^{i\frac{m}{2(N+1)\delta t}(x_f - x_i)^2}\label{Kernel}
+\end{eqnarray}
+${\cal N}$は$p$積分の結果出てくる因子で, 積分1回につき$\sqrt{\cfrac{m}{2\pi i\delta t}}$が出てくる. さらに$\delta t(N+1) = t_f - t_i$であることを用いると
+\begin{eqnarray}
+  K(x_f, t_f;x_i, t_i ) &=&\sqrt{\frac{m}{2\pi i(t_f-t_i)}}e^{-i\frac{m}{2(t_f - t_i)}(x_f - x_i)^2}
+\end{eqnarray}
+となり, (\ref{FreePropagator})と一致している.\\
+
+\fbox{問8} $p$成分の積分を計算せよ.\\
+
+\fbox{問9} 数学的帰納法を用いてFeynman kernelが(\ref{Kernel})のように計算できることを示せ.\\
+
+経路積分を使わない方法に比べてかなり面倒ですが, モデルがもっと複雑になると有り難みが出てきます. 
+\section{数値計算の準備及び経路積分のイメージ}
+直感的理解へ向けて経路積分について数値計算を行う.
+\subsection{基底波動関数と伝搬関数}
+伝搬関数を束縛状態の固有関数$\ket{n}$で展開:
+\begin{eqnarray}
+  G(x, t; x_0, t_0=0) \equiv \bra{x}e^{-i\hat{H}(t-t_0)}\ket{x_0} = \sum_n\bra{x}\ket{n}\bra{n}e^{-i\hat{H}t}\ket{x_0} = \sum_n\psi_n(x)\psi_n^*(x_0)e^{-iE_nt}
+\end{eqnarray}
+ここで$t = -i\tau$として$\tau\rightarrow\infty$を考えると, 高い励起状態は指数関数的に減衰していくことがわかる. これより伝搬関数と基底波動関数の関係
+\begin{eqnarray}
+  &&G(x, t= 0 -i\tau; x_0, t_0=0) \rightarrow \psi_0(x)\psi_0^*(x_0)e^{E_0\tau}\\
+  &\therefore&|\psi_0(x)|^2 \rightarrow e^{-E_0\tau}G(x, t= 0 -i\tau; x_0=x, t_0=0)\label{GroundGreen}
+\end{eqnarray}
+が明らかになる. 第二式は始点と終点が同じになっていることに注意. Green関数から基底波動関数の情報を抜き出すためには, 虚時間を導入し時間発展を行えば良い. これを虚時間発展法と呼ぶ.
+\subsection{作用とラグランジアン}
+ラグランジアンを虚時間で記述すると, ハミルトニアンに化ける:
+\begin{eqnarray}
+  &&L\qty(x, \frac{dx}{dt}) = \frac{m}{2}\qty(\frac{dx}{dt})^2 - V(x)\\
+  &\rightarrow& L\qty(x, \frac{dx}{-id\tau}) = -\frac{m}{2}\qty(\frac{dx}{d\tau})^2 - V(x) = -H\qty(x, \frac{dx}{d\tau})
+\end{eqnarray}
+これにより作用がラグランジアンの積分からハミルトニアンの積分に書き換えられる:
+\begin{eqnarray}
+  S[x(t)] &=& \int_{t_0=0}^{t}dtL(x, t) = i\int_{\tau_0=0}^{\tau}d\tau H(x,\tau)\label{prob10_1}\\
+  G(x, -i\tau; x_0, 0) &=& \qty(\frac{1}{2\pi})^{N+1}\int dx_1 dx_2\cdots dx_N e^{-\int_0^{\tau} H(\tau)}\label{prob10_2}
+\end{eqnarray}\\
+
+\fbox{問10} (\ref{prob10_1})(\ref{prob10_2})を確かめよ. \\
+
+\subsection{作用積分の簡略化}
+前述のハミルトニアンの積分を差分化で書き直し, 数値計算に持ち込めるようにする:
+\begin{eqnarray}
+  \int H(\tau) &\simeq& \sum_j\epsilon E_j = \epsilon W(\{x_j\})\\
+  W(\{x_j\}) &\equiv& \sum_j\qty[\frac{m}{2}\qty(\frac{x_{j} - x_{j-1}}{\epsilon})^2 + V\qty(\frac{x_{j} + x_{j-1}}{2})]
+\end{eqnarray}
+規格化を考慮したうえで(\ref{GroundGreen})に代入する:
+\begin{eqnarray}
+  |\psi_0(x)|^2 &=& \lim_{\tau\rightarrow\infty}\frac{G(x, t=-i\tau;x_0=x, t_0=0)}{\int dx G(x, t=-i\tau;x_0=x, t_0=0)}\\
+  &=&\frac{1}{Z}\lim_{\tau\rightarrow\infty}\int dx_1 dx_2\cdots dx_N e^{-\epsilon W(x, x_1,..., x_N)}\label{PsiW}\\
+  Z &=& \lim_{\tau\rightarrow\infty}\int dx dx_1 dx_2\cdots dx_N e^{-\epsilon W}
+\end{eqnarray}
+$W$はエネルギー線績分になっている. また$W(x, x_1,..., x_N)$は始点と終点を$x$に固定している.
+\subsection{経路とは}
+(\ref{prob10_2})の$\exp$の肩においてハミルトニアンを時間軸に沿って積分している. また$S[x(t)] = i\int_{\tau_0=0}^{\tau}d\tau H(x, \tau)$から作用は$x(t)$の経路によって決定される. つまり, 「取りうるすべての$x(t)$の経路についてエネルギー(ハミルトニアン)を足しあげていく」ことが経路積分の具体的なイメージである. エネルギーが大きい経路が効いてこない理由は(\ref{prob10_2})から直感的にわかる. 
+\subsection{経路の取り方}
+$|\psi_0(x)|^2$を求めたい訳だが, 数値計算の上では離散化するので$|\psi_0(x[1])|^2, |\psi_0(x[2])|^2, |\psi_0(x[3])|^2 ... |\psi_0(x[N-1])|^2$を求めることになる. 本来なら$G(x[1], -i\tau; x[1], 0), G(x[2], -i\tau; x[2], 0), G(x[3], -i\tau; x[3], 0), ... G(x[N-1], -i\tau; x[N-1], 0)$について別々の初期設定で計算する必要がある.これを別々に計算すると計算コストが非常に高くなる.$x_j$は時間で差分化, $x[j]$は空間で差分化していることに注意.
+
+具体的な計算においては(\ref{PsiW})を各$x[1],x[2] ...$について計算すればよいのだが
+\begin{eqnarray}
+  |\psi_0(x[1])|^2 &=&\frac{1}{Z}\lim_{\tau\rightarrow\infty}\int dx_1 dx_2\cdots dx_N e^{-\epsilon W(x[1], x_1, x_2, ...)}\\
+  |\psi_0(x[2])|^2 &=&\frac{1}{Z}\lim_{\tau\rightarrow\infty}\int dx_1 dx_2\cdots dx_N e^{-\epsilon W(x[2], x_1, x_2, ...)}\\
+  \nonumber  &&\vdots
+\end{eqnarray}
+における$W(x[1], x_1, x_2, ...)$と$W(x[2], x_1, x_2, ...)$は始点(終点)が異なるので, それぞれ別々に計算を実行しなければならない. これが計算コストの肥大化の原因である.
+\subsection{処方箋}
+この問題に関する処方箋はRubinの本\footnote{Rubin H. Landau, {\it Computational Physics} (1997) pp. 313-317}にあるのでこれを参考勉強するのがいいと思います. が, 翻訳があまり良くないのかそもそも原文の内容が丁寧でないためか, 理解するのはなかなか難しいと思います. 理解のための重要なポイントは
+\begin{itemize}
+\item[1.] $x_0$が始点(終点)の経路における$x_i$を$x'_i$にフリップしたときに$x_0$からの作用積分が $x_i$からの作用積分と同じ値であることを利用して$|\psi(x'_i)|^2$を求めることが経路積分の計算と等価であること
+\item[2.] 作用を計算して確率分布に計上することと, フリップする確率をBoltzmann分布で与えてその経路(格子点)に乗った粒子をそのまま足し上げることがだいたい等価であること
+\end{itemize}
+の2点にあると思います. この2つがMonte Carlo法・Metropolis法による数値計算を正当化しています.
+
+是非一緒にお勉強しましょう. 
+%% \subsection{計算のテクニック}
+%% この問題を解消するために(\ref{PsiW})を以下のように変形する:
+%% \begin{eqnarray}
+%%   |\psi_0(x)|^2  &=&\frac{1}{Z}\lim_{\tau\rightarrow\infty}\int dx_0 dx_1 dx_2\cdots dx_N \delta(x - x_0)e^{-\epsilon W(x_0, x_1,..., x_N)}
+%% \end{eqnarray}
+%% これで始点(終点)を$x_0$に固定したことになる. 例えば$\psi(x[1]), \psi(x[2]), \psi(x[3])\cdots$を計算したければ
+%% \begin{eqnarray}
+%%   |\psi_0(x[1])|^2  &=&\frac{1}{Z}\lim_{\tau\rightarrow\infty}\int dx_0 dx_1 dx_2\cdots dx_N \delta(x[1] - x_0)e^{-\epsilon W(x_0, x_1,..., x_N)}\\
+%%   |\psi_0(x[2])|^2  &=&\frac{1}{Z}\lim_{\tau\rightarrow\infty}\int dx_0 dx_1 dx_2\cdots dx_N \delta(x[2] - x_0)e^{-\epsilon W(x_0, x_1,..., x_N)}\\
+%%   |\psi_0(x[3])|^2  &=&\frac{1}{Z}\lim_{\tau\rightarrow\infty}\int dx_0 dx_1 dx_2\cdots dx_N \delta(x[3] - x_0)e^{-\epsilon W(x_0, x_1,..., x_N)}\\
+%% \nonumber  &&\vdots
+%% \end{eqnarray}
+%% を計算すればよい. ここで重要なのは「被積分関数はデルタ関数を除いてどれも同じ」ことである.つまり, $x_0$を始点に置いたすべての$(x_0, x_1, ..., x_N)$についてエネルギー線績分を計算した後に$x[1], x[2], x[3], ...$のそれぞれについてのみ値をピックアップすればよい.
+%% \subsubsection{いやだから...}
+%% 結局デルタ関数で$x_0$が$x[1]$やら$x[2]$やらに変えられるわけだから, やはり別々に$W(x[1], x_1, x_2, ...)$と$W(x[2], x_1, x_2, ...)$を計算しなければならないのでは？と思うでしょう.
+
+%% この問題を巧く解決する方法があります\footnote{Rubin H. Landau, {\it Computational Physics} (1997) pp. 313-317}.
+

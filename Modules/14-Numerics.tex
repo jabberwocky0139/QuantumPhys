@@ -1,0 +1,68 @@
+
+\chapter{数値計算手法}
+山中研でよく用いられる数値計算アルゴリズムを実例とともに紹介. 
+\section{Symplectic数値解法}
+\subsection{ハミルトニアンの分解}
+例えば, あるTime-depend Schr\"odinger方程式
+\begin{eqnarray}
+  i\partial_t\psi(t) = \hat{H}\psi(t) = (\hat{K} + \hat{V})\psi(t)
+\end{eqnarray}
+の時間発展はハミルトニアンが時間並進のGeneratorであることから, 微小時間$\Delta t$を用いて
+\begin{eqnarray}
+  \psi(t + \Delta t)  = \exp[-i(\hat{K} + \hat{V})\Delta t]\psi(t)
+\end{eqnarray}
+とかける. この$\exp[\bullet]$を評価できれば時間発展が記述できるが, 当然$\hat{K}$には微分演算子が含まれているのでそんなに単純ではない. これを処理するには拡散方程式を解く場合と同様, Fourier変換を用いる方法が考えられる. しかし, Fourier変換を必要としているのは$\hat{K}$の部分であり, $\hat{V}$ではない. ということで, $\exp[\bullet]$をBaker-Campbell-Hausdorff公式で分解する:
+\begin{eqnarray}
+  \exp[-i(\hat{K} + \hat{V})\Delta t] &=& e^{-i\hat{K}\Delta t}e^{-i\hat{V}\Delta t}e^{\frac{1}{2}[\hat{K}, \hat{V}]\Delta t^2}\\
+  &=& e^{-i\hat{K}\Delta t}e^{-i\hat{V}\Delta t}\qty(I + \frac{1}{2}[\hat{K}, \hat{V}]\Delta t^2 + \cdots)\\
+  &=& e^{-i\hat{K}\Delta t}e^{-i\hat{V}\Delta t} + {\cal O}(\Delta t^2)
+\end{eqnarray}
+これは$\Delta t$について2次の誤差を持つ.
+\subsection{エネルギーの保存}
+では, Symplectic解法における時間発展演算子は$e^{-i\hat{H}\Delta t}$ではなく$e^{-i\hat{K}\Delta t}e^{-i\hat{V}\Delta t}$になるわけだが, これの近似によってエネルギーの誤差はどの程度になるのだろうか. その前に, この時間発展演算子によって保存する量がどんなものであるかを考えてみよう. $e^{-i\hat{H}\Delta t}$で保存する量が$\hat{H}$ならば
+\begin{eqnarray}
+  e^{-i\hat{K}\Delta t}e^{-i\hat{V}\Delta t} = e^{-i\tilde{H}\Delta t}
+\end{eqnarray}
+という$\tilde{H}$を導入すればこれは保存する筈である. ではこの$\tilde{H}$が具体的に何になるかというと以下の通り. 
+\begin{eqnarray}
+  e^{-i\hat{K}\Delta t}e^{-i\hat{V}\Delta t} &=& e^{-i\qty(\hat{K}+\hat{V})\Delta t -\frac{1}{2}[\hat{K}, \hat{V}]\Delta t^2 + \cdots}\\
+  \therefore \tilde{H} &=& \hat{K}+\hat{V} -\frac{i}{2}[\hat{K}, \hat{V}]\Delta t + \cdots
+\end{eqnarray}
+つまり, この$\tilde{H}$が$\psi(t_1)$に作用しようが, $\psi(t_2)$に作用しようが全エネルギーの誤差は$t_1, t_2$に依らず$\Delta t$にのみ依存する. つまり$t$を並進するごとに誤差が蓄積することはなく, $\Delta t$が無視できるほど小さいなら$\tilde{H} \simeq H$である. これがSymplectic解法の強みである.
+\subsection{Formulate for Schr\"odinger equation}
+Schro\"dinger方程式の逐次時間発展:
+\begin{eqnarray}
+  \psi(t + \Delta t) &=& \exp\qty{-\frac{i}{2}\qty(-\partial_x^2 + x^2)}\psi(t)\\
+  &\simeq& \exp\qty(K\delta t)\exp\qty(V\delta t)\psi(t)\\
+\nonumber   where&&\ \ K = \frac{i}{2}\partial_x^2,\ \ V = - \frac{i}{2}x^2
+\end{eqnarray}
+ここでポテンシャル項についてはまとめてしまう:
+\begin{eqnarray}
+  \exp\qty(V\Delta t)\psi(t) &=& \psi_V\\
+  \psi(t + \Delta t) &=& \exp\qty(K\delta t)\psi_V
+\end{eqnarray}
+$\psi_V$はもちろん時間に依存しているが, その引数は省略している. 運動エネルギー項のもともとの微分方程式は拡散方程式なので, これを Fourier変換する:
+\begin{eqnarray}
+  i\partial_t \psi_V &=& -\frac{1}{2}\partial_x^2 \psi_V\\
+  i\partial_t\int dk e^{ikx}\tilde{\psi}_V(k) &=& -\frac{1}{2}\partial_x^2 \int dk e^{ikx}\tilde{\psi}_V(k)\\
+  \partial_t \tilde{\psi}_V(k) &=& -\frac{1}{2} ik^2\tilde{\psi}_V(k)\\
+  \therefore \tilde{\psi}_V(k, t+\Delta t) &=& e^{-\frac{1}{2} ik^2\Delta t}\tilde{\psi}_V(k)\\
+\nonumber  \therefore \exp\qty(K\delta t)\psi_V &=& {\cal F}^{-1}\qty[e^{-\frac{1}{2} ik^2\Delta t}\tilde{\psi}_V(k)]\\
+  &=& {\cal F}^{-1}\qty[e^{-\frac{1}{2} ik^2\Delta t}{\cal F}\qty[\psi_V]]
+\end{eqnarray}
+まとめると,
+\begin{eqnarray}
+  \psi(t+\Delta t) = {\cal F}^{-1}\qty[e^{-\frac{1}{2} ik^2\Delta t}{\cal F}\qty[\exp\qty(V\Delta t)\psi(t)]]
+\end{eqnarray}
+具体的な手順としては\\
+
+1. 時刻$t$の波動関数に$\exp\qty(V\Delta t)$を掛ける
+
+2. Fourier変換する
+
+3. $e^{-\frac{1}{2} ik^2\Delta t}$を掛ける
+
+4. 逆Fourier変換する\\
+
+といったところ.
+

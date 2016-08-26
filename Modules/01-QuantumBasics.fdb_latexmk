@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1468300527 "01-QuantumBasics.dvi" "01-QuantumBasics.pdf" "01-QuantumBasics" 1468300528
-  "01-QuantumBasics.dvi" 1468300527 62160 a90f34f457b4fa40c297b446ca9b361c "latex"
+["dvipdf"] 1468666442 "01-QuantumBasics.dvi" "01-QuantumBasics.pdf" "01-QuantumBasics" 1468666512
+  "01-QuantumBasics.dvi" 1468666442 62160 6c653ea9b6a22793927caafe3bdcc0d8 "latex"
   (generated)
   "01-QuantumBasics.pdf"
-["latex"] 1468300527 "01-QuantumBasics.tex" "01-QuantumBasics.dvi" "01-QuantumBasics" 1468300528
+["latex"] 1468666442 "01-QuantumBasics.tex" "01-QuantumBasics.dvi" "01-QuantumBasics" 1468666512
   "/etc/texmf/web2c/texmf.cnf" 1464345020 1101 af7716885e081ab43982cab7b4672c1a ""
   "/home/jabberwocky/.macro.tex" 1468223159 1450 e01855279eeb769837559794f38f20b3 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -104,9 +104,9 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1458942643 31351 b32c45dce4a01cb7b53ed90c546614ca ""
   "/usr/share/texmf/web2c/texmf.cnf" 1458942643 31351 b32c45dce4a01cb7b53ed90c546614ca ""
   "/var/lib/texmf/web2c/eptex/platex.fmt" 1464345163 4008114 926029e1256fd66dceb5fe3c6097633a ""
-  "01-QuantumBasics.aux" 1468300527 3349 208d9e0d76c5062723f5355233129a1c ""
-  "01-QuantumBasics.tex" 1468300512 34894 e7c61b196a1391d68d522fbff37ee2a9 ""
+  "01-QuantumBasics.aux" 1468666442 3349 208d9e0d76c5062723f5355233129a1c ""
+  "01-QuantumBasics.tex" 1468302545 34894 e7c61b196a1391d68d522fbff37ee2a9 ""
   (generated)
-  "01-QuantumBasics.aux"
-  "01-QuantumBasics.dvi"
   "01-QuantumBasics.log"
+  "01-QuantumBasics.dvi"
+  "01-QuantumBasics.aux"

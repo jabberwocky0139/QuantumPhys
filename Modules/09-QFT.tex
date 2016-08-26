@@ -1,0 +1,423 @@
+
+\chapter{場の量子論}
+\section{Wickの定理}
+摂動計算において重要な役割を果たす. ただし, この定理が成立するのは\textbf{生成消滅演算子の代数を満たすものに限られる. }つまり, ゼロモード演算子はWickの定理を満たさない. 
+\subsection{概要}
+ざっくり言うと
+\begin{screen}
+  場の演算子の時間順序積(T積)はそれらの演算子から構成される全ての可能な正規積(N積)と伝搬関数の積の和で表される.
+\end{screen}
+伝搬関数(因果Green関数, Feynman propagator)は
+\begin{eqnarray}
+  \Delta_F(\bm{x}_1-\bm{x}_2, t_1-t_2) = -i\bra{0}{\rm T}\left[\phi(\bm{x}_1, t_1)\phi^\dagger(\bm{x}_2, t_2)\right]\ket{0}
+\end{eqnarray}
+で与えられるので, $\phi$の可能な組を全て足し上げればよい. 伝搬関数は$\phi^\dagger, \phi$の組で作られるので, $\phi\phi, \phi^\dagger\phi^\dagger$の組は考えなくても良い. 
+N積は生成演算子を前に, 消滅演算子を後ろに持ってくる順序積:
+\begin{eqnarray}
+  :\phi_1\phi^\dagger_2\phi_3\phi^\dagger_4:\ = \phi^\dagger_2\phi^\dagger_4\phi_1\phi_3
+\end{eqnarray}
+
+大事なことは, \textbf{N積の真空期待値は必ずゼロになるということ}と, \textbf{演算子が時間に依存していないならば勝手にT積をつけてもよい}ということ. 期待値を計算するための面倒な交換関係計算があるとき, Wickが使えることがある. 基本的には伝搬関数が真空で作られているので有限温度では使えないが, 議論を有限温度期待値に拡張したBlock-de Dominicsの定理というのがある. 有限温度系におけるWickの定理とかも呼ばれる. 
+\subsection{具体例}
+\subsubsection{n=2の場合}
+\begin{eqnarray}
+  {\rm T}[\phi_1\phi_2] =\ :\phi_1\phi_2: + \bra{0}{\rm T}[\phi_1\phi_2]\ket{0}
+\end{eqnarray}
+\subsubsection{n=3の場合}
+\begin{eqnarray}
+  {\rm T}[\phi_1\phi_2\phi_3] =\ :\phi_1\phi_2\phi_3: + \bra{0}{\rm T}[\phi_1\phi_2]\ket{0}\phi_3 + \bra{0}{\rm T}[\phi_1\phi_3]\ket{0}\phi_2 + \bra{0}{\rm T}[\phi_2\phi_3]\ket{0}\phi_1 
+\end{eqnarray}
+\subsection{証明}
+Fetterの章を参照のこと. 
+\section{TFD形式による期待値計算}
+$k$が連続自由度を持つ場合の期待値をTFDの力を借りて計算する.
+\subsection{TFDのド基礎}
+熱的真空は
+\begin{eqnarray}
+  \ket{0} &=& (1-f)\sum_mf^m\dket{m, m}\\
+  \bra{0} &=& \sum_m\dbra{m, m}
+\end{eqnarray}
+で定義される. $f$はボルツマン因子. $f \neq e^{-\beta\omega}$のとき非平衡であるという. 熱的ブラ・ケットは双対ではない.
+超演算子形式における$\dbra{I_R}\bullet\dket{\rho_R}$は熱的真空期待値$\ev{\bullet}{0}$に置き換えが可能\footnote{超演算子形式のチェック・チルダとTFDのノンチルダ・チルダは単射同型の関係にある. }. またBosonの熱的Bogoliubov変換の具体形は
+\begin{eqnarray}
+  b_{\bm{k}}^\dagger &=& \tilde{\xi_{\bm{k}}} + (1+n_{\bm{k}})\xi_{\bm{k}}^\dagger\\
+  b_{\bm{k}} &=& \xi_{\bm{k}} + n_{\bm{k}}\tilde{\xi_{\bm{k}}}^\dagger
+\end{eqnarray}
+で与えられ, $\xi$演算子は熱的真空を消去する消滅演算子である:
+\begin{eqnarray}
+  \xi\ket{0} &=& \tilde{\xi}\ket{0} = 0\ ,\hspace{0.5cm} \bra{0}\xi^\dagger = \bra{0}\tilde{\xi}^\dagger = 0\\
+  \comm{\xi}{\xi^\dagger} &=& \comm{\tilde{\xi_{\bm{k}}}}{\tilde{\xi_{\bm{k}'}}^\dagger} = \delta(\bm{k}-\bm{k}'), \hspace{0.5cm} \comm{\xi_{\bm{k}}}{\tilde{\xi_{\bm{k}'}}} = \comm{\xi_{\bm{k}}}{\tilde{\xi_{\bm{k}'}}^\dagger} = 0
+\end{eqnarray}
+この熱的真空, $\xi$演算子を用いて計算をする. 以下$x = (\bm{x}, t), y = (\bm{y}, s)$とする. 
+\subsection{具体計算}
+例として以下の計算をする:
+\begin{eqnarray}
+  \ev{R_3(x)R_3(y)} &\equiv& \bra{0}\frac{1}{(2\pi)^6}\int dk_1dk_2dk_3dk_4 b^\dagger_{k_1}b_{k_2}b^\dagger_{k_3}b_{k_4}e^{-i(k_1-k_2)x}e^{-i(k_3-k_4)y}e^{i(\omega_{k_1}-\omega_{k_2})t}e^{i(\omega_{k_3}-\omega_{k_4})s}\ket{0}\\
+  \nonumber  &=& \frac{1}{(2\pi)^6}\int dk_1dk_2dk_3dk_4e^{-i(k_1-k_2)x}e^{-i(k_3-k_4)y}e^{i(\omega_{k_1}-\omega_{k_2})t}e^{i(\omega_{k_3}-\omega_{k_4})s}\\
+  && \bra{0}\qty(\tilde{\xi_1} + (1+n_1)\xi_1^\dagger)\qty(\xi_2 + n_2\tilde{\xi_2}^\dagger)\qty(\tilde{\xi_3} + (1+n_3)\xi_3^\dagger)\qty(\xi_4 + n_4\tilde{\xi_4}^\dagger)\ket{0}
+\end{eqnarray}
+ここでは$\xi, n$の添字について$(k_1, k_2, k_3, k_4)\rightarrow(1, 2, 3, 4)$という置換をしている. 上式の熱的真空期待値を計算する:
+\begin{eqnarray}
+  &&\bra{0}\qty(\tilde{\xi_1} + (1+n_1)\xi_1^\dagger)\qty(\xi_2 + n_2\tilde{\xi_2}^\dagger)\qty(\tilde{\xi_3} + (1+n_3)\xi_3^\dagger)\qty(\xi_4 + n_4\tilde{\xi_4}^\dagger)\ket{0}\\
+  =&&\bra{0}\tilde{\xi_1}\qty(\xi_2 + n_2\tilde{\xi_2}^\dagger)\qty(\tilde{\xi_3} + (1+n_3)\xi_3^\dagger)n_4\tilde{\xi_4}^\dagger\ket{0}\\
+  =&&\bra{0}\qty(\tilde{\xi_1}\xi_2 + n_2\tilde{\xi_1}\tilde{\xi_2}^\dagger)\qty(n_4\tilde{\xi_3}\tilde{\xi_4}^\dagger + n_4(1+n_3)\xi_3^\dagger \tilde{\xi_4}^\dagger)\ket{0}\\
+  =&&\bra{0}\qty(\tilde{\xi_1}\xi_2 + n_2\Bqty{\tilde{\xi_2}^\dagger\tilde{\xi_1} + \comm{\tilde{\xi_1}}{\tilde{\xi_2}^\dagger}})\qty(n_4\Bqty{\tilde{\xi_4}^\dagger\tilde{\xi_3} + \comm{\tilde{\xi_3}}{\tilde{\xi_4}^\dagger}} + n_4(1+n_3)\xi_3^\dagger \tilde{\xi_4}^\dagger)\ket{0}\\
+  =&&\bra{0}\qty(\tilde{\xi_1}\xi_2 + n_2\delta(1-2))\qty(n_4\delta(3-4) + n_4(1+n_3)\xi_3^\dagger \tilde{\xi_4}^\dagger)\ket{0}\\
+  \nonumber  = &&\bra{0}\qty(\tilde{\xi_1}\xi_2n_4\delta(3-4) + \tilde{\xi_1}\xi_2\xi_3^\dagger \tilde{\xi_4}^\dagger n_4(1+n_3) + n_2n_4\delta(1-2)\delta(3-4) + \xi_3^\dagger \tilde{\xi_4}^\dagger n_2n_4(1+n_3)\delta(1-2))\ket{0}\\
+  \\
+  = &&\bra{0}\qty(\tilde{\xi_1}\xi_2\xi_3^\dagger \tilde{\xi_4}^\dagger n_4(1+n_3) + n_2n_4\delta(1-2)\delta(3-4))\ket{0}\\
+  = &&\bra{0}\Bqty{n_4(1+n_3)\delta(1-4)\delta(2-3) + n_2n_4\delta(1-2)\delta(3-4)}\ket{0}
+\end{eqnarray}
+よって
+\begin{eqnarray}
+  \nonumber  \ev{R_3(x)R_3(y)} &\equiv&\qty(\frac{1}{(2\pi)^3}\int dk n_k)^2 + \frac{1}{(2\pi)^6}\int dk_1dk_2 e^{-i(k_1-k_2)(x-y)}e^{i(\omega_{k_1}-\omega_{k_2})(t-s)}n_1(1+n_2)\label{expectation2}\\
+\end{eqnarray}
+\subsection{Block-de Dominicsの定理}
+TFD形式だと計算が簡単になることがわかった\footnote{超演算子形式のままだとトレース演算になるのでなかなか面倒. }. ただ, 熱平均についてはBlock-de Dominicsの定理というWickの定理に対応するものがあるので, もっと簡単に計算できそうである. $b_1\sim b_6$まであるものを考えるが, $x, y$がcoupleするか否かは区別しないといけない\footnote{たとえば$1x-2x$がcoupleすると対応するデルタ関数$\delta(1-2)$が出てきて$e^{-i(k_1 - k_2)(x-y)}, e^{i(\omega_1 - \omega_2)(t-s)}$が消える.これは(\ref{expectation2})の右辺第一項にあたる項の起源. 一方で$x-y$のcross couplingがあるとexponentialの空間・時間成分が消えずに残る. これが(\ref{expectation2})の右辺第二項にあたる.}:
+\begin{eqnarray}
+  \ev{R_1(x)R_1^\dagger(y)} &\sim& \bra{0}b_{1x}^\dagger b^\dagger_{2x} b_{3x} b^\dagger_{4y} b_{5y} b_{6y} \ket{0} =\bra{0}{\rm T} \bqty{b_{1x}^\dagger b^\dagger_{2x} b_{3x} b^\dagger_{4y} b_{5y} b_{6y} }\ket{0}\\
+  &=& 2\bra{0}{\rm T}\wick{321}{<1b_{1x}^\dagger <2b^\dagger_{2x} <3b_{3x} >3b^\dagger_{4y} >1b_{5y} >2b_{6y} }\ket{0} + 4\bra{0}{\rm T}\wick{321}{<1b_{1x}^\dagger <2b^\dagger_{2x} >1b_{3x} <3b^\dagger_{4y} >2b_{5y} >3b_{6y} }\ket{0}\\
+  &=&2\ev{b^\dagger_{1x}b_{5y}}\ev{b^\dagger_{2x}b_{6y}}\ev{b_{3x}b^\dagger_{4y}} + 4\ev{b^\dagger_{1x}b_{3x}}\ev{b^\dagger_{2x}b_{5y}}\ev{b^\dagger_{4y}b_{6y}}\\
+  \nonumber  &=& 2\delta(1-5)\delta(2-6)\delta(3-4)n_1n_2(1+n_3) + 4\delta(1-3)\delta(2-5)\delta(4-6)n_1n_2n_4\\
+\end{eqnarray}
+$\xi$演算子で真面目に計算しなくてもいける. 
+\section{Gell-Mann-Lowの定理}
+\subsection{断熱因子}
+ハミルトニアンの摂動部が断熱因子を持っている場合を考える:
+\begin{eqnarray}
+  H = H_0 + e^{-\epsilon|t|}H_I
+\end{eqnarray}
+これは$t = 0$でfullの相互作用を取り入れた系になり, $t \rightarrow \pm\infty$で自由粒子になるようなハミルトニアンである. ここで, $t = t_0$かつ$t_0 \sim -\infty$で相互作用描像の状態が非摂動ハミルトニアンの固有状態になっている場合を考える\footnote{相互作用描像も自由粒子のハイゼンベルグ描像と一致するという近似できる. }:
+\begin{eqnarray}
+  H_0\ket{\Psi(t_0)}_I = E_0\ket{\Psi(t_0)}_I
+\end{eqnarray}
+さらに$t_0 \sim -\infty$であることから時間発展演算子を用いてハイゼンベルグ描像は
+\begin{eqnarray}
+  \ket{\Psi}_{\rm H} =  \ket{\Psi(0)}_I = U_\epsilon(0, t_0)\ket{\Psi(t_0)}_I= U_\epsilon(0, -\infty)\ket{\Psi(t_0)}_I\label{5eq1}
+\end{eqnarray}
+と書ける. これは, 相互作用系の状態が非摂動系の固有状態を用いて表現できたことを意味している.
+
+あとは$\epsilon$について考える必要がある. そもそもこの系は2つの粒子の散乱実験をテーマにしたようなものである. 2つの粒子が$t = 0$で衝突することを考えるとき, 相互作用が効いてくるのは$t = 0$近傍のみであって, それ以外は自由粒子とほぼ同じ振る舞いをするだろうというアイデアから断熱因子は導入されている. 粒子を平面波的に記述するためにも$\epsilon\rightarrow 0$としたいが, この極限のもとで果たして(\ref{5eq1})は意味ある結果を与えるのだろうか?
+
+これに答えるのがGell-Mann-Lowの定理である.\textbf{以降は基底状態に対する議論であることに注意.}
+\subsection{概要}
+Gell-Mann-Lowの定理が主張することは
+\begin{eqnarray}
+  \lim_{\epsilon\rightarrow0}\frac{U_\epsilon(0, -\infty)\ket{\phi_0(-\infty)}_I}{_I\bra{\phi_0(-\infty)}U_\epsilon(0, -\infty)\ket{\phi_0(-\infty)}_I} = \frac{\ket{\Psi_0}_H}{_I\expval{\phi_0(-\infty)|\Psi_0}_H}\label{gml}
+\end{eqnarray}
+が存在するなら固有状態$\ket{\Psi_0}_{\rm H}$はwell-definedであり, 固有値は
+\begin{eqnarray}
+  E-E_0 = \frac{_I\bra{\phi_0(-\infty)}H_I\ket{\Psi_0}_H}{_I\expval{\phi_0(-\infty)|\Psi_0}_H}
+\end{eqnarray}
+で与えられるということである. ここで添字の0は真空を意味している. また, $\ket{\phi_0(-\infty)}$は非摂動ハミルトニアンの固有状態になっているので解析的に求めることができる. あとは, (\ref{gml})が成立するかどうかが問題になる.
+
+これが成立すればFree Hamiltonian $H_0$とFull Hamiltonian $H$をユニタリー演算子でつなぐことができる. つまり, Free Hamiltonianの固有状態$\ket{\Phi_0}$を求めたあとにユニタリー演算子$U(0, -\infty)$をAll orderで取り入れればFull Hamiltonianの固有状態が求まることになる. もちろんAll orderは無理なので摂動的に取り入れることになる. これが場の理論における摂動論である.
+
+場の理論で物理量を摂動的に評価するときにはGreen関数を計算することが基本になるが, それを計算可能にするためのテクニックがWickの定理であり, そのWickの定理の証明にGell-Mann-Lowが用いられている. そういう意味でとっても重要. 
+\subsection{証明}
+Fetterの章を参照のこと. 
+\section{Tips}
+忘れやすいことをメモしておきます.
+\subsection{Heisenberg描像}
+Schr\"odinger描像は時間発展の情報が状態にある:
+\begin{eqnarray}
+  i\hbar\partial_t\ket{\psi(t)} &=& \hat{H}\ket{\psi(t)}\\
+  \expval{\hat{A}} &=&\ _S\!\bra{\psi(t)}\hat{A}\ket{\psi(t)}_S
+\end{eqnarray}
+Schr\"odinger方程式の形式解
+\begin{eqnarray}
+  \ket{\psi(t)} = e^{-i\hat{H}t/\hbar}\ket{\psi(0)}
+\end{eqnarray}
+を用いると期待値は
+\begin{eqnarray}
+  \expval{\hat{A}} &=&\ _S\!\bra{\psi(0)}e^{i\hat{H}t/\hbar}\hat{A}e^{-i\hat{H}t/\hbar}\ket{\psi(0)}_S
+\end{eqnarray}
+と書くことができる. Heisenberg描像における演算子と状態は
+\begin{eqnarray}
+  \hat{A}_{\rm H}(t) &=& e^{i\hat{H}t/\hbar}\hat{A}e^{-i\hat{H}t/\hbar}\\
+  \ket{\psi}_{\rm H} &=&  \ket{\psi(0)}_{\rm S}
+\end{eqnarray}
+\subsection{相互作用描像}
+ハミルトニアンを
+\begin{eqnarray}
+  H = H_0 + H_I
+\end{eqnarray}
+のように非摂動部$H_0$と摂動部$H_I$に分割する. 分割の方法は任意だが, 非摂動部を解析的に解ける形にしておくのが普通\footnote{たとえば生成消滅演算子の2次で記述できればBogoliubov変換を通して対角化が可能. IZMFにおいては真空を$\ket{0}_{\rm ex}\ket{\Psi_0}$のように励起部とゼロモード部の直積にする. ゼロモードの真空は非摂動部にゼロモードの高次を取り込んで場の分割条件を守るようにカウンター項を決定する. ゼロモードは生成消滅演算子の代数を持っていないので取り扱いは励起部とは本質的に異なることに注意. }. Heisenberg描像の時と同じように形式解を代入する:
+\begin{eqnarray}
+  \ket{\psi(t)}_{\rm S} = e^{-i(\hat{H_0} + \hat{H_I})t/\hbar}\ket{\psi(0)}_{\rm S}
+\end{eqnarray}
+ここで, 相互作用描像の状態を
+\begin{eqnarray}
+  \ket{\psi(t)}_{\rm I} \equiv e^{i\hat{H_0}t/\hbar}\ket{\psi(t)}_{\rm S} &=& e^{-i\hat{H_I}t/\hbar}\ket{\psi(0)}_{\rm S}\\
+  &=& e^{-i\hat{H_I}t/\hbar}\ket{\psi}_{\rm H}
+\end{eqnarray}
+と定義する. つまり, \textbf{相互作用描像の状態は摂動部$H_{\rm I}$(相互作用ハミルトニアン)による時間変化を担っている. }一方で相互作用描像の演算子は
+\begin{eqnarray}
+  A_{\rm I}(t) \equiv e^{i\hat{H_0}t/\hbar}\hat{A}_{\rm S}e^{-i\hat{H_0}t/\hbar}
+\end{eqnarray}
+で定義され, \textbf{非摂動部$H_0$による時間変化を担っている. }
+
+この描像においては$t = 0$で真空はHeisenberg描像と一致し, 演算子の時間発展はHeisenberg方程式
+\begin{eqnarray}
+  i\hbar\partial_tA_{\rm I}(t) = [A_{\rm I}(t), H_0]
+\end{eqnarray}
+で記述される. ここで重要なのが, \textbf{演算子の時間発展は非摂動ハミルトニアンで記述されている}ということ. 演算子の時間発展を追うのは難しくなさそう\footnote{もちろん非摂動ハミルトニアンが解析的に解ける形である場合に限る}. 一方で状態の時間発展は
+\begin{eqnarray}
+  i\hbar\partial_t\ket{\psi(t)}_I = H_{\rm I}\ket{\psi(t)}_I
+\end{eqnarray}
+のように, 解析的に解けない相互作用ハミルトニアンで記述されているのでそんなに簡単ではない. よって, 状態は摂動展開によって評価することになる.
+\subsection{各描像のハミルトニアン同士の関係}
+\subsubsection{Full Hamiltonian}
+Schr\"odinger描像とHeisenberg描像が一致:
+\begin{eqnarray}
+  H_H(t) = e^{iH_St}H_Se^{-iH_St} = H_S
+\end{eqnarray}
+これは任意の演算子については成立しないが, $t = 0$のときSchr\"odinger描像とHeisenberg描像は完全に一致する.
+\subsubsection{Unperturbed Hamiltonian}
+Schr\"odinger描像と相互作用描像が一致:
+\begin{eqnarray}
+  H_u(t) = e^{iH_{S, u}t}H_{S, u}e^{-iH_{S, u}t} = H_{S, u}
+\end{eqnarray}
+またHeisenberg描像とSchr\"odinger描像は
+\begin{eqnarray}
+  H_{H, u}(t) = e^{iH_St}H_{S, u}e^{-iH_St}
+\end{eqnarray}
+より, $t = 0$のときは非摂動部も一致する. $H_u(t)$は時間に依存しないことがわかっているので
+\begin{eqnarray}
+  H_u(t) &=& H_u(0) = H_{S, u}\\
+  H_u(t) &=& H_u(0) = H_{S, u} = H_{H, u}(0)\hspace{0.7cm} where\ \ t = 0
+\end{eqnarray}
+である.
+\subsection{デルタ関数のFourier変換表示}
+1次元Fourier変換
+\begin{eqnarray}
+  f(x) &=& \frac{1}{\sqrt{2\pi}}\int dk \tilde{f}(k)e^{ikx}\\
+  \tilde{f}(k) &=& \frac{1}{\sqrt{2\pi}}\int dx f(x)e^{-ikx}
+\end{eqnarray}
+を相互に代入する:
+\begin{eqnarray}
+  f(x) &=& \frac{1}{\sqrt{2\pi}}\int dk \left(\frac{1}{\sqrt{2\pi}}\int dx' f(x')e^{-ikx'}\right)e^{ikx}\\
+  &=& \int dx' \left(\frac{1}{2\pi}\int dk e^{ik(x-x')}\right)f(x')
+\end{eqnarray}
+これより
+\begin{eqnarray}
+  \delta(x-x') &=& \frac{1}{2\pi}\int dk e^{ik(x-x')}\\
+\end{eqnarray}
+ひいては
+\begin{eqnarray}
+  \delta(x) &=& \frac{1}{2\pi}\int dk e^{ikx} = \frac{1}{2\pi}\int dk e^{-ikx}
+\end{eqnarray}
+であることがわかる. 「1のFourier変換は$2\pi\delta(x)$だ」という表現もできる. 
+\subsection{$\bm{k}$が離散・連続の場合の$\expval{a_{\bm k}^\dagger a_{\bm{k}'}}$}
+\subsubsection{有限体積の場合}
+まずは$\left[\psi(x), \psi^\dagger(x')\right] = \delta(x - x')$を満たす一般的な演算子$\psi(x)$を離散変数$k_n$で展開した場合を考える. 体積$L$の一次元系について:
+\begin{eqnarray}
+  \psi(x) = \frac{1}{\sqrt{L}}\sum_{n=-\infty}^{n=\infty}e^{ik_nx}a_{k_n}
+\end{eqnarray}
+ただし$k_n = \frac{2\pi}{L}n$とする. すると,
+\begin{eqnarray}
+  \int dx\ \psi(x)e^{-ik_nx} &=& \frac{1}{\sqrt{L}}\sum_{n'}\int dx\ e^{-i(k_n-k_{n'})x}a_{k_{n'}}\\
+  &=& \frac{1}{\sqrt{L}}\sum_{n'}L\delta_{nn'}a_{k_{n'}} = \sqrt{L}a_{k_n}\\
+  \therefore a_{k_n} &=& \frac{1}{\sqrt{L}}\int dx\ \psi(x)e^{-ik_nx}  
+\end{eqnarray}
+このとき交換関係は
+\begin{eqnarray}
+  [a_{k_n}, a^\dagger_{k_{n'}}] = \frac{1}{L}\int dx dx'\ e^{-i(k_nx - k_{n'}x')}\left[\psi(x), \psi^\dagger(x')\right] = \frac{1}{L}\int dx \ e^{-i(k_n - k_{n'})x} = \delta_{nn'}
+\end{eqnarray}
+であり, 確かに本文の記述の通り,
+\begin{eqnarray}
+  \expval{a_{k_n}^\dagger a_{k_n}} = \frac{1}{e^{\beta\omega_{k_n}}-1} \equiv n_{k_n}
+\end{eqnarray}
+である.
+\subsubsection{熱力学極限}
+$L\rightarrow\infty$, つまり$k$の連続極限を取ることを考える. Fourier変換から
+\begin{eqnarray}
+  \psi(x) = \frac{1}{\sqrt{2\pi}}\int dk\ e^{ikx}a_k
+\end{eqnarray}
+となって欲しい. 交換関係が$[a_k, a_{k'}^\dagger] = \delta(k - k')$に変わる. これを守るために, $a_{k_n}\rightarrow ca_k$となる$c$を求める. $\sum_n\Delta ke^{ik_nx}\rightarrow\int dk e^{ikx}$かつ$\Delta k = \frac{2\pi}{L}$であることを用いて
+\begin{eqnarray}
+  \psi(x) = \frac{1}{\sqrt{L}}\sum_{n=-\infty}^{n=\infty}\frac{2\pi}{L}e^{ik_nx}a_{k_n}\frac{L}{2\pi}\rightarrow \frac{\sqrt{L}}{2\pi}\int dk e^{ikx} ca_n
+\end{eqnarray}
+となる. これより
+\begin{eqnarray}
+  c = \sqrt{\frac{2\pi}{L}}
+\end{eqnarray}
+以上より,
+\begin{eqnarray}
+  \expval{a_k^\dagger a_k} = \frac{L}{2\pi}n_k\label{particle}
+\end{eqnarray}
+であることがわかる. 今回は体積無限の系を考えているので,
+\begin{eqnarray}
+  \int_{-\infty}^\infty dx = L
+\end{eqnarray}
+であることから,
+\begin{eqnarray}
+  \delta(x) &=& \frac{1}{2\pi}\int dk\  e^{ikx}\\
+  \Longrightarrow \delta(0) &=& \frac{1}{2\pi}\int dk = \frac{L}{2\pi}
+\end{eqnarray}
+つまり式(\ref{particle})はデルタ関数を用いて
+\begin{eqnarray}
+  \expval{a_k^\dagger a_k} = \delta(0)n_k\label{particle}
+\end{eqnarray}
+と表現できる.
+\subsection{デルタ関数が体積になること}
+\begin{eqnarray}
+  \int^\infty_{-\infty} d\bm{x} = V
+\end{eqnarray}
+であり, デルタ関数のFourier変換表示
+\begin{eqnarray}
+  \delta(x) = \frac{1}{(2\pi)^3}\int dk e^{ikx}\hspace{0.5cm}\Longrightarrow \hspace{0.5cm}\delta(0) = \frac{1}{(2\pi)^3}\int dx = \frac{V}{(2\pi)^3}\label{delta-volume}
+\end{eqnarray}
+\subsection{ハミルトニアンの対角化とBogoliubov-de Gennes方程式}
+\subsubsection{対角化とは}
+ハミルトニアンの対角化とはハミルトニアンを生成消滅演算子を用いて
+\begin{eqnarray}
+  H = \sum_\ell \omega_{\ell} a_\ell a_\ell^\dagger\label{diagonal}
+\end{eqnarray}
+と表現することである. $\omega_\ell>0$であれば$a_\ell$が消去する$\ket{0}$が$H$の基底状態であることは量子力学における調和振動子の議論から明らか. $\omega_\ell < 0$である場合は$a_\ell$でいくらでもエネルギーを下げることができるので, $a_\ell$が張るFock空間には基底状態が存在しない\footnote{こういうのをLandau不安定性という. }.
+
+正準交換関係を満たす場の演算子から生成消滅演算子を構成するのは簡単. 正規直交完全系$w_\ell$で場の演算子$\varphi$を展開する:
+\begin{eqnarray}
+  \varphi = \sum_\ell a_\ell(t)w_\ell(\bm{x}), \hspace{0.5cm} a_\ell = \int d\bm{x} \omega_\ell(\bm{x})\varphi(x)\label{expansion}
+\end{eqnarray}
+ただし
+\begin{eqnarray}
+  \sum_\ell w_\ell(\bm{x}) w^*_\ell(\bm{x}') = \delta(\bm{x}-\bm{x}'),\hspace{0.5cm}  \int d\bm{x} w_\ell(\bm{x}) w^*_{\ell'}(\bm{x}) = \delta_{\ell\ell'}
+\end{eqnarray}
+である. 
+$\comm{\varphi(x)}{\varphi^\dagger(x')} = \delta(x - x')$から
+\begin{eqnarray}
+  \comm{a_\ell}{a^\dagger_{\ell'}} = \delta_{\ell\ell'}
+\end{eqnarray}
+であることがわかり, この$a, a^\dagger$は生成消滅演算子の代数を満たしている. つまり, 対角化のためには(\ref{diagonal})となるような適切な$w_\ell$を見つければ良い. $w_\ell$が変わると$a_\ell$の定義も変わるので, (\ref{expansion})で展開した時$a_\ell$が生成消滅演算子になるように構成しなければいけない. 
+
+ここであるハミルトニアン
+\begin{eqnarray}
+  H_0 = \int d\bm{x} \varphi^\dagger(x)h_0(\bm{x})\varphi(x)\label{unperturb}
+\end{eqnarray}
+を対角化したい. $h_0$の固有値方程式
+\begin{eqnarray}
+  h_0(\bm{x})w_\ell(\bm{x}) = \omega_\ell w_\ell(\bm{x})
+\end{eqnarray}
+から正規直交完全系をつくり, それでもって$\varphi$を展開する：
+\begin{eqnarray}
+  H_0 &=& \int d\bm{x} \sum_{\ell\ell'}a^\dagger_\ell(t)w^*_\ell(\bm{x})h_0(\bm{x})w_{\ell'}(\bm{x})a_{\ell'}(t)\\
+  &=& \int d\bm{x} \sum_{\ell\ell'}a^\dagger_\ell(t)w^*_\ell(\bm{x})\omega_{\ell'}w_{\ell'}(\bm{x})a_{\ell'}(t)\\
+  &=& \sum_{\ell\ell'}\omega_{\ell'}a^\dagger_\ell(t)a_{\ell'}(t)\delta_{\ell\ell'}\\
+  &=& \sum_{\ell}\omega_{\ell}a^\dagger_\ell(t)a_{\ell}(t)
+\end{eqnarray}
+対角化完了. つまり, (\ref{unperturb})のようなハミルトニアンは$h_0$の固有値問題を解き, その固有完全系でもって場の演算子を展開することで対角化ができる. これがほぼ唯一の対角化の方法である.
+\subsubsection{Bogoliubov-de Gennes方程式}
+冷却原子系のハミルトニアンの非摂動部をdoubletで書くと
+\begin{eqnarray}
+  H_u &=&  \int d\bm{x}
+  \begin{pmatrix}
+    \varphi^\dagger&-\varphi 
+  \end{pmatrix}
+  \begin{pmatrix}
+    \calL &\calM\\
+    -\calM^* &-\calL
+  \end{pmatrix}
+  \begin{pmatrix}
+    \varphi\\
+    \varphi^\dagger 
+  \end{pmatrix}\\
+  &=& \int d\bm{x} \overline{\Phi}T\Phi
+\end{eqnarray}
+となる\footnote{マイナスをつけたのはdoubletの$\Phi, \overline{\Phi}$が正準交換関係を満たすようにするため}. 先ほどのアナロジーから, $T$についての固有値方程式を解き, その固有関数系で$\Phi$を展開すれば非摂動部の対角化が可能である. この$T$についての固有値方程式がBogoliubov-de Gennes方程式である. $T$が一般にエルミートでないことに注意.
+\subsection{一様系のBogoliubov-de Gennes方程式}
+一様系ではBogoliubov変換とBogoliubov-de Gennes方程式による対角化は等価であり,解析的に計算が可能. 場の演算子をFourier変換:
+\begin{eqnarray}
+  \varphi = \frac{1}{\sqrt{(2\pi)^3}}\int d\bm{k} b_{\bm k}e^{i\bm{kx}}
+\end{eqnarray}
+ここで場を
+\begin{eqnarray}
+  \psi = \xi + \varphi
+\end{eqnarray}
+のように分割している. これを用いると冷却原子系の非摂動ハミルトニアンは
+\begin{eqnarray}
+  H_2 &=& \int d\bm{k}
+  \begin{pmatrix}
+    b_{\bm k}^\dagger &-b_{\bm -k} 
+  \end{pmatrix}
+  \begin{pmatrix}
+    \calL_k &\calM\\
+    -\calM^* &-\calL_k
+  \end{pmatrix}
+  \begin{pmatrix}
+    b_{\bm k}\\
+    b_{\bm -k}^\dagger 
+  \end{pmatrix}
+\end{eqnarray}
+ただし
+\begin{eqnarray}
+  \calL_k &=& \varepsilon_k + gn_0,\ \calM = gn_0e^{2i\theta}\\
+  \varepsilon_k &=& \frac{\hbar^2k^2}{2m},\ \xi(\bm{x}) = \sqrt{n_0}e^{i\theta},\ \mu = gn_0
+\end{eqnarray}
+つまり, k表示されたBdG行列の固有値問題を解けばよいことになり, さらに$\calL_k, \calM$は演算子を含まないので簡単である. これを解くと
+\begin{eqnarray}
+  \omega_k = \sqrt{\varepsilon_k(\varepsilon_k + 2gn_0)}
+\end{eqnarray}
+を得る.
+\subsection{相互作用描像における時間発展演算子とT積}
+相互作用描像の時間発展演算子が満たす方程式
+\begin{eqnarray}
+  i\hbar\partial_tU(t, 0)= H_I(t)U(t, 0)
+\end{eqnarray}
+について. 両辺を$t$で積分:
+\begin{eqnarray}
+  U(t, 0) = I + \qty(\frac{-i}{\hbar})\int_0^t dt_1 H_I(t_1)U(t_1, 0)
+\end{eqnarray}
+$U(0, 0) = I$としている. $U(t, 0)$を繰り返し代入する:
+\begin{eqnarray}
+  U(t, 0) &=& I + \qty(\frac{-i}{\hbar})\int_0^t dt_1 H_I(t_1)\qty(I + \qty(\frac{-i}{\hbar})\int_0^{t_1} dt_2 H_I(t_2)U(t_2, 0))\\
+  &=& I + \qty(\frac{-i}{\hbar})\int_0^t dt_1 H_I(t_1) + \qty(\frac{-i}{\hbar})^2\int_0^t dt_1 \int_0^{t_1} dt_2 H_I(t_1)H_I(t_2)U(t_2, 0)\\
+  \nonumber  &=& \cdots\\
+  \nonumber&=& I + \qty(\frac{-i}{\hbar})\int_0^t dt_1 H_I(t_1) + \qty(\frac{-i}{\hbar})^2\int_0^t dt_1 \int_0^{t_1} dt_2 H_I(t_1)H_I(t_2)\\
+  && \hspace{0.5cm}+ \cdots + \qty(\frac{-i}{\hbar})^n\int_0^t dt_1 \int_0^{t_1} dt_2\cdots\int_0^{t_{n-1}} dt_n H_I(t_1)H_I(t_2)\cdots H_I(t_n) + \cdots\label{T-product0}
+\end{eqnarray}
+このままだと積分の上端に変数が入っていて処理が難しいので変形する.
+
+ある$H(t_1)H(t_2)$の二重積分について. ダミー変数$t_1\leftrightarrow t_2$の入れ替えでは値は変わらない:
+\begin{eqnarray}
+  && \int_0^t dt_1\int_0^{t_1}dt_2H(t_1)H(t_2) = \int_0^t dt_2\int_0^{t_2}dt_1H(t_2)H(t_1)\\
+  &\therefore& \int_0^t dt_1\int_0^{t_1}dt_2H(t_1)H(t_2) + \int_0^t dt_2\int_0^{t_2}dt_1H(t_2)H(t_1) = 2\int_0^t dt_1\int_0^{t_1}dt_2H(t_1)H(t_2)\label{T-product1}
+\end{eqnarray}
+ここで唐突だが$H(t_1)H(t_2)$の時間順序積
+\begin{eqnarray}
+  T\qty[H(t_1)H(t_2)] = \theta(t_1 - t_2)H(t_1)H(t_2) + \theta(t_2 - t_1)H(t_2)H(t_1)
+\end{eqnarray}
+の積分を行う:
+\begin{eqnarray}
+\nonumber  \int_0^t dt_1\int_0^{t}dt_2 T\qty[H(t_1)H(t_2)] &=& \int_0^t dt_1\int_0^{t}dt_2\theta(t_1 - t_2)H(t_1)H(t_2) + \int_0^{t}dt_2\int_0^t dt_1\theta(t_2 - t_1)H(t_2)H(t_1)\\
+  &=&\int_0^t dt_1\int_0^{t_1}dt_2H(t_1)H(t_2) + \int_0^{t}dt_2\int_0^{t_2} dt_1H(t_2)H(t_1)
+\end{eqnarray}
+(\ref{T-product1})の結果を用いると
+\begin{eqnarray}
+  \int_0^t dt_1\int_0^{t}dt_2 T\qty[H(t_1)H(t_2)] &=& 2\int_0^t dt_1\int_0^{t_1}dt_2H(t_1)H(t_2)
+\end{eqnarray}
+これを拡張すると
+\begin{eqnarray}
+  \int_0^t dt_1\int_0^{t}dt_2\int_0^{t}dt_3 T\qty[H(t_1)H(t_2)H(t_3)] &=& 3!\int_0^t dt_1\int_0^{t_1}dt_2\int_0^{t_2}dt_3H(t_1)H(t_2)H(t_3)\\
+  \nonumber  \int_0^t dt_1\int_0^{t}dt_2\cdots\int_0^{t}dt_n T\qty[H(t_1)H(t_2)\cdots H(t_n)] &=& n!\int_0^t dt_1\int_0^{t_1}dt_2\cdots\int_0^{t_{n-1}}dt_nH(t_1)H(t_2)\cdots H(t_n)\\
+\end{eqnarray}
+となる. ここでは証明しないが帰納法でいけそう. これを用いて(\ref{T-product1})はT積を用いて
+\begin{eqnarray}
+\nonumber  U(t, 0) &=& I + \qty(\frac{-i}{\hbar})\int_0^t dt_1 H_I(t_1) + \frac{1}{2!}\qty(\frac{-i}{\hbar})^2\int_0^t dt_1 \int_0^{t} dt_2 T\qty[H_I(t_1)H_I(t_2)]\\
+&& \hspace{0.5cm}+ \cdots + \frac{1}{n!}\qty(\frac{-i}{\hbar})^n\int_0^t dt_1 \int_0^{t} dt_2\cdots\int_0^{t} dt_n T\qty[H_I(t_1)H_I(t_2)\cdots H_I(t_n)] + \cdots\\
+&=& \sum_{n}^\infty\frac{1}{n!}\qty(\frac{-i}{\hbar})^n\int_0^t dt_1 \int_0^{t} dt_2\cdots\int_0^{t} dt_n T\qty[H_I(t_1)H_I(t_2)\cdots H_I(t_n)]\label{T-product2}
+\end{eqnarray}
+のように書き換えられ, めでたく積分区間からダミー変数を除去できた. さらに, $dt_1, dt_2, \cdots dt_n$の積分順序は関係ないのでT積の中に入れ, かつ別々に積分を実行することができる:
+\begin{eqnarray}
+  U(t, 0) &=& \sum_{n}^\infty\frac{1}{n!}\qty(\frac{-i}{\hbar})^nT\qty[\int_0^t dt_1 \int_0^{t} dt_2\cdots\int_0^{t} dt_nH_I(t_1)H_I(t_2)\cdots H_I(t_n)]\\
+  &=& \sum_{n}^\infty\frac{1}{n!}\qty(\frac{-i}{\hbar})^nT\qty[\int_0^t dt_1H_I(t_1) \int_0^{t} dt_2H_I(t_2)\cdots\int_0^{t} dt_nH_I(t_n)]\\
+  &=& \sum_{n}^\infty\frac{1}{n!}\qty(\frac{-i}{\hbar})^nT\qty[\qty(\int_0^t ds H_I(s))^n]
+\end{eqnarray}
+それだけでなく, 時間が関係ない因子は全てT積に入れることができる:
+\begin{eqnarray}
+  U(t, 0) &=& T\qty[\sum_{n}^\infty\frac{1}{n!}\qty(\frac{-i}{\hbar})^n\qty(\int_0^t ds H_I(s))^n]\\
+  &=& T\qty[\sum_{n}^\infty\frac{1}{n!}\qty(\frac{-i}{\hbar}\int_0^t ds H_I(s))^n]\\
+  &=& T\exp(\frac{-i}{\hbar}\int_0^t ds H_I(s))
+\end{eqnarray}
+T積なんてこわくない！
+

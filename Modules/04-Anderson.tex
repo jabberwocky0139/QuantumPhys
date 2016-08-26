@@ -1,0 +1,70 @@
+\chapter{Anderson局在とその周辺}
+\section{Anderson局在とは}
+不純物がある系において, Drudeの電子論などでは説明できない電気伝導度が実験的に確かめられた. 具体的には, Drudeモデルでは電気伝導度は平均自由行程に比例するはずだが, ある点を境に相転移のごとく電気伝導度が落ち込む結果が得られた\footnote{Anderson転移と呼ぶ}.
+
+Andersonはこの不純物による電子の局在という問題に対して新しい理論を作った.
+\section{P.W.Anderson. Phys. Rev. $\bm{109}$, 1492(1958)}
+\subsection{Tight-Binding近似}
+電子が規則正しい格子の上にある場合を考える. このとき電子の波動関数は原子軌道$\phi$の相対座標表示を用いて
+\begin{eqnarray}
+  \ket{\psi_{\bm{k}}(\bm{r})} = \sum_{\bm{R}}e^{i\bm{k}\cdot\bm{R}}\ket{\phi_0(\bm{r}-\bm{R})}
+\end{eqnarray}
+のように展開できる\footnote{ケットの中に位置依存性$\bm{r}$を入れる不自然さには目を瞑る方向で}. 展開係数はBroch条件を守るために平面波になっている. これがTB近似\footnote{LCAO近似とも}である.
+
+今回は不純物が混じった系を考えるので展開系数は平面波ではない:
+\begin{eqnarray}
+  \ket{\psi_{\bm{k}}(\bm{r})} = \sum_{\bm{R}}a_{\bm R}^{\bm r}\ket{\phi_0(\bm{r}-\bm{R})}
+\end{eqnarray}
+これを各格子点のインデックスごとに和を取ることを考えて以下のように簡略化した記号を導入する:
+\begin{eqnarray}
+  \sum_{\bm{R}}a_{\bm R}^{\bm r}\ket{\phi_0(\bm{r}-\bm{R})} = \sum_ja_j\ket{j}
+\end{eqnarray}
+Schr\"odinger方程式は以下のようになる:
+\begin{eqnarray}
+  H\ket{\psi} &=& \qty(H_{\rm atom} + \Delta V(\bm{r}))\ket{\psi}\\
+  &=&\sum_j\epsilon_j\ket{j}a_j + \sum_j\Delta V(\bm{r})\ket{j}a_j
+\end{eqnarray}
+$\Delta V$は全ポテンシャルから孤立原始中で電子が感じるポテンシャルを引いたもの. これの右から$\bra{i}$を作用させると
+\begin{eqnarray}
+  \bra{i}H\ket{\psi} = \epsilon_ia_i + \sum_jV_{ij}a_j
+\end{eqnarray}
+となる. $V_{ij} = \bra{i}\Delta V({\bm r})\ket{j}$であり, $\bra{i}\ket{j} \simeq \delta_{ij}$であることを用いている. 以上からハミルトニアンは
+\begin{eqnarray}
+  H = \sum_i\epsilon_i\ket{i}\bra{i} + \sum_{i\neq j}V_{ij}\ket{i}\bra{j}
+\end{eqnarray}
+であることがわかる\footnote{量子力学・場の理論ではまずハミルトニアンがあり, そこからSchr\"odinger方程式やらHeisenberg方程式やらを導出することが多いが, 今回の文脈ではその逆を行っている. つまり波動関数を作り, その波動関数でSchr\"odinger方程式を作り, ハミルトニアンを推定している. 一見不思議に思えるがこのような議論は論文でもよく見かける. 理論がSelf-consistentであればどこからスタートするかは任意であるということか}.
+
+これらを用いて時間依存Schr\"odinger方程式
+\begin{eqnarray}
+  i\hbar\frac{\partial \psi_t}{\partial t} = H\psi_t
+\end{eqnarray}
+を時間依存性を展開系数に押し付けた波動関数の展開
+\begin{eqnarray}
+  \psi_t = \sum_j a_j(t)\ket{j}
+\end{eqnarray}
+を用いて書き換える:
+\begin{eqnarray}
+  i\hbar\frac{\partial a_i(t)}{\partial t} = \epsilon_ia_i(t) + \sum_{j(\neq i)}V_{ij}a_j(t)\label{schroedinger-anderson}
+\end{eqnarray}
+\subsection{Andersonの理論}
+初期時刻にあるサイト$i=0$に電子を一つ置いて時間発展させたとき, $a_i$が時刻$\infty$で有限の値を取る場合, 電子は局在していると言える. これを計算するために(\ref{schroedinger-anderson})をLaplace変換する:
+\begin{eqnarray}
+  i\qty[sf_j(s) - a_j(0)] &=& \epsilon_jf_j(s) + \sum_{k(\neq j)}V_{jk}f_k(s)\\
+  f_j(s) &=& \frac{i\delta_{j0}}{is - \epsilon_j} + \sum_{k(\neq j)}\frac{1}{is - \epsilon_j}V{jk}f_k(s)
+\end{eqnarray}
+ここでは$\hbar = 1$の単位系を用いている. また$a_j(0) = \delta_{j0}$という性質も用いている. なぜこんなことをするのかというと, $sf(s)\rightarrow a_j(\infty)\ \ (s\rightarrow 0^+)$という性質があるから. $f_j(s)$から$a_j(\infty)$の情報が得られるのである.
+
+この右辺第二項の$f_k$に逐次代入してき, $j = 0$を代入すると
+\begin{eqnarray}
+\nonumber  f_0(s) &=&  \frac{i}{is - \epsilon_j} + \sum_k\frac{1}{is - \epsilon_0}V_{0k}\frac{1}{is - \epsilon_k}V_{k0}\frac{1}{is - \epsilon_0}\\
+  &+& \sum_{k, m} \frac{1}{is - \epsilon_0}V{0k}\frac{1}{is - \epsilon_k}V_{km}\frac{1}{is - \epsilon_m}V_{m0}\frac{1}{is - \epsilon_0} + \cdots \label{anderson2}
+\end{eqnarray}
+となる. これは$j = 0$からスタートして様々な格子点を通過してまた$j = 0$に戻ってくる経路を全て足し合わせるような計算を行っている. その経路の中にはループを作るものも存在するが, 自己エネルギーは
+\begin{eqnarray}
+  {\cal L}_k(s) = \frac{1}{is - \epsilon_k - \varsigma}
+\end{eqnarray}
+というようにカウンター項$\varsigma$でくりこみが可能である. よってループのない経路のみを考えれば良い. また, コネクティビティが最近接サイト数$z$を用いて$z-2 < K \leq z - 1$と書けること, $P$ステップ後のコネクティビティが$K^P$で概算できることを用いて(\ref{anderson2})を摂動的に処理し, $a_i(\infty)$がゼロになるところと有限の値を取るところを解析したのがAndersonの1958年の論文である.
+
+しかしこの取り扱いはなかなか難しい. これの見通しを良くするのがスケーリング理論である.
+\section{E.Abrahams et al. Phys. Rev. Lett. $\bm{42}$, 673(1979)}
+
