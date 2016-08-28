@@ -3287,12 +3287,233 @@ Hartree-Fock-Bogoliubov approximationによるGP方程式
   &=& \ev{\varphi^\dagger_z\varphi_z} + \ev{\varphi^\dagger_{ex}\varphi_{ex}}
 \end{eqnarray}
 カップリング項は$\varphi$の一次なので消えてしまい, Zeromode-BdGカップリングは導入できていない.
+\section{量子補正のくりこみによる理解}
+量子補正$\ev{\varphi^\d\varphi}, \ev{\varphi\varphi}$を天下りにではなく, 場の分割条件によるくりこみから理解する. 分割条件を何次まで取り込むかによって量子補正の計算精度が決まることになる. 
+\subsection{非摂動ハミルトニアン}
+相互作用描像において、全ハミルトニアンを$\varphi$の次数毎に
+\begin{equation}
+	H = H_1 + H_2 + H_3 + H_4
+\end{equation}
+と分割する. その具体形は
+\begin{eqnarray}
+	H_1 &=& \intx\; \left[ \varphi^\d (h_0 -\mu + g|\xi|^2)\xi + \varphi (h_0 -\mu + g|\xi|^2)\xi^* \right] \\
+	H_2 &=& \frac12\intx\; \begin{pmatrix}
+    \varphi^\dagger & -\varphi
+  \end{pmatrix}
+  T_0
+  \begin{pmatrix}
+    \varphi\\
+    \varphi^\dagger
+  \end{pmatrix} \\
+	H_3 &=& g\intx\; \left[ \varphi^\d\varphi^\d\varphi\xi + \varphi^\d\varphi\varphi\xi^* \right] \\
+	H_4 &=& \frac{g}{2}\intx\; \varphi^\d\varphi^\d\varphi\varphi 
+\end{eqnarray}
+である. ただし
+\begin{equation}
+	T_0 = \BM \Lc_0 & \Mc_0 \\ -\Mc_0^* & -\Lc_0 \EM \,,\qquad
+	\Lc_0 = h_0 -\mu + 2g|\xi|^2 \,,\qquad
+	\Mc_0 = g\xi^2
+\end{equation}
+とした. 
 
-\begin{comment}
-\ul{$Z_{\rm \rm int}$を摂動的に取り込んだ結果, その効果がGP方程式やその他の方程式群にどのよう(何を通して)に取り込}\\
-\ul{まれるのか. 量子効果を取り込んだ従来のFormulationだとZeromode-BdG間の相互作用は取り入れることがで}\\
-\ul{きていなかったのか？} 
-\end{comment}
+非摂動ハミルトニアン$H_u$と摂動ハミルトニアン$H_p$は
+\begin{eqnarray}
+	H_u &=& H_1 + H_2 + [H_3]_{QP} +[H_4]_{QP}+ \delta H_1 + \delta H_2+ \delta H_1^{z}+ \delta H_2^{z} \\
+	H_p &=& H_3 + H_4 - [H_3]_{QP} -[H_4]_{QP}- \delta H_1 - \delta H_2- \delta H_1^{z}- \delta H_2^{z}
+\end{eqnarray}
+とする. カウンター項は
+\begin{eqnarray}
+	\delta H_1(t) &=& \intx \left[ \varphi^\d(x) \delta C(x) - \varphi(x) \delta C^*(x) \right] \,,\\
+	\delta H_2(t) &=& \frac12\intx\; \begin{pmatrix}
+    \varphi^\dagger & -\varphi
+  \end{pmatrix}
+  \delta T(x)
+  \begin{pmatrix}
+    \varphi\\
+    \varphi^\dagger
+  \end{pmatrix} \,,\qquad
+	\delta T(x) = \BM \delta\Lc(x) & \delta\Mc(x) \\ -\delta\Mc^*(x) & -\delta\Lc(x) \EM \,,\\
+	\delta H_1^{z}(t) &=& \intx \left[ \varphi^\d_{z}(x) \delta C_{z}(x) - \varphi_{z}(x) \delta C_{z}^*(x) \right] \,,\\
+	\delta H_2^{z}(t) &=& \frac12\intx\; \begin{pmatrix}
+    \varphi_z^\dagger & -\varphi_z
+  \end{pmatrix}
+  \delta T_z(x)
+  \begin{pmatrix}
+    \varphi_z\\
+    \varphi_z^\dagger
+  \end{pmatrix} \,,\qquad 
+	\delta T_{z}(x) = \BM \delta\Lc_{z}(x) & \delta\Mc_{z}(x) \\ -\delta\Mc_{z}^*(x) & -\delta\Lc_{z}(x) \EM 
+\end{eqnarray}
+という構造を持つものとし、右辺の$\delta C, \delta\Lc, \delta\Mc, \delta C_{z}, \delta\Lc_{z}, \delta\Mc_{z}$の具体形を決めていく.
+
+\subsection{カウンター項の決定}
+Heisenberg描像における場の分割条件$\bra0 \varphi_{\rm H}(x) \ket0=0$を摂動の1次までで展開すると
+\begin{equation}
+	\bra0 \mathrm{T} \left[ \varphi(x) \left( 1 - i \int \dd{s} H_p(s) \right)\right] \ket0 = 0
+\end{equation}
+となる。これが任意の$x$について成立するためには、摂動の次数ごとに考えて
+\begin{align}
+	\bra0 \varphi(x) \ket0 &= 0 \label{z:divCond1}\\
+	\int\!ds \;\bra0  \mathrm{T} \left[ \varphi(x)  H_p(s) \right] \ket0 &= 0\label{z:divCond2}
+\end{align}
+が必要である。
+
+
+\subsection{(\ref{z:divCond1})の要請}
+任意の時刻で\ref{z:divCond1}が成立するためには、その時間微分もゼロでなくてはいけない. 
+演算子の1次の真空期待値がゼロであることから
+\begin{align}
+	0&= \Comm{\varphi(x), H_u}\\
+	&= \Comm{\varphi(x), H_1(t) + \delta H_1(t)}\\
+	&\qquad+ \Comm{\varphi_{z}(x), \left[H_3(t) + H_4(t) + \delta H_1^{z}(t)\right]_{QP}}
+\end{align}
+となる. 任意の$x$で恒等的に成立するために2つの項がそれぞれゼロであることが必要である. よって
+\begin{align}\label{z:divCond1_1}
+	0 &= \left[ h_0 -\mu + g|\xi|^2 \right]\xi + \delta C \\
+	\label{z:divCond1_2}
+	\delta C_{z} &= -g\bra0 2\varphi^\d_{z}\varphi_{z}\xi + \varphi_{z}\varphi_{z}\xi^* + \varphi^\d_{z}\varphi_{z}\varphi_{z} \ket0 = 0 
+\end{align}
+となる. 
+
+
+\subsection{分割条件摂動一次}
+$\varphi_{\rm ex}$に関してはWickの定理が成立するが、$\varphi_{z}$には成立していないことに注意する.
+以下$y=(\by,s)$として以下の各項を計算する. 
+\begin{eqnarray}
+	0&=& \int d{s} \cont{ \varphi(x) \bigl\{ H_3(s) + H_4(s) - [H_3(s)]_{QP}- [H_4(s)]_{QP} \notag\\
+	&&\hspace{3cm}	-\delta H_1(s) 	-\delta H_2(s) -\delta H_1^{z}(s) -\delta H_2^{z}(s) \bigr\} } \label{split1}
+\end{eqnarray}
+
+\noindent{\textbf{(1)}}
+\begin{eqnarray}
+	&=& g \int d{y}\; \cont{ \varphi(x)\qty{ \varphi^\d(y)\varphi^\d(y)\varphi(y)\xi(y) + \varphi^\d(y)\varphi(y)\varphi(y)\xi^*(y) } } \\
+	&=& g\int d{y}\; \cont{\varphi(x)\varphi^\d(y)} \bra0 2\varphi^\d(y)\varphi(y)\xi(y) + \varphi^\d(y)\varphi(y)\xi^*(y) \ket0 \notag\\
+	&&+ g\int d{y}\; \cont{\varphi(x)\varphi(y)} \bra0 2\varphi^\d(y)\varphi(y)\xi^*(y) + \varphi^\d(y)\varphi^\d(y)\xi(y) \ket0 \notag\\	
+	&&- g\int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}^\d(y)} 
+		\bra0 2\varphi_{z}^\d(y)\varphi_{z}(y)\xi(y) + \varphi_{z}(y)\varphi_{z}(y)\xi^*(y) \ket0 \notag\\
+	&&- g\int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}(y)} 
+		\bra0 2\varphi_{z}^\d(y)\varphi_{z}(y)\xi^*(y) + \varphi_{z}^\d(y)\varphi_{z}^\d(y)\xi(y) \ket0 \notag\\
+	&&+ g\int d{y}\; \cont{\varphi_{z}(x)\qty{ \varphi_{z}^\d(y)\varphi_{z}^\d(y)\varphi_{z}(y)\xi(y) 
+		+ \varphi_{z}^\d(y)\varphi_{z}(y)\varphi_{z}(y)\xi^*(y) }} \\
+	% % % % %
+	&=& \int d{y}\; \cont{\varphi(x)\varphi^\d(y)} \cont{\varphi(y) , H_3(s)} \notag\\
+	&&- \int d{y}\; \cont{\varphi(x)\varphi(y)} \cont{\varphi^\d(y) , H_3(s)} \notag\\
+	&&- \int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}^\d(y)} \cont{\varphi_{z}(y) , [H_3(s)]_{QP}} \notag\\
+	&&+ \int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}(y)} \cont{\varphi^\d_{z}(y) , [H_3(s)]_{QP}} \notag\\	
+	&&+ \int d{y}\; \cont{\varphi_{z}(x) [H_3(s)]_{QP}} 
+\end{eqnarray}
+上記の計算の手順は以下の通り:
+\begin{itemize}
+\item $\varphi = \varphi_{\rm ex} + \varphi_{\rm z}$がWickの定理を満たすと仮定して$\varphi$について展開.
+\item 実際は$\varphi_z$はWick展開不能なので$\varphi_z$を含む項を取り除かなければならないが, $\varphi$の次数から$\varphi_{\rm ex}$と$\varphi_{z}$のクロスタームがゼロになることから取り除くのは$\varphi_z$のみで構成された項である.
+\item その後, 正しい$\varphi_z$の項を追加. こちらは当然Green関数を構成できない.
+\item 交換関係で式を整理. 
+\end{itemize}
+
+\noindent{\textbf{(2)}}
+\begin{eqnarray}
+	&=& \frac{g}{2} \int d{y}\; \cont{ \varphi(x) \varphi^\d(y)\varphi^\d(y)\varphi(y)\varphi(y) } \\
+	&=& \frac{g}{2} \int d{y}\; \cont{ \varphi_{\rm ex}(x) \qty{ 
+		2\varphi_{\rm ex}^\d(y)\varphi_{z}^\d(y)\varphi_{z}(y)\varphi_{z}(y) + 2\varphi_{\rm ex}(y)\varphi_{z}^\d(y)\varphi_{z}^\d(y)\varphi_{z}(y) } }\notag\\
+	&&+ \frac{g}{2} \int d{y}\; \cont{ \varphi_{z}(x) \Bigl\{ 
+		4\varphi_{z}^\d(y)\varphi_{z}(y)\varphi_{\rm ex}^\d(y)\varphi_{\rm ex}(y) + \varphi_{z}(y)\varphi_{z}(y)\varphi_{\rm ex}^\d(y)\varphi_{\rm ex}^\d(y) + \varphi_{z}^\d(y)\varphi_{z}^\d(y)\varphi_{\rm ex}(y)\varphi_{\rm ex}(y)\Bigr\} }\notag\\
+	&&+ \frac{g}{2} \int d{y}\; \cont{ \varphi_{z}(x) \varphi_{z}^\d(y)\varphi_{z}^\d(y)\varphi_{z}(y)\varphi_{z}(y) } \\
+	% % % %
+	&=& \int d{y}\; \cont{\varphi_{\rm ex}(x)\varphi_{\rm ex}^\d(y)} \qty[ \varphi_{z}  (y), [H_4(s)]_{QP}] \notag\\
+	&&- \int d{y}\; \cont{\varphi_{\rm ex}(x)\varphi_{\rm ex}   (y)} \qty[ \varphi_{z}^\d(y), [H_4(s)]_{QP}] \notag\\
+	&&+ 2g \int d{y}\; \cont{ \varphi_{z}(x)\varphi_{z}^\d(y)\varphi_{z}(y)}  \bra0 \varphi_{\rm ex}^\d(y)\varphi_{\rm ex}(y) \ket0 \notag\\
+	&&+ \frac{g}{2} \int d{y}\; \cont{ \varphi_{z}(x)\varphi_{z}(y)\varphi_{z}(y)}  \bra0 \varphi_{\rm ex}^\d(y)\varphi_{\rm ex}^\d(y) \ket0 \notag\\
+	&&+ \frac{g}{2} \int d{y}\; \cont{ \varphi_{z}(x)\varphi_{z}^\d(y)\varphi_{z}^\d(y)}  \bra0 \varphi_{\rm ex}(y)\varphi_{\rm ex}(y) \ket0 \notag\\
+	&&+ \int d{y}\; \cont{ \varphi_{z}(x) [H_4(s)]_{QP}} \\
+	% % % %
+	&=& \int d{y}\; \cont{\varphi(x)\varphi^\d(y)} \qty[ \varphi(y), H_4(s)] \notag\\
+	&&- \int d{y}\; \cont{\varphi(x)\varphi   (y)} \qty[ \varphi^\d(y), H_4(s)] \notag\\
+	&&- \int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}^\d(y)} \qty[ \varphi_{z}^{\phantom{\d}}(y), [H_4(s)]_{QP}]\notag\\
+	&&+ \int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}   (y)} \qty[ \varphi_{z}^\d(y), [H_4(s)]_{QP}] \notag\\
+	&&+ 2g \int d{y}\; \cont{ \varphi_{z}(x)\varphi_{z}^\d(y)\varphi_{z}(y)}  \bra0 \varphi_{\rm ex}^\d(y)\varphi_{\rm ex}(y) \ket0 \notag\\
+	&&+ \frac{g}{2} \int d{y}\; \cont{ \varphi_{z}(x)\varphi_{z}(y)\varphi_{z}(y)}  \bra0 \varphi_{\rm ex}^\d(y)\varphi_{\rm ex}^\d(y) \ket0 \notag\\
+	&&+ \frac{g}{2} \int d{y}\; \cont{ \varphi_{z}(x)\varphi_{z}^\d(y)\varphi_{z}^\d(y)}  \bra0 \varphi_{\rm ex}(y)\varphi_{\rm ex}(y) \ket0 \notag\\
+	&&+ \int d{y}\; \cont{ \varphi_{z}(x) [H_4(s)]_{QP}} 
+\end{eqnarray}
+
+\noindent{\textbf{(5)}}
+\begin{eqnarray}
+	&&-\int d{y}\; \cont{ \varphi(x) \qty{ \delta C(y) \varphi^\d(y) + \delta C^*(y)\varphi(y) } } \\
+	&=& -\int d{y}\; \left( \delta C(y)\cont{\varphi(x) \varphi^\d(y)}  +\delta C^*(y)\cont{\varphi(x) \varphi(y)}   \right)
+\end{eqnarray}
+
+\noindent{\textbf{(6)}}
+\begin{eqnarray}
+	&&-\frac{1}{2}\int d{y}\; \cont{ \varphi(x) \qty{ 2\delta \Lc(y) \varphi^\d(y)\varphi(y) + \delta\Mc(y)\varphi^\d(y)\varphi^\d(y)+ \delta\Mc^*(y)\varphi(y)\varphi(y) } } \\
+	&=& -\int d{y}\; \delta \Lc(y)  \cont{\varphi_{z}(x) \varphi_{z}^\d(y) \varphi_{z}(y)} \notag\\
+	&=& -\frac12\int d{y}\; \delta \Mc(y)   \cont{\varphi_{z}(x) \varphi_{z}^\d(y) \varphi_{z}^\d(y)} \notag\\
+	&=& -\frac12\int d{y}\; \delta \Mc^*(y) \cont{\varphi_{z}(x) \varphi_{z}(y) \varphi_{z}(y)} 	
+\end{eqnarray}
+
+\noindent{\textbf{(7)}}
+\begin{eqnarray}
+	&&-\int d{y}\; \cont{ \varphi_{z}(x) \qty{ \delta C_{z}(y)\varphi_{z}^\d(y) + \delta C_{z}^*(y)\varphi_{z}(y) } } \\
+	&=& -\int d{y}\; \left( \delta C_{z}(y)\cont{\varphi_{z}(x) \varphi_{z}^\d(y)}  
+			+\delta C_{z}^*(y)\cont{\varphi_{z}(x) \varphi_{z}(y)}   \right)
+\end{eqnarray}
+
+\noindent{\textbf{(8)}}
+\begin{eqnarray}
+  &&-\frac{1}{2}\int d{y}\; \cont{ \varphi(x) \Bigl\{ 2\delta \Lc_{z}(y) \varphi^\d_{z}(y)\varphi_{z}(y)+ \delta\Mc_{z}(y)\varphi^\d_{z}(y)\varphi^\d_{z}(y)+ \delta\Mc_{z}^*(y)\varphi_{z}(y)\varphi_{z}(y) \Bigr\} } \notag\\
+&=& -\int d{y}\; \delta \Lc_{z}(y)  \cont{\varphi_{z}(x) \varphi_{z}^\d(y) \varphi_{z}(y)} \\
+&=& -\frac12\int d{y}\; \delta \Mc_{z}(y)   \cont{\varphi_{z}(x) \varphi_{z}^\d(y) \varphi_{z}^\d(y)} \notag\\
+&=& -\frac12\int d{y}\; \delta \Mc^*_{z}(y) \cont{\varphi_{z}(x) \varphi_{z}(y) \varphi_{z}(y)} 	
+\end{eqnarray}
+
+結局(\ref{split1})は
+\begin{eqnarray}
+	0&=& \int d{y}\; \cont{\varphi(x)\varphi^\d(y)} \bra0 \bigl[\varphi   (y), H_3(s) + H_4(s)\bigr] + \delta C  (y) \ket0 \notag\\
+	 &&- \int d{y}\; \cont{\varphi(x)\varphi   (y)} \bra0 \bigl[\varphi^\d(y), H_3(s) + H_4(s)\bigr] - \delta C^*(y) \ket0 \notag\\
+	 &&- \int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}^\d(y)} 
+		 \bra0 \bigl[\varphi_{z}   (y), [H_3(s) + H_4(s)]_{QP}\bigr] - \delta C_{z}  (y)\ket0 \notag\\
+	 &&+ \int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}   (y)} 
+		 \bra0 \bigl[\varphi_{z}^\d(y), [H_3(s) + H_4(s)]_{QP}\bigr] + \delta C_{z}^*(y)\ket0 \notag\\
+	 &&+ \int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}^\d(y)\varphi_{z}(y)}
+		\bra0 2g \varphi_{\rm ex}^\d(y) \varphi_{\rm ex}(y) - \delta\Lc(y)-\delta\Lc_{z}(y) \ket0	\notag\\
+	 &&+ \frac12\int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}^\d(y)\varphi_{z}^\d(y)}
+		\bra0 g \varphi_{\rm ex}(y) \varphi_{\rm ex}(y) - \delta\Mc(y)-\delta\Mc_{z}(y) \ket0 \notag\\
+	 &&+ \frac12\int d{y}\; \cont{\varphi_{z}(x)\varphi_{z}   (y)\varphi_{z}   (y)}
+		 \bra0 g \varphi_{\rm ex}^\d(y) \varphi_{\rm ex}^\d(y) - \delta\Mc^*(y)-\delta\Mc_{z}^*(y) \ket0
+\end{eqnarray}
+となる. この式が恒等的に正しくなるために
+\begin{eqnarray}
+	\label{z:deltaC}
+	\delta C &=& \qty[\varphi, H_3 + H_4] = g\bra0 2\varphi^\d \varphi\xi + \varphi\varphi\xi^* + \varphi^\d\varphi\varphi \ket0 \\
+	\label{z:detaLMz}
+	\delta\Lc_{z} &=& 2g \bra0 \varphi_{\rm ex}^\d\varphi_{\rm ex} \ket0 - \delta \Lc \,,\qquad
+	\delta\Mc_{z} = g \bra0 \varphi_{\rm ex}\varphi_{\rm ex} \ket0 - \delta \Mc 
+\end{eqnarray}
+を得る. なお$\delta C_{z}$は(\ref{z:divCond1_2})で決定したものと同じであり, 矛盾はない.
+
+\subsection{$\delta\calL, \delta\calM$の決定}
+以上の結果から, 定常GP方程式は
+\begin{eqnarray}
+  \qty[ h_0 -\mu + g(|\xi|^2+2\ev{\varphi^\d\varphi}{0})]\xi + g\ev{\varphi\varphi}{0}\xi^* + g\ev{\varphi^\d\varphi\varphi}{0} = 0
+\end{eqnarray}
+となる. しかしながら, $\ev{\varphi^\d\varphi\varphi}{0}$をGP方程式に含め, かつBdG方程式がゼロモード解$\by_0 = (\xi\ -\xi^*)^t$を持つようにすると, $\delta\calL$が非エルミートになりBdG完全系の構成が難しくなる. よって, 今回は平衡系では$\varphi$の奇数次は小さいだろうとして$\ev{\varphi^\d\varphi\varphi}{0}$を無視することにする. したがって, GP方程式は
+\begin{eqnarray}
+  \qty[ h_0 -\mu + g(|\xi|^2+2\ev{\varphi^\d\varphi}{0})]\xi + g\ev{\varphi\varphi}{0}\xi^* = 0
+\end{eqnarray}
+である. $\delta\calL, \delta\calM$はBdGがゼロモード解を持つように
+\begin{eqnarray}
+  \delta\calL = 2g\ev{\varphi^\d\varphi}{0},\hspace{1cm} \delta\calM = -g\ev{\varphi\varphi}{0}
+\end{eqnarray}
+とすることにする. これですべてのカウンター項が決定された.
+\subsection{分割条件の高次}
+今までの議論は分割条件を摂動一次で課した場合である. 2次以上の計算はとても手に負えないが, 仮に摂動の高次を取り入れるとどうなるか？
+
+分割条件をオールオーダーで課したとき, 量子補正は$\ev{\varphi_{\rm H}^\dagger\varphi_{\rm H}}{0}$になると考えられる. これはHeisenberg描像において分割条件を考えると
+\begin{eqnarray}
+  i\partial_t \varphi_{\rm H} &=& \qty[\varphi_{\rm H}, H_{H, 1} + H_{H, 2} + H_{H, 3} + H_{H, 4} ] = 0\\
+  i\partial_t \ev{\varphi_{\rm H}}{0} &=& \ev{\qty[\varphi_{\rm H}, H_{H, 1} +  H_{H, 3}] }{0} = 0\\
+  \therefore 0 &=& \qty[h_0 - \mu +  g(|\xi|^2 + 2\ev{\varphi_{\rm H}^\dagger\varphi_{\rm H}}{0})]\xi + g\ev{\varphi_{\rm H}\varphi_{\rm H}}{0}\xi^*
+\end{eqnarray}
+となっているからである. しかしゼロモードがWickの定理を満たさない以上, これを前述のような分割条件によるくりこみで理解するのは難しいと思う. ゼロモードについては1次で, 励起モードについては何かしらの方法でオールオーダーの計算をする, というのが現実的だろうか. 
 
 \section{量子統計力学と摂動計算}
 熱力学ポテンシャルを用いた摂動計算のための勉強.
@@ -3522,7 +3743,7 @@ BdG方程式の正ノルムの固有関数を$y_j = (u_j, v_j)^t$としている
 部は時間発展するものの, それは位相の回転にあたる.  ブラとケットで逆向きに回るた
 め期待値には効いてこない. ということで, ゼロモード期待値も時間依存性を持たない. 
 
-\subsection{$Q, P$を奇数個含むエルミートな期待値がゼロになること}
+\subsection{$Q$を奇数個含むエルミートな期待値がゼロになること}
 $\xi, \eta$が実の場合で, かつ今回選んだゼロモードハミルトニアンは$Q$の奇数次が存在しないので, $p$表示したゼロモードハミルトニアンは実対称行列になっている. よって, $p$表示のゼロモード方程式
 \begin{eqnarray}
   H_{u, z}(p)\bra{p}\ket{\Psi} = E_0\bra{p}\ket{\Psi}
@@ -3533,9 +3754,6 @@ $\xi, \eta$が実の場合で, かつ今回選んだゼロモードハミルト�
 \therefore &&\int dp \Psi(p)\qty(i\frac{d}{dp})^3\Psi(p) + \int dp \qty(i\frac{d}{dp})^3\Psi(p)\Psi(p) = 2\bra{\Psi}Q^3\ket{\Psi} = 0
 \end{eqnarray}
 のように, $Q$の奇数次の期待値はゼロになる. 一行目では部分積分を用いている. 同様に, $QP + PQ$などの$Q$の奇数次を含むエルミートな期待値もゼロになるが, $QP$はエルミートでないのでその限りではない. 
-
-Full Hamiltonianに含まれる全てのゼロモード演算子を取り入れたようなゼロモードハミルトニアンには$Q$の奇数次は存在しないが, $P$の奇数次は存在する. しかしながら, 今回選んだ$H_{u, z}$には$P$の奇数次も存在しない\footnote{物理量に対するゼロモードの奇数次の寄与が小さいだろうという仮定のもと.\ul{これが今回適当かどうかはよくわかりません.} }ので, 同様の議論から$P$の奇数次及び, $P$の奇数次を含むエルミートな期待値もゼロになることがわかる.
-
 \subsection{(\ref{Hamiltonian-Exp})のさらなる具体形}
 時間依存性を考慮しなくて良いことがわかったのでさらに議論をすすめて数値計算が可能な形まで落としこむことにする. まず, (\ref{Hamiltonian-Exp})のゼロモード部について. 先ほど同様, $Q$のエルミートな奇数次項を落とすと
 \begin{eqnarray}
@@ -3585,10 +3803,11 @@ Wickの定理で展開:
 
 以上で具体的にゼロモード・励起モードの期待値が計算できたので, (\ref{Hamiltonian-Exp})に(\ref{Zeromode-Exp}), (\ref{BdG-Exp}), (\ref{Interaction-Exp})を代入する. まとめると, (\ref{Hamiltonian-Exp})は
 \begin{eqnarray}
-  \nonumber  \ev{H_{\rm int}}_0 &=& \int d\bx\sum_j\Bigl[2\qty(-\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z)\qty(2n_j + 1)u_jv_j^*\\
-    &+& 4\qty(\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z - \xi\eta)\qty[n_j(|u_j|^2 + |v_j|^2) + |v_j|^2] + \ev{\varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_{ex}\varphi_{ex}}_{ex}\Bigr]
+  \nonumber  \ev{H_{\rm int}}_0 &=& \int d\bx\Bigl[\sum_j\Bigl\{2\qty(-\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z)\qty(2n_j + 1)u_jv_j^*\\
+    &+& 4\qty(\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z - \xi\eta)\qty[n_j(|u_j|^2 + |v_j|^2) + |v_j|^2] \Bigr\}\\
+    &+& \sum_{j_1, j_2}\Bigl\{\qty(2|u_{j_1}|^2|u_{j_2}|^2 + u_{j_1}^*v_{j_1}v_{j_2}^*u_{j_2})n_{j_1}n_{j_2}\\
+\nonumber  &+& \qty(2\Re\qty[u_{j_1}^*v_{j_1}u_{j_2}v_{j_2}^*] + 4|u_{j_1}|^2|v_{j_2}|^2)n_{j_1}(1+n_{j_2})\\ &+& \qty(2|v_{j_1}|^2|v_{j_2}|^2 + v_{j_1}u_{j_1}^*u_{j_2}v_{j_2}^*)(1+n_{j_1})(1+n_{j_2})\Bigr\}\Bigr]
 \end{eqnarray}
-まとめきれてませんが...
 \subsection{ふたたび熱力学ポテンシャルの具体形}
 期待値が$s$時間依存しないことを用いるとZeromode-BdGカップリングの摂動一次まで取り入れた熱力学ポテンシャルは以下の通り:
 \begin{eqnarray}
