@@ -5225,26 +5225,26 @@ Green関数及びself-energyは
 \end{eqnarray}
 \subsection{梯子近似されたBethe-Salpeter方程式へ}
 前節で1次のself-energyを求めたが, これはGreen関数の1次の展開をself-energyで言い換えただけである. 以下, self-energyについてもう少し詳しく考えてみる.
-repulsive core(1点で無限大になるようなポテンシャル)を持つような系では以下のような梯子型のダイアグラムが強く寄与する\footnote{らしい. ちゃんとした理由はまだよく理解できてない. }:
+repulsive core(1点で無限大になるようなポテンシャル)を持つような系では図 \ref{ladder1}のような梯子型のダイアグラムが強く寄与する\footnote{らしい. ちゃんとした理由はまだよく理解できてない. }.
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width = 10cm]{./EPS/ladder1.eps}
   \end{center}
-  \label{self-consistent}
+  \caption{梯子近似されたダイアグラム}\label{ladder1}
 \end{figure}
-太線はFull-Green関数ではなく, $G_0$を表しているので注意. このような梯子型のダイアグラムに限るとき, self-energyは以下のようにまとめることができる:
+太線はFull-Green関数ではなく, $G_0$を表しているので注意. このような梯子型のダイアグラムに限るとき, self-energyは図 \ref{ladder2}のようにまとめることができる.
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width = 10cm]{./EPS/ladder2.eps}
   \end{center}
-  \label{self-consistent}
+  \caption{梯子近似されたself-energy}\label{ladder2}
 \end{figure}
-上のラダーと見比べてみると, $y_i, y'_i$が相互作用していることがわかるが, 今は接触型相互作用を考えているので$y_i' = y_i$としてよい. このとき, self-energyについてType1とType2は全く同じものになる.  さらにType1とType2について$\Gamma$が共通であることが重要:
+図 \ref{ladder1}のラダーと見比べてみると, $y_i, y'_i$が相互作用していることがわかるが, 今は接触型相互作用を考えているので$y_i' = y_i$としてよい. このとき, self-energyについてType1とType2は全く同じものになる.  さらにType1とType2について$\Gamma$が共通であることが重要(図 \ref{ladder3}).
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[width = 11cm]{./EPS/ladder3.eps}
   \end{center}
-  \label{self-consistent}
+  \caption{$\Gamma$が含むダイアグラム}\label{ladder3}
 \end{figure}
 さて, 以上のダイアグラムを参考に$G, \Sigma, \Gamma$についての方程式を書き下していく. 今回は簡単のため異常伝搬を含まない1成分のGreen関数について考えることにする. Dyson方程式は
 \begin{eqnarray}
@@ -5309,11 +5309,12 @@ repulsive core(1点で無限大になるようなポテンシャル)を持つよ
 &&\hspace{2.0cm} + \ev{T\qty[{\cal H}^\d_3(s_1){\cal H}_3(s_2)\varphi^\d(x)\varphi(x)]}\\
 &&\hspace{2.0cm} + \ev{T\qty[{\cal H}^\d_3(s_1){\cal H}^\d_3(s_2)\varphi^\d(x)\varphi(x)]}\label{2nd-Green-final}
 \end{eqnarray}
-${\cal H}_4$の項は既に前節の梯子近似されたBethe-Salpeter方程式に組み込まれている. ${\cal H}_3$が2つ連結された項4つの項はこういうダイアグラム:
+${\cal H}_4$の項は既に前節の梯子近似されたBethe-Salpeter方程式に組み込まれている. ${\cal H}_3$が2つ連結された項4つの項は図(\ref{ladder3-5})のようなダイアグラムになる. 
 \begin{figure}[H]
   \begin{center}
     \includegraphics[width = 3cm]{./EPS/ladder3-5.eps}
   \end{center}
+  \caption{${\cal H}_3$が2つ連結されたダイアグラム}\label{ladder3-5}
 \end{figure}
 破線は凝縮線で, 秩序変数$\xi$に対応している. さて, 上のような${\cal H}_3$を含むダイアグラムをどのように集めてくるかが重要になるが, 今回も前節に倣ってラダーダイアグラムを引っ張ってくることにする. 3次を含むラダーダイアグラムは例えば以下の通り:
 \begin{figure}[H]
