@@ -2213,7 +2213,76 @@ Bethe-Salpeter波動関数を
 
 \subsection{$K(k)$の構成}
 $K(p, p';k)$をどのように構成するかを考える. まずはFeynman diagramを用いて形式的な方程式を書き下してみる.  
+\section{ゼロモード演算子とBdGモードの成り立ち}
+ゼロモード入門(中村)では各モード表現としてW行列を導入し, いろいろな対称性を議論している. これはゼロモードの完全系が時間発展する場合に必要とされるが, stationaryな議論をする場合はこれは必須ではない. 議論がややこしいので何をしようとしているのかがわかりづらいかもしれないが, 重要なのは
+\begin{eqnarray}
+  \qty[a_{\ell}, a^\d_{\ell'}] = \delta_{\ell\ell'}, \hspace{1cm} \qty[Q, P] = i
+\end{eqnarray}
+である. この一見当たり前に見える関係が, どのような仮定のもとで導出されているかを見る. これをしっかり理解できれば, 場の量子論が本質的に持つ自己無撞着性についての理解が深まると思う.
+\subsection{場の理論の自己無撞着性}
+ゼロモード入門には「$\xi$の決定に$\ket{0}$が必要・$\ket{0}$の決定に$\xi$が必要」というような文言があるが, これをもう少し詳しく見ると,
+　　
+\\\\
+0. 公理として$\psi$の同時刻CCR(正準交換関係)$\qty[\psi(x), \psi^\d(x')] = \delta(\bx - \bx')$がある. \\
+1. $\ev{\psi}{0} = \xi + \varphi$を満たす真空$\ket{0}$を仮定. \\
+2. ($\xi$を含む)Bogoliubov-de Gennes方程式の直交性から完全系を定義.\\
+3. BdG完全系で展開される場の演算子が$\psi(\varphi)$のCCRを満たす.
+　　
+\\\\
+というシナリオを踏むことになる. そもそも「$\ket{0}$を決定する」とは「正しい準粒子描像を選択する」ことであり, 「準粒子描像」とは場の演算子がどのようなモード(今回であればBdGモード$a_\ell, a^\d_\ell, u_\ell, v_\ell$とゼロモード$Q, P, \xi, \eta$)で展開されるかを表すことば\footnote{と鳥居は思ってます. 割とナイーブな話なので, 山中先生に「違う！」とか言われても知りませんが. }.
 
+あと「Bogoliubov-de Gennes完全系を定義」と書いていますが, 正確には「仮定」です. 完全系に先立つ真空$\ket{0}$が仮定なわけですから. 場の量子論では, 存在するかどうかもわからない$\ket{0}$を仮定して, その仮定の下で存在するかもわからない$\xi$を仮定し, さらにその仮定の下で存在するかもわからないBogoliubov-de Gennes完全系を仮定し...と繰り返していった結果, 最初の仮定である$\ket{0}$の選び方が実は正しかった！みたいなことをよくします. これからそれを見ていきます. 
+\subsection{完全系の仮定}
+前節で「完全系を定義」と書いたが, これは論理的に導出できるものではない. 「議論に矛盾がないように構成する」と言ったほうが正確. BdG完全系は
+\begin{eqnarray}
+  \sum_{\ell}\qty[y_{\ell}(\bx)y^\d_{\ell}(\bx') - z_{\ell}(\bx)z^\d_{\ell}(\bx')] + y_{0}(\bx)y^\d_{-1}(\bx') + y_{-1}(\bx)y^\d_{0}(\bx')  = \sigma_3\delta(\bx - \bx')\label{completeness2}
+\end{eqnarray}
+である. 
+\begin{screen}
+\fbox{1}\ \ 正規直交性の関係
+\begin{eqnarray}
+  \qty(y_{\ell}, y_{\ell'}) = \delta_{\ell\ell'}, \hspace{0.7cm}\qty(z_{\ell}, z_{\ell'}) = -\delta_{\ell\ell'}, \hspace{0.7cm}\qty(y_{0}, y_{-1}) = 1
+\end{eqnarray}
+を用いて場の演算子$\Phi = \qty(\varphi\ \ \varphi^\d)^t$を展開すると
+\begin{eqnarray}
+  \sum_{\ell}\qty[A_\ell y_{\ell}(\bx) - B_\ell z_{\ell}(\bx)] + Cy_{0}(\bx) + Dy_{-1}(\bx)  =
+  \begin{pmatrix}
+    \varphi(x)\\
+    \varphi^\dagger(x)
+  \end{pmatrix}
+\end{eqnarray}
+となる. $A_\ell , B_\ell , C, D$はどうなるか？
+\end{screen}
+このとき, 山中研では$y_\ell(\bx) = \qty(u_\ell (\bx)\ \ v_\ell (\bx))^t$という表記がよく用いられる(そのとき$z_\ell(\bx)$はどうなる？).
+\subsection{場の展開}
+さて, 完全系によって場の演算子が展開できたので, 展開した場の演算子がCCRを満たすかどうかを確認したい. そのためには$A_\ell, B_\ell, C, D$各々の交換関係が必要である. 
+\begin{screen}
+  \fbox{2}\ \ $A_\ell, B_\ell, C, D$各々の交換関係を計算せよ(ゼロにならないのはどの組み合わせか？). \\
+  また, $A_\ell, B_\ell, C, D$にはどのような演算子を割り当てるのが妥当か？
+\end{screen}
+ここまでくれば消滅演算子$a_\ell$と, 量子座標$Q, P$を用いた
+\begin{eqnarray}
+  \varphi(x) = \sum_\ell \qty[u_\ell(\bx) a_\ell(t) + v^*_\ell(\bx) a^\d_\ell(t)]  -iQ(t)\xi(\bx) + P(t)\eta(\bx)\label{expand-varphi}
+\end{eqnarray}
+のような展開になるのはわかるだろう\footnote{$Q$の前に虚数単位$i$をつけるのもちょっと考えればわかるはず}.
+\begin{screen}
+  \fbox{3}\ \ (\ref{expand-varphi})の交換関係を計算し, CCRになっていることを確認せよ. \\
+  (完全性(\ref{completeness2})に戻せるか？)
+\end{screen}
+これで
+\\\\
+\textbf{CCR}$\rightarrow\ \ket{0}$を仮定$\rightarrow\ \xi$の存在を仮定$\rightarrow\ $Bogoliubov-de Gennes完全系を仮定$\rightarrow\ $場の演算子$\varphi$を展開するモードを仮定$\rightarrow\ $\textbf{CCR}
+\\\\
+ときれいに一周するので, つまるところ$\ket{0}, \xi$等すべての物理量が自己無撞着に定義できたことになる.
+\subsection{なぜうまくいったか？}
+あの完全系(\ref{completeness2})が恐らく一意的ものだとすると, 準粒子描像の選び方たるモードの定義も一意的になり, 議論の自由度がなくなりそうな気もしてくる. 「たまたまうまい$\ket{0}$を選んだら全てがうまくいってた」ところの「たまたま」の自由度はどこにあるのだろうか？
+
+これは非摂動ハミルトニアン$H_u$にある. 非摂動/摂動ハミルトニアンの選び方は本来任意であるので, 異なる非摂動ハミルトニアンを定義すると異なる真空を選ぶことに対応する. 真空というのは, 相互作用描像の下で定義されるものであり, 相互作用描像は非摂動/摂動ハミルトニアンの選び方に依存するのである\footnote{ゼロモード入門にも「場の理論では$\ket{0}$を$H_u$の基底状態に取る」と書いてあります(ただし, それ以外の真空を選ぶことすらもできます). }. 基本的に, \textbf{理論の自由度は非摂動ハミルトニアンの選び方にかかっている}\footnote{いわゆる「繰り込み」も非摂動ハミルトニアンの取り方を変えてあげましょう, ということをやっている. }.
+
+しかしご存知のように, うまくいったように見えてまだ問題は存在する. 
+\subsection{なぜ問題(赤外発散)が発生するか}
+今までの話からわかる通り, \textbf{非摂動ハミルトニアンの選び方が良くなかったのである}.
+もっと正しい準粒子描像を選びましょう, ということ\footnote{場の理論の欠陥である紫外発散を質量の繰り込みで回避する, ということも, 山中研に言わせれば「理論の欠陥ではなく, 正しい準粒子描像を選んでない」ということになる. だいたいそういうやつは自由ハミルトニアンを非摂動ハミルトニアンに選んでしまっているようです. そりゃうまくいかないよね. }. その試みがInteracting ZeroMode Formulation(IZMF)である. 詳しくはゼロモード入門で. 
 
 \section{Tips}
 忘れやすいことをメモしておきます.
@@ -2519,77 +2588,6 @@ $U(0, 0) = I$としている. $U(t, 0)$を繰り返し代入する:
   &=& T\exp(\frac{-i}{\hbar}\int_0^t ds H_I(s))
 \end{eqnarray}
 T積なんてこわくない！
-\newpage
-\section{ゼロモード演算子とBdGモードの成り立ち}
-ゼロモード入門(中村)では各モード表現としてW行列を導入し, いろいろな対称性を議論している. これはゼロモードの完全系が時間発展する場合に必要とされるが, stationaryな議論をする場合はこれは必須ではない. 議論がややこしいので何をしようとしているのかがわかりづらいかもしれないが, 重要なのは
-\begin{eqnarray}
-  \qty[a_{\ell}, a^\d_{\ell'}] = \delta_{\ell\ell'}, \hspace{1cm} \qty[Q, P] = i
-\end{eqnarray}
-である. この一見当たり前に見える関係が, どのような仮定のもとで導出されているかを見る. これをしっかり理解できれば, 場の量子論が本質的に持つ自己無撞着性についての理解が深まると思う.
-\subsection{場の理論の自己無撞着性}
-ゼロモード入門には「$\xi$の決定に$\ket{0}$が必要・$\ket{0}$の決定に$\xi$が必要」というような文言があるが, これをもう少し詳しく見ると,
-　　
-\\\\
-0. 公理として$\psi$の同時刻CCR(正準交換関係)$\qty[\psi(x), \psi^\d(x')] = \delta(\bx - \bx')$がある. \\
-1. $\ev{\psi}{0} = \xi + \varphi$を満たす真空$\ket{0}$を仮定. \\
-2. ($\xi$を含む)Bogoliubov-de Gennes方程式の直交性から完全系を定義.\\
-3. BdG完全系で展開される場の演算子が$\psi(\varphi)$のCCRを満たす.
-　　
-\\\\
-というシナリオを踏むことになる. そもそも「$\ket{0}$を決定する」とは「正しい準粒子描像を選択する」ことであり, 「準粒子描像」とは場の演算子がどのようなモード(今回であればBdGモード$a_\ell, a^\d_\ell, u_\ell, v_\ell$とゼロモード$Q, P, \xi, \eta$)で展開されるかを表したことば\footnote{と鳥居は思ってます. 割とナイーブな話なので, 山中先生に「違う！」とか言われても知りませんが. }.
-
-あと「Bogoliubov-de Gennes完全系を定義」と書いていますが, 正確には「仮定」です. 完全系に先立つ真空$\ket{0}$が仮定なわけですから. 場の量子論では, 存在するかどうかもわからない$\ket{0}$を仮定して, その仮定の下で存在するかもわからない$\xi$を仮定し, さらにその仮定の下で存在するかもわからないBogoliubov-de Gennes完全系を仮定し...と繰り返していった結果, 最初の仮定である$\ket{0}$の選び方が実は正しかった！みたいなことをよくします. これからそれを見ていきます. 
-\subsection{完全系の仮定}
-前節で「完全系を定義」と書いたが, これは論理的に導出できるものではない. 「議論に矛盾がないように構成する」と言ったほうが正確. BdG完全系は
-\begin{eqnarray}
-  \sum_{\ell}\qty[y_{\ell}(\bx)y^\d_{\ell}(\bx') - z_{\ell}(\bx)z^\d_{\ell}(\bx')] + y_{0}(\bx)y^\d_{-1}(\bx') + y_{-1}(\bx)y^\d_{0}(\bx')  = \sigma_3\delta(\bx - \bx')\label{completeness2}\\
-\end{eqnarray}
-である. 
-\begin{screen}
-\fbox{1}\ \ 正規直交性の関係
-\begin{eqnarray}
-  \qty(y_{\ell}, y_{\ell'}) = \delta_{\ell\ell'}, \hspace{0.7cm}\qty(z_{\ell}, z_{\ell'}) = -\delta_{\ell\ell'}, \hspace{0.7cm}\qty(y_{0}, y_{-1}) = 1
-\end{eqnarray}
-を用いて場の演算子$\Phi = \qty(\varphi, \varphi^\d)^t$を展開すると
-\begin{eqnarray}
-  \sum_{\ell}\qty[A_\ell y_{\ell}(\bx) - B_\ell z_{\ell}(\bx)] + Cy_{0}(\bx) + Dy_{-1}(\bx)  =
-  \begin{pmatrix}
-    \varphi(x)\\
-    \varphi^\dagger(x)
-  \end{pmatrix}
-\end{eqnarray}
-となる. $A_\ell , B_\ell , C, D$はどうなるか？
-\end{screen}
-このとき, 山中研では$y_\ell(\bx) = \qty(u_\ell (\bx), v_\ell (\bx))^t$という表記がよく用いられる(そのとき$z_\ell(\bx)$はどうなる？).
-\subsection{場の展開}
-さて, 完全系によって場の演算子が展開できたので, 展開した場の演算子がCCRを満たすかどうかを確認したい. そのためには$A_\ell, B_\ell, C, D$各々の交換関係が必要である. 
-\begin{screen}
-  \fbox{2}\ \ $A_\ell, B_\ell, C, D$各々の交換関係を計算せよ(ゼロにならないのはどの組み合わせか？). \\
-  また, $A_\ell, B_\ell, C, D$にはどのような演算子を割り当てるのが妥当か？
-\end{screen}
-ここまでくれば消滅演算子$a_\ell$と, 量子座標$Q, P$を用いた
-\begin{eqnarray}
-  \varphi(x) = \sum_\ell \qty[u_\ell(\bx) a_\ell(t) + v^*_\ell(\bx) a^\d_\ell(t)]  -iQ(t)\xi(\bx) + P(t)\eta(\bx)\label{expand-varphi}
-\end{eqnarray}
-のような展開になるのはわかるだろう\footnote{$Q$の前に虚数単位$i$をつけるのもちょっと考えればわかるはず}.
-\begin{screen}
-  \fbox{3}\ \ (\ref{expand-varphi})の交換関係を計算し, CCRになっていることを確認せよ. \\
-  (完全性(\ref{completeness2})に戻せるか？)
-\end{screen}
-これで
-\\\\
-\textbf{CCR}$\rightarrow\ \ket{0}$を仮定$\rightarrow\ \xi$の存在を仮定$\rightarrow\ $Bogoliubov-de Gennes完全系を仮定$\rightarrow\ $場の演算子$\varphi$を展開するモードを仮定$\rightarrow\ $\textbf{CCR}
-\\\\
-ときれいに一周するので, つまるところ$\ket{0}, \xi$等すべての物理量が自己無撞着に定義できたことになる.
-\subsection{なぜうまくいったか？}
-あの完全系(\ref{completeness2})が恐らく一意的ものだとすると, 準粒子描像の選び方たるモードの定義も一意的になり, 議論の自由度がなくなりそうな気もしてくる. 「たまたまうまい$\ket{0}$を選んだら全てがうまくいってた」ところの「たまたま」の自由度はどこにあるのだろうか？
-
-これは非摂動ハミルトニアン$H_u$にある. 非摂動/摂動ハミルトニアンの選び方は本来任意であるので, 異なる非摂動ハミルトニアンを定義すると異なる真空を選ぶことに対応する. 真空というのは, 相互作用描像の下で定義されるものであり, 相互作用描像は非摂動/摂動ハミルトニアンの選び方に依存するのである\footnote{ゼロモード入門にも「場の理論では$\ket{0}$を$H_u$の基底状態に取る」と書いてあります. }. 基本的に, \textbf{理論の自由度は非摂動ハミルトニアンの選び方にかかっている}\footnote{いわゆる「繰り込み」も非摂動ハミルトニアンの取り方を変えてあげましょう, ということをやっている. }.
-
-しかしご存知のように, うまくいったように見えてまだ問題は存在する. 
-\subsection{なぜ問題(赤外発散)が発生するか}
-今までの話からわかる通り, \textbf{非摂動ハミルトニアンの選び方が良くなかったのである}.
-もっと正しい準粒子描像を選びましょう, ということ\footnote{場の理論の欠陥である紫外発散を質量の繰り込みで回避する, ということも, 山中研に言わせれば「理論の欠陥ではなく, 正しい準粒子描像を選んでない」ということになる. だいたいそういうやつは自由ハミルトニアンを非摂動ハミルトニアンに選んでしまっているようです. そりゃうまくいかないよね. }. その試みがIZMFである. 詳しくはゼロモード入門で. 
 \newpage
 %%% --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 \chapter{Single mode模型におけるゼロモード演算子と真空の直交性}
@@ -4762,11 +4760,11 @@ BdG方程式の正ノルムの固有関数を$y_j = (u_j, v_j)^t$としている
 \end{eqnarray}
 とする. 摂動項は
 \begin{eqnarray}
-  \nonumber  H_{\rm int} &=& g\int d\bm{x} \Bigl[\varphi_z^\dagger\calL\varphi_{ex} + \varphi_{ex}^\dagger\calL\varphi_z + \varphi_z\calM^*\varphi_{ex} + \varphi_z^\dagger\calM\varphi_{ex}^\dagger\\
-    \nonumber  && +\ \xi^*(2\varphi_z^\dagger\varphi_z\varphi_{ex} + \varphi_z^\dagger\varphi_{ex}\varphi_{ex} + 2\varphi_{ex}^\dagger\varphi_z\varphi_{ex} + \varphi_{ex}^\dagger\varphi_z\varphi_z)\\
-    \nonumber  && +\ \xi\ (2\varphi_z^\dagger\varphi_{ex}^\dagger\varphi_z + \varphi_z^\dagger\varphi_z^\dagger\varphi_{ex} + 2\varphi_z^\dagger\varphi_{ex}^\dagger\varphi_{ex} + \varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_z)\\
-    \nonumber  && +\ 2(\varphi^\dagger_z\varphi^\dagger_z\varphi_z\varphi_{ex} + \varphi^\dagger_z\varphi^\dagger_{ex}\varphi_z\varphi_z + \varphi_{ex}^\dagger\varphi^\dagger_{ex}\varphi_{ex}\varphi_{z} + \varphi^\dagger_{ex}\varphi^\dagger_{z}\varphi_{ex}\varphi_{ex}) \\
-    && +\ \varphi^\dagger_z \varphi^\dagger_z \varphi_{ex}\varphi_{ex} + 4\varphi^\dagger_z \varphi_z \varphi^\dagger_{ex}\varphi_{ex} + \varphi_z \varphi_z \varphi^\dagger_{ex}\varphi^\dagger_{ex} + \varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_{ex}\varphi_{ex}\Bigr]\label{ZeromodeHamiltonian}
+  \nonumber  H_{\rm int} &=& \int d\bm{x} \Bigl[\varphi_z^\dagger\calL\varphi_{ex} + \varphi_{ex}^\dagger\calL\varphi_z + \varphi_z\calM^*\varphi_{ex} + \varphi_z^\dagger\calM\varphi_{ex}^\dagger\\
+    \nonumber  && +\ g\xi^*(2\varphi_z^\dagger\varphi_z\varphi_{ex} + \varphi_z^\dagger\varphi_{ex}\varphi_{ex} + 2\varphi_{ex}^\dagger\varphi_z\varphi_{ex} + \varphi_{ex}^\dagger\varphi_z\varphi_z)\\
+    \nonumber  && +\ g\xi\ (2\varphi_z^\dagger\varphi_{ex}^\dagger\varphi_z + \varphi_z^\dagger\varphi_z^\dagger\varphi_{ex} + 2\varphi_z^\dagger\varphi_{ex}^\dagger\varphi_{ex} + \varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_z)\\
+    \nonumber  && +\ g(\varphi^\dagger_z\varphi^\dagger_z\varphi_z\varphi_{ex} + \varphi^\dagger_z\varphi^\dagger_{ex}\varphi_z\varphi_z + \varphi_{ex}^\dagger\varphi^\dagger_{ex}\varphi_{ex}\varphi_{z} + \varphi^\dagger_{ex}\varphi^\dagger_{z}\varphi_{ex}\varphi_{ex}) \\
+    && +\ \frac{g}{2}\qty(\varphi^\dagger_z \varphi^\dagger_z \varphi_{ex}\varphi_{ex} + 4\varphi^\dagger_z \varphi_z \varphi^\dagger_{ex}\varphi_{ex} + \varphi_z \varphi_z \varphi^\dagger_{ex}\varphi^\dagger_{ex} + \varphi_{ex}^\dagger\varphi_{ex}^\dagger\varphi_{ex}\varphi_{ex})\Bigr]\label{ZeromodeHamiltonian}
 \end{eqnarray}
 のように, そこそこ煩雑です. ただし, 摂動展開の線形部分だけを見るのであれば$\varphi_{ex}, \varphi_z$の奇数次は落ちてくれるのでもう少し簡単になるでしょう. もちろん2次まで見るとなるとかなりキツくなると思われます.
 \subsection{熱力学ポテンシャルの具体形}
@@ -5247,7 +5245,7 @@ Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってす
 後にAll-orderの計算をすることになるが, その定式化が完了してかつ実効的に計算が可能であれば今回のように摂動一次に限って計算する必要はなくなるが, 今回のGreen関数の時間成分の処理に関するテクニックは今後(恐らく)重要になってくるので, その時のための練習だと思うと良い. 
 \subsection{Green関数の2行目以降}
 手順は同じなので省略. 
-\section{All-orderの計算に向けて}
+\section{All-orderの計算に向けて:その1}
 非一様系でLadder diagramの無限次を取り込んで計算することを目指す. まず一様系ではどのようにして無限次まで取り入れることを可能にしているのか, 非一様系ではどのような困難があるのかを確認することがまず目標とするところ.
 \subsection{1次のself-energyの具体形}
 自発的対称性が破れているBoson系を扱っているので, $\ev{T\qty[\varphi\varphi]}, \ev{T\qty[\varphi^\d\varphi^\d]}$のようなanomalous-Green関数(異常Green関数)が値を持つことになる. それに応じてGreen関数は$2\times2$のテンソルに拡張される.
@@ -5425,8 +5423,34 @@ ${\cal H}_4$の項は既に前節の梯子近似されたBethe-Salpeter方程式
   \Sigma^{\star, \mu'\nu'}(y_1, y_2) &=& 2\Gamma^{\mu'\lambda}(y_1, y_2)G_0^{\lambda\nu'}(y_2, y_1) + 4\xi(y_1)\xi(y_2)\qty[\Gamma^{\mu'\nu'}(y_1, y_2) + \frac{ig}{2}\delta^{\mu'\nu'}(y_1 - y_2)]
 \end{eqnarray}
 
-\subsection{実効的な計算が可能な形へ}
-\subsection{ゼロモードハミルトニアンの平均場的な取り扱い}
+\subsection{実効的な計算が可能な形へ...は難しい}
+山中先生との議論の結果, ナイーブにGreen関数を計算するのはムリなのでは？ということに. 方向転換. 
+\subsection{ゼロモードハミルトニアンの平均場的な取り扱い(暫定版)}
+ゼロモードを摂動的に取り入れることが困難であるので, 摂動的に扱うべき(\ref{ZeromodeHamiltonian})についてはゼロモード期待値を取ってc-数にしてしまうことにする:
+\begin{eqnarray}
+  \nonumber  \ev{H_{\rm int}}_{\rm z} &=& \int d\bm{x} \Bigl[g\xi^*(2\ev{\varphi_z^\dagger\varphi_z}_{\rm z}\varphi_{ex} + \ev{\varphi_z\varphi_z}_{\rm z}\varphi_{ex}^\dagger)\\
+    \nonumber  && +\ g\xi\ (2\ev{\varphi_z^\dagger\varphi_z}_{\rm z}\varphi_{ex}^\dagger + \ev{\varphi_z^\dagger\varphi_z^\dagger}_{\rm z}\varphi_{ex})\\
+    \nonumber  && +\ g(\ev{\varphi^\dagger_z\varphi^\dagger_z\varphi_z}_{\rm z}\varphi_{ex} + \ev{\varphi^\dagger_z\varphi_z\varphi_z}_{\rm z}\varphi^\dagger_{ex}) \\
+    && +\ \frac{g}{2}\qty(\ev{\varphi^\dagger_z \varphi^\dagger_z}_{\rm z} \varphi_{ex}\varphi_{ex} + 4\ev{\varphi^\dagger_z \varphi_z}_{\rm z} \varphi^\dagger_{ex}\varphi_{ex} + \ev{\varphi_z \varphi_z}_{\rm z} \varphi^\dagger_{ex}\varphi^\dagger_{ex})\Bigr]\label{ZeromodeHamiltonian2}
+\end{eqnarray}
+ゼロモードの一次は期待値を取ると消えることを利用している. これはもう励起モードの1次・2次になっているので非摂動ハミルトニアンに取り入れるのが妥当だと考えられる. その前に, ゼロモード期待値についてまとめておく(ここでも$\xi$が実であることを仮定):
+\begin{eqnarray}
+  \nonumber  \ev{\varphi^\dagger_z\varphi^\dagger_z}_z &=& V_a^0 = \ev{(-i\xi Q + \eta P)^\dagger(-i\xi Q + \eta P)^\dagger}_z = -\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\\
+  \nonumber \ev{\varphi_z^\dagger\varphi_z}_z &=&  V_t^0 = \xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z - i\xi\eta\\
+  \nonumber \ev{\varphi_z\varphi_z}_z &=& V_a^0 =  -\xi^2\ev{Q^2}_z + \eta^2\ev{P^2}_z\\
+  \ev{\varphi_z^\d\varphi_z^\d\varphi_z}_z &=& \ev{\varphi_z^\d\varphi_z\varphi_z}_z = R_3 = \xi^2\eta \ev{QPQ}_z + \eta^3\ev{P^3}_z\label{Zeromode-Exp2}
+\end{eqnarray}
+さて, (\ref{ZeromodeHamiltonian2})を非摂動ハミルトニアンに組み込むと以下のようになる:
+\begin{eqnarray}
+  H_{\rm u, 1} &=& \int d\bx\Bigl[\varphi_{\ex}\qty{h_0 -\mu + g(|\xi|^2 + 2V_t^0 + V_a^0)}\xi + {\rm h.c.}\Bigr]\\
+  H_{\rm u, 2} &=& \int d\bx\qty[\varphi_{\ex}^\d\calL\varphi_{\ex} + \frac12\varphi_{\ex}\calM'^{*}\varphi_{\ex} + \frac12\varphi_{\ex}^\d\calM'\varphi_{\ex}^\d]\\
+  \calL' &=& h_0 - \mu +2g(|\xi|^2 + V_t^0),\hspace{0.7cm}\calM' = g(|\xi|^2 + V_a^0)
+\end{eqnarray}
+これは有限温度ゼロモードの論文[arXiv:1604.05900]の式(8)-(10)にゼロモード期待値という意味でほぼ対応している. 本来の量子補正は$\calM = g\qty(|\xi|^2 - V_a)$なので符号が異なる. こうなってないとゼロモード解が壊れてしまうので, 繰り込みで守るようにしなければならない\footnote{元の理論とすこし違う形の繰り込みになってしまうかもしれないが, 恐らくうまく行くと思う. }. 
+
+まだしっかりformulateしたわけではないが, 相互作用ハミルトニアンのゼロモード平均場を非摂動部に取り込むということは, 量子補正$\ev{\varphi^\d_{\rm H}\varphi_{\rm H}}, \ev{\varphi_{\rm H}\varphi_{\rm H}}$についてゼロモード期待値は最低次のみを取ってくることに恐らく対応している. したがって現状の方針においては, 量子補正は励起をall-orderで, ゼロモードは最低次のみを取るのみで(おそらく)十分である\footnote{その励起のall-orderが大変なのですが...}ことがわかった.
+\section{方向転換}
+あの積分方程式を真面目に計算するのはキツイので, $\Gamma$を量子力学の散乱問題における散乱振幅$f$に置き換える方法で進める. 非一様でエネルギーの表式を求め, 一様近似でLee-Yangのアレと一致するようになれば十分. 大橋研のT-matrix近似についても調査したい. 
 \newpage
 %%-------------------- comment ---------------------------------------------------
 %%-------------------- comment ---------------------------------------------------
