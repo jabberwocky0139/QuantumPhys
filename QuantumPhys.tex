@@ -5450,7 +5450,107 @@ ${\cal H}_4$の項は既に前節の梯子近似されたBethe-Salpeter方程式
 
 まだしっかりformulateしたわけではないが, 相互作用ハミルトニアンのゼロモード平均場を非摂動部に取り込むということは, 量子補正$\ev{\varphi^\d_{\rm H}\varphi_{\rm H}}, \ev{\varphi_{\rm H}\varphi_{\rm H}}$についてゼロモード期待値は最低次のみを取ってくることに恐らく対応している. したがって現状の方針においては, 量子補正は励起をall-orderで, ゼロモードは最低次のみを取るのみで(おそらく)十分である\footnote{その励起のall-orderが大変なのですが...}ことがわかった.
 \section{方向転換}
-あの積分方程式を真面目に計算するのはキツイので, $\Gamma$を量子力学の散乱問題における散乱振幅$f$に置き換える方法で進める. 非一様でエネルギーの表式を求め, 一様近似でLee-Yangのアレと一致するようになれば十分. 大橋研のT-matrix近似についても調査したい. 
+あの積分方程式を真面目に計算するのはキツイので, $\Gamma$を量子力学の散乱問題における散乱振幅$f$に置き換える方法で進める. 非一様でエネルギーの表式を求め, 一様近似でLee-Yangのアレと一致するようになれば十分. 大橋研のT-matrix近似についても調査したい.
+\section{散乱の量子力学からBethe-Salpeter方程式の置換えへ}
+\subsection{Schr\"odinger方程式}
+Schr\"odinger方程式
+\begin{eqnarray}
+  \nabla^2u_k + \qty(k^2 - U(\bm{r}))u_k = 0\hspace{1cm} k^2 = \frac{2mE}{\hbar^2}\label{schroedinger-scatter}
+\end{eqnarray}
+でポテンシャルが$|\bm{r}U(\bm{r})|\rightarrow 0\ \ (\bm{r}\rightarrow\infty)$を満たすものとする. さて, 境界条件をどうするかを考えなければならないが, 散乱固有関数は十分遠方では入射平面波$u_k^0$と散乱の効果である外向き球面波$u_k^{sc}$の重ね合わせでなければならない. $u_k^{sc}$も(\ref{schroedinger-scatter})を満たすので
+\begin{eqnarray}
+  u_k^{sc} = \phi_k(r)f(\theta, \varphi)
+\end{eqnarray}
+という特解を持つはず. 十分遠方ではラプラシアンの$r^{-2}$の項が無視できるので$\phi_k$について
+\begin{eqnarray}
+  \frac{d^2}{dr^2}(r\phi_k) + k^2(r\phi_k) = 0\hspace{1cm}\therefore\phi_k = \frac{1}{r}\exp(\pm ikr)
+\end{eqnarray}
+ということで, 境界条件として以下を採用する\footnote{$u_k^-$という条件も考えられるが, 物理的状況に対応していないので今回は用いない. ただし, 計算の道具としては有用らしい. }:
+\begin{eqnarray}
+  u_k^+\rightarrow \frac{1}{(2\pi)^{\frac32}}\qty(e^{i\bk\cdot\bm{r}} + \frac{1}{r}e^{i\bk\cdot\bm{r}}f(\theta, \varphi))\ \ \ (r\rightarrow \infty)
+\end{eqnarray}
+Schr\"odinger方程式を上の境界条件の下で解くと$f(\theta, \varphi)$が求まる. Green関数を用いて$u_k^+$に関する積分方程式をつくると
+\begin{eqnarray}
+  u_k^+\rightarrow \frac{1}{(2\pi)^{\frac32}}\qty(e^{i\bk\cdot\bm{r}} - (2\pi)^{\frac32}\frac{e^{i\bk\cdot\bm{r}}}{4\pi r}\int d\bm{r}'e^{^i\bk'\cdot\bm{r}'}U(\bm{r}')u_k^+(\bm{r}'))\ \ \ (r\rightarrow \infty)\label{scatter-psi}
+\end{eqnarray}
+となり, 先ほどの境界条件と比較することで$u_k^+$と$f(\theta, \varphi)$の関係を得る.
+\subsection{問題意識}
+考えなければいけないことは主に3つ:
+\begin{itemize}
+\item[1.] $\frac{m}{\hbar^2}\Gamma = \tilde{f} + \int\frac{dk}{(2\pi)^3}\tilde{f}\qty(\frac{1}{\epsilon - k^2 + i\eta} + \frac{1}{\epsilon - p'^2 + i\eta})\tilde{f}^*\hspace{0.3cm}(22.3)\hspace{0.3cm}$のように書けること.
+\item[2.] 長波長のとき$\Gamma\rightarrow 4\pi a\hbar^2/m$になること. 
+\item[3.] $E/V = \frac{2\pi n^2a\hbar^2}{m}\qty[1 + \frac{128}{15}\qty(\frac{na^3}{\pi})^{\frac12}]$になること. 
+\end{itemize}
+\subsection{$\Gamma_0$が散乱振幅$\tilde{f}$で書けること(Fermi System)}
+\textbf{(以下はFetter-Waleckaのまとめ. 式番号もFetterのものに合わせている. 雰囲気を感じ取ってもらえれば十分だと思っているので添字や引数の致命的な省略が多々あります)}\\\\
+散乱振幅
+\begin{equation}
+  \tilde{f}(\bk', \bk) \equiv -4\pi f(\bk', \bk) = \frac{1}{(2\pi)^3}\int d\bm{q}v(\bm{q})\psi_k(\bk' - \bm{q}))\tag{11.12}
+\end{equation}
+を用いてSchr\"odinger方程式が
+\begin{equation}
+  \psi_k(\bm{p}) = (2\pi)^3\delta(\bm{p} - \bk) + \frac{\tilde{f}(\bm{p}, \bk)}{k^2 - p^2 + i\eta}\tag{11.13}
+\end{equation}
+のように書けることのアナロジーから
+\begin{equation}
+  \Gamma \equiv \frac{1}{(2\pi)^4}\int d\bm{q}U_0Q\tag{11.31}
+\end{equation}
+を定義\footnote{$\Gamma$が$\tilde{f}$, $Q$が$\psi_k$に対応}. さらにここで
+\begin{equation}
+  \chi \equiv \frac{1}{2\pi}\int dp_0 Q\tag{11.33}
+\end{equation}
+を定義すると$\chi$に対する積分方程式を得る:
+\begin{equation}
+  \chi = (2\pi)^3\delta(\bm{p} - \bm{p}') + \frac{N}{E-p^2 + i\eta}\int dq U_0\chi\tag{11.39}
+\end{equation}
+これは散乱振幅の式
+\begin{equation}
+  \psi_k = (2\pi)^3\delta(\bm{p} - \bk) - \frac{1}{p^2 - k^2 -i\eta}\int\frac{d\bm{q}}{(2\pi)^3}v(\bm{q})\psi_k(\bm{p} - \bm{q}))\tag{11.11}
+\end{equation}
+とほぼ同じ形をしている(前々節の(\ref{scatter-psi})のFourier変換に対応). (11.31)と(11.33)から
+\begin{equation}
+  \Gamma = \frac{1}{(2\pi)^3}\int dq U_0(q)\chi(\bm{p} -\bm{q})\tag{11.40}
+\end{equation}
+を得る. $Q$を$\chi$に置き換えただけに見えるが, $\chi$が散乱振幅と関連付けられたことに意味がある. さてここで$N=1$に対応する解を$\chi_0$とすると
+\begin{equation}
+  (\epsilon - p^2 + i\eta)\chi_0 - \frac{1}{(2\pi)^3}\int d\bm{q} v(\bm{q})\chi_0 = (2\pi)^3(\epsilon - p^2 + i\eta)\delta(\bm{p} - \bm{p}')\tag{11.42}
+\end{equation}
+同様にSchr\"odinger方程式(11.11)も
+\begin{equation}
+  (k^2 - p^2 + i\eta)\psi_k(\bm{p}) - \frac{1}{(2\pi)^3}\int d\bm{q} v(\bm{q})\psi_k(\bm{p} - \bm{q}) = 0\tag{11.43}
+\end{equation}
+のように書ける($\delta(k^2 - p^2 + i\eta)\delta(\bm{p} - \bk)$が恒等的に消える). $\psi_k$に対する(運動量表示の)完全性
+\begin{equation}
+  \frac{1}{(2\pi)^3}\int d\bk \psi_k(\bm{p})\psi_k(\bm{p}')^* = (2\pi)^3\delta(\bm{p} - \bm{p}')\tag{11.16}
+\end{equation}
+を用いると
+\begin{equation}
+  \chi_0 = (\epsilon - p^2 + i\eta)\int \frac{d\bk}{(2\pi)^3}\frac{\psi_k(\bm{p})\psi_k(\bm{p}')^*}{(\epsilon - k^2 + i\eta)}\tag{11.44}
+\end{equation}
+を得る((11.42 - 44)と(11.16)を用いると証明可). (11.13)の$\psi_k$が$\tilde{f}$で書けること, (11.40)の$\Gamma$が$\chi$で書けることを用いると
+\begin{equation}
+  \frac{m}{\hbar^2}\Gamma_0 = \tilde{f} + \int\frac{d\bk}{(2\pi)^3}\tilde{f}\qty(\frac{1}{\epsilon - k^2 + i\eta} + \frac{1}{\epsilon - p'^2 + i\eta})\tilde{f}^*\tag{11.45}
+\end{equation}
+のように, $\Gamma$の最低次は自由散乱振幅$\tilde{f}$を用いて記述できる.Full-$\Gamma$は積分方程式になる.
+\subsection{$\Gamma$が散乱振幅$\tilde{f}$で書けること(Bose System)}
+Boson系ではFermion系における正孔由来の逆伝搬がないことから, (11.39)の$N$に相当する項\footnote{これは逆伝搬Green関数の積分に対応している. }が存在しない. ことから, Fermion系の$\chi_0$がBoson系ではFull-$\chi$に対応する. それに応じて, Full-$\Gamma$も自由散乱振幅$\tilde{f}$で表現できる:
+\begin{equation}
+  \frac{m}{\hbar^2}\Gamma= \tilde{f} + \int\frac{d\bk}{(2\pi)^3}\tilde{f}\qty(\frac{1}{\epsilon + 2m\mu/\hbar^2 - k^2 + i\eta} + \frac{1}{\epsilon - p'^2 + i\eta})\tilde{f}^*\tag{22.3}
+\end{equation}
+\subsection{逆伝搬が存在しないこと}
+物理的にはFermi系には粒子線(電子)に対応する逆伝搬(正孔)があり, Bose系にはないという解釈だが, 数式の上ではどう理解したらよいのか. Fetter-Waleckaによると, 場を
+\begin{equation}
+  \varphi = \sum_{\bk} e^{i\bk\cdot\bx }a_{\bk}/\sqrt{V}\tag{18.7}
+\end{equation}
+のように展開したとき, 消滅演算子は真空を消去することから2点Green関数
+\begin{equation}
+  iG_0(x, y) =  \ev{T\qty[\varphi(x)\varphi^\d(y)]}{0}\tag{20.11}
+\end{equation}
+は$t_y>t_x$のときに消える, という説明がある. しかし, 我々は場を
+\begin{eqnarray}
+  \varphi = \sum_\ell \qty[u_\ell a_\ell + v_\ell^*a^\d_\ell]
+\end{eqnarray}
+のように展開しているので$t_y>t_x$でも値を持つことができることになる. これをどう解釈したらよいか？
 \newpage
 %%-------------------- comment ---------------------------------------------------
 %%-------------------- comment ---------------------------------------------------
