@@ -2301,23 +2301,28 @@ Bosonにおけるコヒーレント状態は以下の通り:
   &&\eta_i\eta_j\ket{\eta} = -\eta_j\eta_i\ket{\eta}\\
   &&\therefore\ \eta_i\eta_j = -\eta_j\eta_i
 \end{eqnarray}
-こういう, 「演算子ではないのに交換した時に符号がひっくり返るような数に対する代数」をGrassmann代数(外積代数)という. ただこれだとざっくりし過ぎなのでもう少し真面目に代数を構築する.
+こういう, 「演算子ではないのに交換した時に符号がひっくり返るような数に対する代数\footnote{Fock空間における演算子とは別物. g-数は空間に作用するものではない. }」をGrassmann代数(外積代数)という. ただこれだとざっくりし過ぎなのでもう少し真面目に代数を構築する. 「代数」というのは乗法が定義されたベクトル空間のことなので, 以下ではGrassmann代数がどういう乗法を持っているのかを考える. 
 \subsection{Grassmann代数}
-外積代数の名の通り, Grassmann代数はベクトル空間における外積と似たような構造を持っている. 外積は以下のルールに従う:
+外積代数の名の通り, Grassmann代数はベクトル空間における外積と似たような構造を持っている. ベクトル空間$V$における通常の外積は以下のルールに従う:
 \begin{eqnarray}
   1.&& \bm{A}\times\bm{A} = 0\\
   2.&& \bm{A}\times\bm{B} = -\bm{B}\times\bm{A}\\
   3.&& \qty(a\bm{A} + b\bm{B})\times\bm{C} = a\bm{A}\times\bm{C} + b\bm{B}\times\bm{C}\\
   4.&& \bm{A}\times\bm{B} \perp \bm{A}, \bm{B}
 \end{eqnarray}
-しかしながら, 4番目は内積が定義されていないと議論できないので, 1-3番目のルールに従う演算を「外積」と呼ぶことにし, 「$\Lambda$」という記号を用いることにする. ベクトル空間の元が4番目ののルールに従わないとき, 別のルールが生まれる:
+しかしながら, 4番目は内積が定義されていないと議論できないので, 1-3番目のルールに従う演算を「wedge積」と呼ぶことにし, 「$\wedge$」という記号を用いることにする\footnote{外積の一般化にあたるので, wedge積をそのまま外積と呼んでしまうこともある. }. ベクトル空間$V$の元が4番目ののルールに従わないとき, 別のルールが生まれる:
 \begin{eqnarray}
-  1.&& \bm{A}\Lambda\bm{A} = 0\\
-  2.&& \bm{A}\Lambda\bm{B} = -\bm{B}\Lambda\bm{A}\\
-  3.&& \qty(a\bm{A} + b\bm{B})\Lambda\bm{C} = a\bm{A}\Lambda\bm{C} + b\bm{B}\Lambda\bm{C}\\
-  4.&& \bm{A}\times\qty(\bm{B}\Lambda\bm{C}) = 
+  1.&& \alpha\wedge \alpha = 0\\
+  2.&& \alpha\wedge\beta = -\beta\wedge\alpha\\
+  3.&& \qty(a\alpha + b\beta)\wedge\gamma = a\alpha\wedge\gamma + b\beta\wedge\gamma\\
+  4.&& \alpha\wedge\qty(\beta\wedge\gamma) = \qty(\alpha\wedge\beta)\wedge\gamma
 \end{eqnarray}
-
+4番目の結合法則はよく知ってるベクトルの外積では成り立たない. ベクトル空間$V$がこういう代数を満たす世界をGrassmann代数と呼び, $V$の元をGrassmann数(g-数)と呼ぶことにする. (外積と違ってwedge積は閉じていないらしい. )
+\subsection{g-数の一般形}
+\begin{eqnarray}
+  \sum_{n=1}^{\infty}\sum_{i_1, ...i_n=1}^{N}c_{i_1, ...i_n}\eta_{i_1}\cdots\eta_{i_n}\hspace{1cm}c\in\mathbb{C}
+\end{eqnarray}
+$\eta$が全ての
 \section{Tips}
 忘れやすいことをメモしておきます.
 \subsection{Heisenberg描像}
