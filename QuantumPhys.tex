@@ -2282,7 +2282,41 @@ $K(p, p';k)$をどのように構成するかを考える. まずはFeynman diag
 しかしご存知のように, うまくいったように見えてまだ問題は存在する. 
 \subsection{なぜ問題(赤外発散)が発生するか}
 今までの話からわかる通り, \textbf{非摂動ハミルトニアンの選び方が良くなかったのである}.
-もっと正しい準粒子描像を選びましょう, ということ\footnote{場の理論の欠陥である紫外発散を質量の繰り込みで回避する, ということも, 山中研に言わせれば「理論の欠陥ではなく, 正しい準粒子描像を選んでない」ということになる. だいたいそういうやつは自由ハミルトニアンを非摂動ハミルトニアンに選んでしまっているようです. そりゃうまくいかないよね. }. その試みがInteracting ZeroMode Formulation(IZMF)である. 詳しくはゼロモード入門で. 
+もっと正しい準粒子描像を選びましょう, ということ\footnote{場の理論の欠陥である紫外発散を質量の繰り込みで回避する, ということも, 山中研に言わせれば「理論の欠陥ではなく, 正しい準粒子描像を選んでない」ということになる. だいたいそういうやつは自由ハミルトニアンを非摂動ハミルトニアンに選んでしまっているようです. そりゃうまくいかないよね. }. その試みがInteracting ZeroMode Formulation(IZMF)である. 詳しくはゼロモード入門で.
+
+\section{Grassmann代数}
+フェルミオンの経路積分のおはなしを理解するために.
+\subsection{あらまし}
+Bosonにおけるコヒーレント状態は以下の通り:
+\begin{eqnarray}
+  a_i\ket{\eta} = \eta_i\ket{\eta}
+\end{eqnarray}
+実はFermionでも全く同じようにコヒーレント状態を定義できる. しかしながら, フェルミオンには反交換関係
+\begin{eqnarray}
+  \qty[a_i, a_j^\d]_+ = \delta_{ij},\hspace{0.5cm} \qty[a_i, a_j] = 0
+\end{eqnarray}
+があるため, 以下の等式が成り立つ:
+\begin{eqnarray}
+  &&\qty[a_i, a_j]_+\ket{\eta} = a_ia_j\ket{\eta} + a_ja_i\ket{\eta} = 0\\
+  &&\eta_i\eta_j\ket{\eta} = -\eta_j\eta_i\ket{\eta}\\
+  &&\therefore\ \eta_i\eta_j = -\eta_j\eta_i
+\end{eqnarray}
+こういう, 「演算子ではないのに交換した時に符号がひっくり返るような数に対する代数」をGrassmann代数(外積代数)という. ただこれだとざっくりし過ぎなのでもう少し真面目に代数を構築する.
+\subsection{Grassmann代数}
+外積代数の名の通り, Grassmann代数はベクトル空間における外積と似たような構造を持っている. 外積は以下のルールに従う:
+\begin{eqnarray}
+  1.&& \bm{A}\times\bm{A} = 0\\
+  2.&& \bm{A}\times\bm{B} = -\bm{B}\times\bm{A}\\
+  3.&& \qty(a\bm{A} + b\bm{B})\times\bm{C} = a\bm{A}\times\bm{C} + b\bm{B}\times\bm{C}\\
+  4.&& \bm{A}\times\bm{B} \perp \bm{A}, \bm{B}
+\end{eqnarray}
+しかしながら, 4番目は内積が定義されていないと議論できないので, 1-3番目のルールに従う演算を「外積」と呼ぶことにし, 「$\Lambda$」という記号を用いることにする. ベクトル空間の元が4番目ののルールに従わないとき, 別のルールが生まれる:
+\begin{eqnarray}
+  1.&& \bm{A}\Lambda\bm{A} = 0\\
+  2.&& \bm{A}\Lambda\bm{B} = -\bm{B}\Lambda\bm{A}\\
+  3.&& \qty(a\bm{A} + b\bm{B})\Lambda\bm{C} = a\bm{A}\Lambda\bm{C} + b\bm{B}\Lambda\bm{C}\\
+  4.&& \bm{A}\times\qty(\bm{B}\Lambda\bm{C}) = 
+\end{eqnarray}
 
 \section{Tips}
 忘れやすいことをメモしておきます.
