@@ -2284,8 +2284,11 @@ $K(p, p';k)$をどのように構成するかを考える. まずはFeynman diag
 今までの話からわかる通り, \textbf{非摂動ハミルトニアンの選び方が良くなかったのである}.
 もっと正しい準粒子描像を選びましょう, ということ\footnote{場の理論の欠陥である紫外発散を質量の繰り込みで回避する, ということも, 山中研に言わせれば「理論の欠陥ではなく, 正しい準粒子描像を選んでない」ということになる. だいたいそういうやつは自由ハミルトニアンを非摂動ハミルトニアンに選んでしまっているようです. そりゃうまくいかないよね. }. その試みがInteracting ZeroMode Formulation(IZMF)である. 詳しくはゼロモード入門で.
 
-\section{Grassmann代数}
+\section{Grassmann代数とFermionの経路積分}
 フェルミオンの経路積分のおはなしを理解するために.
+
+
+\textbf{(以下, 数学(代数学)のお話になります. 自分は数学に明るくないので, 厳密な議論ができていないところがたくさんあると思います. とりあえず, 物理をやる上で不具合がない程度の説明をしたつもりです. 「まあ, これでよかろう」のおおらかな精神で読んでください. )}
 \subsection{あらまし}
 Bosonにおけるコヒーレント状態は以下の通り:
 \begin{eqnarray}
@@ -2317,12 +2320,172 @@ Bosonにおけるコヒーレント状態は以下の通り:
   3.&& \qty(a\alpha + b\beta)\wedge\gamma = a\alpha\wedge\gamma + b\beta\wedge\gamma\\
   4.&& \alpha\wedge\qty(\beta\wedge\gamma) = \qty(\alpha\wedge\beta)\wedge\gamma
 \end{eqnarray}
-4番目の結合法則はよく知ってるベクトルの外積では成り立たない. ベクトル空間$V$がこういう代数を満たす世界をGrassmann代数と呼び, $V$の元をGrassmann数(g-数)と呼ぶことにする. (外積と違ってwedge積は閉じていないらしい. )
-\subsection{g-数の一般形}
+4番目の結合法則はよく知ってるベクトルの外積では成り立たない. ベクトル空間$V$がこういう代数を満たす世界をGrassmann代数と呼び, 今後この集合を${\cal A}$とし, その元をGrassmann数(g-数)と呼ぶことにする. ちなみに, 外積と違ってwedge積は実は閉じた演算ではないらしい. 以後g-数同士のwedge積は$\alpha\wedge\beta = \alpha\beta$のように記号を省略する.
+
+g-数はq-数でもなければc-数でもないことに注意. Grassmann代数はベクトル空間$V$を部分空間に含んでいる. 
+\subsection{g-数の元}
 \begin{eqnarray}
   \sum_{n=1}^{\infty}\sum_{i_1, ...i_n=1}^{N}c_{i_1, ...i_n}\eta_{i_1}\cdots\eta_{i_n}\hspace{1cm}c\in\mathbb{C}
 \end{eqnarray}
-$\eta$が全ての
+$\eta$が${\cal A}$の生成子で, コレで表される全ての線型結合を要素に持つのが集合${\cal A}$.なんでこんな言い方をするかというと, 先にwedge積が閉じていないと行った通リ, $\eta_i$と$\eta_i\eta_j$は異なるベクトル空間を張っているから(後者のほうが高次の空間). 別のベクトル空間を構成するがしかし, どちらも${\cal A}$に含まれていることを明示するためである. 
+\subsection{解析手法}
+ただ代数をつくるだけではなく, 解析的(微積分)な手法についても定義しなければならない.
+\subsubsection{Taylor展開}
+よくある多変数関数のTaylor展開のように定義:
+\begin{eqnarray}
+  f(\xi_1, \cdots, \xi_k) = \sum_{n=0}^\infty\sum_{i_1, \cdots, i_n = 1}^k\frac{1}{n!}\eval{\frac{\partial^nf}{\partial\xi_{i_1}\cdots\partial\xi_{i_n}}}_{\xi=0}\xi_{i_n}\cdots\xi_{i_1}
+\end{eqnarray}
+\begin{comment}
+  右辺の$\xi$が逆順になってるのは微分の順番が$\partial\xi_{i_n}, ...\partial\xi_{1}$になっていることに対応している\footnote{のかどうかはよくわからない. }. 詳しくはg-数の微分を定義するとなんとなくわかるかも.
+\end{comment}
+g-数の1変数関数なら展開は以下のようになる:
+\begin{eqnarray}
+  f(\eta_1) &=& \sum_{n=0}^\infty \frac{1}{n!}\eval{\frac{\partial^nf}{\partial\eta_{i_1}\cdots\partial\eta_{i_n}}}_{\eta=0, i_1 = \cdots = i_n = 1}\eta_{i_n}\cdots\eta_{i_1}\\
+  &=& f(0) + \frac{1}{1!}\eval{\pdv{f}{\eta_{i_1}}}_{\eta = 0}\eta_{i_1} + \frac{1}{2!}\eval{\pdv{f}{\eta_{i_1}}{\eta_{i_2}}}_{\eta = 0}\eta_{i_2}\eta_{i_1} + \cdots\\
+  &=& f(0) + f'(0)\eta_1
+\end{eqnarray}
+$i_1 = \cdots = i_n = 1$であることと, $\eta_{i_k}\eta_{i_k} = 0$を用いている. 2次以降も同様に展開することが可能で, かつ必ず有限項で打ち切られることがすぐにわかる.
+
+2変数関数を考えるとTaylor展開の1次と2次が残るのでそう単純ではない:
+\begin{eqnarray}
+  f(\eta_1, \eta_2) &=& 1 + \frac{1}{1!}\qty(\pdv{f}{\eta_1}\eta_1 + \pdv{f}{\eta_2}\eta_2) + \frac{1}{2!}\qty(\pdv[2]{f}{\eta_1}\eta_1^2 + \pdv{f}{\eta_1}{\eta_2}\eta_2\eta_1 + \pdv[2]{f}{\eta_2}\eta_2^2)\\
+   &=&1 + \pdv{f}{\eta_1}\eta_1 + \pdv{f}{\eta_2}\eta_2 + \pdv{f}{\eta_1}{\eta_2}\eta_2\eta_1
+\end{eqnarray}
+しかしながら, $e^{-\eta_1\eta_2}$のようにg-数の積でつくられた関数の場合は, $\eta_1\eta_2 = \eta_3$と置き直せば\footnote{$\eta_3$は$\eta_1, \eta_2$より高次のベクトル空間を構成することになる. もはや$\eta_1, \eta_2$とは別のベクトル空間になるが, $\eta_3\in{\cal A}$ではある. }やはり
+\begin{eqnarray}
+  e^{-\eta_1\eta_2} = 1 - \eta_1\eta_2\label{exp-taylor}
+\end{eqnarray}
+のように展開できることになる. 
+\subsubsection{微分}
+g-数の微分を
+\begin{eqnarray}
+  \partial_{\eta_i}\eta_j = \delta_{ij}
+\end{eqnarray}
+で定義する. 一般的な微分$(\partial_x x = 1, \partial_y x = 0)$と比較しても妥当であるように見えるが, 本当にこれで良いのか...という問題はとりあえず先送りにする. g-数の交換則より
+\begin{eqnarray}
+  &&\eta_i\eta_j = -\eta_j\eta_i\\
+  &&\partial_{\eta_i}\eta_i\eta_j = -\partial_{\eta_i}\eta_j\eta_i\\
+  &\therefore&\partial_{\eta_i}\eta_j\eta_i = -\eta_j\partial_{\eta_i}\eta_i= -\eta_j
+\end{eqnarray}
+のように, 微分演算子も異なるインデックスのg-数とは交換する.
+
+また, g-数を微分することでc-数(クロネッカーデルタ)に変換されると捉えることもできる.
+\subsubsection{積分}
+これがすこし厄介. Altland-Simonsには天下り的に定義されているが, もう少し真面目に議論したい. そもそも微分を解析的に定義した訳ではないので積分もまた解析的な定義\footnote{リーマン積分みたいな定義とか.}は難しそう. 例えば
+\begin{eqnarray}
+  \int d\eta_i \eta_i = \eta_i^2 = 0, \hspace{1cm}\int d\eta_i = \eta_i\label{wrong-definition}
+\end{eqnarray}
+とかでもいいのでは？とも思うけど, どうやらg-数の反交換関係だけではこういった解析計算の定義はできなくて, 他の条件はある程度任意性があるらしい. つまり, Grassmann代数における微積分の定義は一意ではなく, \textbf{経路積分の計算がすっきりするように定義している}らしい. 経路積分において, g-数の微積分はc-数になってくれるとありがたいようなので, 微積分の結果はc-数, つまり積分は定積分のようなもので定義することにする. つまり(\ref{wrong-definition})のような定義は経路積分では都合が悪い. 
+
+天下りだけでは悲しいので補足を. 積分の構成は「部分積分可能性\footnote{これだって天下りだけど, 部分積分(積の微分)は定義できてほしいよね. }」からの要請らしい:
+\begin{eqnarray}
+  \int d\xi \pdv{f}{\xi} = 0
+\end{eqnarray}
+なぜこれが部分積分と繋がるのかというと, そもそも部分積分は積の微分がもとになっている:
+\begin{eqnarray}
+  \partial_{\xi_j} \qty(\xi_i\xi_j) = \pdv{\xi_i}{\xi_j}\xi_j - \xi_i\pdv{\xi_j}{\xi_j}
+\end{eqnarray}
+これを両辺$\xi_j$で積分すると
+\begin{eqnarray}
+  \int d\xi_j\partial_{\xi_j} \qty(\xi_i\xi_j) &=& \int d\xi_j \pdv{\xi_i}{\xi_j}\xi_j - \int d\xi_j\xi_i\pdv{\xi_j}{\xi_j}\\
+  \int d\xi_j\xi_i &=& -\int d\xi_j\partial_{\xi_j} \qty(\xi_i\xi_j) + \delta_{ij}\int d\xi_j \xi_j
+\end{eqnarray}
+これが部分積分にあたり, 右辺第一項は表面項にあたり, これがきちんと処理されれば部分積分が計算できることになる. 例えば表面項をゼロにしたとき, $i\neq j$のとき左辺の積分はゼロ. $i=j$のときは適当に正規化して$1$にすることができる. この「表面項ゼロ\footnote{別にゼロでなくても部分積分可能にはなるけど, 表面項がノンゼロで喜ぶ人はあまり居ないと思う}」というのが「部分積分可能性」にあたる.
+
+ちなみにこの定義において微分と積分は実質的に等価になる. もちろん, 積分もg-数と反交換関係を満たす. 
+\subsection{コヒーレント状態}
+Fermionに対するコヒーレント状態を定義するためにFermion演算子とg-数の反交換関係を要請する:
+\begin{eqnarray}
+  \qty[\eta_i, a_j]_+ = 0,\hspace{0.5cm}\qty[\eta_i, a_j^\d]_+ = 0,
+\end{eqnarray}
+コヒーレント状態は以下のように構成される:
+\begin{eqnarray}
+  \ket{\eta} = \exp(-\sum_i\eta_ia_i^\d)\ket{0}
+\end{eqnarray}
+さて, 本当に$a_i\ket{\eta} = \eta_i\ket{\eta}$になっているかを確認する. 真空にかかっている$\exp$をBaker-Campbell-Hausdorffの公式で分解する:
+\begin{eqnarray}
+  \exp(-\sum_i\eta_ia_i^\d) &=& \exp(-\eta_ia_i^\d)\exp(-\sum_{j\neq i}\eta_ja^\d_j)\exp(-\qty[\eta_ia_i^\d, \sum_{j\neq i}\eta_ja^\d_j]_-)\\
+  &=& \qty(1-\eta_ia_i^\d)\exp(-\sum_{j\neq i}\eta_ja^\d_j)
+\end{eqnarray}
+注意すべきは, 第一式右辺の最後の$\exp$の中身は反交換関係ではなく交換関係であるということ\footnote{Baker-Campbell-Hausdorffの公式は演算子の種類を限定していない. 演算子が交換関係/反交換関係を満たすこととは全く別の文脈で交換関係が出てくる. }.さらに, 偶数個の反交換する要素は他の要素と交換するので結局交換関係はゼロになる. さらに(\ref{exp-taylor})を用いている. もちろん素直にTaylor展開しても良い. これを利用して$\ket{\eta}$がコヒーレント状態であることが確認できる:
+\begin{eqnarray}
+  a_i\ket{\eta} &=& a_i\exp(-\sum_i\eta_ia_i^\d)\ket{0} = a_i\qty(1-\eta_ia_i^\d)\exp(-\sum_{j\neq i}\eta_ja^\d_j)\ket{0}\\
+  &=& \qty(a_i + \eta_ia_ia_i^\d)\exp(-\sum_{j\neq i}\eta_ja^\d_j)\ket{0} = \exp(-\sum_{j\neq i}\eta_ja^\d_j)\qty(a_i + \eta_ia_ia_i^\d)\ket{0}\\
+  &=& \exp(-\sum_{j\neq i}\eta_ja^\d_j)\eta_i\ket{0} =\exp(-\sum_{j\neq i}\eta_ja^\d_j)\eta_i\qty(1 -\eta_ia_i^\d)\ket{0}\\
+  &=&\eta_i\qty(1 -\eta_ia_i^\d)\exp(-\sum_{j\neq i}\eta_ja^\d_j)\ket{0}=\eta_i\ket{\eta}
+\end{eqnarray}
+さて, コヒーレント状態であることが確認できたら次は, Bosonのコヒーレント状態が満たす性質に対応するものを確認する. やることは三浦がやってくれたこととほぼ同じ流れを追うので省略. しかし, 完全性がどのように構成されるかは重要な問題であり, そこにはg-数のGauss積分を実行しなければならないので, それだけ確認しておく.
+\subsection{g-数のGauss積分}
+Gauss積分の公式導くためにg-数積分における変数変換についてまとめる.
+\subsubsection{Jacobian}
+n個のg-数$\xi_i$を変数変換して新しい$\xi_i'$をつくる:
+\begin{eqnarray}
+  \xi_i' = \sum_{j=1}^nM_{ij}\xi_j + \zeta_i
+\end{eqnarray}
+$M_{ij}$は$n\times n$のc-数行列, $\zeta_i$は$\xi$とは別のg-数. ここで
+\begin{eqnarray}
+  \xi_1'\cdots\xi_n' = \sum_{j_1=\cdots =j_n = 1}^{n}{\rm sgn}(j_1, \cdots, j_n)M_{1j_1}\cdots M_{nj_n}\xi_1\cdots\xi_n + \order{\zeta}
+\end{eqnarray}
+${\rm sgn}(1, 2, \cdots, n) = 1$であり, 偶置換なら$+1$, 奇置換なら$-1$の符号関数である. これはまんま行列式の定義になっているので以下のようにまとまる:
+\begin{eqnarray}
+  \xi_1'\cdots\xi_n' = \qty[\det M_{ij}]\xi_1\cdots\xi_n + \order{\zeta}
+\end{eqnarray}
+ということで, $\qty{\xi}$と$\qty{\xi'}$の積分は
+\begin{eqnarray}
+  1^n = \int d\xi_n'\cdots d\xi_1'\; \xi_1'\cdots \xi_n' = \qty[\det M_{ij}]\int d\xi_n'\cdots d\xi_1' \;\xi_1\cdots\xi_n = \int  d\xi_n\cdots d\xi_1\; \xi_1\cdots \xi_n
+\end{eqnarray}
+のように関連付けられる. 積分の順番に注意. これでJacobian
+\begin{eqnarray}
+  \qty[\det M_{ij}]\xi_n'\cdots\xi_1' = \xi_n\cdots\xi_1
+\end{eqnarray}
+が求まった.
+\subsubsection{Gauss積分}
+g-数Gauss積分(積分の順番に注意)
+\begin{eqnarray}
+  \int d\bar{\xi}_n\cdots d\bar{\xi}_1d\xi_1\cdots d\xi_n\exp[-\sum_{i, j=1}^n\bar{\xi}_iM_{ij}\xi_j]
+\end{eqnarray}
+は, 変数変換$\sum_h M_{ij}\xi_j = \xi_i'$を行い, 
+\begin{eqnarray}
+  \int d\bar{\xi} d\xi\;  e^{-\bar{\xi}\xi} &=& \int d\bar{\xi} d\xi\;  \qty(1 -\bar{\xi}\xi)= \int d\bar{\xi} d\xi\;  \qty(1 +\xi\bar{\xi}) = 1
+\end{eqnarray}
+の公式を用いると
+\begin{eqnarray}
+  &&\int d\bar{\xi}_n\cdots d\bar{\xi}_1d\xi_1'\cdots d\xi_n'\exp[-\sum_{i}^n\bar{\xi}_i\xi_i']\qty[\det M_{ij}]\\
+  &=& \qty[\det M_{ij}]\int d\bar{\xi}_n\cdots d\bar{\xi}_1\exp[-\sum_{i}^n\bar{\xi}_i\xi_i']d\xi_1'\cdots d\xi_n'\\
+  &=& \qty[\det M_{ij}]\prod_{j=1}^n\qty(\int d\bar{\xi}_j e^{-\bar{\xi}_j\xi_j'}d\xi_j') = \qty[\det M_{ij}]
+\end{eqnarray}
+ということで$\pi$因子が含まれないことがわかり, Altland-Simons(4.18)も成立していることがわかる. $\bar{\xi}$は$\xi$の複素共役ではなく, 全く独立のg-数であることに注意. Altland-Simons(4.19)の積分は
+\begin{eqnarray}
+  \int d\qty(\bar{\phi}, \phi) \rightarrow \int d\bar{\xi}_n\cdots d\bar{\xi}_1d\xi_1\cdots d\xi_n
+\end{eqnarray}
+のように対応している.
+\subsection{分配関数の経路積分}
+具体計算は三浦のノートを参照. ここではFermion固有の話題に留める.
+\begin{eqnarray}
+  {\cal Z} = \int d(\bar{\psi}, \psi)e^{-\sum_i\bar{\psi}_i\psi_i}\sum_n\bra{n}\ket{\psi}\bra{\psi}e^{-\beta(\hat{H} - \mu\hat{N})}\ket{n}
+\end{eqnarray}
+$\ket{\psi}$はFermionのコヒーレント状態.
+\subsubsection{$\bra{n}\ket{\psi}=\bra{-\psi}\ket{n}$について}
+まず, Fock空間$\ket{n}$に含まれるFermion演算子の数とFermionコヒーレント状態に含まれる演算子の数が違うことに注意. コヒーレント状態には$m$個の演算子が含まれているものとする\footnote{実際には可算無限個.}. コヒーレント状態のTaylor展開には偶数個の反交換要素があるので
+\begin{eqnarray}
+  a_1\ket{\psi} = \psi_i\ket{\psi} = \ket{\psi}\psi_i
+\end{eqnarray}
+を満たす. このことより
+\begin{eqnarray}
+  \bra{n}\ket{\psi} \varpropto \bra{0}a_1\cdots a_n\ket{\psi} = \bra{0}\ket{\psi}\psi_n\cdots\psi_1 = \ev{\exp(-\sum_i\psi_ia_i^\d)}{0}\psi_n\cdots\psi_1 = \psi_n\cdots\psi_1
+\end{eqnarray}
+分配関数の符号が変化し得るところだけ拾ってきて積分できる形にすると
+\begin{eqnarray}
+  {\cal Z} &\varpropto& \int d(\bar{\psi}, \psi)e^{-\sum_i\bar{\psi}_i\psi_i}\sum_n\bra{n}\ket{\psi}\bra{\psi}\ket{n}\\
+  &=& \int d(\bar{\psi}, \psi)e^{-\sum_i\bar{\psi}_i\psi_i}\sum_n\psi_n\cdots\psi_1\bar{\psi}_1\cdots\bar{\psi}_n\\
+  &=& \int d(\bar{\psi}, \psi)e^{-\sum_i\bar{\psi}_i\psi_i}\sum_n(-1)^{n^2}\bar{\psi}_1\cdots\bar{\psi}_n\psi_n\cdots\psi_1\\
+  &=& \int d(\bar{\psi}, \psi)e^{-\sum_i\bar{\psi}_i\psi_i}\sum_n(-\bar{\psi}_1)\cdots(-\bar{\psi}_n)\psi_n\cdots\psi_1\\
+  &=& \int d(\bar{\psi}, \psi)e^{-\sum_i\bar{\psi}_i\psi_i}\sum_n\bra{-\psi}\ket{n}\bra{n}\ket{\psi}
+\end{eqnarray}
+$(-1)^{n^2} = (-1)^n$を用いている.
+\subsubsection{微分の置き換え}
+g-数は大小比較という概念がないので$\lim_{\delta\rightarrow 0}\delta^{-1}(\bar{\psi}^{n+1} - \bar{\psi}^n)$における$\bar{\psi}^{n+1} - \bar{\psi}^n$が小さいという条件には意味がない. ここでは単なる形式的な置き換えとして$\partial_\tau\bar{\psi} = \bar{\psi}^{n+1} - \bar{\psi}^n$を導入する. つまり, $\partial_\tau$にはc-数微分はおろか, g-数微分の意味すら無い. 
+\newpage
 \section{Tips}
 忘れやすいことをメモしておきます.
 \subsection{Heisenberg描像}
