@@ -2284,6 +2284,132 @@ $K(p, p';k)$をどのように構成するかを考える. まずはFeynman diag
 今までの話からわかる通り, \textbf{非摂動ハミルトニアンの選び方が良くなかったのである}.
 もっと正しい準粒子描像を選びましょう, ということ\footnote{場の理論の欠陥である紫外発散を質量の繰り込みで回避する, ということも, 山中研に言わせれば「理論の欠陥ではなく, 正しい準粒子描像を選んでない」ということになる. だいたいそういうやつは自由ハミルトニアンを非摂動ハミルトニアンに選んでしまっているようです. そりゃうまくいかないよね. }. その試みがInteracting ZeroMode Formulation(IZMF)である. 詳しくはゼロモード入門で.
 
+\section{Bose系の有限温度Green関数}
+一様有限温度Boson系における一般的なGreen関数についてまとめる.
+\subsection{有限体積系におけるハミルトニアン}
+Bose系の相互作用を考えないHeisenbergハミルトニアンは以下の通り:
+\begin{eqnarray}
+  H_{\rm H} = \int d\bx \psi_{\rm H}^\d(\bx)\qty(-\frac{\nabla^2}{2m} - \mu)\psi_{\rm H}(\bx)
+\end{eqnarray}
+$\psi(x)$を離散変数$k_n$でFourier級数展開した場合を考える. 体積$V$の有限系について:
+\begin{eqnarray}
+  \psi(\bx) = \frac{1}{\sqrt{V}}\sum_{n=-\infty}^{n=\infty}e^{i{\bk}_n\bx}a_{{\bk}_n}
+\end{eqnarray}
+ただし${\bk}_n = \frac{(2\pi)^3}{V}n$とする.これをハミルトニアンに代入すると
+\begin{eqnarray}
+  H = \sum_k \qty(\frac{k^2}{2m} -\mu)a_{\bk}^\d a_{\bk} = \sum_{\bk} \xi_{\bk}a_{\bk}^\d a_{\bk}
+\end{eqnarray}
+を得る($\xi_{\bk}$は秩序変数とは関係ない). デルタ関数が体積になることを用いている. Fullハミルトニアンが生成消滅演算子の2次なので, 真空はHeisenberg描像の$a_{\bk}$で張ることになる. 以後明示しない限り演算子は全てHeisenberg描像. 
+
+ちなみに
+\begin{eqnarray}
+  \int dx\ \psi(x)e^{-ik_nx} &=& \frac{1}{\sqrt{L}}\sum_{n'}\int dx\ e^{-i(k_n-k_{n'})x}a_{k_{n'}}\\
+  &=& \frac{1}{\sqrt{L}}\sum_{n'}L\delta_{nn'}a_{k_{n'}} = \sqrt{L}a_{k_n}\\
+  \therefore a_{k_n} &=& \frac{1}{\sqrt{L}}\int dx\ \psi(x)e^{-ik_nx}  
+\end{eqnarray}
+このとき交換関係は
+\begin{eqnarray}
+  [a_{k_n}, a^\dagger_{k_{n'}}] = \frac{1}{L}\int dx dx'\ e^{-i(k_nx - k_{n'}x')}\left[\psi(x), \psi^\dagger(x')\right] = \frac{1}{L}\int dx \ e^{-i(k_n - k_{n'})x} = \delta_{nn'}
+\end{eqnarray}
+であり, これによって
+\begin{eqnarray}
+  \expval{a_{k_n}^\dagger a_{k_n}} = \frac{1}{e^{\beta\omega_{k_n}}-1} \equiv n_{k_n}
+\end{eqnarray}
+が保証される\footnote{付録B参照}. 連続へ拡張する場合は$[a_{\bk}, a^\d_{\bk'}] = \delta(\bk - \bk')$を守るように, 変換$a_{\bk_n}\rightarrow ca_{\bk}$の定数$c$を決めなければならない. 
+\subsection{松原Green関数}
+温度Green関数はGreen関数の虚時間形式であり, 実時間形式の有限温度Green関数とは別物. 紛らわしいのでここでは前者を松原Green関数と呼ぶ.
+
+虚時間$\tau = it$を導入して先ほどの場の展開を用いると, 松原Green関数は以下のようにまとまる:
+\begin{eqnarray}
+  {\cal G}(\bm{r}, \bm{r}'; \tau, 0) &=& -\ev{T\psi(\bm{r}, \tau)\psi^\d(\bm{r}', 0)} = -\ev{\psi(\bm{r}, \tau)\psi^\d(\bm{r}', 0)}\\
+  &=& -\frac{1}{V}\sum_{{\bk}_1, {\bk}_2}\ev{a_{{\bk}_1}(\tau)a^\d_{\bk_2}(0)}e^{i\bk_1\cdot\br}e^{-i\bk_2\cdot\br'}\\
+  &=&-\frac{1}{V}\sum_{\bk}\ev{a_{\bk}a^\d_{\bk}}e^{-\xi_{\bk}\tau}e^{i\bk(\br - \br')}
+\end{eqnarray}
+計算を進めるために松原Green関数をFourier展開する:
+\begin{eqnarray}
+  {\cal G}(\bk, i\omega_n) &=& \int_0^\beta d\tau e^{i\omega_n\tau}\int d(\br-\br')e^{-i\bk\cdot(\br-\br')}{\cal G}(\br, \br';\tau, 0)
+\end{eqnarray}
+ここで, 一行目の$\tau$-積分の区間はどのように決まったのか, $\omega_n$が何者かを考えなければならない. そもそも熱力学量は
+\begin{eqnarray}
+  \ev{A(t)} &=& \Tr[\rho A(t)]/Z\\
+  &=& \Tr[e^{-\beta H} A(t)e^{\beta H}e^{-\beta H}]/Z\\
+  &=& \Tr[e^{i(iH\beta)} A(t)e^{-i(iH\beta)}e^{-\beta H}]/Z\\
+  &=& \Tr[A(t+i\beta)e^{-\beta H}]/Z\\
+  &=& \Tr[e^{-\beta H}A(t+i\beta)]/Z\\
+  &=& \ev{A(t+i\beta)}
+\end{eqnarray}
+でわかるように, $i\beta$(虚時間なら$\beta$)周期性を持っている. これを久保-Martin-Schwinger(KMS)条件という. というわけで, ${\cal G}$は周期性を持ちFoureir級数展開の周波数に対応する. これを松原周波数という. 積分を実行すると
+\begin{eqnarray}
+  {\cal G}(\bk, i\omega_n) &=& -(1 + n_{\bk})\int_0^\beta d\tau \exp[(i\omega_n - \xi_{\bk})\tau]\\
+  &=& \frac{1}{i\omega_n-\xi_{\bk}}
+\end{eqnarray}
+$\tau$-積分がちょうど$-(1+n_{\bk})^{-1}$に対応する.
+\subsection{遅延Green関数とLehmann表示と解析接続}
+ところで, 実時間形式のGreen関数はどんなものだったかというと,
+\begin{eqnarray}
+  iG(\bx, \bx';t, t') = \ev{T\qty[\psi(x)\psi^\d(x')]}
+\end{eqnarray}
+こういうのだった. しかしいざ計算しようとすると複素平面の上半分と下半分のどちらにも極が含まれているので扱いづらいという理由から, 極が片方にしかない遅延/先進Green関数を
+\begin{eqnarray}
+  iG^R(\bx, \bx';t, 0) = \ev{\qty[\psi(x), \psi^\d(x')]}\theta(t)
+  iG^A(\bx, \bx';t, 0) = \ev{\qty[\psi(x), \psi^\d(x')]}\theta(-t)
+\end{eqnarray}
+のように定義して, これを元のGreen関数と結びつけて計算してやろうということをする. 例えば遅延Green関数は
+\begin{eqnarray}
+  G^R(k, \omega) &=& \int dte^{i\omega t}\int d(\bx-\bx')e^{-i\bk(\bx -\bx')}{\cal G}(\bx-\bx':t, 0)\\
+  &=& -i\int dte^{i\omega t}\int d(\bx-\bx')e^{-i\bk(\bx -\bx')}\ev{\qty[\psi(x), \psi^\d(x')]}\theta(t)\\
+  &=& -i\int dte^{i\omega t}\int d(\bx-\bx')e^{-i\bk(\bx -\bx')}\int d\bk'\ev{\qty[a_{\bk}(t), a^\d_{\bk}]}e^{i\bk'\cdot(\bx - \bx')}\theta(t)\\
+  &=& -i\int dte^{i\omega t}\theta(t)\ev{\qty[a_{\bk}(t), a^\d_{\bk}]}\\
+  &=& -i\int dte^{i\omega t}\theta(t)\qty(\ev{a_{\bk}(t)a^\d_{\bk}} - \ev{a^\d_{\bk}a_{\bk}(t)})\\
+  &=& -i\int dte^{i\omega t}\theta(t)\sum_{nm}\qty(\ev{\rho a_{\bk}(t)\ket{m}\bra{m}a^\d_{\bk}}{n} - \ev{\rho a^\d_{\bk}\ket{m}\bra{m} a_{\bk}(t)}{n})/Z\\
+  &=& -i\int dte^{i\omega t}\theta(t)\sum_{nm}\qty(e^{-\beta E_n}\ev{a_{\bk}(t)\ket{m}\bra{m}a^\d_{\bk}}{n} - e^{-\beta E_n}\ev{a^\d_{\bk}\ket{m}\bra{m}a_{\bk}(t)}{n})/Z\\
+  \nonumber  &=& -i\int dte^{i\omega t}\theta(t)\sum_{nm}\qty(e^{-\beta E_n}e^{i(E_n - E_m)t}\ev{a_{\bk}\ket{m}\bra{m}a^\d_{\bk}}{n} - e^{-\beta E_n}e^{i(E_m - E_n)t}\ev{a^\d_{\bk}\ket{m}\bra{m}a_{\bk}}{n})/Z\\
+  \\
+  &=& -i\int dte^{i\omega t}\theta(t)\sum_{nm}e^{i(E_n - E_m)t}\qty(e^{-\beta E_n}\ev{a_{\bk}\ket{m}\bra{m}a^\d_{\bk}}{n} - e^{-\beta E_m}\ev{a_{\bk}\ket{m}\bra{m}a^\d_{\bk}}{n})/Z\\
+  &=& -i\sum_{nm}\int dte^{i\omega t}\theta(t)e^{i(E_n - E_m)t}\qty(e^{-\beta E_n} - e^{-\beta E_m})|\bra{n}a_{\bk}\ket{m}|^2/Z\\
+  &=& -\sum_{nm}\int dt \int \frac{d\omega'}{2\pi}\frac{e^{i(\omega - \omega' + E_n - E_m) t}}{\omega' + i\eta}|\bra{n}a_{\bk}\ket{m}|^2/Z\\
+  &=& -\sum_{nm}\frac{|\bra{n}a_{\bk}\ket{m}|^2}{\omega  + i\eta - (E_m - E_n)}\qty(e^{-\beta E_n} - e^{-\beta E_m})/Z
+\end{eqnarray}
+(符号が逆になってしまった...)\\
+のようなLehmann表示を取る. 同様の方法で松原Green関数もLehmann表示を取ってあげるとほぼ同じ形に落ち着く. 違いは$\omega+i\eta$が$i\omega_n$になっていることだけなので, 解析接続してあげれば松原Green関数が遅延Green関数に化ける. このように虚時間Green関数を解析接続することで実時間Green関数を求める手続きを松原形式と呼ぶ. $\omega+i\eta\rightarrow i\omega_n$という接続が異なる系でも正しいかどうかはわからないのが怖いところ？
+
+\subsection{付録}
+\subsubsection{A : デルタ関数が体積になること}
+\begin{eqnarray}
+  \int^\infty_{-\infty} d\bm{x} = V
+\end{eqnarray}
+であり, デルタ関数のFourier変換表示
+\begin{eqnarray}
+  \delta(x) = \frac{1}{(2\pi)^3}\int dk e^{ikx}\hspace{0.5cm}\Longrightarrow \hspace{0.5cm}\delta(0) = \frac{1}{(2\pi)^3}\int dx = \frac{V}{(2\pi)^3}
+\end{eqnarray}
+\subsubsection{B : 生成消滅演算子の時間依存性}
+非摂動ハミルトニアンが
+\begin{eqnarray}
+  H = \int d\bk\ \omega_k a^\dagger(t) a(t)
+\end{eqnarray}
+のように対角化されていれば, 時間成分は
+\begin{eqnarray}
+  i\partial_ta(t) &=& [a(t), H] = \omega_k a(t)\\
+  \therefore a(t) &=& a(0)e^{-i\omega_k t}
+\end{eqnarray}
+のようにくくり出せる.
+\subsubsection{C : $a^\d a$の期待値がBose-Einstein分布になること}
+\begin{eqnarray}
+  \nonumber  {\rm Tr}\rho &=& \sum_{n_1}\sum_{n_2}...\bra{n}e^{-\beta\sum_k\omega_{\bm{k}}a^\dagger_{\bm{k}}a_{\bm{k}}}\ket{n} = \sum_{n_1}\sum_{n_2}...\bra{n}e^{-\beta\sum_k\omega_{\bm{k}}n_{\bm{k}}}\ket{n} = \sum_{n_1}\sum_{n_2}...\prod_ke^{-\beta\omega_{\bm{k}}n_{\bm{k}}}\\
+  &=& \prod_k\sum_{n_1}\sum_{n_2}...e^{-\beta\omega_{\bm{k}}n_{\bm{k}}} = \prod_k\sum_{n_{\bm{k}}}e^{-\beta\omega_{\bm{k}}n_{\bm{k}}} = \prod_k\frac{1}{1-e^{-\beta\omega_{\bm{k}}}}
+\end{eqnarray}
+\begin{eqnarray}
+  \nonumber  {\rm Tr}\rho a^\dagger_{\bm k}a_{\bm{k}} &=& \sum_{n_1}\sum_{n_2}...\bra{n}e^{-\beta\sum_k\omega_{\bm{k}}a^\dagger_{\bm k}a_{\bm{k}}}a^\dagger_{\bm k}a_{\bm{k}}\ket{n} = \sum_{n_1}\sum_{n_2}...\left(\prod_{l\neq k}e^{-\beta\omega_ln_l}\right)n_le^{-\beta\omega_ln_l}\\
+  \nonumber  &=& \prod_{l\neq k}\left(\sum_{n_1}\sum_{n_2}...\sum_{n_{l-1}}\sum_{n_{l+1}}...e^{-\beta\omega_ln_l}\right)\sum_kn_{\bm{k}}e^{-\beta\omega_{\bm{k}}n_{\bm{k}}} = \left(\prod_{k\neq l}\sum_{n_{\bm{k}}}e^{-\beta\omega_ln_l}\right)\sum_kn_{\bm{k}}e^{-\beta\omega_{\bm{k}}n_{\bm{k}}}\\
+  &=&\left(\prod_{l\neq k}\frac{1}{1-e^{-\beta\omega_l}}\right)\frac{e^{-\beta\omega_{\bm{k}}}}{(1-e^{-\beta\omega_{\bm{k}}})^2}
+\end{eqnarray}
+から,
+\begin{eqnarray}
+  \nonumber  _{\rm ex}\ev{a^\dagger_{\bm{k}}a_{\bm{k}}}_{\rm ex} &=&  \frac{{\rm Tr}\rho a^\dagger_{\bm k}a_{\bm{k}}}{{\rm Tr}\rho}\\
+  \nonumber &=& \frac{\left(\prod_{l\neq k}\frac{1}{1-e^{-\beta\omega_l}}\right)\frac{e^{-\beta\omega_{\bm{k}}}}{(1-e^{-\beta\omega_{\bm{k}}})^2}}{\prod_k\frac{1}{1-e^{-\beta\omega_{\bm{k}}}}}\\
+  &=&\frac{1}{e^{\beta\omega_{\bm{k}}}-1}\\
+  _{\rm ex}\ev{a^\dagger_{\bm{k}}a^\dagger_{-\bm{k}}}_{\rm ex} &=& _{\rm ex}\ev{a_{\bm{k}}a_{-\bm{k}}}_{\rm ex} = 0
+\end{eqnarray}
 \section{Grassmann代数とFermionの経路積分}
 フェルミオンの経路積分のおはなしを理解するために.
 
@@ -2484,8 +2610,8 @@ $\ket{\psi}$はFermionのコヒーレント状態.
 \end{eqnarray}
 $(-1)^{n^2} = (-1)^n$を用いている.
 \subsubsection{微分の置き換え}
-g-数は大小比較という概念がないので$\lim_{\delta\rightarrow 0}\delta^{-1}(\bar{\psi}^{n+1} - \bar{\psi}^n)$における$\bar{\psi}^{n+1} - \bar{\psi}^n$が小さいという条件には意味がない. ここでは単なる形式的な置き換えとして$\partial_\tau\bar{\psi} = \bar{\psi}^{n+1} - \bar{\psi}^n$を導入する. つまり, $\partial_\tau$にはc-数微分はおろか, g-数微分の意味すら無い. 
-\newpage
+g-数は大小比較という概念がないので$\lim_{\delta\rightarrow 0}\delta^{-1}(\bar{\psi}^{n+1} - \bar{\psi}^n)$における$\bar{\psi}^{n+1} - \bar{\psi}^n$が小さいという条件には意味がない. ここでは単なる形式的な置き換えとして$\partial_\tau\bar{\psi} = \bar{\psi}^{n+1} - \bar{\psi}^n$を導入する. つまり, $\partial_\tau$にはc-数微分はおろか, g-数微分の意味すら無い.
+
 \section{Tips}
 忘れやすいことをメモしておきます.
 \subsection{Heisenberg描像}
