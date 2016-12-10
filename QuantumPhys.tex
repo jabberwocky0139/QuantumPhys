@@ -5427,8 +5427,8 @@ Wickの定理で展開:
 \end{eqnarray}
 次はT積がない項:
 \begin{eqnarray}
-  \ev{\varphi(y)\varphi(y)} &=& \ev{\sum_{j_1, j_2}\qty(u_{j_1}(\bx)a_{j_1}(t) + v_{j_1}^*(\bx)a_{j_1}^\dagger(t))\qty(u_{j_2}(\by)a_{j_2}(s) + v^*_{j_2}(\by)a^\dagger_{j_2}(s))}\\
-  &=& \sum_{j_1}\qty(u_{j_1}(\bx)v^*_{j_1}(\by)\ev{a_{j_1}(t)a^\dagger_{j_1}(s)} + v_{j_1}^*(\bx)u_{j_1}(\by)\ev{a_{j_1}^\dagger(t)a_{j_1}(s)})
+  \ev{\varphi(y)\varphi(y)} &=& \ev{\sum_{j_1, j_2}\qty(u_{j_1}(\by)a_{j_1}(s) + v_{j_1}^*(\by)a_{j_1}^\dagger(s))\qty(u_{j_2}(\by)a_{j_2}(s) + v^*_{j_2}(\by)a^\dagger_{j_2}(s))}\\
+  &=& \sum_{j_1}\qty(u_{j_1}(\by)v^*_{j_1}(\by)\ev{a_{j_1}(s)a^\dagger_{j_1}(s)} + v_{j_1}^*(\by)u_{j_1}(\by)\ev{a_{j_1}^\dagger(s)a_{j_1}(s)})
 \end{eqnarray}
 ここまでできたら上3つの積をまとめる $\theta$関数のクロスタームは消えることを利用すると以下のようになる:
 \begin{eqnarray}
@@ -5443,8 +5443,8 @@ Wickの定理で展開:
     u^*_{2}(\bx)v_{2}(\by)\ev{a_{2}^\dagger a_{2}}e^{i\omega_2(t-s)}
   \end{Bmatrix}^\nu
   \begin{Bmatrix}
-    u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}e^{-i\omega_3(t-s)}\\
-    v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}e^{i\omega_3(t-s)}
+    u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+    v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
   \end{Bmatrix}^\lambda\\
   \nonumber  &&+ \sum_{j_1, j_2, j_3}\theta(s-t)\times\\
   \nonumber  &&\begin{Bmatrix}
@@ -5456,8 +5456,8 @@ Wickの定理で展開:
     v_{2}(\by)u^*_{2}(\bx)\ev{a_{2}a_{2}^\dagger}e^{i\omega_2(t-s)}
   \end{Bmatrix}^{\nu'}
   \begin{Bmatrix}
-    u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}e^{-i\omega_3(t-s)}\\
-    v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}e^{i\omega_3(t-s)}
+    u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+    v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
   \end{Bmatrix}^{\lambda'}\\
 \end{eqnarray}
 ここで$j_i\rightarrow i$と省略し, かつ項が多すぎるのでテンソル形式を用いている. $\mu, \nu, \lambda$はそれぞれ$(-, +)$の2種類. テンソルの添字は上が$-$に対応しており, 時間成分は$-i\omega\tau$, 下は$+$に対応しており, 時間成分は$i\omega\tau$である.   これを時間$t-s = \tau$についてFourier変換する:
@@ -5473,8 +5473,8 @@ Wickの定理で展開:
   u^*_{2}(\bx)v_{2}(\by)\ev{a_{2}^\dagger a_{2}}e^{i\omega_2\tau}
 \end{Bmatrix}^\nu
 \begin{Bmatrix}
-  u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}e^{-i\omega_3\tau}\\
-  v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}e^{i\omega_3\tau}
+  u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+  v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
 \end{Bmatrix}^\lambda\\
 \nonumber  &&+ \frac{1}{\sqrt{2\pi}}\int\; d\tau\;e^{i\omega\tau}\sum_{j_1, j_2, j_3}\theta(-\tau)\times\\
 \nonumber  &&\begin{Bmatrix}
@@ -5486,8 +5486,8 @@ Wickの定理で展開:
     v_{2}(\by)u^*_{2}(\bx)\ev{a_{2}a_{2}^\dagger}e^{i\omega_2\tau}
   \end{Bmatrix}^{\nu'}
   \begin{Bmatrix}
-    u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}e^{-i\omega_3\tau}\\
-    v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}e^{i\omega_3\tau}
+    u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+    v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
   \end{Bmatrix}^{\lambda'}\\
 \end{eqnarray}
 Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってすぐに証明可能.}
@@ -5508,9 +5508,9 @@ Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってす
     u^*_{2}(\bx)v_{2}(\by)\ev{a_{2}^\dagger a_{2}}
   \end{Bmatrix}^\nu
   \begin{Bmatrix}
-    u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
-    v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
-  \end{Bmatrix}^\lambda \qty(-{\cal P}\frac{i}{\omega - \omega^{\mu\nu\lambda}} + \pi\delta(\omega - \omega^{\mu\nu\lambda}))\\
+    u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+    v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
+  \end{Bmatrix}^\lambda \qty(-{\cal P}\frac{i}{\omega - \omega^{\mu\nu}} + \pi\delta(\omega - \omega^{\mu\nu}))\\
   \nonumber  &&+\begin{Bmatrix}
     u_{1}^*(\by)u_{1}(\bx)\ev{a_{1}^\dagger a_{1}}\\
     v_{1}(\by)v_{1}^*(\bx)\ev{a_{1}a_{1}^\dagger}
@@ -5520,26 +5520,26 @@ Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってす
     v_{2}(\by)u^*_{2}(\bx)\ev{a_{2}a_{2}^\dagger}
   \end{Bmatrix}^{\nu'}
   \begin{Bmatrix}
-    u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
-    v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
-  \end{Bmatrix}^{\lambda'}\qty({\cal P}\frac{i}{\omega - \omega^{\mu'\nu'\lambda'}} + \pi\delta(\omega - \omega^{\mu'\nu'\lambda'}))\\
+    u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+    v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
+  \end{Bmatrix}^{\lambda'}\qty({\cal P}\frac{i}{\omega - \omega^{\mu'\nu'}} + \pi\delta(\omega - \omega^{\mu'\nu'}))\\
 \end{eqnarray}
 ここで$\mu, \nu, \lambda$の符号はそのまま$\omega_i$の符号に対応しており, 例えば
 \begin{eqnarray}
-  &&\omega^{-+-} = -\omega_1 + \omega_2 - \omega_3
+  &&\omega^{-+} = -\omega_1 + \omega_2
 \end{eqnarray}
 である. 時間のFourier変換である$\omega$を主値積分とデルタ関数という形でくくり出せたので, これを逆Fourier変換しつつ, $s$-積分を実行する:
 \begin{eqnarray}
-  &&\frac{1}{\sqrt{2\pi}} \int\;ds\int\;d\omega\; e^{-i\omega\tau}\qty(-{\cal P}\frac{i}{\omega - \omega^{\mu\nu\lambda}} + \pi\delta(\omega - \omega^{\mu\nu\lambda}))\\
-  &=&\frac{1}{\sqrt{2\pi}}\int\;ds\qty(-i{\cal P}\int\;\frac{d\omega e^{-i\omega\tau}}{\omega - \omega^{\mu\nu\lambda}} + \frac{\pi}{2}e^{-i\omega^{\mu\nu\lambda}\tau})\\
-  &=& \frac{1}{\sqrt{2\pi}}\qty(-2\pi i{\cal P}\int\;\frac{d\omega \delta(\omega)e^{-i\omega t}}{\omega - \omega^{\mu\nu\lambda}} + \frac{\pi}{2}\delta(\omega^{\mu\nu\lambda})e^{-i\omega^{\mu\nu\lambda}t})\\
-  &\simeq&\sqrt{2\pi}\frac{i}{\omega^{\mu\nu\lambda}}
+  &&\frac{1}{\sqrt{2\pi}} \int\;ds\int\;d\omega\; e^{-i\omega\tau}\qty(-{\cal P}\frac{i}{\omega - \omega^{\mu\nu}} + \pi\delta(\omega - \omega^{\mu\nu}))\\
+  &=&\frac{1}{\sqrt{2\pi}}\int\;ds\qty(-i{\cal P}\int\;\frac{d\omega e^{-i\omega\tau}}{\omega - \omega^{\mu\nu}} + \frac{\pi}{2}e^{-i\omega^{\mu\nu}\tau})\\
+  &=& \frac{1}{\sqrt{2\pi}}\qty(-2\pi i{\cal P}\int\;\frac{d\omega \delta(\omega)e^{-i\omega t}}{\omega - \omega^{\mu\nu}} + \frac{\pi}{2}\delta(\omega^{\mu\nu})e^{-i\omega^{\mu\nu}t})\\
+  &\simeq&\sqrt{2\pi}\frac{i}{\omega^{\mu\nu}}
 \end{eqnarray}
 最後の行では$\omega^{\mu\nu\lambda}$がぴったりゼロになることはあまり無いだろうという仮定をしている\footnote{残すべきかもしれないが, 少なくともこのデルタ関数を処理するような積分は現れないし, 引数の$\omega^{\mu\nu\lambda}$は離散的. 仮にトラップポテンシャル$V(\bx)$が無ければ励起は等間隔になる. 例えば$\omega_{j_1 = 1} - \omega_{j_2 = 0} - \omega_{j_3 = 0} = 2\hbar\omega -\hbar\omega - \hbar\omega = 0$のようにきれいにゼロになってしまい, 他にも無数の組み合わせが存在する. 今回は相互作用込みのBdGなので厳密に等間隔にはならない.}. これで(\ref{Green_1st})の一行目は
 \begin{eqnarray}
  \nonumber &&\frac{-ig}{2}\int_{-\infty}^{\infty}\; ds\int\; d\by \ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(y)\varphi(y)\varphi(y)\varphi^\dagger(x)\varphi(x)]}_{1行目}\\
   \nonumber  &=& \frac{-ig}{2}\int_{-\infty}^{\infty}\; ds\int\; d\by\; \qty[2\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi(y)\varphi(y)}]\\
-\nonumber  &\simeq& g\int d\by \sum_{j_1, j_2, j_3}\frac{1}{\omega^{\mu\nu\lambda}}
+\nonumber  &\simeq& g\int d\by \sum_{j_1, j_2, j_3}\frac{1}{\omega^{\mu\nu}}
   \begin{Bmatrix}
     u_{1}(\bx)u_{1}^*(\by)\ev{a_{1}a_{1}^\dagger}\\
     v_{1}^*(\bx)v_{1}(\by)\ev{a_{1}^\dagger a_{1}}
@@ -5549,10 +5549,10 @@ Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってす
     u^*_{2}(\bx)v_{2}(\by)\ev{a_{2}^\dagger a_{2}}
   \end{Bmatrix}^\nu
   \begin{Bmatrix}
-    u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
-    v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
+    u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+    v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
   \end{Bmatrix}^\lambda\\
-  &&- \frac{1}{\omega^{\mu'\nu'\lambda'}}
+  &&- \frac{1}{\omega^{\mu'\nu'}}
   \begin{Bmatrix}
     u_{1}^*(\by)u_{1}(\bx)\ev{a_{1}^\dagger a_{1}}\\
     v_{1}(\by)v_{1}^*(\bx)\ev{a_{1}a_{1}^\dagger}
@@ -5562,8 +5562,8 @@ Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってす
     v_{2}(\by)u^*_{2}(\bx)\ev{a_{2}a_{2}^\dagger}
   \end{Bmatrix}^{\nu'}
   \begin{Bmatrix}
-    u_{3}(\bx)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
-    v_{3}^*(\bx)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
+    u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+    v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
   \end{Bmatrix}^{\lambda'}
 \end{eqnarray}
 面倒ではあるが, 書き下すことができた. 時間成分は無くなったが, 添字$\mu, \nu, \lambda$についてはテンソルの上部が$-$, 下部が$+$に対応している\footnote{もちろん, 区別さえつけば添字はなんだっていい. }. もちろん$\ev{a^\dagger a}, \ev{a a^\dagger}$はBose-Einstein分布関数で表せる.
