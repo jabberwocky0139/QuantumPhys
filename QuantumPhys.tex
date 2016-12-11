@@ -2193,20 +2193,20 @@ Green関数の無限次数までの足し上げに関する処方, 特にLadder�
 %---------------------- comment -------------------------------
 %---------------------- comment -------------------------------
 \begin{comment}
-Bethe-Salpeter波動関数を
-\begin{eqnarray}
-  \bra{0}T\qty[\varphi(x_1)\varphi(x_2)]\ket{\Phi_B} = \frac{1}{(2\pi)^{3/2}}e^{ikX}e^{-iE_BT/\hbar}\chi_k(x)
-\end{eqnarray}
-とおく. ただし$\Phi_B$は
-\begin{eqnarray}
-  H\Phi_B = E_B\Phi_B
-\end{eqnarray}
-を満たす状態ベクトル. $\chi_k(x)$は内部座標$x$のみから決まる部分.
+  Bethe-Salpeter波動関数を
+  \begin{eqnarray}
+    \bra{0}T\qty[\varphi(x_1)\varphi(x_2)]\ket{\Phi_B} = \frac{1}{(2\pi)^{3/2}}e^{ikX}e^{-iE_BT/\hbar}\chi_k(x)
+  \end{eqnarray}
+  とおく. ただし$\Phi_B$は
+  \begin{eqnarray}
+    H\Phi_B = E_B\Phi_B
+  \end{eqnarray}
+  を満たす状態ベクトル. $\chi_k(x)$は内部座標$x$のみから決まる部分.
 
-次に必要なのはGreen関数と波動関数の関係, つまり$G_2$と$\chi_k(x)$の関係である. いま$t>t'$とすると,
-\begin{eqnarray}
-  G_2(x_1, x_2, x_3, x_4) = \qty(-\frac{i}{\hbar})^2\ev{T[\varphi(x_1)\varphi(x_2)]T[\varphi^\dagger(x_3)\varphi^\dagger(x_4)]}{0}
-\end{eqnarray}
+  次に必要なのはGreen関数と波動関数の関係, つまり$G_2$と$\chi_k(x)$の関係である. いま$t>t'$とすると,
+  \begin{eqnarray}
+    G_2(x_1, x_2, x_3, x_4) = \qty(-\frac{i}{\hbar})^2\ev{T[\varphi(x_1)\varphi(x_2)]T[\varphi^\dagger(x_3)\varphi^\dagger(x_4)]}{0}
+  \end{eqnarray}
 \end{comment}
 %---------------------- comment -------------------------------
 %---------------------- comment -------------------------------
@@ -2239,19 +2239,19 @@ $K(p, p';k)$をどのように構成するかを考える. まずはFeynman diag
 \end{eqnarray}
 である. 
 \begin{screen}
-\fbox{1}\ \ 正規直交性の関係
-\begin{eqnarray}
-  \qty(y_{\ell}, y_{\ell'}) = \delta_{\ell\ell'}, \hspace{0.7cm}\qty(z_{\ell}, z_{\ell'}) = -\delta_{\ell\ell'}, \hspace{0.7cm}\qty(y_{0}, y_{-1}) = 1
-\end{eqnarray}
-を用いて場の演算子$\Phi = \qty(\varphi\ \ \varphi^\d)^t$を展開すると
-\begin{eqnarray}
-  \sum_{\ell}\qty[A_\ell y_{\ell}(\bx) - B_\ell z_{\ell}(\bx)] + Cy_{0}(\bx) + Dy_{-1}(\bx)  =
-  \begin{pmatrix}
-    \varphi(x)\\
-    \varphi^\dagger(x)
-  \end{pmatrix}
-\end{eqnarray}
-となる. $A_\ell , B_\ell , C, D$はどうなるか？
+  \fbox{1}\ \ 正規直交性の関係
+  \begin{eqnarray}
+    \qty(y_{\ell}, y_{\ell'}) = \delta_{\ell\ell'}, \hspace{0.7cm}\qty(z_{\ell}, z_{\ell'}) = -\delta_{\ell\ell'}, \hspace{0.7cm}\qty(y_{0}, y_{-1}) = 1
+  \end{eqnarray}
+  を用いて場の演算子$\Phi = \qty(\varphi\ \ \varphi^\d)^t$を展開すると
+  \begin{eqnarray}
+    \sum_{\ell}\qty[A_\ell y_{\ell}(\bx) - B_\ell z_{\ell}(\bx)] + Cy_{0}(\bx) + Dy_{-1}(\bx)  =
+    \begin{pmatrix}
+      \varphi(x)\\
+      \varphi^\dagger(x)
+    \end{pmatrix}
+  \end{eqnarray}
+  となる. $A_\ell , B_\ell , C, D$はどうなるか？
 \end{screen}
 このとき, 山中研では$y_\ell(\bx) = \qty(u_\ell (\bx)\ \ v_\ell (\bx))^t$という表記がよく用いられる(そのとき$z_\ell(\bx)$はどうなる？).
 \subsection{場の展開}
@@ -2475,7 +2475,7 @@ $i_1 = \cdots = i_n = 1$であることと, $\eta_{i_k}\eta_{i_k} = 0$を用い�
 2変数関数を考えるとTaylor展開の1次と2次が残るのでそう単純ではない:
 \begin{eqnarray}
   f(\eta_1, \eta_2) &=& 1 + \frac{1}{1!}\qty(\pdv{f}{\eta_1}\eta_1 + \pdv{f}{\eta_2}\eta_2) + \frac{1}{2!}\qty(\pdv[2]{f}{\eta_1}\eta_1^2 + \pdv{f}{\eta_1}{\eta_2}\eta_2\eta_1 + \pdv[2]{f}{\eta_2}\eta_2^2)\\
-   &=&1 + \pdv{f}{\eta_1}\eta_1 + \pdv{f}{\eta_2}\eta_2 + \pdv{f}{\eta_1}{\eta_2}\eta_2\eta_1
+  &=&1 + \pdv{f}{\eta_1}\eta_1 + \pdv{f}{\eta_2}\eta_2 + \pdv{f}{\eta_1}{\eta_2}\eta_2\eta_1
 \end{eqnarray}
 しかしながら, $e^{-\eta_1\eta_2}$のようにg-数の積でつくられた関数の場合は, $\eta_1\eta_2 = \eta_3$と置き直せば\footnote{$\eta_3$は$\eta_1, \eta_2$より高次のベクトル空間を構成することになる. もはや$\eta_1, \eta_2$とは別のベクトル空間になるが, $\eta_3\in{\cal A}$ではある. }やはり
 \begin{eqnarray}
@@ -5402,10 +5402,10 @@ Wickの定理で展開:
 である. ハミルトニアンの奇数次項は摂動一次でも奇数次になるので落ちる. 以降は$\varphi_{ex}\rightarrow \varphi$と書くことにする. これをWickの定理で分解する\footnote{$\ev{\varphi^\dagger(x)\varphi(x)}$の組み合わせもありそうだが, disconnectedなダイアグラムになるので除外している. }:
 \begin{eqnarray}
   &&\frac{-ig}{2}\int_{-\infty}^{\infty}\; ds\int\; d\by \ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(y)\varphi(y)\varphi(y)\varphi^\dagger(x)\varphi(x)]}\\
-\nonumber  &=& \frac{-ig}{2}\int_{-\infty}^{\infty}\; ds\int\; d\by\; \Bigl[2\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi(y)\varphi(y)}\\
-\nonumber    &&\hspace{3cm}+4\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi(y)\varphi(x)]}\ev{\varphi^\dagger(y)\varphi(y)}\\
-\nonumber&&\hspace{3cm}+2\ev{T\qty[\varphi(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi(y)\varphi(x)]}\ev{\varphi^\dagger(y)\varphi^\dagger(y)}\\
-&&\hspace{3cm}+ 4\ev{T\qty[\varphi(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi^\dagger(y)\varphi(y)}\Bigr]\label{Green_1st}
+  \nonumber  &=& \frac{-ig}{2}\int_{-\infty}^{\infty}\; ds\int\; d\by\; \Bigl[2\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi(y)\varphi(y)}\\
+    \nonumber    &&\hspace{3cm}+4\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi(y)\varphi(x)]}\ev{\varphi^\dagger(y)\varphi(y)}\\
+    \nonumber&&\hspace{3cm}+2\ev{T\qty[\varphi(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi(y)\varphi(x)]}\ev{\varphi^\dagger(y)\varphi^\dagger(y)}\\
+    &&\hspace{3cm}+ 4\ev{T\qty[\varphi(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi^\dagger(y)\varphi(y)}\Bigr]\label{Green_1st}
 \end{eqnarray}
 ここには同時刻Green関数が含まれるが, 相互作用ハミルトニアンの4次には常に$\varphi^\dagger$が$\varphi$の左側にあることを根拠に定義される. 
 \subsection{Green関数の1行目の具体計算}
@@ -5413,17 +5413,17 @@ Wickの定理で展開:
 \begin{eqnarray}
   \ev{T\qty[\varphi^\dagger(y)\varphi(x)]} &=&\ev{\theta(t-s)\varphi(x)\varphi^\dagger(y)+\theta(s-t)\varphi^\dagger(y)\varphi(x)}\\
   \nonumber  &=&\ev{\theta(t-s)\sum_{j_1, j_2}\qty(u_{j_1}(\bx)a_{j_1}(t) + v_{j_1}^*(\bx)a_{j_1}^\dagger(t))\qty(u_{j_2}^*(\by)a_{j_2}^\dagger(s) + v_{j_2}(\by)a_{j_2}(s))}\\
-\nonumber  &&+ \ev{\theta(s-t)\sum_{j_1, j_2}\qty(u_{j_1}^*(\by)a_{j_1}^\dagger(s) + v_{j_1}(\by)a_{j_1}(s))\qty(u_{j_2}(\bx)a_{j_2}(t) + v^*_{j_2}(\bx)a^\dagger_{j_2}(t))}\\
-\nonumber&=&\theta(t-s)\sum_{j_1}\qty(u_{j_1}(\bx)u_{j_1}^*(\by)\ev{a_{j_1}(t)a_{j_1}^\dagger(s)} + v_{j_1}^*(\bx)v_{j_1}(\by)\ev{a_{j_1}^\dagger(t)a_{j_1}(s)})\\
-&&+\theta(s-t)\sum_{j_1}\qty(u_{j_1}^*(\by)u_{j_1}(\bx)\ev{a_{j_1}^\dagger(s)a_{j_1}(t)} + v_{j_1}(\by)v_{j_1}^*(\bx)\ev{a_{j_1}(s)a_{j_1}^\dagger(t)})
+  \nonumber  &&+ \ev{\theta(s-t)\sum_{j_1, j_2}\qty(u_{j_1}^*(\by)a_{j_1}^\dagger(s) + v_{j_1}(\by)a_{j_1}(s))\qty(u_{j_2}(\bx)a_{j_2}(t) + v^*_{j_2}(\bx)a^\dagger_{j_2}(t))}\\
+  \nonumber&=&\theta(t-s)\sum_{j_1}\qty(u_{j_1}(\bx)u_{j_1}^*(\by)\ev{a_{j_1}(t)a_{j_1}^\dagger(s)} + v_{j_1}^*(\bx)v_{j_1}(\by)\ev{a_{j_1}^\dagger(t)a_{j_1}(s)})\\
+  &&+\theta(s-t)\sum_{j_1}\qty(u_{j_1}^*(\by)u_{j_1}(\bx)\ev{a_{j_1}^\dagger(s)a_{j_1}(t)} + v_{j_1}(\by)v_{j_1}^*(\bx)\ev{a_{j_1}(s)a_{j_1}^\dagger(t)})
 \end{eqnarray}
 ここでは, いずれ$\ev{a_{j_1}^\dagger a_{j_2}}, \ev{a_{j_1} a_{j_2}^\dagger}$からクロネッカーデルタ$\delta_{j_1, j_2}$が出てくることを見越して和をひとつ減らしている. 同様にして
 \begin{eqnarray}
   \ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]} &=&\ev{\theta(t-s)\varphi^\dagger(x)\varphi^\dagger(y)+\theta(s-t)\varphi^\dagger(y)\varphi^\dagger(x)}\\
   \nonumber  &=&\ev{\theta(t-s)\sum_{j_1, j_2}\qty(u^*_{j_1}(\bx)a^\dagger_{j_1}(t) + v_{j_1}(\bx)a_{j_1}(t))\qty(u_{j_2}^*(\by)a_{j_2}^\dagger(s) + v_{j_2}(\by)a_{j_2}(s))}\\
-\nonumber  &&+ \ev{\theta(s-t)\sum_{j_1, j_2}\qty(u_{j_1}^*(\by)a_{j_1}^\dagger(s) + v_{j_1}(\by)a_{j_1}(s))\qty(u^*_{j_2}(\bx)a^\dagger_{j_2}(t) + v_{j_2}(\bx)a_{j_2}(t))}\\
-\nonumber&=& \theta(t-s)\sum_{j_1}\qty(u^*_{j_1}(\bx)v_{j_1}(\by)\ev{a_{j_1}^\dagger(t)a_{j_1}(s)} + v_{j_1}(\bx)u^*_{j_1}(\by)\ev{a_{j_1}(t)a_{j_1}^\dagger(s)})\\
-&&+\theta(s-t)\sum_{j_1}\qty(u^*_{j_1}(\by)v_{j_1}(\bx)\ev{a_{j_1}^\dagger(s)a_{j_1}(t)} + v_{j_1}(\by)u^*_{j_1}(\bx)\ev{a_{j_1}(s)a_{j_1}^\dagger(t)})
+  \nonumber  &&+ \ev{\theta(s-t)\sum_{j_1, j_2}\qty(u_{j_1}^*(\by)a_{j_1}^\dagger(s) + v_{j_1}(\by)a_{j_1}(s))\qty(u^*_{j_2}(\bx)a^\dagger_{j_2}(t) + v_{j_2}(\bx)a_{j_2}(t))}\\
+  \nonumber&=& \theta(t-s)\sum_{j_1}\qty(u^*_{j_1}(\bx)v_{j_1}(\by)\ev{a_{j_1}^\dagger(t)a_{j_1}(s)} + v_{j_1}(\bx)u^*_{j_1}(\by)\ev{a_{j_1}(t)a_{j_1}^\dagger(s)})\\
+  &&+\theta(s-t)\sum_{j_1}\qty(u^*_{j_1}(\by)v_{j_1}(\bx)\ev{a_{j_1}^\dagger(s)a_{j_1}(t)} + v_{j_1}(\by)u^*_{j_1}(\bx)\ev{a_{j_1}(s)a_{j_1}^\dagger(t)})
 \end{eqnarray}
 次はT積がない項:
 \begin{eqnarray}
@@ -5433,13 +5433,13 @@ Wickの定理で展開:
 ここまでできたら上3つの積をまとめる $\theta$関数のクロスタームは消えることを利用すると以下のようになる:
 \begin{eqnarray}
   &&\qty{\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi(y)\varphi(y)}}^{\mu\nu\lambda}_{\mu'\nu'\lambda'}\\
-\nonumber  &=& \sum_{j_1, j_2, j_3}\theta(t-s)\times\\
-\nonumber  &&\begin{Bmatrix}
+  \nonumber  &=& \sum_{j_1, j_2, j_3}\theta(t-s)\times\\
+  \nonumber  &&\begin{Bmatrix}
     u_{1}(\bx)u_{1}^*(\by)\ev{a_{1}a_{1}^\dagger}e^{-i\omega_1(t-s)}\\
     v_{1}^*(\bx)v_{1}(\by)\ev{a_{1}^\dagger a_{1}}e^{i\omega_1(t-s)}
   \end{Bmatrix}^\mu
-\begin{Bmatrix}
-  v_{2}(\bx)u^*_{2}(\by)\ev{a_{2}a_{2}^\dagger}e^{-i\omega_2(t-s)}\\
+  \begin{Bmatrix}
+    v_{2}(\bx)u^*_{2}(\by)\ev{a_{2}a_{2}^\dagger}e^{-i\omega_2(t-s)}\\
     u^*_{2}(\bx)v_{2}(\by)\ev{a_{2}^\dagger a_{2}}e^{i\omega_2(t-s)}
   \end{Bmatrix}^\nu
   \begin{Bmatrix}
@@ -5463,21 +5463,21 @@ Wickの定理で展開:
 ここで$j_i\rightarrow i$と省略し, かつ項が多すぎるのでテンソル形式を用いている. $\mu, \nu, \lambda$はそれぞれ$(-, +)$の2種類. テンソルの添字は上が$-$に対応しており, 時間成分は$-i\omega\tau$, 下は$+$に対応しており, 時間成分は$i\omega\tau$である.   これを時間$t-s = \tau$についてFourier変換する:
 \begin{eqnarray}
   &&\frac{1}{\sqrt{2\pi}}\int\; d\tau\;e^{i\omega\tau}  \qty{\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi(y)\varphi(y)}}^{\mu\nu\lambda}_{\mu'\nu'\lambda'}\\
-\nonumber  &=& \frac{1}{\sqrt{2\pi}}\int\; d\tau\;e^{i\omega\tau}\sum_{j_1, j_2, j_3}\theta(\tau)\times\\
-\nonumber  &&\begin{Bmatrix}
-  u_{1}(\bx)u_{1}^*(\by)\ev{a_{1}a_{1}^\dagger}e^{-i\omega_1\tau}\\
-  v_{1}^*(\bx)v_{1}(\by)\ev{a_{1}^\dagger a_{1}}e^{i\omega_1\tau}
-\end{Bmatrix}^\mu
-\begin{Bmatrix}
+  \nonumber  &=& \frac{1}{\sqrt{2\pi}}\int\; d\tau\;e^{i\omega\tau}\sum_{j_1, j_2, j_3}\theta(\tau)\times\\
+  \nonumber  &&\begin{Bmatrix}
+    u_{1}(\bx)u_{1}^*(\by)\ev{a_{1}a_{1}^\dagger}e^{-i\omega_1\tau}\\
+    v_{1}^*(\bx)v_{1}(\by)\ev{a_{1}^\dagger a_{1}}e^{i\omega_1\tau}
+  \end{Bmatrix}^\mu
+  \begin{Bmatrix}
     v_{2}(\bx)u^*_{2}(\by)\ev{a_{2}a_{2}^\dagger}e^{-i\omega_2\tau}\\
-  u^*_{2}(\bx)v_{2}(\by)\ev{a_{2}^\dagger a_{2}}e^{i\omega_2\tau}
-\end{Bmatrix}^\nu
-\begin{Bmatrix}
-  u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
-  v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
-\end{Bmatrix}^\lambda\\
-\nonumber  &&+ \frac{1}{\sqrt{2\pi}}\int\; d\tau\;e^{i\omega\tau}\sum_{j_1, j_2, j_3}\theta(-\tau)\times\\
-\nonumber  &&\begin{Bmatrix}
+    u^*_{2}(\bx)v_{2}(\by)\ev{a_{2}^\dagger a_{2}}e^{i\omega_2\tau}
+  \end{Bmatrix}^\nu
+  \begin{Bmatrix}
+    u_{3}(\by)v^*_{3}(\by)\ev{a_{3}a^\dagger_{3}}\\
+    v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
+  \end{Bmatrix}^\lambda\\
+  \nonumber  &&+ \frac{1}{\sqrt{2\pi}}\int\; d\tau\;e^{i\omega\tau}\sum_{j_1, j_2, j_3}\theta(-\tau)\times\\
+  \nonumber  &&\begin{Bmatrix}
     u_{1}^*(\by)u_{1}(\bx)\ev{a_{1}^\dagger a_{1}}e^{-i\omega_1\tau}\\
     v_{1}(\by)v_{1}^*(\bx)\ev{a_{1}a_{1}^\dagger}e^{i\omega_1\tau}
   \end{Bmatrix}^{\mu'}
@@ -5498,13 +5498,13 @@ Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってす
 を用いて$\tau$-積分を処理:
 \begin{eqnarray}
   &&\frac{1}{\sqrt{2\pi}}\int\; d\tau\;e^{i\omega\tau}  \qty{\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi(y)\varphi(y)}}^{\mu\nu\lambda}_{\mu'\nu'\lambda'}\\
-\nonumber  &=& \frac{1}{\sqrt{2\pi}}\sum_{j_1, j_2, j_3}\\
-\nonumber  && \begin{Bmatrix}
+  \nonumber  &=& \frac{1}{\sqrt{2\pi}}\sum_{j_1, j_2, j_3}\\
+  \nonumber  && \begin{Bmatrix}
     u_{1}(\bx)u_{1}^*(\by)\ev{a_{1}a_{1}^\dagger}\\
     v_{1}^*(\bx)v_{1}(\by)\ev{a_{1}^\dagger a_{1}}
   \end{Bmatrix}^\mu
-\begin{Bmatrix}
-      v_{2}(\bx)u^*_{2}(\by)\ev{a_{2}a_{2}^\dagger}\\
+  \begin{Bmatrix}
+    v_{2}(\bx)u^*_{2}(\by)\ev{a_{2}a_{2}^\dagger}\\
     u^*_{2}(\bx)v_{2}(\by)\ev{a_{2}^\dagger a_{2}}
   \end{Bmatrix}^\nu
   \begin{Bmatrix}
@@ -5512,8 +5512,8 @@ Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってす
     v_{3}^*(\by)u_{3}(\by)\ev{a_{3}^\dagger a_{3}}
   \end{Bmatrix}^\lambda \qty(-{\cal P}\frac{i}{\omega - \omega^{\mu\nu}} + \pi\delta(\omega - \omega^{\mu\nu}))\\
   \nonumber  &&+\begin{Bmatrix}
-    u_{1}^*(\by)u_{1}(\bx)\ev{a_{1}^\dagger a_{1}}\\
-    v_{1}(\by)v_{1}^*(\bx)\ev{a_{1}a_{1}^\dagger}
+  u_{1}^*(\by)u_{1}(\bx)\ev{a_{1}^\dagger a_{1}}\\
+  v_{1}(\by)v_{1}^*(\bx)\ev{a_{1}a_{1}^\dagger}
   \end{Bmatrix}^{\mu'}
   \begin{Bmatrix}
     u^*_{2}(\by)v_{2}(\bx)\ev{a_{2}^\dagger a_{2}}\\
@@ -5537,9 +5537,9 @@ Sokhotski-Plemeljの公式\footnote{$\theta$関数の積分表示を使ってす
 \end{eqnarray}
 最後の行では$\omega^{\mu\nu\lambda}$がぴったりゼロになることはあまり無いだろうという仮定をしている\footnote{残すべきかもしれないが, 少なくともこのデルタ関数を処理するような積分は現れないし, 引数の$\omega^{\mu\nu\lambda}$は離散的. 仮にトラップポテンシャル$V(\bx)$が無ければ励起は等間隔になる. 例えば$\omega_{j_1 = 1} - \omega_{j_2 = 0} - \omega_{j_3 = 0} = 2\hbar\omega -\hbar\omega - \hbar\omega = 0$のようにきれいにゼロになってしまい, 他にも無数の組み合わせが存在する. 今回は相互作用込みのBdGなので厳密に等間隔にはならない.}. これで(\ref{Green_1st})の一行目は
 \begin{eqnarray}
- \nonumber &&\frac{-ig}{2}\int_{-\infty}^{\infty}\; ds\int\; d\by \ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(y)\varphi(y)\varphi(y)\varphi^\dagger(x)\varphi(x)]}_{1行目}\\
+  \nonumber &&\frac{-ig}{2}\int_{-\infty}^{\infty}\; ds\int\; d\by \ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(y)\varphi(y)\varphi(y)\varphi^\dagger(x)\varphi(x)]}_{1行目}\\
   \nonumber  &=& \frac{-ig}{2}\int_{-\infty}^{\infty}\; ds\int\; d\by\; \qty[2\ev{T\qty[\varphi^\dagger(y)\varphi^\dagger(x)]}\ev{T\qty[\varphi^\dagger(y)\varphi(x)]}\ev{\varphi(y)\varphi(y)}]\\
-\nonumber  &\simeq& g\int d\by \sum_{j_1, j_2, j_3}\frac{1}{\omega^{\mu\nu}}
+  \nonumber  &\simeq& g\int d\by \sum_{j_1, j_2, j_3}\frac{1}{\omega^{\mu\nu}}
   \begin{Bmatrix}
     u_{1}(\bx)u_{1}^*(\by)\ev{a_{1}a_{1}^\dagger}\\
     v_{1}^*(\bx)v_{1}(\by)\ev{a_{1}^\dagger a_{1}}
@@ -5606,11 +5606,11 @@ Green関数及びself-energyは
 これに対して具体的なGreen関数の摂動一次は
 \begin{eqnarray}
   \nonumber  G^{22}_1(x, x) &=& \int d^4y_1d^4y_2\;G_0^{2\mu'}(x, y_1)\Sigma_1^{\mu'\nu'}(y_1, y_2)G_0^{\nu'2}(y_2, x)\\
-\nonumber  &=& \frac{-ig}{2}\int d^4y_1\; \Bigl[2\ev{T\qty[\varphi^\dagger(x)\varphi^\dagger(y_1)]}\ev{\varphi(y_1)\varphi(y_1)}\ev{T\qty[\varphi^\dagger(y_1)\varphi(x)]}\\
-\nonumber    &&\hspace{2cm}+4\ev{T\qty[\varphi^\dagger(x)\varphi^\dagger(y_1)]}\ev{\varphi^\dagger(y_1)\varphi(y_1)}\ev{T\qty[\varphi(y_1)\varphi(x)]}\\
-&&\hspace{2cm}+2\ev{T\qty[\varphi^\dagger(x)\varphi(y_1)]}\ev{\varphi^\dagger(y_1)\varphi^\dagger(y_1)}\ev{T\qty[\varphi(y_1)\varphi(x)]}\\
-&&\hspace{2cm}+ 4\ev{T\qty[\varphi^\dagger(x)\varphi(y_1)]}\ev{\varphi^\dagger(y_1)\varphi(y_1)}\ev{T\qty[\varphi^\dagger(y_1)\varphi(x)]}
-\Bigr]
+  \nonumber  &=& \frac{-ig}{2}\int d^4y_1\; \Bigl[2\ev{T\qty[\varphi^\dagger(x)\varphi^\dagger(y_1)]}\ev{\varphi(y_1)\varphi(y_1)}\ev{T\qty[\varphi^\dagger(y_1)\varphi(x)]}\\
+    \nonumber    &&\hspace{2cm}+4\ev{T\qty[\varphi^\dagger(x)\varphi^\dagger(y_1)]}\ev{\varphi^\dagger(y_1)\varphi(y_1)}\ev{T\qty[\varphi(y_1)\varphi(x)]}\\
+    &&\hspace{2cm}+2\ev{T\qty[\varphi^\dagger(x)\varphi(y_1)]}\ev{\varphi^\dagger(y_1)\varphi^\dagger(y_1)}\ev{T\qty[\varphi(y_1)\varphi(x)]}\\
+    &&\hspace{2cm}+ 4\ev{T\qty[\varphi^\dagger(x)\varphi(y_1)]}\ev{\varphi^\dagger(y_1)\varphi(y_1)}\ev{T\qty[\varphi^\dagger(y_1)\varphi(x)]}
+    \Bigr]
 \end{eqnarray}
 なので, 1次のDyson方程式と比較することでself-energyを求めることができる:
 \begin{eqnarray}
@@ -5653,8 +5653,8 @@ repulsive core(1点で無限大になるようなポテンシャル)を持つよ
 \end{eqnarray}
 のように書くことができる. さらに$\Gamma$は
 \begin{eqnarray}
-\nonumber  \Gamma(y_1, y_2) &=& \frac{-ig}{2}\delta(y_1 - y_2) + \qty(\frac{-ig}{2})^2G_0^2(y_1, y_2)\\
-\nonumber  &&+ \qty(\frac{-ig}{2})^3\int dy' G_0^2(y_1, y')G_0^2(y', y_2)\\
+  \nonumber  \Gamma(y_1, y_2) &=& \frac{-ig}{2}\delta(y_1 - y_2) + \qty(\frac{-ig}{2})^2G_0^2(y_1, y_2)\\
+  \nonumber  &&+ \qty(\frac{-ig}{2})^3\int dy' G_0^2(y_1, y')G_0^2(y', y_2)\\
   &&+ \qty(\frac{-ig}{2})^4\int dy'dy'' G_0^2(y_1, y')G(y', y'')G_0^2(y'', y_2) + \cdots
 \end{eqnarray}
 のような無限級数になるが, これは以下のような積分方程式に書きなおすことができる:
@@ -5669,7 +5669,7 @@ repulsive core(1点で無限大になるようなポテンシャル)を持つよ
 \begin{eqnarray}
   G^{\mu\nu}(x_1, x_2) &=& G_0^{\mu\nu}(x_1, x_2) + \int d^4y_1d^4y_2\;G_0^{\mu\mu'}(x_1, y_1)\Sigma^{\mu'\nu'}(y_1, y_2)G^{\nu'\nu}(y_2, x_2)\\
   \Sigma^{\star, \mu'\nu'}(y_1, y_2) &=& 2\Gamma^{\mu'\lambda}(y_1, y_2)G_0^{\lambda\nu'}(y_2, y_1)\\
-\Gamma^{\mu'\lambda}(y_1, y_2) &=& \frac{-ig}{2}\delta^{\mu'\lambda}(y_1 - y_2) + \frac{-ig}{2}\int dy'G_0^{\mu'\lambda', 2}(y_1, y')\Gamma^{\lambda', \lambda}(y', y_2)
+  \Gamma^{\mu'\lambda}(y_1, y_2) &=& \frac{-ig}{2}\delta^{\mu'\lambda}(y_1 - y_2) + \frac{-ig}{2}\int dy'G_0^{\mu'\lambda', 2}(y_1, y')\Gamma^{\lambda', \lambda}(y', y_2)
 \end{eqnarray}
 これが(\ref{1st-self-energy})を再現しているかどうかを調べる:
 \begin{eqnarray}
@@ -5694,17 +5694,17 @@ repulsive core(1点で無限大になるようなポテンシャル)を持つよ
 \subsection{摂動ハミルトニアン3次の取り扱い}
 摂動ハミルトニアンには3次の項もあった. これは摂動1次には現れてこないが, 2次以降はその限りではなく, かつ3次の項は秩序変数を含むためその寄与も大きいのではないかと考えられる\footnote{粒子が十分に凝縮している領域を考えると$\xi$が効いてくるから, という単純な理由. もちろん, c-数である$\xi$と演算子の$\varphi$の大小比較はできないので確実に効いてくるという根拠は無いが...}. 摂動ハミルトニアンを
 \begin{eqnarray}
-\nonumber  H_{\rm int} &=& g\int d\bx \qty(\xi \varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}(x) + \xi^*(x)\varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}(x)\varphi_{\rm ex}(x) + \frac12\varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}(x)\varphi_{\rm ex}(x))\\
+  \nonumber  H_{\rm int} &=& g\int d\bx \qty(\xi \varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}(x) + \xi^*(x)\varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}(x)\varphi_{\rm ex}(x) + \frac12\varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}^\dagger(x)\varphi_{\rm ex}(x)\varphi_{\rm ex}(x))\\
   &=& {\cal H}_3 + {\cal H}_3^\d + {\cal H}_4
 \end{eqnarray}
 と置いたときGreen関数の摂動2次の展開は以下の通り:
 \begin{eqnarray}
-\nonumber  G_2^{22}(x, x) &=& (-i)^2\int ds_1ds_2\ev{T\qty[H_{\rm int}(s_1)H_{\rm int}(s_2)\varphi^\d(x)\varphi(x)]}\\
-&=& (-i)^2\int ds_1ds_2\ev{T\qty[{\cal H}_4(s_1){\cal H}_4(s_2)\varphi^\d(x)\varphi(x)]}\\
-&&\hspace{2.0cm} + \ev{T\qty[{\cal H}_3(s_1){\cal H}_3(s_2)\varphi^\d(x)\varphi(x)]}\label{2nd-Green-first}\\
-&&\hspace{2.0cm} + \ev{T\qty[{\cal H}_3(s_1){\cal H}^\d_3(s_2)\varphi^\d(x)\varphi(x)]}\\
-&&\hspace{2.0cm} + \ev{T\qty[{\cal H}^\d_3(s_1){\cal H}_3(s_2)\varphi^\d(x)\varphi(x)]}\\
-&&\hspace{2.0cm} + \ev{T\qty[{\cal H}^\d_3(s_1){\cal H}^\d_3(s_2)\varphi^\d(x)\varphi(x)]}\label{2nd-Green-final}
+  \nonumber  G_2^{22}(x, x) &=& (-i)^2\int ds_1ds_2\ev{T\qty[H_{\rm int}(s_1)H_{\rm int}(s_2)\varphi^\d(x)\varphi(x)]}\\
+  &=& (-i)^2\int ds_1ds_2\ev{T\qty[{\cal H}_4(s_1){\cal H}_4(s_2)\varphi^\d(x)\varphi(x)]}\\
+  &&\hspace{2.0cm} + \ev{T\qty[{\cal H}_3(s_1){\cal H}_3(s_2)\varphi^\d(x)\varphi(x)]}\label{2nd-Green-first}\\
+  &&\hspace{2.0cm} + \ev{T\qty[{\cal H}_3(s_1){\cal H}^\d_3(s_2)\varphi^\d(x)\varphi(x)]}\\
+  &&\hspace{2.0cm} + \ev{T\qty[{\cal H}^\d_3(s_1){\cal H}_3(s_2)\varphi^\d(x)\varphi(x)]}\\
+  &&\hspace{2.0cm} + \ev{T\qty[{\cal H}^\d_3(s_1){\cal H}^\d_3(s_2)\varphi^\d(x)\varphi(x)]}\label{2nd-Green-final}
 \end{eqnarray}
 ${\cal H}_4$の項は既に前節の梯子近似されたBethe-Salpeter方程式に組み込まれている. ${\cal H}_3$が2つ連結された項4つの項は図(\ref{ladder3-5})のようなダイアグラムになる. 
 \begin{figure}[H]
@@ -5741,8 +5741,8 @@ ${\cal H}_4$の項は既に前節の梯子近似されたBethe-Salpeter方程式
 \begin{eqnarray}
   \Sigma^{\star, \mu'\nu'}(y_1, y_2) &=& 2\Gamma^{\mu'\lambda}(y_1, y_2)G_0^{\lambda\nu'}(y_2, y_1) + 4\Xi^{\mu'\nu'}\qty[\Gamma^{\mu'\nu'}(y_1, y_2) + \frac{ig}{2}\delta^{\mu'\nu'}(y_1 - y_2)]\\
   \Xi^{\mu'\nu'}&=&
-    \begin{bmatrix}
-      \xi^*(y_1)\xi(y_2)&\xi^*(y_1)\xi^*(y_2)\\
+  \begin{bmatrix}
+    \xi^*(y_1)\xi(y_2)&\xi^*(y_1)\xi^*(y_2)\\
     \xi(y_1)\xi(y_2)&\xi(y_1)\xi^*(y_2)
   \end{bmatrix}^{\mu'\nu'}
 \end{eqnarray}
@@ -5883,35 +5883,35 @@ Boson系ではFermion系における正孔由来の逆伝搬がないことか�
 %%-------------------- comment ---------------------------------------------------
 %%-------------------- comment ---------------------------------------------------
 \begin{comment}
-\chapter{研究 : ある種のAll-orderの計算に向けて}
-$\ev{\varphi_{\rm H}^\dagger(x)\varphi_{\rm H}(x)}$のような期待値を計算するにあたって1次では少し寂しいので, ある種のダイアグラムを無限次まで含んだ計算を行いたい. 以下はゼロモードを含まない議論になる. ゼロモードはWickの定理を満たさないのでAll-orderの計算は困難である.
+  \chapter{研究 : ある種のAll-orderの計算に向けて}
+  $\ev{\varphi_{\rm H}^\dagger(x)\varphi_{\rm H}(x)}$のような期待値を計算するにあたって1次では少し寂しいので, ある種のダイアグラムを無限次まで含んだ計算を行いたい. 以下はゼロモードを含まない議論になる. ゼロモードはWickの定理を満たさないのでAll-orderの計算は困難である.
 
-今回はHartree-Fockについて勉強してみる. Hartree-Fock方程式がそのまま$\ev{\varphi_{\rm H}^\dagger(x)\varphi_{\rm H}(x)}$などの無限次の計算に応用できるかはわからない. 
-\section{温度Green関数}
-\subsection{定義}
-冷却原子系のハミルトニアン
-\begin{eqnarray}
-  H_{\rm H}=\int d\bm{x}\left[\psi_{\rm H}^\dagger(h_0-\mu)\psi_{\rm H} +\frac{g}{2}\psi_{\rm H}^\dagger\psi_{\rm H}^\dagger\psi_{\rm H}\psi_{\rm H}\right]
-\end{eqnarray}
-を有限温度系考えることにする. 場の演算子は
-\begin{eqnarray}
-  \psi_{\rm H}(x) = \xi(\bx) + \varphi_{\rm H}(x)
-\end{eqnarray}
-のように分割されている. $\xi$は実であることを仮定. すると温度Green関数は以下のように定義される:
-\begin{eqnarray}
-  G(x, y) &\equiv& -\ev{T\qty[\psi_{\rm H}(x)\psi_{\rm H}(y)]} \qty(=  -\frac{\Tr\qty[\rho\; T\qty{\qty(\xi(x) + \varphi_{\rm H}(x))\qty(\xi(y) + \varphi^\dagger_{\rm H}(y))}]}{\Tr \rho})\\
-  &=& -T\qty[\xi(x)\xi(y)] + G'(x, y)
-\end{eqnarray}
-ただし密度演算子は規格化されているものとし, 
-\begin{eqnarray}
-\rho = e^{-\beta H},\hspace{0.5cm} G'(x, y) = -\ev{T\qty[\varphi_{\rm H}(x)\varphi^\dagger_{\rm H}(y)]}
-\end{eqnarray}
-である.
-\subsection{可観測量との関係}
-温度Green関数の便利なところは熱力学関数の振る舞いを知ること.
-%%-------------------- comment ---------------------------------------------------
-%%-------------------- comment ---------------------------------------------------
-\newpage
+  今回はHartree-Fockについて勉強してみる. Hartree-Fock方程式がそのまま$\ev{\varphi_{\rm H}^\dagger(x)\varphi_{\rm H}(x)}$などの無限次の計算に応用できるかはわからない. 
+  \section{温度Green関数}
+  \subsection{定義}
+  冷却原子系のハミルトニアン
+  \begin{eqnarray}
+    H_{\rm H}=\int d\bm{x}\left[\psi_{\rm H}^\dagger(h_0-\mu)\psi_{\rm H} +\frac{g}{2}\psi_{\rm H}^\dagger\psi_{\rm H}^\dagger\psi_{\rm H}\psi_{\rm H}\right]
+  \end{eqnarray}
+  を有限温度系考えることにする. 場の演算子は
+  \begin{eqnarray}
+    \psi_{\rm H}(x) = \xi(\bx) + \varphi_{\rm H}(x)
+  \end{eqnarray}
+  のように分割されている. $\xi$は実であることを仮定. すると温度Green関数は以下のように定義される:
+  \begin{eqnarray}
+    G(x, y) &\equiv& -\ev{T\qty[\psi_{\rm H}(x)\psi_{\rm H}(y)]} \qty(=  -\frac{\Tr\qty[\rho\; T\qty{\qty(\xi(x) + \varphi_{\rm H}(x))\qty(\xi(y) + \varphi^\dagger_{\rm H}(y))}]}{\Tr \rho})\\
+    &=& -T\qty[\xi(x)\xi(y)] + G'(x, y)
+  \end{eqnarray}
+  ただし密度演算子は規格化されているものとし, 
+  \begin{eqnarray}
+    \rho = e^{-\beta H},\hspace{0.5cm} G'(x, y) = -\ev{T\qty[\varphi_{\rm H}(x)\varphi^\dagger_{\rm H}(y)]}
+  \end{eqnarray}
+  である.
+  \subsection{可観測量との関係}
+  温度Green関数の便利なところは熱力学関数の振る舞いを知ること.
+  %%-------------------- comment ---------------------------------------------------
+  %%-------------------- comment ---------------------------------------------------
+  \newpage
 \end{comment}
 \chapter{研究 : ZeroModeハミルトニアンの大胆な近似について}
 ゼロモードがWickの定理を満たさないことの辛さに直面してからというもの, 常に考えていた単純なアイデアについて. \textbf{「$H_{u, z}$がWickを満たさない構造なら満たすように近似してしまえ」}
@@ -6033,6 +6033,190 @@ $Q, P$のクロスターム等々が系に及ぼす影響がどのようなも�
 
 VZHの議論が怪しいので, 厳密なZeroModeハミルトニアンで進めていくほうがいいのかもしれません. 
 
+\newpage
+
+\chapter{研究 : ゼロモード系の変分近似 - 新しい試行関数の提案}
+早木くんの卒論研究の過程でゼロモードハミルトニアンの$QPQ$が期待値に効いてくるという結果が出てきた. これについて調べたことをまとめる. 
+\section{あらまし}
+ゼロモードハミルトニアンはかなり煩雑な構造をしているため, 解析的にその性質を調べるためには近似に頼るしかない. しかし, Leadingな項がわかりやすいことから, ガウシアンを試行関数とした変分近似が有効であり, 「$Q, P$の偶数次がLeading termであり, 奇数次はあまり効いてこない」という結論を得た.
+
+しかし, ゼロモードハミルトニアンの各項の具体的な寄与を調べていくうちに, $QPQ$の項が無視しがたい寄与を持つことがわかった. 更に厄介なことに, 従来まで試行関数では$QPQ$の期待値はゼロになってしまう.
+
+以下では$QPQ$が系にどのような効果をもたらすのか, また解析的にOrder estimateできるのかどうかを調査する. ゼロモードの基本的な事柄については「Mastering Modern Conception of QFT」を参照のこと.
+
+\section{ゼロモードハミルトニアンの各項の寄与}
+秩序変数$\xi$が実であることを仮定したゼロモードハミルトニアン
+\begin{eqnarray}
+  \nonumber  H_z = -(\delta\mu + 4C)P &+& \frac{I-4D}{2}P^2 + 2BQPQ + 2DP^3\\
+  &+& \frac{1}{2}AQ^4 -2BQ^2 + CQP^2Q + \frac{1}{2}EP^4
+\end{eqnarray}
+における最も寄与の大きい項は$P^2$と$Q^4$であり, $P^2$が運動項, $Q^4$がポテンシャル項に相当する. $Q^4$の寄与が大きいために束縛状態を作ることができ, ゼロモードは安定に存在することができる\footnote{引力系BECなどではGP解が安定であるギリギリの境界付近にゼロモードが不安定になり得る領域がある.}. その他の$P$の奇数次や$Q, P$のカップリング項の物理的意味は定かではない. そこで, $P^2$と$Q^4$を基調としたハミルトニアン
+\begin{eqnarray}
+  \nonumber  H_z^v = -(\delta\mu + 4C)P + \frac{I-4D}{2}P^2 + \frac{1}{2}AQ^4
+\end{eqnarray}
+の固有関数\footnote{もちろんガウシアンに近いものになる.}及び固有エネルギーが他の項を乗せることでどのように変化するのかを見ることにした. その結果$QPQ$のみがある一定の寄与を持つことがわかった\footnote{実は$P^3$は実部と虚部のノルムを振動させる効果を持つが, 期待値に効いてくることはなかった. }(図 \ref{psi_qpq}).固有関数の形から$QPQ$はエネルギーを下げる役割を持つことが予想できる.
+
+注目すべき点のひとつは, \textbf{$H_z^v$と$H_z$のギャップを埋めているのはほぼ$QPQ$のみであること.} これはエネルギー固有値のプロットを見てもわかる(図 \ref{energy}). そしてもうひとつは\textbf{固有関数がGaussian-likeな形から離れることもなかったこと.} この形なら試行関数をガウシアンで取ることは妥当であるように思えるが...果たして何がQPQを生き残らせるのか？
+
+\begin{figure}[H]
+  \begin{tabular}{cc}
+    \begin{minipage}{0.5\hsize}
+      \begin{center}
+        \includegraphics[width = 9cm]{./EPS/psi_qpq2.eps}
+        \caption{固有関数の絶対値($H_z^v,\ H_z^v + 2BQPQ$)}\label{psi_qpq}
+      \end{center}
+    \end{minipage}
+    \begin{minipage}{0.6\hsize}
+      \begin{center}
+        \includegraphics[width = 9cm]{./EPS/energy2.eps}
+        \caption{エネルギー固有値($H_z,\ H_z^v,\ H_z^v + 2BQPQ$)}\label{energy}
+      \end{center}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+
+\section{試行関数の類推}
+試行関数が満たすべき条件は,
+\begin{itemize}
+\item[1.] \textbf{場の分割条件$\ev{Q}{\Psi} = \ev{P}{\Psi} = 0$}
+\item[2.] \textbf{$|\bra{q}\ket{\Psi}|$は$q=0$にピークを持つ偶関数}
+\item[3.] \textbf{$\ev{QPQ}{\Psi}\neq 0$}
+\end{itemize}
+であるように思われる. 1は対称性の自発的破れによるものであり, 2はゼロモードハミルトニアン$Q$の空間反転対称性から. 1, 3の条件を書き下すと
+\begin{eqnarray}
+  \int_{-\infty}^{\infty} dq\; q\Psi^*\Psi = 0 \hspace{0.3cm} and \hspace{0.3cm} -i\int_{-\infty}^{\infty} dq \Psi^*\frac{d}{dq}\Psi = 0 \hspace{0.3cm} and \hspace{0.3cm} -i\int_{-\infty}^{\infty} dq\; q^2 \Psi^*\frac{d}{dq}\Psi \neq 0
+\end{eqnarray}
+$\ev{Q}{\Psi} = 0$を満たす関数を選ぶことは難しくない\footnote{Taylor展開可能な関数ならOK？}. 一方で, $\ev{P}{\Psi} = 0$かつ$\ev{QPQ}{\Psi}\neq 0$は自明ではない. 条件2に倣って試行関数を偶関数に選ぶと, $\ev{QPQ}{\Psi} = 0$となってしまう. 仮に奇関数に選んだとしても同様である. つまり, 選ぶべきは偶関数でも奇関数でもないものになる. $\int_{-\infty}^{\infty} dq\; q^2 \Psi^*\frac{d}{dq}\Psi \neq 0$を満たすには$\int_{-\infty}^{\infty} dq \Psi^*\frac{d}{dq}\Psi = 0$ の根拠が「$\Psi^*\frac{d}{dq}\Psi$が奇関数」であってはならないことからもわかる. これは一見条件2に反しているように思えるが, 試行関数を複素数に拡張することで条件2を満たすことは可能である.
+\subsection{固有関数の実部と虚部}
+固有関数のイメージを膨らませるために固有関数をプロットする(図\ref{psi2_phase}).実部と虚部が偶関数でも奇関数でもない異様な構造を持っているが, 固有関数の位相の基準の取り方によっては実部と虚部は形を変え得るので, $q=0$の位相を基準に取り直してプロットしてみる(図 \ref{psi}). 
+\begin{figure}[H]
+  \begin{tabular}{cc}
+    \begin{minipage}{0.5\hsize}
+      \begin{center}
+        \includegraphics[width = 9cm]{./EPS/psi_phase2}
+        \caption{固有関数の実部と虚部}\label{psi2_phase}
+      \end{center}
+    \end{minipage}
+    \begin{minipage}{0.6\hsize}
+      \begin{center}
+        \includegraphics[width = 9cm]{./EPS/psi2}
+        \caption{固有関数の実部と虚部(modified)}\label{psi}
+      \end{center}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+\noindent これにより, 試行関数の満たすべき条件として 
+\begin{itemize}
+\item[4.] \textbf{$\Psi$の実部は偶関数, 虚部は奇関数}
+\end{itemize}
+が追加される. 
+\subsubsection{試行関数の類推 - 仮定その1}
+このグラフを見る限り試行関数は
+\begin{eqnarray}
+  \Psi &=& \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2} + i\beta q}\\
+  \Re[\Psi] = \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2}}\cos(\beta q), &&\hspace{0.5cm}\Im[\Psi] = \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2}}\sin(\beta q)
+\end{eqnarray}
+が妥当であるように思える. これは$|\Psi|$がガウシアンになっていることから条件2を満たしている. \textbf{しかし図 \ref{psi}をよく見ると節の周期が一定になっていない上に, $\alpha, \beta$を動かしても$\ev{P}=0$を満たす構造を作ることは不可能である.} もう少し精査が必要である.
+\subsection{期待値の実部と虚部}
+ここで$\ev{P}$と$\ev{QPQ}$の被積分関数をプロットしてみる(図 \ref{P_2}-\ref{QPQ}).
+\begin{figure}[H]
+  \begin{tabular}{cc}
+    \begin{minipage}{0.5\hsize}
+      \begin{center}
+        \includegraphics[width = 9cm]{./EPS/P_2.eps}
+        \caption{$\ev{P}$の実部と虚部(被積分関数)}\label{P_2}
+      \end{center}
+    \end{minipage}
+    \begin{minipage}{0.6\hsize}
+      \begin{center}
+        \includegraphics[width = 9cm]{./EPS/QPQ2.eps}
+        \caption{$\ev{QPQ}$の実部と虚部(被積分関数)}\label{QPQ}
+      \end{center}
+    \end{minipage}
+  \end{tabular}
+\end{figure}
+これは, 条件1・3を同時に満たす理由を被積分関数の実部が担っていることを示唆している. 被積分関数の虚部は固有関数の実部\footnote{正確には試行関数をGaussian-likeに取ったときの指数の肩の実部.}によるものであり, \textbf{試行関数の偶関数部がガウシアンであるなら$\ev{P}$および$\ev{QPQ}$の虚部は$qe^{-q^2}$のような奇関数になる.} これは上のグラフとほぼ同じ挙動を示しているだろう. やはり試行関数は$\qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{x^2}{4\alpha^2}} \times e^{i\bullet}$とするのが妥当である. 一方で被積分関数の実部については虚部ほど自明ではない.
+\subsubsection{試行関数の類推 - 仮定その2}
+\begin{eqnarray}
+  \Re[P] = \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2}}\cos(\beta q)
+\end{eqnarray}
+という仮定をしてみる. これはつまり試行関数が
+\begin{eqnarray}
+  \Psi &=& \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2} + i \sin(\beta q)}
+\end{eqnarray}
+であるということ. しかしこれは図 \ref{psi}における周期の問題を解決できておらず, かつ$\ev{P}=0$を満たすこともできない.
+
+\subsubsection{試行関数の類推 - 仮定その3}
+そもそも固有関数の振動周期が$q$-依存性を持つような構造はどのような試行関数によって得られるかというと, 例えば以下のようなものが挙げられる:
+\begin{eqnarray}
+  \Psi &=& \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2} + i\beta q^n}\\
+  \Re[\Psi] = \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2}}\cos(\beta q^n), &&\hspace{0.5cm}\Im[\Psi] = \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2}}\sin(\beta q^n)
+\end{eqnarray}
+しかし, $n$が奇だと$\ev{P}\neq0$になる. さらに, どんな$n$であっても図 \ref{P_2}のような概形にはならない. 
+
+様々な問題はあるものの, 周期の問題の解決はこの形式が最も単純であるように思える.
+
+\subsubsection{試行関数の類推 - 仮定その4}
+仮定その3の拡張した以下のような試行関数は, 上記の問題をすべて解決できる可能性を持っている:
+\begin{eqnarray}
+  \Psi &=& \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2} + i\sum_n \lambda_nq^{2n+1}} \label{trial-assumption}
+\end{eqnarray}
+しかしこれでは自由度(変分パラメータ)が大きすぎるため, どこかで和を打ち切る必要がある. そこで最も単純なものを採用する:
+\begin{eqnarray}
+  \Psi &=& \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2} + i(\beta q + \gamma q^3)}\label{trial}
+\end{eqnarray}
+\textbf{これは条件1-4をすべて満たすことができる.}
+\subsection{変分パラメータ}
+系の情報から変分パラメータを限定していく.
+\subsubsection{条件1 : $\ev{P} = 0$}
+条件2-4及び$\ev{Q} = 0$は関数の形によって既に満たされている. $\ev{P} = 0$を満たすとき, 変分パラメータに条件が課される:
+\begin{eqnarray}
+  &&\ev{P} = \qty(\frac{1}{2\pi\alpha^2})^\frac14\int dq \qty(\beta e^{-\frac{q^2}{2\alpha^2}} + 3\gamma q^2 e^{-\frac{q^2}{2\alpha^2}}) =0\\
+  &&\therefore \beta + 3\gamma\alpha^2 = 0 \label{condition1}
+\end{eqnarray}
+\subsubsection{$\ev{P}$の特殊性}
+条件1-4のもとでは変分パラメータは1つしか削ることができない. このまま変分近似に進むのはあまり得策ではないので, もう少し条件がないかを探すことにする.
+
+実は$\ev{P}$の被積分関数について
+\begin{eqnarray}
+  RP &\equiv& \int dq \Re\qty[-i\int_{-\infty}^{\infty} dq \Psi^*\frac{d}{dq}\Psi]^2 = \frac{27}{8}\alpha^4\gamma^2\\
+  IP &\equiv& \int dq \Re\qty[-i\int_{-\infty}^{\infty} dq \Psi^*\frac{d}{dq}\Psi]^2= \frac{1}{16\alpha^2}\\
+  \frac{RP}{IP} &=& {\rm const}
+\end{eqnarray}
+という性質を持っている.\textbf{ constというのは可変パラメータである$g$にも$N$にも依存しないという意味.} これは図\ref{P_2}の実部と虚部の面積比が一定であることを示している. この$RP$と$IP$の比が具体的にどうなるかを決めるのは, (恐らく)(\ref{trial-assumption})における$\sum_n \lambda_nq^{2n+1}$がどのような関数のTaylor展開に対応しているかである. それを調べる手段はつまるところ数値計算結果と比較する他なく, $RP/IP$を具体的に求めてみることと同等である. \textbf{数値計算の結果, $RP/IP=3/4$になることがわかった\footnote{この結果から, 具体的な関数を予想できるかもしれない. 個人的にはシグモイド的な何かだと思っているが, $\ev{P}=0$を満たすような関数を見つけられない可能性も当然ある. フーリエ解析してみるのもいいかもしれない. }.} これにより
+\begin{eqnarray}
+  72\alpha^6\gamma^2 = 1\label{condition2}
+\end{eqnarray}
+という条件を得る. (\ref{trial})(\ref{condition1})(\ref{condition2})をまとめると
+\begin{itembox}[c]{新しい試行関数}
+\begin{eqnarray}
+  &&\Psi = \qty(\frac{1}{2\pi\alpha^2})^\frac14e^{-\frac{q^2}{4\alpha^2} + i(\beta q + \gamma q^3)}\label{new-trial}\\
+  &&\beta + 3\gamma\alpha^2 = 0,\hspace{1cm} 72\alpha^6\gamma^2 = 1 \label{conditions}\\
+  &&\Rightarrow \beta = \pm\frac{1}{2\sqrt{2}\alpha}\hspace{1cm}\gamma = \mp\frac{1}{6\sqrt{2}\alpha^3}
+\end{eqnarray}
+\end{itembox}
+これで変分近似の準備ができた.
+\section{変分近似}
+\subsection{$\alpha$のオーダー}
+エネルギーの主要項が$P^2, Q^4, QPQ$であることを仮定して変分近似を進める\footnote{他の項が効いてこないことを確かめてみてほしい. }. 各期待値は以下の通り:
+\begin{eqnarray}
+  \ev{Q^4} = 3\alpha^4, \hspace{1cm}\ev{P^2} = \frac{1}{2\alpha^2}\hspace{1cm}\ev{QPQ} = \alpha^2 - \frac{3\alpha}{2\sqrt{2}}\simeq - \frac{3\alpha}{2\sqrt{2}}
+\end{eqnarray}
+$QPQ$はエネルギーを下げることから主要項右辺第二項である. これによりエネルギーは
+\begin{eqnarray}
+  f(\alpha) = \frac32A\alpha^4 + \frac{I}{4\alpha^2} - \frac{3}{\sqrt{2}}B\alpha
+\end{eqnarray}
+となる. ここでも$D$が主要項にならないことを見越して落としている. 微分すると
+\begin{eqnarray}
+  f'(\alpha) = 6A\alpha^3 - \frac{I}{2\alpha^3} - \frac{3}{\sqrt{2}}B
+\end{eqnarray}
+$f'(\alpha)=0$として一様系の$A, B, I$を代入すると
+\begin{eqnarray}
+  &&6N_0^2\alpha^6 - \frac{1}{2} - \frac{3}{2\sqrt{2}}N_0\alpha^3 = 0\\
+  &&\therefore \alpha = \sqrt[3]{\frac{3 + \sqrt{105}}{24\sqrt{2}}}N_0^{-\frac13}\simeq 0.731N_0^{-\frac13}
+\end{eqnarray}
+$QPQ$を入れない変分法に比べて$\alpha$のオーダーは当然変化しないが, 従来の変分法だと$N_0^{-\frac13}$の係数が$0.588...$程度であったのに対して少し持ち上がった結果が得られた. このことから, \textbf{$QPQ$を入れるかどうかですべてのゼロモード期待値が影響を受ける}ということがわかる. 
+\subsection{期待値の}
 \newpage
 \chapter{Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}
 ちゃんと式まで書いて説明しているところもあれば, 原文の式番号だけ書いて済ませているところもあります. 原文の補助に過ぎないものだと思ってください. 
