@@ -6195,25 +6195,25 @@ $\ev{Q}{\Psi} = 0$を満たす関数を選ぶことは難しくない\footnote{T
   &&\Rightarrow \beta = \pm\frac{1}{2\sqrt{2}\alpha}\hspace{1cm}\gamma = \mp\frac{1}{6\sqrt{2}\alpha^3}
 \end{eqnarray}
 \end{itembox}
-これで変分近似の準備ができた.
+$\alpha$は実であれば符号は任意だが, 今回は正であることにする. これで変分近似の準備ができた.
 \section{変分近似}
 \subsection{$\alpha$のオーダー}
 エネルギーの主要項が$P^2, Q^4, QPQ$であることを仮定して変分近似を進める\footnote{他の項が効いてこないことを確かめてみてほしい. }. 各期待値は以下の通り:
 \begin{eqnarray}
-  \ev{Q^4} = 3\alpha^4, \hspace{1cm}\ev{P^2} = \frac{1}{2\alpha^2}\hspace{1cm}\ev{QPQ} = \alpha^2 - \frac{3\alpha}{2\sqrt{2}}\simeq - \frac{3\alpha}{2\sqrt{2}}
+  \ev{Q^4} = 3\alpha^4, \hspace{1cm}\ev{P^2} = \frac{1}{2\alpha^2}\hspace{1cm}\ev{QPQ} = -\frac{\alpha}{\sqrt{2}}
 \end{eqnarray}
-$QPQ$はエネルギーを下げることから主要項右辺第二項である. これによりエネルギーは
+$QPQ$はエネルギーを下げることから負の符号を採用. これによりエネルギーは
 \begin{eqnarray}
-  f(\alpha) = \frac32A\alpha^4 + \frac{I}{4\alpha^2} - \frac{3}{\sqrt{2}}B\alpha
+  f(\alpha) = \frac32A\alpha^4 + \frac{I}{4\alpha^2} - \sqrt{2}B\alpha
 \end{eqnarray}
 となる. ここでも$D$が主要項にならないことを見越して落としている. 微分すると
 \begin{eqnarray}
-  f'(\alpha) = 6A\alpha^3 - \frac{I}{2\alpha^3} - \frac{3}{\sqrt{2}}B
+  f'(\alpha) = 6A\alpha^3 - \frac{I}{2\alpha^3} - \sqrt{2}B
 \end{eqnarray}
 $f'(\alpha)=0$として一様系の$A, B, I$を代入すると
 \begin{eqnarray}
-  &&6N_0^2\alpha^6 - \frac{1}{2} - \frac{3}{2\sqrt{2}}N_0\alpha^3 = 0\\
-  &&\therefore \alpha = \sqrt[3]{\frac{3 + \sqrt{105}}{24\sqrt{2}}}N_0^{-\frac13}\simeq 0.731N_0^{-\frac13}
+  &&6N_0^2\alpha^6 - \frac{1}{2} - \frac{1}{\sqrt{2}}N_0\alpha^3 = 0\\
+  &&\therefore \alpha = \frac{1}{\sqrt{2}}N_0^{-\frac13}\simeq 0.707N_0^{-\frac13}
 \end{eqnarray}
 $QPQ$を入れない変分法に比べて$\alpha$のオーダーは当然変化しないが, 従来の変分法だと$N_0^{-\frac13}$の係数が$0.588...$程度であったのに対して少し持ち上がった結果が得られた. このことから, \textbf{$QPQ$を入れるかどうかですべてのゼロモード期待値が影響を受ける}ということがわかる. 
 \subsection{期待値の}
