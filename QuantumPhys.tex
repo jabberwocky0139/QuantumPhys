@@ -6075,6 +6075,7 @@ VZHの議論が怪しいので, 厳密なZeroModeハミルトニアンで進め�
   \end{tabular}
 \end{figure}
 
+結論だけ知りたい場合は(\ref{new-trial})まで飛んでください. 
 \section{試行関数の類推}
 試行関数が満たすべき条件は,
 \begin{itemize}
@@ -6123,13 +6124,13 @@ $\ev{Q}{\Psi} = 0$を満たす関数を選ぶことは難しくない\footnote{T
   \begin{tabular}{cc}
     \begin{minipage}{0.5\hsize}
       \begin{center}
-        \includegraphics[width = 9cm]{./EPS/P_2.eps}
+        \includegraphics[width = 8cm]{./EPS/P_2.eps}
         \caption{$\ev{P}$の実部と虚部(被積分関数)}\label{P_2}
       \end{center}
     \end{minipage}
     \begin{minipage}{0.6\hsize}
       \begin{center}
-        \includegraphics[width = 9cm]{./EPS/QPQ2.eps}
+        \includegraphics[width = 8cm]{./EPS/QPQ2.eps}
         \caption{$\ev{QPQ}$の実部と虚部(被積分関数)}\label{QPQ}
       \end{center}
     \end{minipage}
@@ -6171,7 +6172,7 @@ $\ev{Q}{\Psi} = 0$を満たす関数を選ぶことは難しくない\footnote{T
 \subsubsection{条件1 : $\ev{P} = 0$}
 条件2-4及び$\ev{Q} = 0$は関数の形によって既に満たされている. $\ev{P} = 0$を満たすとき, 変分パラメータに条件が課される:
 \begin{eqnarray}
-  &&\ev{P} = \qty(\frac{1}{2\pi\alpha^2})^\frac14\int dq \qty(\beta e^{-\frac{q^2}{2\alpha^2}} + 3\gamma q^2 e^{-\frac{q^2}{2\alpha^2}}) =0\\
+  &&\ev{P} = \qty(\frac{1}{2\pi\alpha^2})^\frac14\int dq \qty(\beta e^{-\frac{q^2}{2\alpha^2}} + 3\gamma q^2 e^{-\frac{q^2}{2\alpha^2}}) = 0\\
   &&\therefore \beta + 3\gamma\alpha^2 = 0 \label{condition1}
 \end{eqnarray}
 \subsubsection{$\ev{P}$の特殊性}
@@ -6216,7 +6217,42 @@ $f'(\alpha)=0$として一様系の$A, B, I$を代入すると
   &&\therefore \alpha = \frac{1}{\sqrt{2}}N_0^{-\frac13}\simeq 0.707N_0^{-\frac13}
 \end{eqnarray}
 $QPQ$を入れない変分法に比べて$\alpha$のオーダーは当然変化しないが, 従来の変分法だと$N_0^{-\frac13}$の係数が$0.588...$程度であったのに対して少し持ち上がった結果が得られた. このことから, \textbf{$QPQ$を入れるかどうかですべてのゼロモード期待値が影響を受ける\footnote{$\alpha$のオーダーまで変えることはないが, $N_0^{\frac{2}{3}}$のオーダーを持つものは}}ということがわかる. 
-\subsection{期待値の}
+\subsection{試行関数}
+この$\alpha$を用いて試行関数をプロットすると数値解と非常によく一致する:
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width = 12cm]{./EPS/psi_var.eps}
+    \caption{固有関数の変分解と数値解}\label{psi_var}
+  \end{center}
+\end{figure}
+本来変分法は「固有関数はあまりいい形にならないけど固有値はよくフィットする」ような方法だが, 今回はその固有関数すら一致している. 試行関数の選び方は良かったようである. 恐らく励起エネルギーも良く一致しているはずなので確認すること.
+
+\section{課題と展望}
+\subsection{計算のチェック}
+計算ミスには十分注意したつもりだが, あまり自信はない. また, $Q^4, P^2, QPQ$以外の期待値の確認はしていない. 虚部を追加した関係で$P$を含むすべての期待値が変更を受けるので, すべて確認してみてほしい.
+\subsection{数値計算の正当性}
+ゼロモード空間$q$の分割数に対してどのくらいの励起までが有用な値になるかがわかると嬉しい. 正当性の基準として変分法やWKB近似を活用してほしい. 
+\subsection{試行関数の肩}
+変分パラメータを制限するために$\ev{P}$の面積の議論で数値計算に頼っているのはあまりスマートではない. (\ref{trial-assumption})の指数の肩に乗る関数$f$を推定できればこの問題は解決する:
+\begin{eqnarray}
+  \Psi = C_ne^{f\qty(\frac{iq}{\alpha})}
+\end{eqnarray}
+こんなものが有望. Double exponentialが$\ev{P}=0$を満たす可能性のあるよい関数だとも思ったが, 自乗可積分にならなかった. 可能性はありそうなので探ってみてほしい. 振動周期がどうなっているかを調べてみるとヒントになるかもしれないのでFourier解析もしてみたい.
+
+実部をガウシアンにしている時点で, 高エネルギー領域では絶対にフィットしなくなる\footnote{高い励起ほど励起エネルギーがリニアでない効果が効いてくるため}. しかし, \textbf{肩の関数$f$として良いものが見つかれば実部は単なるガウシアンではなくなり, 従来の変分法の限界を超えられる可能性がある.} とても未来を感じる一方, 見つけるのは大変そう. 見つからない可能性も十分にあるので注意. 
+\subsection{励起状態の見積もり}
+今回は基底のみを考えている. 励起状態を考えるには以下のような試行関数が考えられる:
+\begin{eqnarray}
+  \ev{q|\psi_n} = \sqrt{\frac{2^nn!}{\sqrt{2\pi}(2n)!\gamma^{2n+1}}} q^ne^{-q^2/4\gamma^2 + i\beta_n + i\gamma_n q^3}
+\end{eqnarray}
+これで計算してみたところ, 第一励起まではよかったが, 第二励起から合わなくなった. 高エネルギー領域はWKBに任せるべきだが, もう少し頑張って欲しかった. そこでエルミート多項式を用いた拡張を考える:
+\begin{eqnarray}
+  \ev{q|\psi_n} = C_n H_n\qty(\frac{q}{\alpha})e^{-q^2/4\gamma^2 + i\beta_n + i\gamma_n q^3}
+\end{eqnarray}
+これで規格化係数や$\beta_n, \gamma_n$を導出して, 固有関数・エネルギー固有値がどれくらいの準位までフィットするかを確認してほしい. ちなみに, 最高に良い$f$を見つけられればこの拡張に意味はない.
+
+\subsection{他の系への応用}
+引力系の不安定領域を探るときは$\eta$が$\xi$より支配的になったりと, かなり異様なことが起こる. そんな未知の系を探るときにこの方法は有用かもしれない. もしかしたら$Q^4, P^2, QPQ$以外にも効いてくる項があるかもしれない.
 \newpage
 \chapter{Fetter-Walecka : Quantum Theory of Many-Particle Systems(Dover, 1971)}
 ちゃんと式まで書いて説明しているところもあれば, 原文の式番号だけ書いて済ませているところもあります. 原文の補助に過ぎないものだと思ってください. 
