@@ -5879,6 +5879,34 @@ Boson系ではFermion系における正孔由来の逆伝搬がないことか�
   \varphi = \sum_\ell \qty[u_\ell a_\ell + v_\ell^*a^\d_\ell]
 \end{eqnarray}
 のように展開しているので$t_y>t_x$でも値を持つことができることになる. これをどう解釈したらよいか？
+\section{2体束縛問題への置き換え}
+今扱っている系は調和トラップによって束縛された系なので, 無限遠方で平面波になるような境界条件を課す散乱問題への置き換えは恐らく適当ではない. しかし$\Gamma$の積分方程式を導くためにLadder近似を用いていることから, 2体問題に落とし込んでいることに変わりはない. つまり, 今回当てはめるべきは「2体束縛問題」である. これは散乱問題同様, 量子力学の範疇にある.
+\subsection{2体Schr\"odinger方程式の束縛問題}
+Schr\"odinger方程式は
+\begin{eqnarray}
+  \nonumber &&H\Phi(\bx_1, \bx_2) = E\Phi(\bx_1, \bx_2)\\
+  &&H = -\frac{\hbar^2}{2m}\nabla_1^2 -\frac{\hbar^2}{2m}\nabla_2^2 + \frac12m\omega\bx_1^2 + \frac12m\omega\bx_2^2 + U(|\bx_1 - \bx_2|)
+\end{eqnarray}
+である. 座標系を重心座標と相対座標に変換すると変数分離系になっている:
+\begin{eqnarray}
+  \nonumber H &=& H_c + H_r\\
+  \nonumber H_c &=& -\frac{\hbar^2}{2M}\nabla_X^2 + \frac12M\omega^2 \bm{X}^2\\
+  \nonumber H_r &=& -\frac{\hbar^2}{2m_r}\nabla_x^2 + \frac12m_r\omega^2 x^2 + U(|\bx|)\\
+  \nonumber && \bm{X} = \frac{\bx_1 + \bx_2}{2}, \hspace{0.5cm}\bx = \bx_1 - \bx_2\\
+  &&M = 2m, \hspace{0.5cm}m_r = \frac{m}{2}
+\end{eqnarray}
+$H_c$はただの調和振動子なので解析的に完全系を構成できる. $H_r$について解析的に解くことはできないが, 摂動計算の形式に持ち込むことは難しくない. 特解は
+\begin{eqnarray}
+  &&\Phi(\bx_1, \bx_2) = u_{\bm{N}}(\bm{X})v(\bx)\\
+  &&H_rv(\bx) = \varepsilon v(\bx)\\
+  &&E = \qty(N = \frac32)\hbar\omega + \varepsilon
+\end{eqnarray}
+である. $u_{\bm{N}}, v$は完全系を構成できる.
+
+\subsubsection{摂動計算の是非}
+Fetterでは「Ladderダイアグラムの無限次の足し上げは摂動計算とは根本的にことなるものであり, 摂動計算では束縛状態を表現できない」というような文言があるが, これは一様系の話である. 自由粒子がベアカップリングによって束縛状態を作るような場合は摂動の高次が強く寄与し, かつ\textbf{摂動の無限次を仮に計算できたとしても正しい答えを導かない.} しかし今回は調和トラップによって束縛状態が作られるため, 特に今回のような接触型相互作用においてはベアカップリングによる寄与は高次まで取り入れる必要はない.
+
+
 \newpage
 %%-------------------- comment ---------------------------------------------------
 %%-------------------- comment ---------------------------------------------------
@@ -6224,10 +6252,10 @@ $QPQ$を入れない変分法に比べて$\alpha$のオーダーは当然変化�
     \includegraphics[width = 12cm]{./EPS/psi_var.eps}
     \caption{固有関数の変分解と数値解}\label{psi_var}
   \end{center}
-\end{figure}
+\end{figure} 
 本来変分法は「固有関数はあまりいい形にならないけど固有値はよくフィットする」ような方法だが, 今回はその固有関数すら一致している. 試行関数の選び方は良かったようである. 恐らく励起エネルギーも良く一致しているはずなので確認すること.
 
-\section{課題と展望}
+\section{課題と展望} 
 \subsection{計算のチェック}
 計算ミスには十分注意したつもりだが, あまり自信はない. また, $Q^4, P^2, QPQ$以外の期待値の確認はしていない. 虚部を追加した関係で$P$を含むすべての期待値が変更を受けるので, すべて確認してみてほしい.
 \subsection{数値計算の正当性}
