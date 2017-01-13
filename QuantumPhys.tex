@@ -5906,6 +5906,35 @@ $H_c$はただの調和振動子なので解析的に完全系を構成できる
 \subsubsection{摂動計算の是非}
 Fetterでは「Ladderダイアグラムの無限次の足し上げは摂動計算とは根本的にことなるものであり, 摂動計算では束縛状態を表現できない」というような文言があるが, これは一様系の話である. 自由粒子がベアカップリングによって束縛状態を作るような場合は摂動の高次が強く寄与し, かつ\textbf{摂動の無限次を仮に計算できたとしても正しい答えを導かない.} しかし今回は調和トラップによって束縛状態が作られるため, 特に今回のような接触型相互作用においてはベアカップリングによる寄与は高次まで取り入れる必要はない.
 
+\section{接触型を仮定しない$\Gamma$}
+先の章では接触型を仮定した2変数の$\Gamma$についての積分方程式を導いたが, 今回はその仮定を(見かけ上)外すことにする(c.f. (\ref{Bethe-Salpeter})):
+\begin{eqnarray}
+\nonumber  \Gamma(y_1, y_2; y_1', y_2') &=& -\frac{i}{2}U(y_1 - y_1')\delta(y_1 - y_2)\delta(y_1' - y_2')\\
+  &&- \frac{i}{2}\int dzdz' U(y_1 - y_1')G_0(y_1, z)G_0(y_1', z')\Gamma(z, y_2; z', y_2')
+\end{eqnarray}
+ここで
+\begin{eqnarray}
+  &&\Gamma(y_1, y_2;y_1', y_2') \equiv \Gamma'(y_1, y_2), \hspace{1cm}delta(y_1-y_2)delta(y_1'-y_2') \equiv \delta'(y_1, y_2)\\
+  &&G_0(y_1, z)G_0(y_1', z') \equiv {\cal G}(y_1, z)
+\end{eqnarray}
+という置き換えをする:
+\begin{eqnarray}
+\nonumber  \Gamma'(y_1, y_2) &=& -\frac{i}{2}U(y_1 - y_1')\delta'(y_1 - y_2)- \frac{i}{2}\int dzdz' U(y_1 - y_1'){\cal G}_0(y_1, z)\Gamma'(z, y_2)
+\end{eqnarray}
+さらに
+\begin{eqnarray}
+  \Gamma'(y_1, y_2) \equiv U(y_1 - y_1')\chi(y_1, y_2)
+\end{eqnarray}
+という置き換えを導入, $\chi$についての積分方程式に落としこむ:
+\begin{eqnarray}
+\nonumber  \chi(y_1, y_2) &=& -\frac{i}{2}\delta'(y_1 - y_2)- \frac{i}{2}\int dzdz' U(z - z'){\cal G}_0(y_1, z)\chi(z, y_2)
+\end{eqnarray}
+さてここで$\chi$を$H_r$の固有関数で再構成したい. $v$とGreen関数の関係及び完全系は
+\begin{eqnarray}
+  &&v(\bx_1 - \bx_2) = v^0(\bx_1 - \bx_2) + \int d(\bm{z} - \bm{z}')G_0(\bx_1 - \bx_2, \bm{z} - \bm{z}')U(\bm{z} - \bm{z}')v(\bm{z} - \bm{z}')\\
+  &&\sum_n v(\bx)v^*(\by) = \delta(\bx -\by)
+\end{eqnarray}
+である. Fetterと同様の流れを追うなら
 
 \newpage
 %%-------------------- comment ---------------------------------------------------
